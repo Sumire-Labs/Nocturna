@@ -1,8 +1,26 @@
-# PR #549: Windows AMD buffer mapping workaround
+# PR #549: driver 更新を基本対応とする判断
 
 対象: Minecraft 1.20.1／Forge、`20.1/forge`。調査・実装日: 2026-11-16 (JST)。
-取り込み元: [Embeddium PR #549](https://github.com/FiniteReality/embeddium/pull/549)、
+検討対象: [Embeddium PR #549](https://github.com/FiniteReality/embeddium/pull/549)、
 `a8be3ac45736d3a3c9ca36b4917fbbbe54a92b25`、作者 Carnestio (GitHub: Carnesito)。
+
+## 最終判断: 不採用
+
+AMD の公開 driver に修正が入っているため、renderer 側の回避は採用しない。
+試験導入した `583d293a` の実装・専用テスト・テスト起動設定は revert した。
+通常の共有 index mapping と staging buffer の capability／ユーザー設定による選択に戻している。
+AMD 専用の回避フラグと JVM 引数 `embeddium.workaround.amdBufferMapping` も削除した。
+
+driver 側の修正報告:
+
+- RDNA 3／4: AMD 担当者が [2026-03-12 のコメント](https://github.com/GPUOpen-Drivers/AMD-Gfx-Drivers/issues/74#issuecomment-4043515330)
+  で公開 driver は修正済みと説明。
+- RDNA 2: [2026-11-04 のコメント](https://github.com/GPUOpen-Drivers/AMD-Gfx-Drivers/issues/74#issuecomment-6627668081)
+  で Adrenalin 26.10.2 の修正を報告し、issue をクローズ。
+
+利用者は該当 GPU 向けの修正済み driver へ更新することを基本対応とする。
+修正済み driver でも問題が続く場合は、GPU・driver・launcher・再現条件を確認して別途調査する。
+RDNA 1 や OEM driver など、報告に含まれない構成まで一律に解決済みとは断定しない。
 
 ## 原因と方針
 
@@ -14,13 +32,13 @@ PR 全体には、この回避とは別に全 GPU の描画・設定を変える
 
 Forge 1.20.1 は mod の Window mixin より先に早期ロード画面の GL context を作る場合がある。
 そのため、Window constructor 周辺だけで command line を変更しても、既に driver profile が
-初期化されているケースには間に合わない。今回は context 作成後に問題の mapping 経路を避ける。
+初期化されているケースには間に合わない。試験実装では context 作成後に mapping 経路を避けた。
 
-## 採用した変更
+## 取り消した試験実装
 
 `GL.createCapabilities` 後、既存の `LateDriverScanner` が取得する `GL_VENDOR` と OS から
-`AMD_BUFFER_MAPPING` を選択する。Windows 上のネイティブ AMD vendor
-(`ATI Technologies Inc.`、`Advanced Micro Devices, Inc.`、`AMD`) のみを対象にする。
+`AMD_BUFFER_MAPPING` を選択する実装を試した。Windows 上のネイティブ AMD vendor
+(`ATI Technologies Inc.`、`Advanced Micro Devices, Inc.`、`AMD`) のみを対象にしていた。
 
 - 共有 quad index buffer: host memory に同じ index を生成し、`glBufferData` 経由で転送する。
   一時 native memory は転送が例外を投げた場合も解放する。
@@ -32,16 +50,9 @@ adapter の一覧ではなく使用中の context を判定するため、AMD �
 混在環境でも、NVIDIA context の buffer 経路は変更しない。Linux、Mesa／ANGLE、Intel、
 vendor 不明の context も対象外。
 
-既知の問題を起こさない Windows AMD driver にも、既定ではこの保守的な回避が有効になる。
-driver の更新で mapping が正常になっていることを利用者が確認できる場合は、次の JVM 引数で無効化できる。
-
-```text
--Dembeddium.workaround.amdBufferMapping=false
-```
-
-これは **JVM 引数** であり、ゲームの起動引数ではない。driver 世代／OEM ごとの正確な安全範囲を
-推測して自動判定する実装にはしていない。回避中は persistent mapping による転送最適化が使えず、
-通常の index 拡張時には host memory からの転送が加わる。FPS／frame time の比較は未実施。
+この方式では修正済み Windows AMD driver にも回避が有効になり、persistent mapping による転送最適化を
+無効にしてしまう。旧 driver のための保守・判定・追加経路を持つ代わりに、driver 更新を基本対応とする。
+FPS／frame time の比較は未実施。
 
 ## 採用していない変更
 
@@ -49,8 +60,8 @@ driver の更新で mapping が正常になっていることを利用者が確�
 | --- | --- |
 | 全 GPU の multi-draw を個別 draw にする | 採用しない。既存の multi-draw を維持。mapping の故障とは別の変更で、必要性を確認できていない。 |
 | block face culling／compact vertices／no-error context の既定値を false にする | 採用しない。各設定の既定値・ユーザー設定を維持。 |
-| 全 GPU で staging buffer を強制 fallback にする | Windows／AMD context に限定して採用。その他は従来の capability／設定判定を使う。 |
-| 全 GPU の共有 index buffer を host upload にする | Windows／AMD context に限定して採用。その他は従来の mapping 経路を使う。 |
+| 全 GPU で staging buffer を強制 fallback にする | 採用しない。Windows／AMD 限定の試験実装も取り消し、従来の capability／設定判定を使う。 |
+| 全 GPU の共有 index buffer を host upload にする | 採用しない。Windows／AMD 限定の試験実装も取り消し、従来の mapping 経路を使う。 |
 | command-line の ANSI／Unicode 書き換え、Kernel32 拡張 | 採用しない。既存の NVIDIA hook を変更せず、新しい AMD hook も追加しない。native hook の共有・復元や早期 driver 初期化への対応は今回不要になる。 |
 
 mod ID、network 登録、配布先との互換性宣言も変更していない。外部の AMD fix mod は導入していない。
@@ -94,21 +105,17 @@ Celeritas common `2.5.14-GTNH` を指定し、[build 定義](https://github.com/
 map 呼び出しも OpenGL に委譲する。AMD 向け shader-source 回避はあるが、今回の mapping 問題とは別。
 確認した地形／OpenGL 経路では #549 相当の profile 回避や AMD mapping の強制無効化は見つからなかった。
 
-したがって、今回の修正は Sodium の環境変更コードのバックポートでも、Celeritas／Angelica の
-既存動作の追従でもない。Embeddium PR #549 の buffer 側の回避を、使用中の Windows AMD context に
-限定して適用するもの。
+試験実装は Embeddium PR #549 の buffer 側の回避を Windows AMD context に限定したもので、
+Sodium の環境変更コードや Celeritas／Angelica の実装を移植したものではない。
+これらのコード比較だけでは Angelica／Celeritas における不具合の解消状況は判断できない。
 
-## 検証
+## 試験導入時の検証記録
 
 通常の JUnit: 16 件成功。vendor／OS、混在 GPU を想定した context 変更、他の回避フラグの維持、
 明示 opt-out、SHORT／INTEGER index の全内容、未変更の mapped 経路、再試行・再拡張を検査する。
 
 実機 OpenGL テストを加えた build: 17 件成功。失敗・スキップ 0 件。
-
-```powershell
-$env:JAVA_HOME = 'C:/Program Files/Eclipse Adoptium/jdk-17.0.20.101-hotspot'
-./gradlew.bat --gradle-user-home D:/DevCache/Gradle/embeddium-legacy build -PtestOpenGL --no-daemon
-```
+これは取り消し前の結果であり、現在の build にこれらの専用テストは含まれない。
 
 実機の識別文字列:
 
@@ -125,3 +132,14 @@ SHORT／INTEGER index を GPU から読み戻して比較した。RenderRegionMa
 これはデータ転送の確認であり、故障 driver での不可視地形の再現・改善確認ではない。
 Minecraft の実ワールド、Oculus／shader pack、問題を起こす旧 driver、実 NVIDIA／Intel GPU、
 実 Linux 環境での描画検証は未実施。
+
+## 取り消し後の検証
+
+`src` と `build.gradle.kts` は AMD 回避を導入する前の `0616784a` と一致する。
+初回に採用した性能改善・翻訳・バイオーム色修正は維持している。
+通常の `build` は成功し、既存の JUnit 9 件はすべて成功、失敗・スキップ 0 件。
+
+```powershell
+$env:JAVA_HOME = 'C:/Program Files/Eclipse Adoptium/jdk-17.0.20.101-hotspot'
+./gradlew.bat --gradle-user-home D:/DevCache/Gradle/embeddium-legacy build --no-daemon
+```

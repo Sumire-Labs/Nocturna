@@ -1,7 +1,6 @@
 package me.jellysquid.mods.sodium.client.compatibility.checks;
 
 import me.jellysquid.mods.sodium.client.compatibility.workarounds.nvidia.NvidiaDriverVersion;
-import me.jellysquid.mods.sodium.client.compatibility.workarounds.Workarounds;
 import me.jellysquid.mods.sodium.client.gui.console.Console;
 import me.jellysquid.mods.sodium.client.gui.console.message.MessageLevel;
 import net.minecraft.Util;
@@ -34,7 +33,6 @@ public class LateDriverScanner {
 
     private static void checkContextImplementation() {
         GLContextInfo driver = GLContextInfo.create();
-        Workarounds.onContextInitialized(driver);
 
         if (driver == null) {
             LOGGER.warn("Could not retrieve identifying strings for OpenGL implementation");

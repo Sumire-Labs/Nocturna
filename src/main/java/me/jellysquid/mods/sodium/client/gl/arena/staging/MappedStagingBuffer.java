@@ -2,7 +2,6 @@ package me.jellysquid.mods.sodium.client.gl.arena.staging;
 
 import it.unimi.dsi.fastutil.PriorityQueue;
 import it.unimi.dsi.fastutil.objects.ObjectArrayFIFOQueue;
-import me.jellysquid.mods.sodium.client.compatibility.workarounds.Workarounds;
 import me.jellysquid.mods.sodium.client.gl.buffer.*;
 import me.jellysquid.mods.sodium.client.gl.device.CommandList;
 import me.jellysquid.mods.sodium.client.gl.device.RenderDevice;
@@ -49,8 +48,7 @@ public class MappedStagingBuffer implements StagingBuffer {
     }
 
     public static boolean isSupported(RenderDevice instance) {
-        return !Workarounds.isWorkaroundEnabled(Workarounds.Reference.AMD_BUFFER_MAPPING)
-                && instance.getDeviceFunctions().getBufferStorageFunctions() != BufferStorageFunctions.NONE;
+        return instance.getDeviceFunctions().getBufferStorageFunctions() != BufferStorageFunctions.NONE;
     }
 
     @Override

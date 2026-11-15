@@ -1,12 +1,10 @@
 package me.jellysquid.mods.sodium.client.compatibility.workarounds;
 
-import me.jellysquid.mods.sodium.client.compatibility.environment.GLContextInfo;
 import me.jellysquid.mods.sodium.client.compatibility.environment.OSInfo;
 import me.jellysquid.mods.sodium.client.compatibility.environment.OSInfo.OS;
 import me.jellysquid.mods.sodium.client.compatibility.environment.probe.GraphicsAdapterInfo;
 import me.jellysquid.mods.sodium.client.compatibility.environment.probe.GraphicsAdapterProbe;
 import me.jellysquid.mods.sodium.client.compatibility.environment.probe.GraphicsAdapterVendor;
-import org.jetbrains.annotations.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -73,41 +71,6 @@ public class Workarounds {
                 .contains(id);
     }
 
-    public static void onContextInitialized(@Nullable GLContextInfo context) {
-        onContextInitialized(OSInfo.getOS(), context);
-    }
-
-    static void onContextInitialized(OS operatingSystem, @Nullable GLContextInfo context) {
-        // Adapter probing is insufficient on hybrid systems: only the active OpenGL implementation matters here.
-        boolean enabled = isAmdWindowsContext(operatingSystem, context)
-                && Boolean.parseBoolean(System.getProperty("embeddium.workaround.amdBufferMapping", "true"));
-        var previous = ACTIVE_WORKAROUNDS.getAndUpdate(current -> {
-            var updated = EnumSet.noneOf(Reference.class);
-            updated.addAll(current);
-            updated.remove(Reference.AMD_BUFFER_MAPPING);
-            if (enabled) {
-                updated.add(Reference.AMD_BUFFER_MAPPING);
-            }
-            return Collections.unmodifiableSet(updated);
-        });
-
-        if (enabled && !previous.contains(Reference.AMD_BUFFER_MAPPING)) {
-            LOGGER.warn("Applying workaround: Avoid mapped chunk buffers on the AMD Windows OpenGL driver "
-                    + "(AMD_BUFFER_MAPPING)");
-        }
-    }
-
-    static boolean isAmdWindowsContext(OS operatingSystem, @Nullable GLContextInfo context) {
-        if (operatingSystem != OS.WINDOWS || context == null || context.vendor() == null) {
-            return false;
-        }
-
-        return switch (context.vendor().trim().toLowerCase(Locale.ROOT)) {
-            case "ati technologies inc.", "advanced micro devices, inc.", "amd" -> true;
-            default -> false;
-        };
-    }
-
     public enum Reference {
         /**
          * The NVIDIA driver applies "Threaded Optimizations" when Minecraft is detected, causing severe
@@ -121,12 +84,5 @@ public class Workarounds {
          * <a href="https://github.com/CaffeineMC/sodium-fabric/issues/1624">GitHub Issue</a>
          */
         NO_ERROR_CONTEXT_UNSUPPORTED,
-
-        /**
-         * AMD's Windows Minecraft application profile can corrupt mapped buffers, including the shared quad indices.
-         * Selected from the active context, so AMD adapters driving other displays do not affect other GPU vendors.
-         * <a href="https://github.com/GPUOpen-Drivers/AMD-Gfx-Drivers/issues/74">Driver issue</a>
-         */
-        AMD_BUFFER_MAPPING,
     }
 }

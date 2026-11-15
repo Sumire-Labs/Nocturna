@@ -32,7 +32,7 @@
 
 | PR | 判断 |
 | --- | --- |
-| [#549](https://github.com/FiniteReality/embeddium/pull/549) | 初回は全体を保留。その後、Windows／AMD の実際の OpenGL context に限り、共有 index upload と staging の mapping 回避を採用した。multi-draw、既定値、command-line hook は採用していない。[追補の設計・比較・検証](amd-workaround-pr-549.md)を参照。 |
+| [#549](https://github.com/FiniteReality/embeddium/pull/549) | 不採用。Windows／AMD 限定の buffer 回避を試験導入したが、AMD が公開 driver での修正を報告しているため取り消した。通常の転送・最適化経路を維持し、driver 更新を基本対応とする。[調査・比較・取り消し理由](amd-workaround-pr-549.md)を参照。 |
 | [#577](https://github.com/FiniteReality/embeddium/pull/577) | weighted model の重みを constructor で固定する案。保持するリストの不変性と、モデルを書き換える mod との契約を別途確認してから扱う。 |
 | [#579](https://github.com/FiniteReality/embeddium/pull/579) | sprite の frame duration キャッシュ。Ticker の constructor／tick 注入を変更するため、補間・resource reload・アニメーション拡張 mod を含むクライアント検証を別バッチで行う。 |
 | [#581](https://github.com/FiniteReality/embeddium/pull/581) | region ごとの draw cache と draw merge。native pointer の公開 API、全 mutation 経路の invalidation、追加 heap 使用量、Oculus shadow pass を含む影響が大きい。実クライアントでの描画同一性とメモリ・frame time の測定後に判断する。 |
@@ -60,7 +60,7 @@ getter の返す情報を交換した後も新しい override を使うことと
 
 | issue | 今回確認したこと／次に必要なこと |
 | --- | --- |
-| [#537](https://github.com/FiniteReality/embeddium/issues/537)、[#543](https://github.com/FiniteReality/embeddium/issues/543)、[#550](https://github.com/FiniteReality/embeddium/issues/550)、[#561](https://github.com/FiniteReality/embeddium/issues/561)、[#563](https://github.com/FiniteReality/embeddium/issues/563) | AMD の不可視地形報告。#549 を一括適用せず、driver 版・機種・各変更単体で再現を調べる。 |
+| [#537](https://github.com/FiniteReality/embeddium/issues/537)、[#543](https://github.com/FiniteReality/embeddium/issues/543)、[#550](https://github.com/FiniteReality/embeddium/issues/550)、[#561](https://github.com/FiniteReality/embeddium/issues/561)、[#563](https://github.com/FiniteReality/embeddium/issues/563) | AMD の不可視地形報告。まず該当 GPU 向け修正済み driver へ更新し、継続する場合に driver 版・機種・再現手順を確認する。#549 の回避処理は採用しない。 |
 | [#558](https://github.com/FiniteReality/embeddium/issues/558) | 外部 AMD fix 追加時の multiplayer 接続問題という報告。今回その外部 mod は導入していない。 |
 | [#535](https://github.com/FiniteReality/embeddium/issues/535) | `setSectionDirtyWithNeighbors` は既に overwrite され、セクションの無効化と rebuild に到達する。呼び出し時の座標・スレッド・更新データの最小再現例が必要。 |
 | [#539](https://github.com/FiniteReality/embeddium/issues/539) | RenderType universe は指数的に増え、現在の mask にも上限がある。上限値だけの変更では対応できず、追加 RenderType を作る mod を使った別設計・検証が必要。 |
