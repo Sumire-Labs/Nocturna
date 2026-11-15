@@ -34,6 +34,7 @@ val extraSourceSets = arrayOf("legacy", "compat")
 
 sourceSets {
     val main = getByName("main")
+    getByName("test").compileClasspath += main.compileClasspath
 
     extraSourceSets.forEach {
         val sourceset = create(it)
@@ -135,6 +136,9 @@ fun fAPIModule(name: String): Dependency {
 }
 
 dependencies {
+    testImplementation("org.junit.jupiter:junit-jupiter:5.10.2")
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+
     // Mods
     "modCompatCompileOnly"("curse.maven:codechickenlib-242818:${"codechicken_fileid"()}")
     "modCompatCompileOnly"("curse.maven:immersiveengineering-231951:${"ie_fileid"()}")
@@ -164,6 +168,30 @@ dependencies {
         }
     }
     implementation("io.github.llamalad7:mixinextras-forge:0.3.5")
+}
+
+val testMinecraftArtifacts = sourceSets.main.get().compileClasspath.filter {
+    it.parentFile == layout.buildDirectory.dir("moddev/artifacts").get().asFile &&
+            (it.name.endsWith("-minecraft.jar") || it.name.endsWith("-minecraft-merged.jar"))
+}
+
+// MDG's remapped development jar retains Forge's original signatures, which no longer match its classes.
+// The game launcher handles this, but an ordinary JUnit JVM needs a separate unsigned development copy.
+val testMinecraftJar = tasks.register<Jar>("testMinecraftJar") {
+    dependsOn("createMinecraftArtifacts")
+    archiveFileName = "minecraft-test.jar"
+    destinationDirectory = layout.buildDirectory.dir("test-runtime")
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    from(provider { testMinecraftArtifacts.map { zipTree(it) } })
+    exclude("META-INF/MANIFEST.MF", "META-INF/*.SF", "META-INF/*.RSA", "META-INF/*.DSA")
+}
+
+tasks.test {
+    useJUnitPlatform()
+    workingDir = layout.buildDirectory.dir("test-runtime").get().asFile
+    // The headless tests also exercise classes whose types are supplied by Minecraft and compile-only APIs.
+    classpath = (classpath + sourceSets.main.get().compileClasspath - testMinecraftArtifacts) + files(testMinecraftJar)
+    classpath += fileTree(layout.buildDirectory.dir("moddev/artifacts")) { include("client-extra-*.jar") }
 }
 
 tasks.processResources {
