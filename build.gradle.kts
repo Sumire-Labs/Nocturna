@@ -188,9 +188,11 @@ val testMinecraftJar = tasks.register<Jar>("testMinecraftJar") {
 
 tasks.test {
     useJUnitPlatform()
+    javaLauncher = javaToolchains.launcherFor { languageVersion = JavaLanguageVersion.of(17) }
     workingDir = layout.buildDirectory.dir("test-runtime").get().asFile
     // The headless tests also exercise classes whose types are supplied by Minecraft and compile-only APIs.
-    classpath = (classpath + sourceSets.main.get().compileClasspath - testMinecraftArtifacts) + files(testMinecraftJar)
+    classpath = (classpath + sourceSets.main.get().runtimeClasspath + sourceSets.main.get().compileClasspath -
+            testMinecraftArtifacts) + files(testMinecraftJar)
     classpath += fileTree(layout.buildDirectory.dir("moddev/artifacts")) { include("client-extra-*.jar") }
 }
 
