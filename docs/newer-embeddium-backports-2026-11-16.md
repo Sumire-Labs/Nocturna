@@ -5,6 +5,8 @@
 
 後続バッチで BufferBuilder の null buffer 判定も移植した。
 [元コミットとの対応・回帰検証](buffer-builder-intrinsics-backport-2026-11-16.md)を参照。
+さらに適応的 CPU／GPU 待機と Intel 起動時チェック撤去を移植した。
+[変更単位・動作一致・実 GPU 検証](adaptive-fencing-backport-2026-11-16.md)を参照。
 
 ## 移植元と方針
 
@@ -98,7 +100,7 @@ XyCraft 実機、Oculus／shader pack、mod 独自 renderer を含む視覚的�
 | `55c9b7fa` / `619ac983` vertex writer の位置修正 | 1.21 の BufferBuilder は `vertexPointer`／`elementsToFill` を持つ。1.20.1 の ByteBuffer／`nextElementByte` 実装に同じ差分だけを適用できない。 |
 | `d1bb5162` / `d0d3adea` material 変更前の consumer flush | 前提となる ChunkModelVertexConsumer／`asVertexConsumer` がこのブランチにない。consumer 全体を検討する別バッチとする。 |
 | `aa6657df` leashed entity の renderer 修正 | entity culling の呼び出し構造・renderer 引数がこのブランチと異なる。該当行だけの移植は行わない。 |
-| `5263007e` adaptive CPU render-ahead fencing | 待機処理と Intel 起動チェックの撤去を一緒に扱う変更。今回は対象外とし、待機・失敗経路を元実装どおり検証できる別バッチに分ける。 |
+| `5263007e` adaptive CPU render-ahead fencing | 第1バッチでは対象外。後続で待機処理と Intel 起動チェック撤去をまとめて移植し、待機・失敗経路と実 GPU を検証した。[記録](adaptive-fencing-backport-2026-11-16.md)。 |
 | `4581023d` constructor 間の metadata 重複計算回避 | 1.20.1 側は既に getter 内で遅延計算する。constructor への guard だけを追加する対象ではない。 |
 | Minecraft／NeoForge 更新、Gamma／Phi、package 再配置 | 今回の2件には不要。1.20.1 Forge の基盤を置き換える変更は行わない。 |
 
