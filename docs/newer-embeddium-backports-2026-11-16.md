@@ -3,6 +3,9 @@
 対象: `20.1/forge`、Minecraft 1.20.1／Forge。調査日: 2026-11-16 (JST)。
 開始点: `a998f298`。既存の性能改善・翻訳・バイオーム色修正は維持する。
 
+後続バッチで BufferBuilder の null buffer 判定も移植した。
+[元コミットとの対応・回帰検証](buffer-builder-intrinsics-backport-2026-11-16.md)を参照。
+
 ## 移植元と方針
 
 本家 `FiniteReality/embeddium` の最新 refs を確認した。
