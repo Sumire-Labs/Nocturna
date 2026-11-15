@@ -1,0 +1,14 @@
+// Opt-in probe for the separate upstream audit checkout, not a change to this project's build.
+// The pinned Celeritas snapshot is expected to fail in common/TextComponent.java at List.getFirst().
+allprojects { project ->
+    if (project.path == ':common' || project.path == ':modern:1.20.1-forge') {
+        project.tasks.withType(JavaCompile).configureEach {
+            options.release.set(17)
+        }
+        project.tasks.withType(Test).configureEach {
+            javaLauncher.set(project.javaToolchains.launcherFor {
+                languageVersion.set(JavaLanguageVersion.of(17))
+            })
+        }
+    }
+}

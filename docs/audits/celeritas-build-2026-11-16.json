@@ -1,0 +1,317 @@
+{
+  "LocalJar": "build/libs/embeddium-0.3.32-beta.95+mc1.20.1.jar",
+  "CeleritasStandardJar": ".git/research/celeritas-artifacts/java21/celeritas-forge-mc20.1-2.5.0-dev.jar",
+  "Local": {
+    "Bytes": 1331142,
+    "Sha256": "02CF25D84812BC5CA328D0D0DB6BE2D9D49611D1150E13173D30061467AB1291",
+    "ClassVersions": {
+      "61": 617
+    },
+    "ClassCount": 617
+  },
+  "Celeritas": {
+    "Bytes": 4446544,
+    "Sha256": "8D3B48BD502FEE4F2089F87AA042F66C459747D8641BD78CD413C738BDD97F63",
+    "ClassVersions": {
+      "49": 86,
+      "52": 364,
+      "61": 516,
+      "65": 1328
+    },
+    "ClassCount": 2294,
+    "OldSodiumApiClassCount": 0,
+    "OldSodiumImplClasses": [
+      "me/jellysquid/mods/sodium/client/render/texture/SpriteUtil.class"
+    ]
+  },
+  "ApiNamespaceScope": "^(net/caffeinemc/mods/sodium/api/|org/embeddedt/embeddium/api/)|^me/jellysquid/mods/sodium/client/render/vertex/(VertexFormatRegistry|VertexBufferWriter|VertexFormatDescription|transform/CommonVertexElement)\\.class$",
+  "LocalApiNamespaceClasses": [
+    "me/jellysquid/mods/sodium/client/render/vertex/VertexBufferWriter.class",
+    "me/jellysquid/mods/sodium/client/render/vertex/VertexFormatDescription.class",
+    "me/jellysquid/mods/sodium/client/render/vertex/VertexFormatRegistry.class",
+    "me/jellysquid/mods/sodium/client/render/vertex/transform/CommonVertexElement.class",
+    "net/caffeinemc/mods/sodium/api/internal/DependencyInjection.class",
+    "net/caffeinemc/mods/sodium/api/internal/package-info.class",
+    "net/caffeinemc/mods/sodium/api/math/MatrixHelper.class",
+    "net/caffeinemc/mods/sodium/api/memory/MemoryIntrinsics.class",
+    "net/caffeinemc/mods/sodium/api/util/ColorABGR.class",
+    "net/caffeinemc/mods/sodium/api/util/ColorARGB.class",
+    "net/caffeinemc/mods/sodium/api/util/ColorMixer.class",
+    "net/caffeinemc/mods/sodium/api/util/ColorU8.class",
+    "net/caffeinemc/mods/sodium/api/util/NormI8.class",
+    "net/caffeinemc/mods/sodium/api/vertex/attributes/CommonVertexAttribute.class",
+    "net/caffeinemc/mods/sodium/api/vertex/attributes/common/ColorAttribute.class",
+    "net/caffeinemc/mods/sodium/api/vertex/attributes/common/LightAttribute.class",
+    "net/caffeinemc/mods/sodium/api/vertex/attributes/common/NormalAttribute.class",
+    "net/caffeinemc/mods/sodium/api/vertex/attributes/common/OverlayAttribute.class",
+    "net/caffeinemc/mods/sodium/api/vertex/attributes/common/PositionAttribute.class",
+    "net/caffeinemc/mods/sodium/api/vertex/attributes/common/TextureAttribute.class",
+    "net/caffeinemc/mods/sodium/api/vertex/buffer/VertexBufferWriter.class",
+    "net/caffeinemc/mods/sodium/api/vertex/format/VertexFormatDescription.class",
+    "net/caffeinemc/mods/sodium/api/vertex/format/VertexFormatRegistry.class",
+    "net/caffeinemc/mods/sodium/api/vertex/format/common/ColorVertex.class",
+    "net/caffeinemc/mods/sodium/api/vertex/format/common/GlyphVertex.class",
+    "net/caffeinemc/mods/sodium/api/vertex/format/common/LineVertex.class",
+    "net/caffeinemc/mods/sodium/api/vertex/format/common/ModelVertex.class",
+    "net/caffeinemc/mods/sodium/api/vertex/format/common/ParticleVertex.class",
+    "net/caffeinemc/mods/sodium/api/vertex/serializer/VertexSerializer.class",
+    "net/caffeinemc/mods/sodium/api/vertex/serializer/VertexSerializerRegistry.class",
+    "org/embeddedt/embeddium/api/BlockRendererRegistry$RenderPopulator.class",
+    "org/embeddedt/embeddium/api/BlockRendererRegistry$RenderResult.class",
+    "org/embeddedt/embeddium/api/BlockRendererRegistry$Renderer.class",
+    "org/embeddedt/embeddium/api/BlockRendererRegistry.class",
+    "org/embeddedt/embeddium/api/ChunkDataBuiltEvent.class",
+    "org/embeddedt/embeddium/api/ChunkMeshEvent.class",
+    "org/embeddedt/embeddium/api/EmbeddiumConstants.class",
+    "org/embeddedt/embeddium/api/MeshAppender$Context.class",
+    "org/embeddedt/embeddium/api/MeshAppender.class",
+    "org/embeddedt/embeddium/api/OptionGUIConstructionEvent.class",
+    "org/embeddedt/embeddium/api/OptionGroupConstructionEvent.class",
+    "org/embeddedt/embeddium/api/OptionPageConstructionEvent.class",
+    "org/embeddedt/embeddium/api/eventbus/EmbeddiumEvent.class",
+    "org/embeddedt/embeddium/api/eventbus/EventHandlerRegistrar$Handler.class",
+    "org/embeddedt/embeddium/api/eventbus/EventHandlerRegistrar.class",
+    "org/embeddedt/embeddium/api/model/EmbeddiumBakedModelExtension.class",
+    "org/embeddedt/embeddium/api/render/chunk/RenderSectionDistanceFilter.class",
+    "org/embeddedt/embeddium/api/render/chunk/RenderSectionDistanceFilterEvent.class",
+    "org/embeddedt/embeddium/api/render/chunk/SectionInfoBuilder.class",
+    "org/embeddedt/embeddium/api/render/clouds/ModifyCloudRenderingEvent.class",
+    "org/embeddedt/embeddium/api/service/FlawlessFramesService.class"
+  ],
+  "CeleritasApiNamespaceClasses": [
+    "org/embeddedt/embeddium/api/BlockRendererRegistry$RenderPopulator.class",
+    "org/embeddedt/embeddium/api/BlockRendererRegistry$RenderResult.class",
+    "org/embeddedt/embeddium/api/BlockRendererRegistry$Renderer.class",
+    "org/embeddedt/embeddium/api/BlockRendererRegistry.class",
+    "org/embeddedt/embeddium/api/ChunkDataBuiltEvent.class",
+    "org/embeddedt/embeddium/api/ChunkMeshEvent.class",
+    "org/embeddedt/embeddium/api/EmbeddiumConstants.class",
+    "org/embeddedt/embeddium/api/MeshAppender$Context.class",
+    "org/embeddedt/embeddium/api/MeshAppender.class",
+    "org/embeddedt/embeddium/api/internal/DependencyInjection.class",
+    "org/embeddedt/embeddium/api/internal/package-info.class",
+    "org/embeddedt/embeddium/api/math/JomlHelper.class",
+    "org/embeddedt/embeddium/api/math/Matrix3fExtended.class",
+    "org/embeddedt/embeddium/api/math/Matrix4fExtended.class",
+    "org/embeddedt/embeddium/api/math/MatrixHelper.class",
+    "org/embeddedt/embeddium/api/memory/MemoryIntrinsics.class",
+    "org/embeddedt/embeddium/api/model/EmbeddiumBakedModelExtension.class",
+    "org/embeddedt/embeddium/api/render/chunk/RenderSectionDistanceFilter.class",
+    "org/embeddedt/embeddium/api/render/chunk/RenderSectionDistanceFilterEvent.class",
+    "org/embeddedt/embeddium/api/render/chunk/SectionInfoBuilder.class",
+    "org/embeddedt/embeddium/api/render/clouds/ModifyCloudRenderingEvent.class",
+    "org/embeddedt/embeddium/api/render/texture/SpriteUtil.class",
+    "org/embeddedt/embeddium/api/service/FlawlessFramesService.class",
+    "org/embeddedt/embeddium/api/vertex/attributes/CommonVertexAttribute.class",
+    "org/embeddedt/embeddium/api/vertex/attributes/common/ColorAttribute.class",
+    "org/embeddedt/embeddium/api/vertex/attributes/common/LightAttribute.class",
+    "org/embeddedt/embeddium/api/vertex/attributes/common/NormalAttribute.class",
+    "org/embeddedt/embeddium/api/vertex/attributes/common/OverlayAttribute.class",
+    "org/embeddedt/embeddium/api/vertex/attributes/common/PositionAttribute.class",
+    "org/embeddedt/embeddium/api/vertex/attributes/common/TextureAttribute.class",
+    "org/embeddedt/embeddium/api/vertex/buffer/VertexBufferWriter.class",
+    "org/embeddedt/embeddium/api/vertex/format/VertexFormatDescription.class",
+    "org/embeddedt/embeddium/api/vertex/format/VertexFormatRegistry.class",
+    "org/embeddedt/embeddium/api/vertex/format/common/ColorVertex.class",
+    "org/embeddedt/embeddium/api/vertex/format/common/GlyphVertex.class",
+    "org/embeddedt/embeddium/api/vertex/format/common/LineVertex.class",
+    "org/embeddedt/embeddium/api/vertex/format/common/ModelVertex.class",
+    "org/embeddedt/embeddium/api/vertex/format/common/ParticleVertex.class",
+    "org/embeddedt/embeddium/api/vertex/format/common/PositionVertex.class",
+    "org/embeddedt/embeddium/api/vertex/format/common/TexturedVertex.class",
+    "org/embeddedt/embeddium/api/vertex/serializer/VertexSerializer.class",
+    "org/embeddedt/embeddium/api/vertex/serializer/VertexSerializerRegistry.class",
+    "org/embeddedt/embeddium/api/world/EmbeddiumBlockAndTintGetter.class",
+    "org/embeddedt/embeddium/api/util/ColorABGR.class",
+    "org/embeddedt/embeddium/api/util/ColorARGB.class",
+    "org/embeddedt/embeddium/api/util/ColorMixer.class",
+    "org/embeddedt/embeddium/api/util/ColorU8.class",
+    "org/embeddedt/embeddium/api/util/NormI8.class"
+  ],
+  "CommonApiNamespaceClasses": [
+    "org/embeddedt/embeddium/api/BlockRendererRegistry$RenderPopulator.class",
+    "org/embeddedt/embeddium/api/BlockRendererRegistry$RenderResult.class",
+    "org/embeddedt/embeddium/api/BlockRendererRegistry$Renderer.class",
+    "org/embeddedt/embeddium/api/BlockRendererRegistry.class",
+    "org/embeddedt/embeddium/api/ChunkDataBuiltEvent.class",
+    "org/embeddedt/embeddium/api/ChunkMeshEvent.class",
+    "org/embeddedt/embeddium/api/EmbeddiumConstants.class",
+    "org/embeddedt/embeddium/api/MeshAppender$Context.class",
+    "org/embeddedt/embeddium/api/MeshAppender.class",
+    "org/embeddedt/embeddium/api/model/EmbeddiumBakedModelExtension.class",
+    "org/embeddedt/embeddium/api/render/chunk/RenderSectionDistanceFilter.class",
+    "org/embeddedt/embeddium/api/render/chunk/RenderSectionDistanceFilterEvent.class",
+    "org/embeddedt/embeddium/api/render/chunk/SectionInfoBuilder.class",
+    "org/embeddedt/embeddium/api/render/clouds/ModifyCloudRenderingEvent.class",
+    "org/embeddedt/embeddium/api/service/FlawlessFramesService.class"
+  ],
+  "MissingApiNamespaceClasses": [
+    "me/jellysquid/mods/sodium/client/render/vertex/VertexBufferWriter.class",
+    "me/jellysquid/mods/sodium/client/render/vertex/VertexFormatDescription.class",
+    "me/jellysquid/mods/sodium/client/render/vertex/VertexFormatRegistry.class",
+    "me/jellysquid/mods/sodium/client/render/vertex/transform/CommonVertexElement.class",
+    "net/caffeinemc/mods/sodium/api/internal/DependencyInjection.class",
+    "net/caffeinemc/mods/sodium/api/internal/package-info.class",
+    "net/caffeinemc/mods/sodium/api/math/MatrixHelper.class",
+    "net/caffeinemc/mods/sodium/api/memory/MemoryIntrinsics.class",
+    "net/caffeinemc/mods/sodium/api/util/ColorABGR.class",
+    "net/caffeinemc/mods/sodium/api/util/ColorARGB.class",
+    "net/caffeinemc/mods/sodium/api/util/ColorMixer.class",
+    "net/caffeinemc/mods/sodium/api/util/ColorU8.class",
+    "net/caffeinemc/mods/sodium/api/util/NormI8.class",
+    "net/caffeinemc/mods/sodium/api/vertex/attributes/CommonVertexAttribute.class",
+    "net/caffeinemc/mods/sodium/api/vertex/attributes/common/ColorAttribute.class",
+    "net/caffeinemc/mods/sodium/api/vertex/attributes/common/LightAttribute.class",
+    "net/caffeinemc/mods/sodium/api/vertex/attributes/common/NormalAttribute.class",
+    "net/caffeinemc/mods/sodium/api/vertex/attributes/common/OverlayAttribute.class",
+    "net/caffeinemc/mods/sodium/api/vertex/attributes/common/PositionAttribute.class",
+    "net/caffeinemc/mods/sodium/api/vertex/attributes/common/TextureAttribute.class",
+    "net/caffeinemc/mods/sodium/api/vertex/buffer/VertexBufferWriter.class",
+    "net/caffeinemc/mods/sodium/api/vertex/format/VertexFormatDescription.class",
+    "net/caffeinemc/mods/sodium/api/vertex/format/VertexFormatRegistry.class",
+    "net/caffeinemc/mods/sodium/api/vertex/format/common/ColorVertex.class",
+    "net/caffeinemc/mods/sodium/api/vertex/format/common/GlyphVertex.class",
+    "net/caffeinemc/mods/sodium/api/vertex/format/common/LineVertex.class",
+    "net/caffeinemc/mods/sodium/api/vertex/format/common/ModelVertex.class",
+    "net/caffeinemc/mods/sodium/api/vertex/format/common/ParticleVertex.class",
+    "net/caffeinemc/mods/sodium/api/vertex/serializer/VertexSerializer.class",
+    "net/caffeinemc/mods/sodium/api/vertex/serializer/VertexSerializerRegistry.class",
+    "org/embeddedt/embeddium/api/OptionGUIConstructionEvent.class",
+    "org/embeddedt/embeddium/api/OptionGroupConstructionEvent.class",
+    "org/embeddedt/embeddium/api/OptionPageConstructionEvent.class",
+    "org/embeddedt/embeddium/api/eventbus/EmbeddiumEvent.class",
+    "org/embeddedt/embeddium/api/eventbus/EventHandlerRegistrar$Handler.class",
+    "org/embeddedt/embeddium/api/eventbus/EventHandlerRegistrar.class"
+  ],
+  "StandardBuild": "packageJar and common:test succeeded; common 43 tests passed",
+  "ForgeModernTests": "disabled by modern/build.mdg.gradle.kts",
+  "Java17Probe": "modern compileJava with --release 17 succeeded; common plus modern package probe failed at common TextComponent.java:24 List.getFirst",
+  "RuntimeJava17Probe": "UnsupportedClassVersionError loading Celeritas: class 65.0 versus runtime maximum 61.0",
+  "RemapWarnings": [
+    "TextureManager.method_18167",
+    "TextureManager.m_244739_",
+    "EntityRenderDispatcher.renderOffsetShadow"
+  ],
+  "CommonApiDeclarations": [
+    {
+      "name": "org.embeddedt.embeddium.api.BlockRendererRegistry$RenderPopulator",
+      "samePrintedPublicDeclaration": false,
+      "local": "public interface org.embeddedt.embeddium.api.BlockRendererRegistry$RenderPopulator {\r\n  public abstract void fillCustomRenderers(java.util.List<org.embeddedt.embeddium.api.BlockRendererRegistry$Renderer>, me.jellysquid.mods.sodium.client.render.chunk.compile.pipeline.BlockRenderContext);\r\n    descriptor: (Ljava/util/List;Lme/jellysquid/mods/sodium/client/render/chunk/compile/pipeline/BlockRenderContext;)V\r\n\r\n  public static org.embeddedt.embeddium.api.BlockRendererRegistry$RenderPopulator forRenderer(org.embeddedt.embeddium.api.BlockRendererRegistry$Renderer);\r\n    descriptor: (Lorg/embeddedt/embeddium/api/BlockRendererRegistry$Renderer;)Lorg/embeddedt/embeddium/api/BlockRendererRegistry$RenderPopulator;\r\n}",
+      "celeritas": "public interface org.embeddedt.embeddium.api.BlockRendererRegistry$RenderPopulator {\r\n  public abstract void fillCustomRenderers(java.util.List<org.embeddedt.embeddium.api.BlockRendererRegistry$Renderer>, org.embeddedt.embeddium.impl.modern.render.chunk.compile.pipeline.BlockRenderContext);\r\n    descriptor: (Ljava/util/List;Lorg/embeddedt/embeddium/impl/modern/render/chunk/compile/pipeline/BlockRenderContext;)V\r\n\r\n  public static org.embeddedt.embeddium.api.BlockRendererRegistry$RenderPopulator forRenderer(org.embeddedt.embeddium.api.BlockRendererRegistry$Renderer);\r\n    descriptor: (Lorg/embeddedt/embeddium/api/BlockRendererRegistry$Renderer;)Lorg/embeddedt/embeddium/api/BlockRendererRegistry$RenderPopulator;\r\n}"
+    },
+    {
+      "name": "org.embeddedt.embeddium.api.BlockRendererRegistry$RenderResult",
+      "samePrintedPublicDeclaration": true,
+      "local": "public final class org.embeddedt.embeddium.api.BlockRendererRegistry$RenderResult extends java.lang.Enum<org.embeddedt.embeddium.api.BlockRendererRegistry$RenderResult> {\r\n  public static final org.embeddedt.embeddium.api.BlockRendererRegistry$RenderResult OVERRIDE;\r\n    descriptor: Lorg/embeddedt/embeddium/api/BlockRendererRegistry$RenderResult;\r\n  public static final org.embeddedt.embeddium.api.BlockRendererRegistry$RenderResult PASS;\r\n    descriptor: Lorg/embeddedt/embeddium/api/BlockRendererRegistry$RenderResult;\r\n  public static org.embeddedt.embeddium.api.BlockRendererRegistry$RenderResult[] values();\r\n    descriptor: ()[Lorg/embeddedt/embeddium/api/BlockRendererRegistry$RenderResult;\r\n\r\n  public static org.embeddedt.embeddium.api.BlockRendererRegistry$RenderResult valueOf(java.lang.String);\r\n    descriptor: (Ljava/lang/String;)Lorg/embeddedt/embeddium/api/BlockRendererRegistry$RenderResult;\r\n}",
+      "celeritas": "public final class org.embeddedt.embeddium.api.BlockRendererRegistry$RenderResult extends java.lang.Enum<org.embeddedt.embeddium.api.BlockRendererRegistry$RenderResult> {\r\n  public static final org.embeddedt.embeddium.api.BlockRendererRegistry$RenderResult OVERRIDE;\r\n    descriptor: Lorg/embeddedt/embeddium/api/BlockRendererRegistry$RenderResult;\r\n  public static final org.embeddedt.embeddium.api.BlockRendererRegistry$RenderResult PASS;\r\n    descriptor: Lorg/embeddedt/embeddium/api/BlockRendererRegistry$RenderResult;\r\n  public static org.embeddedt.embeddium.api.BlockRendererRegistry$RenderResult[] values();\r\n    descriptor: ()[Lorg/embeddedt/embeddium/api/BlockRendererRegistry$RenderResult;\r\n\r\n  public static org.embeddedt.embeddium.api.BlockRendererRegistry$RenderResult valueOf(java.lang.String);\r\n    descriptor: (Ljava/lang/String;)Lorg/embeddedt/embeddium/api/BlockRendererRegistry$RenderResult;\r\n}"
+    },
+    {
+      "name": "org.embeddedt.embeddium.api.BlockRendererRegistry$Renderer",
+      "samePrintedPublicDeclaration": false,
+      "local": "public interface org.embeddedt.embeddium.api.BlockRendererRegistry$Renderer {\r\n  public abstract org.embeddedt.embeddium.api.BlockRendererRegistry$RenderResult renderBlock(me.jellysquid.mods.sodium.client.render.chunk.compile.pipeline.BlockRenderContext, net.minecraft.util.RandomSource, com.mojang.blaze3d.vertex.VertexConsumer);\r\n    descriptor: (Lme/jellysquid/mods/sodium/client/render/chunk/compile/pipeline/BlockRenderContext;Lnet/minecraft/util/RandomSource;Lcom/mojang/blaze3d/vertex/VertexConsumer;)Lorg/embeddedt/embeddium/api/BlockRendererRegistry$RenderResult;\r\n}",
+      "celeritas": "public interface org.embeddedt.embeddium.api.BlockRendererRegistry$Renderer {\r\n  public abstract org.embeddedt.embeddium.api.BlockRendererRegistry$RenderResult renderBlock(org.embeddedt.embeddium.impl.modern.render.chunk.compile.pipeline.BlockRenderContext, net.minecraft.util.RandomSource, com.mojang.blaze3d.vertex.VertexConsumer);\r\n    descriptor: (Lorg/embeddedt/embeddium/impl/modern/render/chunk/compile/pipeline/BlockRenderContext;Lnet/minecraft/util/RandomSource;Lcom/mojang/blaze3d/vertex/VertexConsumer;)Lorg/embeddedt/embeddium/api/BlockRendererRegistry$RenderResult;\r\n}"
+    },
+    {
+      "name": "org.embeddedt.embeddium.api.BlockRendererRegistry",
+      "samePrintedPublicDeclaration": false,
+      "local": "public class org.embeddedt.embeddium.api.BlockRendererRegistry {\r\n  public static org.embeddedt.embeddium.api.BlockRendererRegistry instance();\r\n    descriptor: ()Lorg/embeddedt/embeddium/api/BlockRendererRegistry;\r\n\r\n  public void registerRenderPopulator(org.embeddedt.embeddium.api.BlockRendererRegistry$RenderPopulator);\r\n    descriptor: (Lorg/embeddedt/embeddium/api/BlockRendererRegistry$RenderPopulator;)V\r\n\r\n  public void fillCustomRenderers(java.util.List<org.embeddedt.embeddium.api.BlockRendererRegistry$Renderer>, me.jellysquid.mods.sodium.client.render.chunk.compile.pipeline.BlockRenderContext);\r\n    descriptor: (Ljava/util/List;Lme/jellysquid/mods/sodium/client/render/chunk/compile/pipeline/BlockRenderContext;)V\r\n}",
+      "celeritas": "public class org.embeddedt.embeddium.api.BlockRendererRegistry {\r\n  public static org.embeddedt.embeddium.api.BlockRendererRegistry instance();\r\n    descriptor: ()Lorg/embeddedt/embeddium/api/BlockRendererRegistry;\r\n\r\n  public void registerRenderPopulator(org.embeddedt.embeddium.api.BlockRendererRegistry$RenderPopulator);\r\n    descriptor: (Lorg/embeddedt/embeddium/api/BlockRendererRegistry$RenderPopulator;)V\r\n\r\n  public void fillCustomRenderers(java.util.List<org.embeddedt.embeddium.api.BlockRendererRegistry$Renderer>, org.embeddedt.embeddium.impl.modern.render.chunk.compile.pipeline.BlockRenderContext);\r\n    descriptor: (Ljava/util/List;Lorg/embeddedt/embeddium/impl/modern/render/chunk/compile/pipeline/BlockRenderContext;)V\r\n}"
+    },
+    {
+      "name": "org.embeddedt.embeddium.api.ChunkDataBuiltEvent",
+      "samePrintedPublicDeclaration": false,
+      "local": "public class org.embeddedt.embeddium.api.ChunkDataBuiltEvent extends org.embeddedt.embeddium.api.eventbus.EmbeddiumEvent {\r\n  public static final org.embeddedt.embeddium.api.eventbus.EventHandlerRegistrar<org.embeddedt.embeddium.api.ChunkDataBuiltEvent> BUS;\r\n    descriptor: Lorg/embeddedt/embeddium/api/eventbus/EventHandlerRegistrar;\r\n  public org.embeddedt.embeddium.api.ChunkDataBuiltEvent(me.jellysquid.mods.sodium.client.render.chunk.data.BuiltSectionInfo$Builder);\r\n    descriptor: (Lme/jellysquid/mods/sodium/client/render/chunk/data/BuiltSectionInfo$Builder;)V\r\n\r\n  public org.embeddedt.embeddium.api.render.chunk.SectionInfoBuilder getDataBuilder();\r\n    descriptor: ()Lorg/embeddedt/embeddium/api/render/chunk/SectionInfoBuilder;\r\n}",
+      "celeritas": "public class org.embeddedt.embeddium.api.ChunkDataBuiltEvent extends org.taumc.celeritas.api.eventbus.EmbeddiumEvent {\r\n  public static final org.taumc.celeritas.api.eventbus.EventHandlerRegistrar<org.embeddedt.embeddium.api.ChunkDataBuiltEvent> BUS;\r\n    descriptor: Lorg/taumc/celeritas/api/eventbus/EventHandlerRegistrar;\r\n  public org.embeddedt.embeddium.api.ChunkDataBuiltEvent(org.embeddedt.embeddium.api.render.chunk.SectionInfoBuilder);\r\n    descriptor: (Lorg/embeddedt/embeddium/api/render/chunk/SectionInfoBuilder;)V\r\n\r\n  public org.embeddedt.embeddium.api.render.chunk.SectionInfoBuilder getDataBuilder();\r\n    descriptor: ()Lorg/embeddedt/embeddium/api/render/chunk/SectionInfoBuilder;\r\n}"
+    },
+    {
+      "name": "org.embeddedt.embeddium.api.ChunkMeshEvent",
+      "samePrintedPublicDeclaration": false,
+      "local": "public class org.embeddedt.embeddium.api.ChunkMeshEvent extends org.embeddedt.embeddium.api.eventbus.EmbeddiumEvent {\r\n  public static final org.embeddedt.embeddium.api.eventbus.EventHandlerRegistrar<org.embeddedt.embeddium.api.ChunkMeshEvent> BUS;\r\n    descriptor: Lorg/embeddedt/embeddium/api/eventbus/EventHandlerRegistrar;\r\n  public net.minecraft.world.level.Level getWorld();\r\n    descriptor: ()Lnet/minecraft/world/level/Level;\r\n\r\n  public net.minecraft.core.SectionPos getSectionOrigin();\r\n    descriptor: ()Lnet/minecraft/core/SectionPos;\r\n\r\n  public void addMeshAppender(org.embeddedt.embeddium.api.MeshAppender);\r\n    descriptor: (Lorg/embeddedt/embeddium/api/MeshAppender;)V\r\n\r\n  public static java.util.List<org.embeddedt.embeddium.api.MeshAppender> post(net.minecraft.world.level.Level, net.minecraft.core.SectionPos);\r\n    descriptor: (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/SectionPos;)Ljava/util/List;\r\n}",
+      "celeritas": "public class org.embeddedt.embeddium.api.ChunkMeshEvent extends org.taumc.celeritas.api.eventbus.EmbeddiumEvent {\r\n  public static final org.taumc.celeritas.api.eventbus.EventHandlerRegistrar<org.embeddedt.embeddium.api.ChunkMeshEvent> BUS;\r\n    descriptor: Lorg/taumc/celeritas/api/eventbus/EventHandlerRegistrar;\r\n  public net.minecraft.world.level.Level getWorld();\r\n    descriptor: ()Lnet/minecraft/world/level/Level;\r\n\r\n  public net.minecraft.core.SectionPos getSectionOrigin();\r\n    descriptor: ()Lnet/minecraft/core/SectionPos;\r\n\r\n  public void addMeshAppender(org.embeddedt.embeddium.api.MeshAppender);\r\n    descriptor: (Lorg/embeddedt/embeddium/api/MeshAppender;)V\r\n\r\n  public static java.util.List<org.embeddedt.embeddium.api.MeshAppender> post(net.minecraft.world.level.Level, net.minecraft.core.SectionPos);\r\n    descriptor: (Lnet/minecraft/world/level/Level;Lnet/minecraft/core/SectionPos;)Ljava/util/List;\r\n}"
+    },
+    {
+      "name": "org.embeddedt.embeddium.api.EmbeddiumConstants",
+      "samePrintedPublicDeclaration": false,
+      "local": "public class org.embeddedt.embeddium.api.EmbeddiumConstants {\r\n  public static final java.lang.String MODID;\r\n    descriptor: Ljava/lang/String;\r\n  public static final java.lang.String MODNAME;\r\n    descriptor: Ljava/lang/String;\r\n  public org.embeddedt.embeddium.api.EmbeddiumConstants();\r\n    descriptor: ()V\r\n}",
+      "celeritas": "public class org.embeddedt.embeddium.api.EmbeddiumConstants {\r\n  public static final java.lang.String MODID;\r\n    descriptor: Ljava/lang/String;\r\n  public static java.lang.String MODNAME;\r\n    descriptor: Ljava/lang/String;\r\n  public org.embeddedt.embeddium.api.EmbeddiumConstants();\r\n    descriptor: ()V\r\n}"
+    },
+    {
+      "name": "org.embeddedt.embeddium.api.MeshAppender$Context",
+      "samePrintedPublicDeclaration": false,
+      "local": "public final class org.embeddedt.embeddium.api.MeshAppender$Context extends java.lang.Record {\r\n  public org.embeddedt.embeddium.api.MeshAppender$Context(java.util.function.Function<net.minecraft.client.renderer.RenderType, com.mojang.blaze3d.vertex.VertexConsumer>, net.minecraft.world.level.BlockAndTintGetter, net.minecraft.core.SectionPos, me.jellysquid.mods.sodium.client.render.chunk.compile.ChunkBuildBuffers);\r\n    descriptor: (Ljava/util/function/Function;Lnet/minecraft/world/level/BlockAndTintGetter;Lnet/minecraft/core/SectionPos;Lme/jellysquid/mods/sodium/client/render/chunk/compile/ChunkBuildBuffers;)V\r\n\r\n  public final java.lang.String toString();\r\n    descriptor: ()Ljava/lang/String;\r\n\r\n  public final int hashCode();\r\n    descriptor: ()I\r\n\r\n  public final boolean equals(java.lang.Object);\r\n    descriptor: (Ljava/lang/Object;)Z\r\n\r\n  public java.util.function.Function<net.minecraft.client.renderer.RenderType, com.mojang.blaze3d.vertex.VertexConsumer> vertexConsumerProvider();\r\n    descriptor: ()Ljava/util/function/Function;\r\n\r\n  public net.minecraft.world.level.BlockAndTintGetter blockRenderView();\r\n    descriptor: ()Lnet/minecraft/world/level/BlockAndTintGetter;\r\n\r\n  public net.minecraft.core.SectionPos sectionOrigin();\r\n    descriptor: ()Lnet/minecraft/core/SectionPos;\r\n\r\n  public me.jellysquid.mods.sodium.client.render.chunk.compile.ChunkBuildBuffers sodiumBuildBuffers();\r\n    descriptor: ()Lme/jellysquid/mods/sodium/client/render/chunk/compile/ChunkBuildBuffers;\r\n}",
+      "celeritas": "public final class org.embeddedt.embeddium.api.MeshAppender$Context extends java.lang.Record {\r\n  public org.embeddedt.embeddium.api.MeshAppender$Context(java.util.function.Function<net.minecraft.client.renderer.RenderType, com.mojang.blaze3d.vertex.VertexConsumer>, net.minecraft.world.level.BlockAndTintGetter, net.minecraft.core.SectionPos, org.embeddedt.embeddium.impl.render.chunk.compile.ChunkBuildBuffers);\r\n    descriptor: (Ljava/util/function/Function;Lnet/minecraft/world/level/BlockAndTintGetter;Lnet/minecraft/core/SectionPos;Lorg/embeddedt/embeddium/impl/render/chunk/compile/ChunkBuildBuffers;)V\r\n\r\n  public final java.lang.String toString();\r\n    descriptor: ()Ljava/lang/String;\r\n\r\n  public final int hashCode();\r\n    descriptor: ()I\r\n\r\n  public final boolean equals(java.lang.Object);\r\n    descriptor: (Ljava/lang/Object;)Z\r\n\r\n  public java.util.function.Function<net.minecraft.client.renderer.RenderType, com.mojang.blaze3d.vertex.VertexConsumer> vertexConsumerProvider();\r\n    descriptor: ()Ljava/util/function/Function;\r\n\r\n  public net.minecraft.world.level.BlockAndTintGetter blockRenderView();\r\n    descriptor: ()Lnet/minecraft/world/level/BlockAndTintGetter;\r\n\r\n  public net.minecraft.core.SectionPos sectionOrigin();\r\n    descriptor: ()Lnet/minecraft/core/SectionPos;\r\n\r\n  public org.embeddedt.embeddium.impl.render.chunk.compile.ChunkBuildBuffers sodiumBuildBuffers();\r\n    descriptor: ()Lorg/embeddedt/embeddium/impl/render/chunk/compile/ChunkBuildBuffers;\r\n}"
+    },
+    {
+      "name": "org.embeddedt.embeddium.api.MeshAppender",
+      "samePrintedPublicDeclaration": true,
+      "local": "public interface org.embeddedt.embeddium.api.MeshAppender {\r\n  public abstract void render(org.embeddedt.embeddium.api.MeshAppender$Context);\r\n    descriptor: (Lorg/embeddedt/embeddium/api/MeshAppender$Context;)V\r\n}",
+      "celeritas": "public interface org.embeddedt.embeddium.api.MeshAppender {\r\n  public abstract void render(org.embeddedt.embeddium.api.MeshAppender$Context);\r\n    descriptor: (Lorg/embeddedt/embeddium/api/MeshAppender$Context;)V\r\n}"
+    },
+    {
+      "name": "org.embeddedt.embeddium.api.model.EmbeddiumBakedModelExtension",
+      "samePrintedPublicDeclaration": true,
+      "local": "public interface org.embeddedt.embeddium.api.model.EmbeddiumBakedModelExtension {\r\n  public default boolean useAmbientOcclusionWithLightEmission(net.minecraft.world.level.block.state.BlockState, net.minecraft.client.renderer.RenderType);\r\n    descriptor: (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/client/renderer/RenderType;)Z\r\n}",
+      "celeritas": "public interface org.embeddedt.embeddium.api.model.EmbeddiumBakedModelExtension {\r\n  public default boolean useAmbientOcclusionWithLightEmission(net.minecraft.world.level.block.state.BlockState, net.minecraft.client.renderer.RenderType);\r\n    descriptor: (Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/client/renderer/RenderType;)Z\r\n}"
+    },
+    {
+      "name": "org.embeddedt.embeddium.api.render.chunk.RenderSectionDistanceFilter",
+      "samePrintedPublicDeclaration": true,
+      "local": "public interface org.embeddedt.embeddium.api.render.chunk.RenderSectionDistanceFilter {\r\n  public static final org.embeddedt.embeddium.api.render.chunk.RenderSectionDistanceFilter DEFAULT;\r\n    descriptor: Lorg/embeddedt/embeddium/api/render/chunk/RenderSectionDistanceFilter;\r\n  public abstract boolean isWithinDistance(float, float, float, float);\r\n    descriptor: (FFFF)Z\r\n}",
+      "celeritas": "public interface org.embeddedt.embeddium.api.render.chunk.RenderSectionDistanceFilter {\r\n  public static final org.embeddedt.embeddium.api.render.chunk.RenderSectionDistanceFilter DEFAULT;\r\n    descriptor: Lorg/embeddedt/embeddium/api/render/chunk/RenderSectionDistanceFilter;\r\n  public abstract boolean isWithinDistance(float, float, float, float);\r\n    descriptor: (FFFF)Z\r\n}"
+    },
+    {
+      "name": "org.embeddedt.embeddium.api.render.chunk.RenderSectionDistanceFilterEvent",
+      "samePrintedPublicDeclaration": false,
+      "local": "public class org.embeddedt.embeddium.api.render.chunk.RenderSectionDistanceFilterEvent extends org.embeddedt.embeddium.api.eventbus.EmbeddiumEvent {\r\n  public static final org.embeddedt.embeddium.api.eventbus.EventHandlerRegistrar<org.embeddedt.embeddium.api.render.chunk.RenderSectionDistanceFilterEvent> BUS;\r\n    descriptor: Lorg/embeddedt/embeddium/api/eventbus/EventHandlerRegistrar;\r\n  public org.embeddedt.embeddium.api.render.chunk.RenderSectionDistanceFilterEvent();\r\n    descriptor: ()V\r\n\r\n  public org.embeddedt.embeddium.api.render.chunk.RenderSectionDistanceFilter getFilter();\r\n    descriptor: ()Lorg/embeddedt/embeddium/api/render/chunk/RenderSectionDistanceFilter;\r\n\r\n  public void setFilter(org.embeddedt.embeddium.api.render.chunk.RenderSectionDistanceFilter);\r\n    descriptor: (Lorg/embeddedt/embeddium/api/render/chunk/RenderSectionDistanceFilter;)V\r\n}",
+      "celeritas": "public class org.embeddedt.embeddium.api.render.chunk.RenderSectionDistanceFilterEvent extends org.taumc.celeritas.api.eventbus.EmbeddiumEvent {\r\n  public static final org.taumc.celeritas.api.eventbus.EventHandlerRegistrar<org.embeddedt.embeddium.api.render.chunk.RenderSectionDistanceFilterEvent> BUS;\r\n    descriptor: Lorg/taumc/celeritas/api/eventbus/EventHandlerRegistrar;\r\n  public org.embeddedt.embeddium.api.render.chunk.RenderSectionDistanceFilterEvent();\r\n    descriptor: ()V\r\n\r\n  public org.embeddedt.embeddium.api.render.chunk.RenderSectionDistanceFilter getFilter();\r\n    descriptor: ()Lorg/embeddedt/embeddium/api/render/chunk/RenderSectionDistanceFilter;\r\n\r\n  public void setFilter(org.embeddedt.embeddium.api.render.chunk.RenderSectionDistanceFilter);\r\n    descriptor: (Lorg/embeddedt/embeddium/api/render/chunk/RenderSectionDistanceFilter;)V\r\n}"
+    },
+    {
+      "name": "org.embeddedt.embeddium.api.render.chunk.SectionInfoBuilder",
+      "samePrintedPublicDeclaration": true,
+      "local": "public interface org.embeddedt.embeddium.api.render.chunk.SectionInfoBuilder {\r\n  public abstract void addSprite(net.minecraft.client.renderer.texture.TextureAtlasSprite);\r\n    descriptor: (Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;)V\r\n\r\n  public abstract void addBlockEntity(net.minecraft.world.level.block.entity.BlockEntity, boolean);\r\n    descriptor: (Lnet/minecraft/world/level/block/entity/BlockEntity;Z)V\r\n\r\n  public abstract void removeBlockEntitiesIf(java.util.function.Predicate<net.minecraft.world.level.block.entity.BlockEntity>);\r\n    descriptor: (Ljava/util/function/Predicate;)V\r\n}",
+      "celeritas": "public interface org.embeddedt.embeddium.api.render.chunk.SectionInfoBuilder {\r\n  public abstract void addSprite(net.minecraft.client.renderer.texture.TextureAtlasSprite);\r\n    descriptor: (Lnet/minecraft/client/renderer/texture/TextureAtlasSprite;)V\r\n\r\n  public abstract void addBlockEntity(net.minecraft.world.level.block.entity.BlockEntity, boolean);\r\n    descriptor: (Lnet/minecraft/world/level/block/entity/BlockEntity;Z)V\r\n\r\n  public abstract void removeBlockEntitiesIf(java.util.function.Predicate<net.minecraft.world.level.block.entity.BlockEntity>);\r\n    descriptor: (Ljava/util/function/Predicate;)V\r\n}"
+    },
+    {
+      "name": "org.embeddedt.embeddium.api.render.clouds.ModifyCloudRenderingEvent",
+      "samePrintedPublicDeclaration": false,
+      "local": "public class org.embeddedt.embeddium.api.render.clouds.ModifyCloudRenderingEvent extends org.embeddedt.embeddium.api.eventbus.EmbeddiumEvent {\r\n  public static final org.embeddedt.embeddium.api.eventbus.EventHandlerRegistrar<org.embeddedt.embeddium.api.render.clouds.ModifyCloudRenderingEvent> BUS;\r\n    descriptor: Lorg/embeddedt/embeddium/api/eventbus/EventHandlerRegistrar;\r\n  public org.embeddedt.embeddium.api.render.clouds.ModifyCloudRenderingEvent(int);\r\n    descriptor: (I)V\r\n\r\n  public int getCloudRenderDistance();\r\n    descriptor: ()I\r\n\r\n  public void setCloudRenderDistance(int);\r\n    descriptor: (I)V\r\n}",
+      "celeritas": "public class org.embeddedt.embeddium.api.render.clouds.ModifyCloudRenderingEvent extends org.taumc.celeritas.api.eventbus.EmbeddiumEvent {\r\n  public static final org.taumc.celeritas.api.eventbus.EventHandlerRegistrar<org.embeddedt.embeddium.api.render.clouds.ModifyCloudRenderingEvent> BUS;\r\n    descriptor: Lorg/taumc/celeritas/api/eventbus/EventHandlerRegistrar;\r\n  public org.embeddedt.embeddium.api.render.clouds.ModifyCloudRenderingEvent(int);\r\n    descriptor: (I)V\r\n\r\n  public int getCloudRenderDistance();\r\n    descriptor: ()I\r\n\r\n  public void setCloudRenderDistance(int);\r\n    descriptor: (I)V\r\n}"
+    },
+    {
+      "name": "org.embeddedt.embeddium.api.service.FlawlessFramesService",
+      "samePrintedPublicDeclaration": true,
+      "local": "public interface org.embeddedt.embeddium.api.service.FlawlessFramesService {\r\n  public abstract void acceptController(java.util.function.Function<java.lang.String, java.util.function.Consumer<java.lang.Boolean>>);\r\n    descriptor: (Ljava/util/function/Function;)V\r\n}",
+      "celeritas": "public interface org.embeddedt.embeddium.api.service.FlawlessFramesService {\r\n  public abstract void acceptController(java.util.function.Function<java.lang.String, java.util.function.Consumer<java.lang.Boolean>>);\r\n    descriptor: (Ljava/util/function/Function;)V\r\n}"
+    }
+  ],
+  "CommonTestResults": [
+    {
+      "Name": "org.embeddedt.embeddium.impl.render.chunk.occlusion.RasterBudgetTest",
+      "Tests": 14,
+      "Failures": 0,
+      "Errors": 0,
+      "Skipped": 0
+    },
+    {
+      "Name": "org.embeddedt.embeddium.impl.render.chunk.terrain.sampling.AtlasEdgeMaskTest",
+      "Tests": 5,
+      "Failures": 0,
+      "Errors": 0,
+      "Skipped": 0
+    },
+    {
+      "Name": "org.embeddedt.embeddium.impl.render.chunk.vertex.format.impl.QuadRelativeChunkVertexTest",
+      "Tests": 10,
+      "Failures": 0,
+      "Errors": 0,
+      "Skipped": 0
+    },
+    {
+      "Name": "org.embeddedt.embeddium.impl.render.chunk.vertex.format.VertexFetchGeneratorTest",
+      "Tests": 14,
+      "Failures": 0,
+      "Errors": 0,
+      "Skipped": 0
+    }
+  ]
+}
