@@ -187,7 +187,11 @@ val testMinecraftJar = tasks.register<Jar>("testMinecraftJar") {
 }
 
 tasks.test {
-    useJUnitPlatform()
+    useJUnitPlatform {
+        if (!providers.gradleProperty("testOpenGL").isPresent) {
+            excludeTags("opengl")
+        }
+    }
     javaLauncher = javaToolchains.launcherFor { languageVersion = JavaLanguageVersion.of(17) }
     workingDir = layout.buildDirectory.dir("test-runtime").get().asFile
     // The headless tests also exercise classes whose types are supplied by Minecraft and compile-only APIs.

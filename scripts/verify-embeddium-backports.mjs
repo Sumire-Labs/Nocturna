@@ -1,11 +1,12 @@
 // Compare the ported algorithms with the pinned LGPL Embeddium sources, allowing only namespace/API name mapping.
 import assert from 'node:assert/strict';
 import { execFileSync } from 'node:child_process';
-import { readFileSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 
 const allocationCommit = 'ccc1876c44610a5b810bf75fe4ea998bba553122';
 const layeringCommit = 'fcd5137288f869c22ffad23c499c6a490e0f2e3a';
 const bufferEligibilityCommit = '2e56234798852be1ed0988aca570154b56dacbb2';
+const adaptiveFencingCommit = '5263007efef1749898f9172a7f918930c34b6250';
 const upstreamRoot = 'src/main/java/org/embeddedt/embeddium/impl/';
 const localRoot = 'src/main/java/me/jellysquid/mods/sodium/';
 
@@ -89,3 +90,25 @@ const portWriter = readFileSync(`${localRoot}${writerPath}`, 'utf8');
 assert.equal(normalize(method(portWriter, 'boolean canUseIntrinsics()')),
     normalize(method(referenceWriter, 'boolean canUseIntrinsics()').replaceAll('this.embeddiumFormat', 'this.format')));
 console.log('Identical upstream BufferBuilder intrinsic eligibility, including condition order');
+
+const frameMixinPath = 'mixin/core/MinecraftClientMixin.java';
+const referenceFrameMixin = upstream(adaptiveFencingCommit, frameMixinPath);
+const portFrameMixin = readFileSync(`${localRoot}${frameMixinPath}`, 'utf8');
+for (const signature of ['void preRender(', 'void postRender(']) {
+    assert.equal(normalize(method(portFrameMixin, signature)), normalize(method(referenceFrameMixin, signature)));
+    console.log(`Identical upstream frame fencing: ${signature}`);
+}
+const fenceQueue = /private final LongArrayFIFOQueue fences = [^;]+;/;
+assert.equal(normalize(portFrameMixin.match(fenceQueue)?.[0] ?? ''),
+    normalize(referenceFrameMixin.match(fenceQueue)?.[0] ?? 'MISSING'));
+
+const referencePreLaunch = upstream(adaptiveFencingCommit, 'EmbeddiumPreLaunch.java')
+    .replaceAll('net.neoforged.', 'net.minecraftforge.');
+const portPreLaunch = readFileSync(`${localRoot}client/SodiumPreLaunch.java`, 'utf8');
+assert.equal(normalize(method(portPreLaunch, 'void onPreLaunch()')),
+    normalize(method(referencePreLaunch, 'void onPreLaunch()')));
+const configPath = 'compatibility/checks/Configuration.java';
+assert.equal(normalize(readFileSync(`${localRoot}client/${configPath}`, 'utf8')),
+    normalize(upstream(adaptiveFencingCommit, configPath)));
+assert.equal(existsSync(`${localRoot}client/compatibility/checks/EarlyDriverScanner.java`), false);
+console.log('Identical upstream queue initialization and Intel startup-check removal');
