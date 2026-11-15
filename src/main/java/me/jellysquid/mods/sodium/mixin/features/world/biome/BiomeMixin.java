@@ -12,8 +12,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(value = Biome.class, priority = 800)
 public abstract class BiomeMixin {
     @Shadow
-    @Final
-    private BiomeSpecialEffects specialEffects;
+    public abstract BiomeSpecialEffects getSpecialEffects();
 
     @Shadow
     @Final
@@ -33,10 +32,13 @@ public abstract class BiomeMixin {
      */
     @Overwrite
     public int getGrassColor(double x, double z) {
-        var override = this.specialEffects.getGrassColorOverride().orElse(null);
+        // Forge redirects vanilla field reads to its modifiable biome info before our mixin is applied.
+        // Calling the vanilla getter preserves that hook for biome modifiers and resource packs.
+        var effects = this.getSpecialEffects();
+        var override = effects.getGrassColorOverride().orElse(null);
         int color = override != null ? override.intValue() : BiomeColorMaps.getGrassColor(this.defaultColorIndex);
 
-        var modifier = this.specialEffects.getGrassColorModifier();
+        var modifier = effects.getGrassColorModifier();
 
         if (modifier != BiomeSpecialEffects.GrassColorModifier.NONE) {
             color = modifier.modifyColor(x, z, color);
@@ -51,7 +53,7 @@ public abstract class BiomeMixin {
      */
     @Overwrite
     public int getFoliageColor() {
-        var override = this.specialEffects.getFoliageColorOverride().orElse(null);
+        var override = this.getSpecialEffects().getFoliageColorOverride().orElse(null);
         return override != null ? override.intValue() : BiomeColorMaps.getFoliageColor(this.defaultColorIndex);
     }
 
