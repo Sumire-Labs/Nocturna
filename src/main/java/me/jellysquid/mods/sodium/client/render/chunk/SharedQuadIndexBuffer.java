@@ -1,5 +1,6 @@
 package me.jellysquid.mods.sodium.client.render.chunk;
 
+import me.jellysquid.mods.sodium.client.compatibility.workarounds.Workarounds;
 import me.jellysquid.mods.sodium.client.gl.buffer.GlBuffer;
 import me.jellysquid.mods.sodium.client.gl.buffer.GlBufferMapFlags;
 import me.jellysquid.mods.sodium.client.gl.buffer.GlBufferMapping;
@@ -8,6 +9,7 @@ import me.jellysquid.mods.sodium.client.gl.buffer.GlMutableBuffer;
 import me.jellysquid.mods.sodium.client.gl.device.CommandList;
 import me.jellysquid.mods.sodium.client.gl.tessellation.GlIndexType;
 import me.jellysquid.mods.sodium.client.gl.util.EnumBitField;
+import org.lwjgl.system.MemoryUtil;
 import java.nio.ByteBuffer;
 import java.nio.IntBuffer;
 import java.nio.ShortBuffer;
@@ -45,12 +47,24 @@ public class SharedQuadIndexBuffer {
     private void grow(CommandList commandList, int primitiveCount) {
         var bufferSize = primitiveCount * this.indexType.getBytesPerElement() * ELEMENTS_PER_PRIMITIVE;
 
-        commandList.allocateStorage(this.buffer, bufferSize, GlBufferUsage.STATIC_DRAW);
+        if (Workarounds.isWorkaroundEnabled(Workarounds.Reference.AMD_BUFFER_MAPPING)) {
+            // The driver profile can corrupt glMapBufferRange. Upload from host memory instead, even when Forge
+            // already initialized the driver for its early loading screen before our context-creation hooks ran.
+            ByteBuffer data = MemoryUtil.memAlloc(bufferSize);
+            try {
+                this.indexType.createIndexBuffer(data, primitiveCount);
+                commandList.uploadData(this.buffer, data, GlBufferUsage.STATIC_DRAW);
+            } finally {
+                MemoryUtil.memFree(data);
+            }
+        } else {
+            commandList.allocateStorage(this.buffer, bufferSize, GlBufferUsage.STATIC_DRAW);
 
-        var mapped = commandList.mapBuffer(this.buffer, 0, bufferSize, EnumBitField.of(GlBufferMapFlags.INVALIDATE_BUFFER, GlBufferMapFlags.WRITE, GlBufferMapFlags.UNSYNCHRONIZED));
-        this.indexType.createIndexBuffer(mapped.getMemoryBuffer(), primitiveCount);
+            var mapped = commandList.mapBuffer(this.buffer, 0, bufferSize, EnumBitField.of(GlBufferMapFlags.INVALIDATE_BUFFER, GlBufferMapFlags.WRITE, GlBufferMapFlags.UNSYNCHRONIZED));
+            this.indexType.createIndexBuffer(mapped.getMemoryBuffer(), primitiveCount);
 
-        commandList.unmap(mapped);
+            commandList.unmap(mapped);
+        }
 
         this.maxPrimitives = primitiveCount;
     }
