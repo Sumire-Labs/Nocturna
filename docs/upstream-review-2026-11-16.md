@@ -32,7 +32,7 @@
 
 | PR | 判断 |
 | --- | --- |
-| [#549](https://github.com/FiniteReality/embeddium/pull/549) | 説明にある AMD の環境変更に加え、全 GPU の multi-draw を単発 draw に変更し、高度な staging buffer を常時無効化し、複数の既定値も変更する。AMD 限定の修正としてそのまま適用できない。NVIDIA workaround と command-line hook の所有権・復元も含め、対象ハードウェアでの切り分けとコード来歴の確認が必要。 |
+| [#549](https://github.com/FiniteReality/embeddium/pull/549) | 初回は全体を保留。その後、Windows／AMD の実際の OpenGL context に限り、共有 index upload と staging の mapping 回避を採用した。multi-draw、既定値、command-line hook は採用していない。[追補の設計・比較・検証](amd-workaround-pr-549.md)を参照。 |
 | [#577](https://github.com/FiniteReality/embeddium/pull/577) | weighted model の重みを constructor で固定する案。保持するリストの不変性と、モデルを書き換える mod との契約を別途確認してから扱う。 |
 | [#579](https://github.com/FiniteReality/embeddium/pull/579) | sprite の frame duration キャッシュ。Ticker の constructor／tick 注入を変更するため、補間・resource reload・アニメーション拡張 mod を含むクライアント検証を別バッチで行う。 |
 | [#581](https://github.com/FiniteReality/embeddium/pull/581) | region ごとの draw cache と draw merge。native pointer の公開 API、全 mutation 経路の invalidation、追加 heap 使用量、Oculus shadow pass を含む影響が大きい。実クライアントでの描画同一性とメモリ・frame time の測定後に判断する。 |
