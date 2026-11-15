@@ -5,6 +5,7 @@ import { readFileSync } from 'node:fs';
 
 const allocationCommit = 'ccc1876c44610a5b810bf75fe4ea998bba553122';
 const layeringCommit = 'fcd5137288f869c22ffad23c499c6a490e0f2e3a';
+const bufferEligibilityCommit = '2e56234798852be1ed0988aca570154b56dacbb2';
 const upstreamRoot = 'src/main/java/org/embeddedt/embeddium/impl/';
 const localRoot = 'src/main/java/me/jellysquid/mods/sodium/';
 
@@ -81,3 +82,10 @@ function facePolicy(source) {
 }
 assert.equal(normalize(facePolicy(portRenderer)), normalize(facePolicy(referenceRenderer)));
 console.log('Identical upstream side/null-face policy propagation');
+
+const writerPath = 'mixin/core/render/immediate/consumer/BufferBuilderMixin.java';
+const referenceWriter = upstream(bufferEligibilityCommit, writerPath);
+const portWriter = readFileSync(`${localRoot}${writerPath}`, 'utf8');
+assert.equal(normalize(method(portWriter, 'boolean canUseIntrinsics()')),
+    normalize(method(referenceWriter, 'boolean canUseIntrinsics()').replaceAll('this.embeddiumFormat', 'this.format')));
+console.log('Identical upstream BufferBuilder intrinsic eligibility, including condition order');
