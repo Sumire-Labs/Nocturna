@@ -1,0 +1,548 @@
+{
+  "revision": "26f000239eb8ddf7ee191f0ddf369147e3c92ef6",
+  "identical": 1623,
+  "changes": [
+    {
+      "path": "buildSrc/build.gradle.kts",
+      "upstream": "4f1e92f8e7c782ec6fcc75fbbf5ba86e7f06b7e7c9667e85ae463e247c1413e5",
+      "local": "e8cab9aa119fb2e4380ef2551ca5029de19d6ddf25f3d09297b2ca943644d305"
+    },
+    {
+      "path": "buildSrc/src/main/kotlin/celeritas.platform-conventions.gradle.kts",
+      "upstream": "72494d9b617a1b28aef2b9f4bfa1f4d1805bd188754465b011bd38342f3a9702",
+      "local": "30dd27561d304f0e5c6ed43393edf9bc91142420e344b15f18891a54c759e267"
+    },
+    {
+      "path": "common/build.gradle",
+      "upstream": "53e0f6c66135f57839fdc122fb3e51cf06aaff307208381e5120ad57c927ca6e",
+      "local": "ad29fcd6bbfeeddbe58e25b25e1bd04769cc238a718240fc6f56315b80c56445"
+    },
+    {
+      "path": "common/src/main/java/org/embeddedt/embeddium/impl/gl/arena/GlBufferArena.java",
+      "upstream": "ed6855ac3235b84c6ce149bae5a4656f09c8cc725fe86de7d66ef10643a9a35c",
+      "local": "b056106175ea44de66578ce48cad978b15fb98b8cc46df862c3327a3e95f3d57"
+    },
+    {
+      "path": "common/src/main/java/org/embeddedt/embeddium/impl/gui/framework/TextComponent.java",
+      "upstream": "50459c8ce62c910fc0a70495ce05c9564ff2a497bf0bc8287ecf95b21d333529",
+      "local": "76ed0b56971c2890df8fa04c9d810b8a0e61587f28ef97b637ee1413f549fcda"
+    },
+    {
+      "path": "common/src/main/java/org/embeddedt/embeddium/impl/render/chunk/region/RenderRegionManager.java",
+      "upstream": "44a3d3d382eefded91ac44d539c0a073abcad54d15c40b6823e01dddde98089e",
+      "local": "f93d2f56591d5a197f04eddbd34e7cb23473754598f4184ef71ced8a1a5a86a1"
+    },
+    {
+      "path": "common/src/main/java/org/embeddedt/embeddium/impl/render/frame/RenderAheadManager.java",
+      "upstream": "e90f9383d6a138fb695438674a29f11f1507261887b1e7489325228ca5de929c",
+      "local": "eb51cf8a7afb998c53bd22004f6ba7615447836ba8e247d72623b212ff219903"
+    },
+    {
+      "path": "common/src/main/java/org/taumc/celeritas/api/options/structure/OptionGroup.java",
+      "upstream": "730cb10400b4a1cf794a6559303938519d315914b6c6fef8bf8fe38f4ba59b99",
+      "local": "32c0e2b702cde7ad45b3268828675bd8ed6ce848d93fe49ee1ea86372e52a89d"
+    },
+    {
+      "path": "common/src/main/java/org/taumc/celeritas/api/options/structure/OptionPage.java",
+      "upstream": "f3e77305ac0d8b64de45b80f2d0813174e5364064c41bf8dddf9d6d09a7a55e2",
+      "local": "130fddea231458836e0df05f319b024668d9dfae52943cabb50166bdcf07e6e9"
+    },
+    {
+      "path": "modern/build.mdg.gradle.kts",
+      "upstream": "fc793feb77018a5496e0e45940650592266ea42d23bdb56aae9dd625ba47eee7",
+      "local": "378910b3b891f97239676b8f44c7cfa24f564c2fb54ba3a5b7b93cfd7620e7c3"
+    },
+    {
+      "path": "modern/src/main/gui_java/org/embeddedt/embeddium/impl/gui/modern/framework/ModernDrawContext.java",
+      "upstream": "d9a139f03a89692dc9a35da7f2f1602f342640b80ce1ef9e5c82992c29f84236",
+      "local": "c01343249686462c939202500db4ae3df8aa24e99361e2942079079ea2205562"
+    },
+    {
+      "path": "modern/src/main/java/org/embeddedt/embeddium/api/ChunkDataBuiltEvent.java",
+      "upstream": "a8cd9b4083dc5b9637189aee3d15cf5c301d2602e64c4b6ea69e8abc11835caa",
+      "local": "598074aef256be075e50c85352f96c0b3e1e9d71b396df69b44fa79a895dabea"
+    },
+    {
+      "path": "modern/src/main/java/org/embeddedt/embeddium/api/ChunkMeshEvent.java",
+      "upstream": "4c8c3fff3fedaf7bb2d601d9a7d29cbd2acdb7e1841076302d996701de528142",
+      "local": "62aaf5a0e79338cf3eb372cf67413f4b2da0cf031211465b59f07dbe5cd7bd8a"
+    },
+    {
+      "path": "modern/src/main/java/org/embeddedt/embeddium/api/EmbeddiumConstants.java",
+      "upstream": "f4ae1656d2b448cfa763990f8ad463e599cd0c6acad566fc6f44cb02be86b877",
+      "local": "8b9676511b325631788072092941a6bd5d69033fcf8670a8e0d2acc5c32f7ad1"
+    },
+    {
+      "path": "modern/src/main/java/org/embeddedt/embeddium/api/MeshAppender.java",
+      "upstream": "a28b301df4542d0da6e20eb407368b7b6f763053db3c555bfff54805eeda8fb4",
+      "local": "f6c7886b37f0987939122b877b1e9c1b85907182b4301d04369e25ad620601fe"
+    },
+    {
+      "path": "modern/src/main/java/org/embeddedt/embeddium/impl/Celeritas.java",
+      "upstream": "c402c5a2b59cd976c27c73d84b3b7031771ed098e469207d236a0555a9279d60",
+      "local": "008dac96455cd2967eaef3fa0f2823e36fdad6a9f678e1128a0f86255adffaf6"
+    },
+    {
+      "path": "modern/src/main/java/org/embeddedt/embeddium/impl/SodiumPreLaunch.java",
+      "upstream": "e15071d7a9ebcc4a0d4b24362475651af5ffa9f2e1c59753d3c3b9038c35e930",
+      "local": "416a8b2eeb4d97b21284a555214e1575a9d78c41115c3ff75e9ccdea45b59d9d"
+    },
+    {
+      "path": "modern/src/main/java/org/embeddedt/embeddium/impl/compatibility/checks/Configuration.java",
+      "upstream": "cb9c7ff9d44cab6b3ac7a9e3db5a1187a749446ac914ea0de7fac8237abb5d3b",
+      "local": "07b9c10fc55a331f6c50f84a5f0fdb06813c53127a3f2146d1533f44fc72bb85"
+    },
+    {
+      "path": "modern/src/main/java/org/embeddedt/embeddium/impl/compatibility/checks/EarlyDriverScanner.java",
+      "upstream": "cc49a771d13635d0da0f34cd90f55f4d38e38f1c74d339f0774a7a0dde83863a",
+      "local": null
+    },
+    {
+      "path": "modern/src/main/java/org/embeddedt/embeddium/impl/mixin/core/MinecraftClientMixin.java",
+      "upstream": "4ed877d273f6e3be209b4045ac1484940e0b83d7cd155f3396d7e5a79f059c86",
+      "local": "3a1d86eae6933c4a12235377ac62eb9ef70b42b9d71f5f2b7a047240b597494a"
+    },
+    {
+      "path": "modern/src/main/java/org/embeddedt/embeddium/impl/modern/render/chunk/compile/pipeline/BlockRenderContext.java",
+      "upstream": "4e67c381222d03094a9caa9a8f98a9b62c5fb5f71863af24daf415633b4c28f4",
+      "local": "11cef4e700fa68bf274282a2c26da6b441746e261a821f6720c9c854f3bce519"
+    },
+    {
+      "path": "modern/src/main/modern_java/org/embeddedt/embeddium/api/BlockRendererRegistry.java",
+      "upstream": "354fc28cac155db020e967ece3716a7a8e179f2973f64da64b49cf9c25898025",
+      "local": "816d7777285201263b5740bdf7e0e6668c767b3f5f008bffd3f2a0198584e462"
+    },
+    {
+      "path": "modern/src/main/modern_java/org/embeddedt/embeddium/api/render/chunk/RenderSectionDistanceFilterEvent.java",
+      "upstream": "f7b846239752bc8486e0514175b7c1458ad9f0106c0cf5fe45ec36f8111a3b41",
+      "local": "d6a36f4ad42fc5974ce5d2fcce8e30d9c21863c32b1ef861c2a10ad53a22b66a"
+    },
+    {
+      "path": "modern/src/main/modern_java/org/embeddedt/embeddium/api/render/clouds/ModifyCloudRenderingEvent.java",
+      "upstream": "76d80ae4a8257c0b691579eebf8c8a200a6f729ebeca1c3a16740b290880c430",
+      "local": "f046eebce19bc6f52ce44e7c818818ac557a1218c536bd64c36f8c29bfb5b146"
+    },
+    {
+      "path": "modern/src/main/modern_java/org/embeddedt/embeddium/api/vertex/buffer/VertexBufferWriter.java",
+      "upstream": "c2c67990f9d5217a9f1882f38b745f731497979294f29ed31c539d9dd0fbfbd1",
+      "local": "7b5be7dd6760e0187010e79df7f90babc090916a87f8ff3578dc3dc6c795a46b"
+    },
+    {
+      "path": "modern/src/main/modern_java/org/embeddedt/embeddium/impl/mixin/core/render/immediate/consumer/BufferBuilderMixin.java",
+      "upstream": "926cdcf374ad58aaeff7f7619aa8031be1e87f11d2b91c4e4ee16fe503bf9184",
+      "local": "3a5bcb5c032004612907b828c3f48cad90453a4a6edad5de0df169c115e5b125"
+    },
+    {
+      "path": "modern/src/main/modern_java/org/embeddedt/embeddium/impl/mixin/features/world/biome/BiomeMixin.java",
+      "upstream": "9f0d20317cb64c626d970fa1a6b5540e64ccd848f7df67ab1535dff2217585cc",
+      "local": "f9b417a8f616c36dda648fc543db878ff884ce0dd65077bbc0efc536f5b0f4a2"
+    },
+    {
+      "path": "modern/src/main/modern_java/org/embeddedt/embeddium/impl/modern/compat/immersive/ImmersiveConnectionRenderer.java",
+      "upstream": "e74de3ac3073d0e723e46b0222d21480cb9df13b40a2177ef32ffeef24df5547",
+      "local": "5b6742158b1cba711ba96f8da197410fcf17494dd0d19bc34f8c600f2787bba1"
+    },
+    {
+      "path": "modern/src/main/modern_java/org/embeddedt/embeddium/impl/modern/sorting/VertexSorters.java",
+      "upstream": "6baf8d374a27f30dde60fc868f8664b6b855500f9b6f21abc0a9bfce6e2727c7",
+      "local": "88619ec8399b698e6c4f6d3bf3c69e669bde752cdb5fb6a60e3ef5d06c065fc8"
+    },
+    {
+      "path": "modern/src/main/modern_java/org/embeddedt/embeddium/impl/render/vertex/serializers/VertexSerializerRegistryImpl.java",
+      "upstream": "de7c73ee38e8d456d685c659d31eb9fd961b9d3879029f785487fcca6efed880",
+      "local": "4d65adc484885a0b8adddbc0a5ce413e54177335c932f9f173dd577db6dd8ab8"
+    },
+    {
+      "path": "modern/src/main/resources/META-INF/mods.toml",
+      "upstream": "21f3feb3ef8f58b491d799419b6ce9bbe1ae015cb47d6a7de5807ed8686b77f7",
+      "local": "79f0aeaaa46c04819d1d27541f2f6ab78f1bf8e3c072add688e47b58db618783"
+    },
+    {
+      "path": "modern/src/main/resources/assets/embeddium/lang/es_es.json",
+      "upstream": "73060eafaaced30e1280316fa814ba4991d6f7b830500a61c98672a19b101f9d",
+      "local": "86e3ab1038bbca6943e02b0278cd9688d69c8aae02b99f6ce03d799cfce1fd90"
+    }
+  ],
+  "additions": [
+    {
+      "path": "buildSrc/src/main/java/org/embeddedt/embeddium/gradle/versioning/ProjectVersioner.java",
+      "local": "f90eb17fcb958ce08903238a6937dee4b58439d4b2cde185d6721215d0f91ec3"
+    },
+    {
+      "path": "common/src/main/java/org/embeddedt/embeddium/impl/util/sorting/RadixSort.java",
+      "local": "91994231f6b44dbc1403db6f15f0a5ada497a9aa7480ddfa2dc90c489070f6b5"
+    },
+    {
+      "path": "common/src/test/java/org/embeddedt/embeddium/impl/render/frame/RenderAheadManagerTest.java",
+      "local": "0b938334fd38a61ad16463595ce4db56e4e8fceed0c2b2c1f7de4bbac5eb5228"
+    },
+    {
+      "path": "modern/src/main/java/org/embeddedt/embeddium/impl/compat/legacy/LegacyGuiBridge.java",
+      "local": "bf6365671a27101719d01145a5eb29b749e68d3cd511bd36e9849f7c3ab82642"
+    },
+    {
+      "path": "modern/src/main/java/org/embeddedt/embeddium/impl/compat/legacy/LegacyOptions.java",
+      "local": "1b44325ff39cc89da822841858870bc3063c737dc07a7fb4bdaed28ee7d60182"
+    },
+    {
+      "path": "modern/src/main/java/org/embeddedt/embeddium/impl/compat/legacy/LegacyVertexApi.java",
+      "local": "82c6b09a41d171b7e93d18f2082eb54a6edc3e88ad9871d41432fcb4759f242a"
+    },
+    {
+      "path": "modern/src/main/legacy_api_java/me/jellysquid/mods/sodium/client/RubidiumStub.java",
+      "local": "058faa1eb5bac96a3e35ed1f50d0efbfa609fa391a3a5858435cfe4ff0ea002c"
+    },
+    {
+      "path": "modern/src/main/legacy_api_java/me/jellysquid/mods/sodium/client/SodiumClientMod.java",
+      "local": "f3b818d7d2c9f091a478f2a04885325afa727bb319be2d5b5b17a40073c26600"
+    },
+    {
+      "path": "modern/src/main/legacy_api_java/me/jellysquid/mods/sodium/client/gui/SodiumGameOptions.java",
+      "local": "50c2bb4b58ff6452f01660c4e68047c4d271736879d5882a65756afacc370460"
+    },
+    {
+      "path": "modern/src/main/legacy_api_java/me/jellysquid/mods/sodium/client/gui/options/Option.java",
+      "local": "aafe429f3ef580218244b9695b09808f61e604fc65a6e806e7914b3c608a3c35"
+    },
+    {
+      "path": "modern/src/main/legacy_api_java/me/jellysquid/mods/sodium/client/gui/options/OptionFlag.java",
+      "local": "c6b4ae085d3142d47c807b6d447e50d05df93c0176bdc5c019580eff774fdbfe"
+    },
+    {
+      "path": "modern/src/main/legacy_api_java/me/jellysquid/mods/sodium/client/gui/options/OptionGroup.java",
+      "local": "bcf8fe85cbec1f3b9dabb937b453dc0f2b84ecdd3f95bb53fdc7c08f1a50aaed"
+    },
+    {
+      "path": "modern/src/main/legacy_api_java/me/jellysquid/mods/sodium/client/gui/options/OptionImpact.java",
+      "local": "0829b25b5efbf9cacdade71a94ffca592e33fd21991f7b6e39e2c906ad322c10"
+    },
+    {
+      "path": "modern/src/main/legacy_api_java/me/jellysquid/mods/sodium/client/gui/options/OptionImpl.java",
+      "local": "1cdc567d10270ca50b4a50953df73842a2ca431888b5fae309103a47a71adda7"
+    },
+    {
+      "path": "modern/src/main/legacy_api_java/me/jellysquid/mods/sodium/client/gui/options/OptionPage.java",
+      "local": "0bdcaecf78ee85b4e32bb55b74fabf58b82c049d3f5682a0e90cd39648e0d63f"
+    },
+    {
+      "path": "modern/src/main/legacy_api_java/me/jellysquid/mods/sodium/client/gui/options/TextProvider.java",
+      "local": "a49374be49dd646ee45864ac210138df9ff936c6d338818a749c187197265055"
+    },
+    {
+      "path": "modern/src/main/legacy_api_java/me/jellysquid/mods/sodium/client/gui/options/binding/GenericBinding.java",
+      "local": "51a9ab1527e57992358beed64c8412d6494307dd332dc712af736217d44e27a4"
+    },
+    {
+      "path": "modern/src/main/legacy_api_java/me/jellysquid/mods/sodium/client/gui/options/binding/OptionBinding.java",
+      "local": "2a8972818899e5f9804f3b47ab5b104f26c8d05cd83dc5cf1c86c41911e83f4c"
+    },
+    {
+      "path": "modern/src/main/legacy_api_java/me/jellysquid/mods/sodium/client/gui/options/binding/compat/VanillaBooleanOptionBinding.java",
+      "local": "8f3d8825d915d8c7db4d6422e171c242a3ef671098f7b82c99435d9a431014f0"
+    },
+    {
+      "path": "modern/src/main/legacy_api_java/me/jellysquid/mods/sodium/client/gui/options/control/Control.java",
+      "local": "26fcc15e66130f2150d10edccf607d2eb1cc4e1096096809565eb602ba02dcc9"
+    },
+    {
+      "path": "modern/src/main/legacy_api_java/me/jellysquid/mods/sodium/client/gui/options/control/ControlElement.java",
+      "local": "19e27c8c53ee98f6dfac0de2e4846f1dd3d001551f270ce3f20c076c4c69455b"
+    },
+    {
+      "path": "modern/src/main/legacy_api_java/me/jellysquid/mods/sodium/client/gui/options/control/ControlValueFormatter.java",
+      "local": "338589a62c84847d3d35b3c0ad6b140ccf23822da49a2a37855b7661657f89a3"
+    },
+    {
+      "path": "modern/src/main/legacy_api_java/me/jellysquid/mods/sodium/client/gui/options/control/CyclingControl.java",
+      "local": "880d1e6b522d9925c7b7a1ac97f96d455c1158fbb1913634dc4c539d504afd4e"
+    },
+    {
+      "path": "modern/src/main/legacy_api_java/me/jellysquid/mods/sodium/client/gui/options/control/SliderControl.java",
+      "local": "6ddde06f8ef15d640fc8f8cfbd6543e0c1677005f4f7ff19fd3f39a3ce6fe342"
+    },
+    {
+      "path": "modern/src/main/legacy_api_java/me/jellysquid/mods/sodium/client/gui/options/control/TickBoxControl.java",
+      "local": "fb66a387a97dfdba55567f0adbb3c6c52deb592a6cde8f84fe8c125859a3475c"
+    },
+    {
+      "path": "modern/src/main/legacy_api_java/me/jellysquid/mods/sodium/client/gui/options/storage/MinecraftOptionsStorage.java",
+      "local": "54484ae1d5dfcee116916ed9212b41a8e4d9a47ab16b32efa5c2824232d35a4c"
+    },
+    {
+      "path": "modern/src/main/legacy_api_java/me/jellysquid/mods/sodium/client/gui/options/storage/OptionStorage.java",
+      "local": "74c0edd71874b67c701f6d431adc4509b97bf4ea86291cc9f6a6a2f13fd0545b"
+    },
+    {
+      "path": "modern/src/main/legacy_api_java/me/jellysquid/mods/sodium/client/gui/options/storage/SodiumOptionsStorage.java",
+      "local": "9b9bc6f7222dc05bf35c9630d1ed22daf5c72f457c3dc4068894c0aa46a2da38"
+    },
+    {
+      "path": "modern/src/main/legacy_api_java/me/jellysquid/mods/sodium/client/gui/widgets/AbstractWidget.java",
+      "local": "8bd399b85484c85a043e254377c29e7ea68ab47a86ea594bdbcb50dd8d5c6d85"
+    },
+    {
+      "path": "modern/src/main/legacy_api_java/me/jellysquid/mods/sodium/client/gui/widgets/FlatButtonWidget.java",
+      "local": "e96c2de54b0cd790ff2fee4d1321e2172dcf18618f97e6a479001a23d13dd5bd"
+    },
+    {
+      "path": "modern/src/main/legacy_api_java/me/jellysquid/mods/sodium/client/render/chunk/compile/ChunkBuildBuffers.java",
+      "local": "50f9c25e7bb45207fbafae42b19f88d604a09664557d75a99bf4310bf2b16376"
+    },
+    {
+      "path": "modern/src/main/legacy_api_java/me/jellysquid/mods/sodium/client/render/chunk/compile/pipeline/BlockRenderContext.java",
+      "local": "1fcadcc6b213780f1039ee78bb54a2e1b324a1e58c61312b1fa2db64130e66c6"
+    },
+    {
+      "path": "modern/src/main/legacy_api_java/me/jellysquid/mods/sodium/client/render/chunk/data/BuiltSectionInfo.java",
+      "local": "7ec43ea82bdae25ff81b633b36331765f4f9122b9f268c4e4b4d0f147863f625"
+    },
+    {
+      "path": "modern/src/main/legacy_api_java/me/jellysquid/mods/sodium/client/render/vertex/VertexBufferWriter.java",
+      "local": "7bc1d153eef1f881a09f7d208338aad939a351ec073ca0b945b9c674111d7239"
+    },
+    {
+      "path": "modern/src/main/legacy_api_java/me/jellysquid/mods/sodium/client/render/vertex/VertexFormatDescription.java",
+      "local": "94c9ead7cc82a4af7c233ae6c96d221acb2a464156a135462ee7b57c20d3d244"
+    },
+    {
+      "path": "modern/src/main/legacy_api_java/me/jellysquid/mods/sodium/client/render/vertex/VertexFormatDescriptionImpl.java",
+      "local": "2ce75a48bcf6046457ed04a5eac7be8ccaa7d1cdcdbe8c4f1ac4c375023e4894"
+    },
+    {
+      "path": "modern/src/main/legacy_api_java/me/jellysquid/mods/sodium/client/render/vertex/VertexFormatRegistry.java",
+      "local": "6d03f1f1aeab4bdd204765e749ce9d950d38371ea35d90f720fc6dbcf9971cf3"
+    },
+    {
+      "path": "modern/src/main/legacy_api_java/me/jellysquid/mods/sodium/client/render/vertex/transform/CommonVertexElement.java",
+      "local": "eee6dccfe177db0e40d49a7e9834c0fab5315e2eccb07b28403e490561fb2fdf"
+    },
+    {
+      "path": "modern/src/main/legacy_api_java/me/jellysquid/mods/sodium/client/util/Dim2i.java",
+      "local": "dacb4fb3a961a310007b6f41028aee6cebb6eec5bea1804447ca5fe9c08019d8"
+    },
+    {
+      "path": "modern/src/main/legacy_api_java/me/jellysquid/mods/sodium/client/util/Point2i.java",
+      "local": "9355a16791b43c9fc0e8af93940314c932dced1fe4a340a12deb62ffc90a98f9"
+    },
+    {
+      "path": "modern/src/main/legacy_api_java/me/jellysquid/mods/sodium/client/world/WorldSlice.java",
+      "local": "b67184853587452ebd520c396098fac957ae2c3b459aa01dd203be7930fa6c31"
+    },
+    {
+      "path": "modern/src/main/legacy_api_java/me/jellysquid/mods/sodium/client/world/biome/BiomeColorSource.java",
+      "local": "c2980e425ff73f95727dbfc03b26a106c592c4b91c74166370893a65e97225f2"
+    },
+    {
+      "path": "modern/src/main/legacy_api_java/net/caffeinemc/mods/sodium/api/internal/DependencyInjection.java",
+      "local": "c8a78d3707585805afb81e32c9f8b6893dc16807aa217dc307afb29965ed96c5"
+    },
+    {
+      "path": "modern/src/main/legacy_api_java/net/caffeinemc/mods/sodium/api/internal/package-info.java",
+      "local": "78f3427e71b07dacf5703282f5af9da3a25dc70197c23133b9635aab5309052f"
+    },
+    {
+      "path": "modern/src/main/legacy_api_java/net/caffeinemc/mods/sodium/api/math/MatrixHelper.java",
+      "local": "f7eced846f1c8f3ee06f4ef746f92ba73796fc93389ac5ab1e4384188d628d02"
+    },
+    {
+      "path": "modern/src/main/legacy_api_java/net/caffeinemc/mods/sodium/api/memory/MemoryIntrinsics.java",
+      "local": "a9d2f4a2da45668d937a2fdfcf2917df71869c7fe9d91891b4654b4dc3d1ee31"
+    },
+    {
+      "path": "modern/src/main/legacy_api_java/net/caffeinemc/mods/sodium/api/util/ColorABGR.java",
+      "local": "3d6b3c8cecf29f95d18f67ff47c90f172f617caf0c1d0b45d4844ededa88d845"
+    },
+    {
+      "path": "modern/src/main/legacy_api_java/net/caffeinemc/mods/sodium/api/util/ColorARGB.java",
+      "local": "5d574f02e1584452ecf58c24503cf959bb317fb53f850883ab1480193876f358"
+    },
+    {
+      "path": "modern/src/main/legacy_api_java/net/caffeinemc/mods/sodium/api/util/ColorMixer.java",
+      "local": "da33b1d8a8b623268c2599b273e755a57096cd007b0c6c609263eff0e0be2262"
+    },
+    {
+      "path": "modern/src/main/legacy_api_java/net/caffeinemc/mods/sodium/api/util/ColorU8.java",
+      "local": "922dc1e3f18adb50a7ce3281e8ac8aaa5d7035c66c7361c88262d79bb594a454"
+    },
+    {
+      "path": "modern/src/main/legacy_api_java/net/caffeinemc/mods/sodium/api/util/NormI8.java",
+      "local": "89875f8809260bc0fc37c1913ea37ec8f1d129f9f4ea7297b71d10991ce55bba"
+    },
+    {
+      "path": "modern/src/main/legacy_api_java/net/caffeinemc/mods/sodium/api/vertex/attributes/CommonVertexAttribute.java",
+      "local": "bcd0df61468bf8f765e074d927dad184ba0ebef0da0d1af39ac7af7610d4304d"
+    },
+    {
+      "path": "modern/src/main/legacy_api_java/net/caffeinemc/mods/sodium/api/vertex/attributes/common/ColorAttribute.java",
+      "local": "a5c1ff0bf1383c0336f9caede785cd5a7b2f57115abb076a3c2d3f1d61c36ebb"
+    },
+    {
+      "path": "modern/src/main/legacy_api_java/net/caffeinemc/mods/sodium/api/vertex/attributes/common/LightAttribute.java",
+      "local": "4e9279711dd8df37bf003604749e5f7b4c7893162ef2057218bfa641c09c7296"
+    },
+    {
+      "path": "modern/src/main/legacy_api_java/net/caffeinemc/mods/sodium/api/vertex/attributes/common/NormalAttribute.java",
+      "local": "8bc956f32915d21cd87a7951a65e0ad7598bb794d80c2bae12dc228e43e37b09"
+    },
+    {
+      "path": "modern/src/main/legacy_api_java/net/caffeinemc/mods/sodium/api/vertex/attributes/common/OverlayAttribute.java",
+      "local": "ddfbc9696838a97a0a856b523199f0117c889eac04b79a5d826d4041ea5272b5"
+    },
+    {
+      "path": "modern/src/main/legacy_api_java/net/caffeinemc/mods/sodium/api/vertex/attributes/common/PositionAttribute.java",
+      "local": "b06cd813757d9fe1211fc634f718da556b27840daa9c1f0cadd5b2266a7614b5"
+    },
+    {
+      "path": "modern/src/main/legacy_api_java/net/caffeinemc/mods/sodium/api/vertex/attributes/common/TextureAttribute.java",
+      "local": "ec53bc41b4cbf9d384a3c2f91584aed24833f3666511d52c81ae3ecdfb91a086"
+    },
+    {
+      "path": "modern/src/main/legacy_api_java/net/caffeinemc/mods/sodium/api/vertex/buffer/VertexBufferWriter.java",
+      "local": "bd0bc68ccd405499bacd58826f990cec5b346dae3f70583f28dda541312a901e"
+    },
+    {
+      "path": "modern/src/main/legacy_api_java/net/caffeinemc/mods/sodium/api/vertex/format/VertexFormatDescription.java",
+      "local": "829ecc7f4ec949e5eb402516e7c6650ef78d9c4acbbd9a2483eb8944cdd8b0f4"
+    },
+    {
+      "path": "modern/src/main/legacy_api_java/net/caffeinemc/mods/sodium/api/vertex/format/VertexFormatRegistry.java",
+      "local": "87a9a529a92bc81c4923457673a77ef383b3137052df6c678384b286fe3adc9d"
+    },
+    {
+      "path": "modern/src/main/legacy_api_java/net/caffeinemc/mods/sodium/api/vertex/format/common/ColorVertex.java",
+      "local": "ef8a098ee2f0128da17e351bf7386d581c82722697fc6b5084beb98e0be6fc49"
+    },
+    {
+      "path": "modern/src/main/legacy_api_java/net/caffeinemc/mods/sodium/api/vertex/format/common/GlyphVertex.java",
+      "local": "0eadd6d2c89d5c1a8758777fd7f909aed03d117fab1bb45e19d45b049ed32ae7"
+    },
+    {
+      "path": "modern/src/main/legacy_api_java/net/caffeinemc/mods/sodium/api/vertex/format/common/LineVertex.java",
+      "local": "748425a4c4c93140f056b66231bf49e54545538bff0ff62c330fe43a070dd56d"
+    },
+    {
+      "path": "modern/src/main/legacy_api_java/net/caffeinemc/mods/sodium/api/vertex/format/common/ModelVertex.java",
+      "local": "d229533a085804170f83bd650b91d88c662b738466779acc452dc7875df87a3b"
+    },
+    {
+      "path": "modern/src/main/legacy_api_java/net/caffeinemc/mods/sodium/api/vertex/format/common/ParticleVertex.java",
+      "local": "449a2f464cb428f793d6fcd37177cf0a3f06706b06d63ab2440521ce538ba0d6"
+    },
+    {
+      "path": "modern/src/main/legacy_api_java/net/caffeinemc/mods/sodium/api/vertex/serializer/VertexSerializer.java",
+      "local": "418eb286106272fca6b7d655dfe77dc1eb467789207cc6030c3d0cddbc94c980"
+    },
+    {
+      "path": "modern/src/main/legacy_api_java/net/caffeinemc/mods/sodium/api/vertex/serializer/VertexSerializerRegistry.java",
+      "local": "d5bf78b1df552c0ec507d2d5d42f9a017ec55035b6bf1c00dad841ff618c3859"
+    },
+    {
+      "path": "modern/src/main/legacy_api_java/org/embeddedt/embeddium/api/OptionGUIConstructionEvent.java",
+      "local": "a0600611a9a47ccd6217e1249b2b815b192d505ba3477f0255bb81ea4cd44d76"
+    },
+    {
+      "path": "modern/src/main/legacy_api_java/org/embeddedt/embeddium/api/OptionGroupConstructionEvent.java",
+      "local": "2d7d0167ce83083eb79c681c01a62cef4c31e69a098d12eee0db6ab7c8001925"
+    },
+    {
+      "path": "modern/src/main/legacy_api_java/org/embeddedt/embeddium/api/OptionPageConstructionEvent.java",
+      "local": "9ec3d4c6f001205ad1357c8ef7f5a7acebf955623e5251bb2cf0c9a4793f42b0"
+    },
+    {
+      "path": "modern/src/main/legacy_api_java/org/embeddedt/embeddium/api/eventbus/EmbeddiumEvent.java",
+      "local": "c4fc33e75b015ba574bc5159734d8bab2ba47b91436474b5e3518f04725e2d4e"
+    },
+    {
+      "path": "modern/src/main/legacy_api_java/org/embeddedt/embeddium/api/eventbus/EventHandlerRegistrar.java",
+      "local": "b5c11e16e5dd1c35b8c07d6119c583fd6f66c4206159661a9254f54a808b9699"
+    },
+    {
+      "path": "modern/src/main/legacy_api_java/org/embeddedt/embeddium/client/gui/options/OptionIdGenerator.java",
+      "local": "37184a7cbfecc73bf77901878455ace1f175949e991e48f448882a8601d8fddf"
+    },
+    {
+      "path": "modern/src/main/legacy_api_java/org/embeddedt/embeddium/client/gui/options/OptionIdentifier.java",
+      "local": "508750801cc08d81cf3bcf92fcc308d3167758e243bdadcc3b1691f76f33fb52"
+    },
+    {
+      "path": "modern/src/main/legacy_api_java/org/embeddedt/embeddium/client/gui/options/StandardOptions.java",
+      "local": "a8ef6c357e8d6ba03eff1642327726e1166a6f5ccc0f39d7c6bfdd78ce6f28e1"
+    },
+    {
+      "path": "modern/src/main/legacy_api_java/org/embeddedt/embeddium/gui/theme/DefaultColors.java",
+      "local": "c1794cae2f950f9c227268524aba09c0ff59483a1ad9555a616cd1d2b7467491"
+    },
+    {
+      "path": "modern/src/main/resources/assets/embeddium/lang/ko_kr.json",
+      "local": "5f384aabed71bafd2e804a94c87039ce6ce6bd2cb02bedeff272302948c66ad2"
+    },
+    {
+      "path": "modern/src/main/resources/assets/embeddium/lang/ru_ru.json",
+      "local": "3d4407ecadeecde3253ff78df125f85b67fe1f3d0536986b93ee7fe12ef3f058"
+    },
+    {
+      "path": "modern/src/main/resources/assets/sodium/lang/es_es.json",
+      "local": "cb1830ea057a577cd63a539cf35fe88e97cfc780402feedd2e9ecf0b920a0681"
+    },
+    {
+      "path": "modern/src/main/resources/assets/sodium/lang/ko_kr.json",
+      "local": "f40ac3d22f74e919441b5649566f0dc6624c3520f28036ca9a66699434dd9b50"
+    },
+    {
+      "path": "modern/src/main/resources/assets/sodium/lang/ru_ru.json",
+      "local": "fa6d7dad0abb38265e8300475db8f5640a29b22b70df8f7130ea20d63930e45c"
+    },
+    {
+      "path": "modern/src/test/java/org/embeddedt/embeddium/impl/compat/legacy/LegacyGuiBridgeTest.java",
+      "local": "87fe68b74b95b600c5479ae98002404f5d300fad9338ff26db62d68af818873e"
+    },
+    {
+      "path": "modern/src/test/java/org/embeddedt/embeddium/impl/compat/legacy/LegacyOptionsTest.java",
+      "local": "85bcf07ef625ab71a3dfa1057a177cbcf465d88568841436f0c25b956f63be7a"
+    },
+    {
+      "path": "modern/src/test/java/org/embeddedt/embeddium/impl/compat/legacy/LegacyVertexApiTest.java",
+      "local": "3040f92c73cc28fb3532089b9be902e55f4b36ee08016824c1a39d6686874092"
+    },
+    {
+      "path": "modern/src/test/java/org/embeddedt/embeddium/impl/compat/legacy/PublicApiAbiTest.java",
+      "local": "a812610d627a16a227707980316a2e208977f117396233902945e91a3d230169"
+    },
+    {
+      "path": "modern/src/test/java/org/embeddedt/embeddium/impl/mixin/core/render/immediate/consumer/BufferBuilderEligibilityTest.java",
+      "local": "c3b30521772ac885548dbdfe995a68c7a9968490bb81f019bf8f3494b2149481"
+    },
+    {
+      "path": "modern/src/test/java/org/embeddedt/embeddium/impl/mixin/features/world/biome/BiomeMixinTest.java",
+      "local": "ed8d200774c4488642e774cc101282503a9684860fd6233b1b66880fd3557105"
+    },
+    {
+      "path": "modern/src/test/java/org/embeddedt/embeddium/impl/render/vertex/serializers/VertexSerializerRegistryImplTest.java",
+      "local": "99192605ec41a343d7bc7b7e853d1d022d51d653d3fcce539d388118e2d6c34d"
+    },
+    {
+      "path": "modern/src/test/java/org/embeddedt/embeddium/impl/util/sorting/VertexSortersTest.java",
+      "local": "21e6ef115419389b1f5e25f9303a169e2578fdebc9e5b80cf4980525e0b85ac1"
+    },
+    {
+      "path": "modern/src/test/resources/legacy-public-api.txt",
+      "local": "3f5dfae16bc99f4c5f7c880d0033533017fa07167ce879f3a45ba6cbd5b91611"
+    },
+    {
+      "path": "modern/src/validation/java/org/embeddedt/embeddium/validation/AddonValidation.java",
+      "local": "02bf21eb933a46e00276b5340f47ddeb3aa8b7fbde792aa8f2937878a7b75511"
+    },
+    {
+      "path": "modern/src/validation/java/org/embeddedt/embeddium/validation/MigrationValidation.java",
+      "local": "5b31eb75e68167b545f1449fdf3f3bcc2caabb89df5feb4b70c9add2c79a4150"
+    },
+    {
+      "path": "modern/src/validation/resources/META-INF/mods.toml",
+      "local": "a077b04085c760311afb576cd6717ff45456fa274b4fc8cbfe242761b3b8eece"
+    },
+    {
+      "path": "modern/src/validation/resources/pack.mcmeta",
+      "local": "b29d3719b6398b39d9f3c6f52592c4c8ba6d8816755e9a23a5940ca26ca0c14b"
+    }
+  ]
+}
