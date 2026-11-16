@@ -282,6 +282,7 @@ public class ShaderTransformer {
                     }
                 }
             }
+            TextureTransformer.transform(transformer, parameters, versionInt);
             CompTransformer.transformEach(transformer, parameters);
 
             if (patchType == Patch.SODIUM && type == ShaderType.VERTEX) {

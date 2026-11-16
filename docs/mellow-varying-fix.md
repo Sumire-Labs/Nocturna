@@ -1,5 +1,7 @@
 # Mellow 3.5 のコンパイル失敗修正
 
+この検証時点に残っていた Photon の黒帯は、後続の型・stage 別カスタムテクスチャ変換の復元で解消した。
+
 対象は Forge 1.20.1、Java 17。
 比較元は [Iris 1.20.1 `f8d7bea2ab82d21737e7aa8e4b2fb3a429078106`](https://github.com/IrisShaders/Iris/blob/f8d7bea2ab82d21737e7aa8e4b2fb3a429078106/src/main/java/net/irisshaders/iris/pipeline/transform/transformer/CompatibilityTransformer.java)。
 

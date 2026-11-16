@@ -1,0 +1,1118 @@
+{
+  "reference": {
+    "revision": "f8d7bea2ab82d21737e7aa8e4b2fb3a429078106",
+    "file": "src/main/java/net/irisshaders/iris/pipeline/transform/transformer/TextureTransformer.java",
+    "sha256": "ed11424eec88663c9bef505f76be53ca786df7bcfc529db78f4da73e4d6e7b13"
+  },
+  "fixtures": [
+    {
+      "name": "sampler1D-TEXTURE_1D",
+      "source": "#version 450 core\nuniform sampler1D source;out vec4 color;void main(){color=vec4(texture(source,float(1)));}",
+      "rules": [
+        {
+          "name": "source",
+          "type": "TEXTURE_1D",
+          "stage": "DEFERRED",
+          "replacement": "customtex0"
+        }
+      ],
+      "stage": "DEFERRED",
+      "version": 450,
+      "expected": "#version 450 core\nuniform sampler1D customtex0;\nout vec4 color;\nvoid main() {\n\tcolor = vec4(texture(customtex0, float(1)));\n}\n"
+    },
+    {
+      "name": "sampler1D-TEXTURE_2D",
+      "source": "#version 450 core\nuniform sampler1D source;out vec4 color;void main(){color=vec4(texture(source,float(1)));}",
+      "rules": [
+        {
+          "name": "source",
+          "type": "TEXTURE_2D",
+          "stage": "DEFERRED",
+          "replacement": "customtex0"
+        }
+      ],
+      "stage": "DEFERRED",
+      "version": 450,
+      "expected": "#version 450 core\nuniform sampler1D source;\nout vec4 color;\nvoid main() {\n\tcolor = vec4(texture(source, float(1)));\n}\n"
+    },
+    {
+      "name": "sampler1D-TEXTURE_3D",
+      "source": "#version 450 core\nuniform sampler1D source;out vec4 color;void main(){color=vec4(texture(source,float(1)));}",
+      "rules": [
+        {
+          "name": "source",
+          "type": "TEXTURE_3D",
+          "stage": "DEFERRED",
+          "replacement": "customtex0"
+        }
+      ],
+      "stage": "DEFERRED",
+      "version": 450,
+      "expected": "#version 450 core\nuniform sampler1D source;\nout vec4 color;\nvoid main() {\n\tcolor = vec4(texture(source, float(1)));\n}\n"
+    },
+    {
+      "name": "sampler1D-TEXTURE_RECTANGLE",
+      "source": "#version 450 core\nuniform sampler1D source;out vec4 color;void main(){color=vec4(texture(source,float(1)));}",
+      "rules": [
+        {
+          "name": "source",
+          "type": "TEXTURE_RECTANGLE",
+          "stage": "DEFERRED",
+          "replacement": "customtex0"
+        }
+      ],
+      "stage": "DEFERRED",
+      "version": 450,
+      "expected": "#version 450 core\nuniform sampler1D source;\nout vec4 color;\nvoid main() {\n\tcolor = vec4(texture(source, float(1)));\n}\n"
+    },
+    {
+      "name": "isampler1D-TEXTURE_1D",
+      "source": "#version 450 core\nuniform isampler1D source;out vec4 color;void main(){color=vec4(texture(source,float(1)));}",
+      "rules": [
+        {
+          "name": "source",
+          "type": "TEXTURE_1D",
+          "stage": "DEFERRED",
+          "replacement": "customtex0"
+        }
+      ],
+      "stage": "DEFERRED",
+      "version": 450,
+      "expected": "#version 450 core\nuniform isampler1D customtex0;\nout vec4 color;\nvoid main() {\n\tcolor = vec4(texture(customtex0, float(1)));\n}\n"
+    },
+    {
+      "name": "isampler1D-TEXTURE_2D",
+      "source": "#version 450 core\nuniform isampler1D source;out vec4 color;void main(){color=vec4(texture(source,float(1)));}",
+      "rules": [
+        {
+          "name": "source",
+          "type": "TEXTURE_2D",
+          "stage": "DEFERRED",
+          "replacement": "customtex0"
+        }
+      ],
+      "stage": "DEFERRED",
+      "version": 450,
+      "expected": "#version 450 core\nuniform isampler1D source;\nout vec4 color;\nvoid main() {\n\tcolor = vec4(texture(source, float(1)));\n}\n"
+    },
+    {
+      "name": "isampler1D-TEXTURE_3D",
+      "source": "#version 450 core\nuniform isampler1D source;out vec4 color;void main(){color=vec4(texture(source,float(1)));}",
+      "rules": [
+        {
+          "name": "source",
+          "type": "TEXTURE_3D",
+          "stage": "DEFERRED",
+          "replacement": "customtex0"
+        }
+      ],
+      "stage": "DEFERRED",
+      "version": 450,
+      "expected": "#version 450 core\nuniform isampler1D source;\nout vec4 color;\nvoid main() {\n\tcolor = vec4(texture(source, float(1)));\n}\n"
+    },
+    {
+      "name": "isampler1D-TEXTURE_RECTANGLE",
+      "source": "#version 450 core\nuniform isampler1D source;out vec4 color;void main(){color=vec4(texture(source,float(1)));}",
+      "rules": [
+        {
+          "name": "source",
+          "type": "TEXTURE_RECTANGLE",
+          "stage": "DEFERRED",
+          "replacement": "customtex0"
+        }
+      ],
+      "stage": "DEFERRED",
+      "version": 450,
+      "expected": "#version 450 core\nuniform isampler1D source;\nout vec4 color;\nvoid main() {\n\tcolor = vec4(texture(source, float(1)));\n}\n"
+    },
+    {
+      "name": "usampler1D-TEXTURE_1D",
+      "source": "#version 450 core\nuniform usampler1D source;out vec4 color;void main(){color=vec4(texture(source,float(1)));}",
+      "rules": [
+        {
+          "name": "source",
+          "type": "TEXTURE_1D",
+          "stage": "DEFERRED",
+          "replacement": "customtex0"
+        }
+      ],
+      "stage": "DEFERRED",
+      "version": 450,
+      "expected": "#version 450 core\nuniform usampler1D customtex0;\nout vec4 color;\nvoid main() {\n\tcolor = vec4(texture(customtex0, float(1)));\n}\n"
+    },
+    {
+      "name": "usampler1D-TEXTURE_2D",
+      "source": "#version 450 core\nuniform usampler1D source;out vec4 color;void main(){color=vec4(texture(source,float(1)));}",
+      "rules": [
+        {
+          "name": "source",
+          "type": "TEXTURE_2D",
+          "stage": "DEFERRED",
+          "replacement": "customtex0"
+        }
+      ],
+      "stage": "DEFERRED",
+      "version": 450,
+      "expected": "#version 450 core\nuniform usampler1D source;\nout vec4 color;\nvoid main() {\n\tcolor = vec4(texture(source, float(1)));\n}\n"
+    },
+    {
+      "name": "usampler1D-TEXTURE_3D",
+      "source": "#version 450 core\nuniform usampler1D source;out vec4 color;void main(){color=vec4(texture(source,float(1)));}",
+      "rules": [
+        {
+          "name": "source",
+          "type": "TEXTURE_3D",
+          "stage": "DEFERRED",
+          "replacement": "customtex0"
+        }
+      ],
+      "stage": "DEFERRED",
+      "version": 450,
+      "expected": "#version 450 core\nuniform usampler1D source;\nout vec4 color;\nvoid main() {\n\tcolor = vec4(texture(source, float(1)));\n}\n"
+    },
+    {
+      "name": "usampler1D-TEXTURE_RECTANGLE",
+      "source": "#version 450 core\nuniform usampler1D source;out vec4 color;void main(){color=vec4(texture(source,float(1)));}",
+      "rules": [
+        {
+          "name": "source",
+          "type": "TEXTURE_RECTANGLE",
+          "stage": "DEFERRED",
+          "replacement": "customtex0"
+        }
+      ],
+      "stage": "DEFERRED",
+      "version": 450,
+      "expected": "#version 450 core\nuniform usampler1D source;\nout vec4 color;\nvoid main() {\n\tcolor = vec4(texture(source, float(1)));\n}\n"
+    },
+    {
+      "name": "sampler2D-TEXTURE_1D",
+      "source": "#version 450 core\nuniform sampler2D source;out vec4 color;void main(){color=vec4(texture(source,vec2(1)));}",
+      "rules": [
+        {
+          "name": "source",
+          "type": "TEXTURE_1D",
+          "stage": "DEFERRED",
+          "replacement": "customtex0"
+        }
+      ],
+      "stage": "DEFERRED",
+      "version": 450,
+      "expected": "#version 450 core\nuniform sampler2D source;\nout vec4 color;\nvoid main() {\n\tcolor = vec4(texture(source, vec2(1)));\n}\n"
+    },
+    {
+      "name": "sampler2D-TEXTURE_2D",
+      "source": "#version 450 core\nuniform sampler2D source;out vec4 color;void main(){color=vec4(texture(source,vec2(1)));}",
+      "rules": [
+        {
+          "name": "source",
+          "type": "TEXTURE_2D",
+          "stage": "DEFERRED",
+          "replacement": "customtex0"
+        }
+      ],
+      "stage": "DEFERRED",
+      "version": 450,
+      "expected": "#version 450 core\nuniform sampler2D customtex0;\nout vec4 color;\nvoid main() {\n\tcolor = vec4(texture(customtex0, vec2(1)));\n}\n"
+    },
+    {
+      "name": "sampler2D-TEXTURE_3D",
+      "source": "#version 450 core\nuniform sampler2D source;out vec4 color;void main(){color=vec4(texture(source,vec2(1)));}",
+      "rules": [
+        {
+          "name": "source",
+          "type": "TEXTURE_3D",
+          "stage": "DEFERRED",
+          "replacement": "customtex0"
+        }
+      ],
+      "stage": "DEFERRED",
+      "version": 450,
+      "expected": "#version 450 core\nuniform sampler2D source;\nout vec4 color;\nvoid main() {\n\tcolor = vec4(texture(source, vec2(1)));\n}\n"
+    },
+    {
+      "name": "sampler2D-TEXTURE_RECTANGLE",
+      "source": "#version 450 core\nuniform sampler2D source;out vec4 color;void main(){color=vec4(texture(source,vec2(1)));}",
+      "rules": [
+        {
+          "name": "source",
+          "type": "TEXTURE_RECTANGLE",
+          "stage": "DEFERRED",
+          "replacement": "customtex0"
+        }
+      ],
+      "stage": "DEFERRED",
+      "version": 450,
+      "expected": "#version 450 core\nuniform sampler2D source;\nout vec4 color;\nvoid main() {\n\tcolor = vec4(texture(source, vec2(1)));\n}\n"
+    },
+    {
+      "name": "isampler2D-TEXTURE_1D",
+      "source": "#version 450 core\nuniform isampler2D source;out vec4 color;void main(){color=vec4(texture(source,vec2(1)));}",
+      "rules": [
+        {
+          "name": "source",
+          "type": "TEXTURE_1D",
+          "stage": "DEFERRED",
+          "replacement": "customtex0"
+        }
+      ],
+      "stage": "DEFERRED",
+      "version": 450,
+      "expected": "#version 450 core\nuniform isampler2D source;\nout vec4 color;\nvoid main() {\n\tcolor = vec4(texture(source, vec2(1)));\n}\n"
+    },
+    {
+      "name": "isampler2D-TEXTURE_2D",
+      "source": "#version 450 core\nuniform isampler2D source;out vec4 color;void main(){color=vec4(texture(source,vec2(1)));}",
+      "rules": [
+        {
+          "name": "source",
+          "type": "TEXTURE_2D",
+          "stage": "DEFERRED",
+          "replacement": "customtex0"
+        }
+      ],
+      "stage": "DEFERRED",
+      "version": 450,
+      "expected": "#version 450 core\nuniform isampler2D customtex0;\nout vec4 color;\nvoid main() {\n\tcolor = vec4(texture(customtex0, vec2(1)));\n}\n"
+    },
+    {
+      "name": "isampler2D-TEXTURE_3D",
+      "source": "#version 450 core\nuniform isampler2D source;out vec4 color;void main(){color=vec4(texture(source,vec2(1)));}",
+      "rules": [
+        {
+          "name": "source",
+          "type": "TEXTURE_3D",
+          "stage": "DEFERRED",
+          "replacement": "customtex0"
+        }
+      ],
+      "stage": "DEFERRED",
+      "version": 450,
+      "expected": "#version 450 core\nuniform isampler2D source;\nout vec4 color;\nvoid main() {\n\tcolor = vec4(texture(source, vec2(1)));\n}\n"
+    },
+    {
+      "name": "isampler2D-TEXTURE_RECTANGLE",
+      "source": "#version 450 core\nuniform isampler2D source;out vec4 color;void main(){color=vec4(texture(source,vec2(1)));}",
+      "rules": [
+        {
+          "name": "source",
+          "type": "TEXTURE_RECTANGLE",
+          "stage": "DEFERRED",
+          "replacement": "customtex0"
+        }
+      ],
+      "stage": "DEFERRED",
+      "version": 450,
+      "expected": "#version 450 core\nuniform isampler2D source;\nout vec4 color;\nvoid main() {\n\tcolor = vec4(texture(source, vec2(1)));\n}\n"
+    },
+    {
+      "name": "usampler2D-TEXTURE_1D",
+      "source": "#version 450 core\nuniform usampler2D source;out vec4 color;void main(){color=vec4(texture(source,vec2(1)));}",
+      "rules": [
+        {
+          "name": "source",
+          "type": "TEXTURE_1D",
+          "stage": "DEFERRED",
+          "replacement": "customtex0"
+        }
+      ],
+      "stage": "DEFERRED",
+      "version": 450,
+      "expected": "#version 450 core\nuniform usampler2D source;\nout vec4 color;\nvoid main() {\n\tcolor = vec4(texture(source, vec2(1)));\n}\n"
+    },
+    {
+      "name": "usampler2D-TEXTURE_2D",
+      "source": "#version 450 core\nuniform usampler2D source;out vec4 color;void main(){color=vec4(texture(source,vec2(1)));}",
+      "rules": [
+        {
+          "name": "source",
+          "type": "TEXTURE_2D",
+          "stage": "DEFERRED",
+          "replacement": "customtex0"
+        }
+      ],
+      "stage": "DEFERRED",
+      "version": 450,
+      "expected": "#version 450 core\nuniform usampler2D customtex0;\nout vec4 color;\nvoid main() {\n\tcolor = vec4(texture(customtex0, vec2(1)));\n}\n"
+    },
+    {
+      "name": "usampler2D-TEXTURE_3D",
+      "source": "#version 450 core\nuniform usampler2D source;out vec4 color;void main(){color=vec4(texture(source,vec2(1)));}",
+      "rules": [
+        {
+          "name": "source",
+          "type": "TEXTURE_3D",
+          "stage": "DEFERRED",
+          "replacement": "customtex0"
+        }
+      ],
+      "stage": "DEFERRED",
+      "version": 450,
+      "expected": "#version 450 core\nuniform usampler2D source;\nout vec4 color;\nvoid main() {\n\tcolor = vec4(texture(source, vec2(1)));\n}\n"
+    },
+    {
+      "name": "usampler2D-TEXTURE_RECTANGLE",
+      "source": "#version 450 core\nuniform usampler2D source;out vec4 color;void main(){color=vec4(texture(source,vec2(1)));}",
+      "rules": [
+        {
+          "name": "source",
+          "type": "TEXTURE_RECTANGLE",
+          "stage": "DEFERRED",
+          "replacement": "customtex0"
+        }
+      ],
+      "stage": "DEFERRED",
+      "version": 450,
+      "expected": "#version 450 core\nuniform usampler2D source;\nout vec4 color;\nvoid main() {\n\tcolor = vec4(texture(source, vec2(1)));\n}\n"
+    },
+    {
+      "name": "sampler3D-TEXTURE_1D",
+      "source": "#version 450 core\nuniform sampler3D source;out vec4 color;void main(){color=vec4(texture(source,vec3(1)));}",
+      "rules": [
+        {
+          "name": "source",
+          "type": "TEXTURE_1D",
+          "stage": "DEFERRED",
+          "replacement": "customtex0"
+        }
+      ],
+      "stage": "DEFERRED",
+      "version": 450,
+      "expected": "#version 450 core\nuniform sampler3D source;\nout vec4 color;\nvoid main() {\n\tcolor = vec4(texture(source, vec3(1)));\n}\n"
+    },
+    {
+      "name": "sampler3D-TEXTURE_2D",
+      "source": "#version 450 core\nuniform sampler3D source;out vec4 color;void main(){color=vec4(texture(source,vec3(1)));}",
+      "rules": [
+        {
+          "name": "source",
+          "type": "TEXTURE_2D",
+          "stage": "DEFERRED",
+          "replacement": "customtex0"
+        }
+      ],
+      "stage": "DEFERRED",
+      "version": 450,
+      "expected": "#version 450 core\nuniform sampler3D source;\nout vec4 color;\nvoid main() {\n\tcolor = vec4(texture(source, vec3(1)));\n}\n"
+    },
+    {
+      "name": "sampler3D-TEXTURE_3D",
+      "source": "#version 450 core\nuniform sampler3D source;out vec4 color;void main(){color=vec4(texture(source,vec3(1)));}",
+      "rules": [
+        {
+          "name": "source",
+          "type": "TEXTURE_3D",
+          "stage": "DEFERRED",
+          "replacement": "customtex0"
+        }
+      ],
+      "stage": "DEFERRED",
+      "version": 450,
+      "expected": "#version 450 core\nuniform sampler3D customtex0;\nout vec4 color;\nvoid main() {\n\tcolor = vec4(texture(customtex0, vec3(1)));\n}\n"
+    },
+    {
+      "name": "sampler3D-TEXTURE_RECTANGLE",
+      "source": "#version 450 core\nuniform sampler3D source;out vec4 color;void main(){color=vec4(texture(source,vec3(1)));}",
+      "rules": [
+        {
+          "name": "source",
+          "type": "TEXTURE_RECTANGLE",
+          "stage": "DEFERRED",
+          "replacement": "customtex0"
+        }
+      ],
+      "stage": "DEFERRED",
+      "version": 450,
+      "expected": "#version 450 core\nuniform sampler3D source;\nout vec4 color;\nvoid main() {\n\tcolor = vec4(texture(source, vec3(1)));\n}\n"
+    },
+    {
+      "name": "isampler3D-TEXTURE_1D",
+      "source": "#version 450 core\nuniform isampler3D source;out vec4 color;void main(){color=vec4(texture(source,vec3(1)));}",
+      "rules": [
+        {
+          "name": "source",
+          "type": "TEXTURE_1D",
+          "stage": "DEFERRED",
+          "replacement": "customtex0"
+        }
+      ],
+      "stage": "DEFERRED",
+      "version": 450,
+      "expected": "#version 450 core\nuniform isampler3D source;\nout vec4 color;\nvoid main() {\n\tcolor = vec4(texture(source, vec3(1)));\n}\n"
+    },
+    {
+      "name": "isampler3D-TEXTURE_2D",
+      "source": "#version 450 core\nuniform isampler3D source;out vec4 color;void main(){color=vec4(texture(source,vec3(1)));}",
+      "rules": [
+        {
+          "name": "source",
+          "type": "TEXTURE_2D",
+          "stage": "DEFERRED",
+          "replacement": "customtex0"
+        }
+      ],
+      "stage": "DEFERRED",
+      "version": 450,
+      "expected": "#version 450 core\nuniform isampler3D source;\nout vec4 color;\nvoid main() {\n\tcolor = vec4(texture(source, vec3(1)));\n}\n"
+    },
+    {
+      "name": "isampler3D-TEXTURE_3D",
+      "source": "#version 450 core\nuniform isampler3D source;out vec4 color;void main(){color=vec4(texture(source,vec3(1)));}",
+      "rules": [
+        {
+          "name": "source",
+          "type": "TEXTURE_3D",
+          "stage": "DEFERRED",
+          "replacement": "customtex0"
+        }
+      ],
+      "stage": "DEFERRED",
+      "version": 450,
+      "expected": "#version 450 core\nuniform isampler3D customtex0;\nout vec4 color;\nvoid main() {\n\tcolor = vec4(texture(customtex0, vec3(1)));\n}\n"
+    },
+    {
+      "name": "isampler3D-TEXTURE_RECTANGLE",
+      "source": "#version 450 core\nuniform isampler3D source;out vec4 color;void main(){color=vec4(texture(source,vec3(1)));}",
+      "rules": [
+        {
+          "name": "source",
+          "type": "TEXTURE_RECTANGLE",
+          "stage": "DEFERRED",
+          "replacement": "customtex0"
+        }
+      ],
+      "stage": "DEFERRED",
+      "version": 450,
+      "expected": "#version 450 core\nuniform isampler3D source;\nout vec4 color;\nvoid main() {\n\tcolor = vec4(texture(source, vec3(1)));\n}\n"
+    },
+    {
+      "name": "usampler3D-TEXTURE_1D",
+      "source": "#version 450 core\nuniform usampler3D source;out vec4 color;void main(){color=vec4(texture(source,vec3(1)));}",
+      "rules": [
+        {
+          "name": "source",
+          "type": "TEXTURE_1D",
+          "stage": "DEFERRED",
+          "replacement": "customtex0"
+        }
+      ],
+      "stage": "DEFERRED",
+      "version": 450,
+      "expected": "#version 450 core\nuniform usampler3D source;\nout vec4 color;\nvoid main() {\n\tcolor = vec4(texture(source, vec3(1)));\n}\n"
+    },
+    {
+      "name": "usampler3D-TEXTURE_2D",
+      "source": "#version 450 core\nuniform usampler3D source;out vec4 color;void main(){color=vec4(texture(source,vec3(1)));}",
+      "rules": [
+        {
+          "name": "source",
+          "type": "TEXTURE_2D",
+          "stage": "DEFERRED",
+          "replacement": "customtex0"
+        }
+      ],
+      "stage": "DEFERRED",
+      "version": 450,
+      "expected": "#version 450 core\nuniform usampler3D source;\nout vec4 color;\nvoid main() {\n\tcolor = vec4(texture(source, vec3(1)));\n}\n"
+    },
+    {
+      "name": "usampler3D-TEXTURE_3D",
+      "source": "#version 450 core\nuniform usampler3D source;out vec4 color;void main(){color=vec4(texture(source,vec3(1)));}",
+      "rules": [
+        {
+          "name": "source",
+          "type": "TEXTURE_3D",
+          "stage": "DEFERRED",
+          "replacement": "customtex0"
+        }
+      ],
+      "stage": "DEFERRED",
+      "version": 450,
+      "expected": "#version 450 core\nuniform usampler3D customtex0;\nout vec4 color;\nvoid main() {\n\tcolor = vec4(texture(customtex0, vec3(1)));\n}\n"
+    },
+    {
+      "name": "usampler3D-TEXTURE_RECTANGLE",
+      "source": "#version 450 core\nuniform usampler3D source;out vec4 color;void main(){color=vec4(texture(source,vec3(1)));}",
+      "rules": [
+        {
+          "name": "source",
+          "type": "TEXTURE_RECTANGLE",
+          "stage": "DEFERRED",
+          "replacement": "customtex0"
+        }
+      ],
+      "stage": "DEFERRED",
+      "version": 450,
+      "expected": "#version 450 core\nuniform usampler3D source;\nout vec4 color;\nvoid main() {\n\tcolor = vec4(texture(source, vec3(1)));\n}\n"
+    },
+    {
+      "name": "sampler2DRect-TEXTURE_1D",
+      "source": "#version 450 core\nuniform sampler2DRect source;out vec4 color;void main(){color=vec4(texture(source,vec2(1)));}",
+      "rules": [
+        {
+          "name": "source",
+          "type": "TEXTURE_1D",
+          "stage": "DEFERRED",
+          "replacement": "customtex0"
+        }
+      ],
+      "stage": "DEFERRED",
+      "version": 450,
+      "expected": "#version 450 core\nuniform sampler2DRect source;\nout vec4 color;\nvoid main() {\n\tcolor = vec4(texture(source, vec2(1)));\n}\n"
+    },
+    {
+      "name": "sampler2DRect-TEXTURE_2D",
+      "source": "#version 450 core\nuniform sampler2DRect source;out vec4 color;void main(){color=vec4(texture(source,vec2(1)));}",
+      "rules": [
+        {
+          "name": "source",
+          "type": "TEXTURE_2D",
+          "stage": "DEFERRED",
+          "replacement": "customtex0"
+        }
+      ],
+      "stage": "DEFERRED",
+      "version": 450,
+      "expected": "#version 450 core\nuniform sampler2DRect source;\nout vec4 color;\nvoid main() {\n\tcolor = vec4(texture(source, vec2(1)));\n}\n"
+    },
+    {
+      "name": "sampler2DRect-TEXTURE_3D",
+      "source": "#version 450 core\nuniform sampler2DRect source;out vec4 color;void main(){color=vec4(texture(source,vec2(1)));}",
+      "rules": [
+        {
+          "name": "source",
+          "type": "TEXTURE_3D",
+          "stage": "DEFERRED",
+          "replacement": "customtex0"
+        }
+      ],
+      "stage": "DEFERRED",
+      "version": 450,
+      "expected": "#version 450 core\nuniform sampler2DRect source;\nout vec4 color;\nvoid main() {\n\tcolor = vec4(texture(source, vec2(1)));\n}\n"
+    },
+    {
+      "name": "sampler2DRect-TEXTURE_RECTANGLE",
+      "source": "#version 450 core\nuniform sampler2DRect source;out vec4 color;void main(){color=vec4(texture(source,vec2(1)));}",
+      "rules": [
+        {
+          "name": "source",
+          "type": "TEXTURE_RECTANGLE",
+          "stage": "DEFERRED",
+          "replacement": "customtex0"
+        }
+      ],
+      "stage": "DEFERRED",
+      "version": 450,
+      "expected": "#version 450 core\nuniform sampler2DRect customtex0;\nout vec4 color;\nvoid main() {\n\tcolor = vec4(texture(customtex0, vec2(1)));\n}\n"
+    },
+    {
+      "name": "isampler2DRect-TEXTURE_1D",
+      "source": "#version 450 core\nuniform isampler2DRect source;out vec4 color;void main(){color=vec4(texture(source,vec2(1)));}",
+      "rules": [
+        {
+          "name": "source",
+          "type": "TEXTURE_1D",
+          "stage": "DEFERRED",
+          "replacement": "customtex0"
+        }
+      ],
+      "stage": "DEFERRED",
+      "version": 450,
+      "expected": "#version 450 core\nuniform isampler2DRect source;\nout vec4 color;\nvoid main() {\n\tcolor = vec4(texture(source, vec2(1)));\n}\n"
+    },
+    {
+      "name": "isampler2DRect-TEXTURE_2D",
+      "source": "#version 450 core\nuniform isampler2DRect source;out vec4 color;void main(){color=vec4(texture(source,vec2(1)));}",
+      "rules": [
+        {
+          "name": "source",
+          "type": "TEXTURE_2D",
+          "stage": "DEFERRED",
+          "replacement": "customtex0"
+        }
+      ],
+      "stage": "DEFERRED",
+      "version": 450,
+      "expected": "#version 450 core\nuniform isampler2DRect source;\nout vec4 color;\nvoid main() {\n\tcolor = vec4(texture(source, vec2(1)));\n}\n"
+    },
+    {
+      "name": "isampler2DRect-TEXTURE_3D",
+      "source": "#version 450 core\nuniform isampler2DRect source;out vec4 color;void main(){color=vec4(texture(source,vec2(1)));}",
+      "rules": [
+        {
+          "name": "source",
+          "type": "TEXTURE_3D",
+          "stage": "DEFERRED",
+          "replacement": "customtex0"
+        }
+      ],
+      "stage": "DEFERRED",
+      "version": 450,
+      "expected": "#version 450 core\nuniform isampler2DRect source;\nout vec4 color;\nvoid main() {\n\tcolor = vec4(texture(source, vec2(1)));\n}\n"
+    },
+    {
+      "name": "isampler2DRect-TEXTURE_RECTANGLE",
+      "source": "#version 450 core\nuniform isampler2DRect source;out vec4 color;void main(){color=vec4(texture(source,vec2(1)));}",
+      "rules": [
+        {
+          "name": "source",
+          "type": "TEXTURE_RECTANGLE",
+          "stage": "DEFERRED",
+          "replacement": "customtex0"
+        }
+      ],
+      "stage": "DEFERRED",
+      "version": 450,
+      "expected": "#version 450 core\nuniform isampler2DRect customtex0;\nout vec4 color;\nvoid main() {\n\tcolor = vec4(texture(customtex0, vec2(1)));\n}\n"
+    },
+    {
+      "name": "usampler2DRect-TEXTURE_1D",
+      "source": "#version 450 core\nuniform usampler2DRect source;out vec4 color;void main(){color=vec4(texture(source,vec2(1)));}",
+      "rules": [
+        {
+          "name": "source",
+          "type": "TEXTURE_1D",
+          "stage": "DEFERRED",
+          "replacement": "customtex0"
+        }
+      ],
+      "stage": "DEFERRED",
+      "version": 450,
+      "expected": "#version 450 core\nuniform usampler2DRect source;\nout vec4 color;\nvoid main() {\n\tcolor = vec4(texture(source, vec2(1)));\n}\n"
+    },
+    {
+      "name": "usampler2DRect-TEXTURE_2D",
+      "source": "#version 450 core\nuniform usampler2DRect source;out vec4 color;void main(){color=vec4(texture(source,vec2(1)));}",
+      "rules": [
+        {
+          "name": "source",
+          "type": "TEXTURE_2D",
+          "stage": "DEFERRED",
+          "replacement": "customtex0"
+        }
+      ],
+      "stage": "DEFERRED",
+      "version": 450,
+      "expected": "#version 450 core\nuniform usampler2DRect source;\nout vec4 color;\nvoid main() {\n\tcolor = vec4(texture(source, vec2(1)));\n}\n"
+    },
+    {
+      "name": "usampler2DRect-TEXTURE_3D",
+      "source": "#version 450 core\nuniform usampler2DRect source;out vec4 color;void main(){color=vec4(texture(source,vec2(1)));}",
+      "rules": [
+        {
+          "name": "source",
+          "type": "TEXTURE_3D",
+          "stage": "DEFERRED",
+          "replacement": "customtex0"
+        }
+      ],
+      "stage": "DEFERRED",
+      "version": 450,
+      "expected": "#version 450 core\nuniform usampler2DRect source;\nout vec4 color;\nvoid main() {\n\tcolor = vec4(texture(source, vec2(1)));\n}\n"
+    },
+    {
+      "name": "usampler2DRect-TEXTURE_RECTANGLE",
+      "source": "#version 450 core\nuniform usampler2DRect source;out vec4 color;void main(){color=vec4(texture(source,vec2(1)));}",
+      "rules": [
+        {
+          "name": "source",
+          "type": "TEXTURE_RECTANGLE",
+          "stage": "DEFERRED",
+          "replacement": "customtex0"
+        }
+      ],
+      "stage": "DEFERRED",
+      "version": 450,
+      "expected": "#version 450 core\nuniform usampler2DRect customtex0;\nout vec4 color;\nvoid main() {\n\tcolor = vec4(texture(customtex0, vec2(1)));\n}\n"
+    },
+    {
+      "name": "stage-SETUP-true",
+      "source": "#version 450 core\nuniform sampler3D source;out vec4 color;void main(){color=texture(source,vec3(1));}",
+      "rules": [
+        {
+          "name": "source",
+          "type": "TEXTURE_3D",
+          "stage": "SETUP",
+          "replacement": "customtex0"
+        }
+      ],
+      "stage": "SETUP",
+      "version": 450,
+      "expected": "#version 450 core\nuniform sampler3D customtex0;\nout vec4 color;\nvoid main() {\n\tcolor = texture(customtex0, vec3(1));\n}\n"
+    },
+    {
+      "name": "stage-SETUP-false",
+      "source": "#version 450 core\nuniform sampler3D source;out vec4 color;void main(){color=texture(source,vec3(1));}",
+      "rules": [
+        {
+          "name": "source",
+          "type": "TEXTURE_3D",
+          "stage": "BEGIN",
+          "replacement": "customtex0"
+        }
+      ],
+      "stage": "SETUP",
+      "version": 450,
+      "expected": "#version 450 core\nuniform sampler3D source;\nout vec4 color;\nvoid main() {\n\tcolor = texture(source, vec3(1));\n}\n"
+    },
+    {
+      "name": "stage-BEGIN-true",
+      "source": "#version 450 core\nuniform sampler3D source;out vec4 color;void main(){color=texture(source,vec3(1));}",
+      "rules": [
+        {
+          "name": "source",
+          "type": "TEXTURE_3D",
+          "stage": "BEGIN",
+          "replacement": "customtex0"
+        }
+      ],
+      "stage": "BEGIN",
+      "version": 450,
+      "expected": "#version 450 core\nuniform sampler3D customtex0;\nout vec4 color;\nvoid main() {\n\tcolor = texture(customtex0, vec3(1));\n}\n"
+    },
+    {
+      "name": "stage-BEGIN-false",
+      "source": "#version 450 core\nuniform sampler3D source;out vec4 color;void main(){color=texture(source,vec3(1));}",
+      "rules": [
+        {
+          "name": "source",
+          "type": "TEXTURE_3D",
+          "stage": "SHADOWCOMP",
+          "replacement": "customtex0"
+        }
+      ],
+      "stage": "BEGIN",
+      "version": 450,
+      "expected": "#version 450 core\nuniform sampler3D source;\nout vec4 color;\nvoid main() {\n\tcolor = texture(source, vec3(1));\n}\n"
+    },
+    {
+      "name": "stage-SHADOWCOMP-true",
+      "source": "#version 450 core\nuniform sampler3D source;out vec4 color;void main(){color=texture(source,vec3(1));}",
+      "rules": [
+        {
+          "name": "source",
+          "type": "TEXTURE_3D",
+          "stage": "SHADOWCOMP",
+          "replacement": "customtex0"
+        }
+      ],
+      "stage": "SHADOWCOMP",
+      "version": 450,
+      "expected": "#version 450 core\nuniform sampler3D customtex0;\nout vec4 color;\nvoid main() {\n\tcolor = texture(customtex0, vec3(1));\n}\n"
+    },
+    {
+      "name": "stage-SHADOWCOMP-false",
+      "source": "#version 450 core\nuniform sampler3D source;out vec4 color;void main(){color=texture(source,vec3(1));}",
+      "rules": [
+        {
+          "name": "source",
+          "type": "TEXTURE_3D",
+          "stage": "PREPARE",
+          "replacement": "customtex0"
+        }
+      ],
+      "stage": "SHADOWCOMP",
+      "version": 450,
+      "expected": "#version 450 core\nuniform sampler3D source;\nout vec4 color;\nvoid main() {\n\tcolor = texture(source, vec3(1));\n}\n"
+    },
+    {
+      "name": "stage-PREPARE-true",
+      "source": "#version 450 core\nuniform sampler3D source;out vec4 color;void main(){color=texture(source,vec3(1));}",
+      "rules": [
+        {
+          "name": "source",
+          "type": "TEXTURE_3D",
+          "stage": "PREPARE",
+          "replacement": "customtex0"
+        }
+      ],
+      "stage": "PREPARE",
+      "version": 450,
+      "expected": "#version 450 core\nuniform sampler3D customtex0;\nout vec4 color;\nvoid main() {\n\tcolor = texture(customtex0, vec3(1));\n}\n"
+    },
+    {
+      "name": "stage-PREPARE-false",
+      "source": "#version 450 core\nuniform sampler3D source;out vec4 color;void main(){color=texture(source,vec3(1));}",
+      "rules": [
+        {
+          "name": "source",
+          "type": "TEXTURE_3D",
+          "stage": "GBUFFERS_AND_SHADOW",
+          "replacement": "customtex0"
+        }
+      ],
+      "stage": "PREPARE",
+      "version": 450,
+      "expected": "#version 450 core\nuniform sampler3D source;\nout vec4 color;\nvoid main() {\n\tcolor = texture(source, vec3(1));\n}\n"
+    },
+    {
+      "name": "stage-GBUFFERS_AND_SHADOW-true",
+      "source": "#version 450 core\nuniform sampler3D source;out vec4 color;void main(){color=texture(source,vec3(1));}",
+      "rules": [
+        {
+          "name": "source",
+          "type": "TEXTURE_3D",
+          "stage": "GBUFFERS_AND_SHADOW",
+          "replacement": "customtex0"
+        }
+      ],
+      "stage": "GBUFFERS_AND_SHADOW",
+      "version": 450,
+      "expected": "#version 450 core\nuniform sampler3D customtex0;\nout vec4 color;\nvoid main() {\n\tcolor = texture(customtex0, vec3(1));\n}\n"
+    },
+    {
+      "name": "stage-GBUFFERS_AND_SHADOW-false",
+      "source": "#version 450 core\nuniform sampler3D source;out vec4 color;void main(){color=texture(source,vec3(1));}",
+      "rules": [
+        {
+          "name": "source",
+          "type": "TEXTURE_3D",
+          "stage": "DEFERRED",
+          "replacement": "customtex0"
+        }
+      ],
+      "stage": "GBUFFERS_AND_SHADOW",
+      "version": 450,
+      "expected": "#version 450 core\nuniform sampler3D source;\nout vec4 color;\nvoid main() {\n\tcolor = texture(source, vec3(1));\n}\n"
+    },
+    {
+      "name": "stage-DEFERRED-true",
+      "source": "#version 450 core\nuniform sampler3D source;out vec4 color;void main(){color=texture(source,vec3(1));}",
+      "rules": [
+        {
+          "name": "source",
+          "type": "TEXTURE_3D",
+          "stage": "DEFERRED",
+          "replacement": "customtex0"
+        }
+      ],
+      "stage": "DEFERRED",
+      "version": 450,
+      "expected": "#version 450 core\nuniform sampler3D customtex0;\nout vec4 color;\nvoid main() {\n\tcolor = texture(customtex0, vec3(1));\n}\n"
+    },
+    {
+      "name": "stage-DEFERRED-false",
+      "source": "#version 450 core\nuniform sampler3D source;out vec4 color;void main(){color=texture(source,vec3(1));}",
+      "rules": [
+        {
+          "name": "source",
+          "type": "TEXTURE_3D",
+          "stage": "COMPOSITE_AND_FINAL",
+          "replacement": "customtex0"
+        }
+      ],
+      "stage": "DEFERRED",
+      "version": 450,
+      "expected": "#version 450 core\nuniform sampler3D source;\nout vec4 color;\nvoid main() {\n\tcolor = texture(source, vec3(1));\n}\n"
+    },
+    {
+      "name": "stage-COMPOSITE_AND_FINAL-true",
+      "source": "#version 450 core\nuniform sampler3D source;out vec4 color;void main(){color=texture(source,vec3(1));}",
+      "rules": [
+        {
+          "name": "source",
+          "type": "TEXTURE_3D",
+          "stage": "COMPOSITE_AND_FINAL",
+          "replacement": "customtex0"
+        }
+      ],
+      "stage": "COMPOSITE_AND_FINAL",
+      "version": 450,
+      "expected": "#version 450 core\nuniform sampler3D customtex0;\nout vec4 color;\nvoid main() {\n\tcolor = texture(customtex0, vec3(1));\n}\n"
+    },
+    {
+      "name": "stage-COMPOSITE_AND_FINAL-false",
+      "source": "#version 450 core\nuniform sampler3D source;out vec4 color;void main(){color=texture(source,vec3(1));}",
+      "rules": [
+        {
+          "name": "source",
+          "type": "TEXTURE_3D",
+          "stage": "SETUP",
+          "replacement": "customtex0"
+        }
+      ],
+      "stage": "COMPOSITE_AND_FINAL",
+      "version": 450,
+      "expected": "#version 450 core\nuniform sampler3D source;\nout vec4 color;\nvoid main() {\n\tcolor = texture(source, vec3(1));\n}\n"
+    },
+    {
+      "name": "array-and-members",
+      "source": "#version 450 core\nuniform sampler2D source[2], other;out vec4 color;void main(){color=texture(source[0],vec2(1))+texture(other,vec2(1));}",
+      "rules": [
+        {
+          "name": "source",
+          "type": "TEXTURE_2D",
+          "stage": "DEFERRED",
+          "replacement": "customtex0"
+        }
+      ],
+      "stage": "DEFERRED",
+      "version": 450,
+      "expected": "#version 450 core\nuniform sampler2D customtex0[2], other;\nout vec4 color;\nvoid main() {\n\tcolor = texture(customtex0[0], vec2(1)) + texture(other, vec2(1));\n}\n"
+    },
+    {
+      "name": "type-array",
+      "source": "#version 450 core\nuniform sampler2D[2] source;out vec4 color;void main(){color=texture(source[0],vec2(1));}",
+      "rules": [
+        {
+          "name": "source",
+          "type": "TEXTURE_2D",
+          "stage": "DEFERRED",
+          "replacement": "customtex0"
+        }
+      ],
+      "stage": "DEFERRED",
+      "version": 450,
+      "expected": "#version 450 core\nuniform sampler2D[2] customtex0;\nout vec4 color;\nvoid main() {\n\tcolor = texture(customtex0[0], vec2(1));\n}\n"
+    },
+    {
+      "name": "local-only",
+      "source": "#version 450 core\nvoid helper(sampler3D source){}void main(){}",
+      "rules": [
+        {
+          "name": "source",
+          "type": "TEXTURE_3D",
+          "stage": "DEFERRED",
+          "replacement": "customtex0"
+        }
+      ],
+      "stage": "DEFERRED",
+      "version": 450,
+      "expected": "#version 450 core\nvoid helper(sampler3D source) {\n}\nvoid main() {\n}\n"
+    },
+    {
+      "name": "numeric-not-sampler",
+      "source": "#version 450 core\nuniform vec3 source;void main(){vec3 copy=source;}",
+      "rules": [
+        {
+          "name": "source",
+          "type": "TEXTURE_3D",
+          "stage": "DEFERRED",
+          "replacement": "customtex0"
+        }
+      ],
+      "stage": "DEFERRED",
+      "version": 450,
+      "expected": "#version 450 core\nuniform vec3 source;\nvoid main() {\n\tvec3 copy = source;\n}\n"
+    },
+    {
+      "name": "shadow-sampler",
+      "source": "#version 450 core\nuniform sampler2DShadow source;void main(){}",
+      "rules": [
+        {
+          "name": "source",
+          "type": "TEXTURE_2D",
+          "stage": "DEFERRED",
+          "replacement": "customtex0"
+        }
+      ],
+      "stage": "DEFERRED",
+      "version": 450,
+      "expected": "#version 450 core\nuniform sampler2DShadow source;\nvoid main() {\n}\n"
+    },
+    {
+      "name": "cube-not-2d",
+      "source": "#version 450 core\nuniform samplerCube source;void main(){}",
+      "rules": [
+        {
+          "name": "source",
+          "type": "TEXTURE_2D",
+          "stage": "DEFERRED",
+          "replacement": "customtex0"
+        }
+      ],
+      "stage": "DEFERRED",
+      "version": 450,
+      "expected": "#version 450 core\nuniform samplerCube source;\nvoid main() {\n}\n"
+    },
+    {
+      "name": "array-not-2d",
+      "source": "#version 450 core\nuniform sampler2DArray source;void main(){}",
+      "rules": [
+        {
+          "name": "source",
+          "type": "TEXTURE_2D",
+          "stage": "DEFERRED",
+          "replacement": "customtex0"
+        }
+      ],
+      "stage": "DEFERRED",
+      "version": 450,
+      "expected": "#version 450 core\nuniform sampler2DArray source;\nvoid main() {\n}\n"
+    },
+    {
+      "name": "exact-name",
+      "source": "#version 450 core\nuniform sampler3D source_extra;void main(){}",
+      "rules": [
+        {
+          "name": "source",
+          "type": "TEXTURE_3D",
+          "stage": "DEFERRED",
+          "replacement": "customtex0"
+        }
+      ],
+      "stage": "DEFERRED",
+      "version": 450,
+      "expected": "#version 450 core\nuniform sampler3D source_extra;\nvoid main() {\n}\n"
+    },
+    {
+      "name": "different-targets",
+      "source": "#version 450 core\nuniform sampler3D source;void main(){}",
+      "rules": [
+        {
+          "name": "source",
+          "type": "TEXTURE_2D",
+          "stage": "DEFERRED",
+          "replacement": "wrong"
+        },
+        {
+          "name": "source",
+          "type": "TEXTURE_3D",
+          "stage": "DEFERRED",
+          "replacement": "customtex0"
+        }
+      ],
+      "stage": "DEFERRED",
+      "version": 450,
+      "expected": "#version 450 core\nuniform sampler3D customtex0;\nvoid main() {\n}\n"
+    },
+    {
+      "name": "empty-map",
+      "source": "#version 450 core\nuniform sampler3D source;void main(){}",
+      "rules": [],
+      "stage": "DEFERRED",
+      "version": 450,
+      "expected": "#version 450 core\nuniform sampler3D source;\nvoid main() {\n}\n"
+    },
+    {
+      "name": "reserved-texture",
+      "source": "#version 450 core\nuniform sampler3D texture;void main(){}",
+      "rules": [
+        {
+          "name": "texture",
+          "type": "TEXTURE_3D",
+          "stage": "DEFERRED",
+          "replacement": "customtex0"
+        }
+      ],
+      "stage": "DEFERRED",
+      "version": 450,
+      "expected": "#version 450 core\nuniform sampler3D customtex0;\nvoid main() {\n}\n"
+    },
+    {
+      "name": "reserved-sample",
+      "source": "#version 330 core\nuniform sampler3D sample;void main(){}",
+      "rules": [
+        {
+          "name": "sample",
+          "type": "TEXTURE_3D",
+          "stage": "DEFERRED",
+          "replacement": "customtex0"
+        }
+      ],
+      "stage": "DEFERRED",
+      "version": 330,
+      "expected": "#version 330 core\nuniform sampler3D customtex0;\nvoid main() {\n}\n"
+    }
+  ]
+}

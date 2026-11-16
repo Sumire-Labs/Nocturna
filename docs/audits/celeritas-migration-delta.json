@@ -1,6 +1,6 @@
 {
   "revision": "26f000239eb8ddf7ee191f0ddf369147e3c92ef6",
-  "identical": 1556,
+  "identical": 1555,
   "changes": [
     {
       "path": "buildSrc/build.gradle.kts",
@@ -306,6 +306,11 @@
       "path": "modern/src/main/shaders_java/net/irisshaders/iris/pipeline/foss_transform/CompTransformer.java",
       "upstream": "9279c469a5a1a4cb9c09b1d780f13f8c55c4bf9933483370bfcb16fabe1d3f62",
       "local": "253b35ba51a03d3adbde9df898eaefa6eeb038688c7cd0a0baf726f59b7201c9"
+    },
+    {
+      "path": "modern/src/main/shaders_java/net/irisshaders/iris/pipeline/foss_transform/ShaderTransformer.java",
+      "upstream": "5d7a041071521b4dab142c7f7f7743408fb936db5f4172c3f3327ab9fc404abd",
+      "local": "e7340796700583c253b969b88494083e6d27be4ecb61485a2f86c84c26b13e77"
     },
     {
       "path": "modern/src/main/shaders_java/net/irisshaders/iris/pipeline/programs/GbufferProgram.java",
@@ -2268,6 +2273,10 @@
       "local": "812c556db87cd6347dc050c8abab372c3a78619111982547071de396827c7bc7"
     },
     {
+      "path": "modern/src/main/shaders_java/net/irisshaders/iris/pipeline/foss_transform/TextureTransformer.java",
+      "local": "634f3102f6318c30005b4ba27a6f7ca34c1b9eb3e22a558bceab55ab80f35871"
+    },
+    {
       "path": "modern/src/main/shaders_java/net/irisshaders/iris/pipeline/foss_transform/WeatherVertices.java",
       "local": "14951f9c978b7c82a0727b110eb0c09c42e6c987f47494e95539dfc4e8211953"
     },
@@ -2376,6 +2385,10 @@
       "local": "5eaf2c14e7d8d064e3af26bb5e00eeefd216f489ba8c6ce92efde253b1db6c2a"
     },
     {
+      "path": "modern/src/test/java/net/irisshaders/iris/pipeline/foss_transform/TextureTransformerTest.java",
+      "local": "05cb18adc4d333d62f0c0b541ce20f4a553e15971baaa2a09c36104c6402897a"
+    },
+    {
       "path": "modern/src/test/java/net/irisshaders/iris/shaderpack/preprocessor/PreprocessedSourceCacheTest.java",
       "local": "062fe8d2ace86915c5bd43093fe42cffdb468b6e2a427286b2b834f117843b24"
     },
@@ -2438,6 +2451,10 @@
     {
       "path": "modern/src/test/java/org/embeddedt/embeddium/impl/util/sorting/VertexSortersTest.java",
       "local": "21e6ef115419389b1f5e25f9303a169e2578fdebc9e5b80cf4980525e0b85ac1"
+    },
+    {
+      "path": "modern/src/test/resources/iris-texture-reference.json",
+      "local": "2b465818e2cac0867124a892515a7be7a96d627313053b807573a34b7968a497"
     },
     {
       "path": "modern/src/test/resources/iris-varying-reference.json",
