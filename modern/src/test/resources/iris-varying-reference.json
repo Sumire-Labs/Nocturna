@@ -1,0 +1,592 @@
+{
+  "reference": {
+    "revision": "f8d7bea2ab82d21737e7aa8e4b2fb3a429078106",
+    "file": "src/main/java/net/irisshaders/iris/pipeline/transform/transformer/CompatibilityTransformer.java",
+    "sha256": "638df97fb2c809aafd2606635768d46e3b58db6e1d1db23e333ebda32c8cc7a0"
+  },
+  "fixtures": [
+    {
+      "name": "numeric-float",
+      "stages": {
+        "VERTEX": "#version 450 core\nvoid main(){gl_Position=vec4(0,0,0,1);}",
+        "FRAGMENT": "#version 450 core\nin float value;void main(){float copy=value;}"
+      },
+      "expected": {
+        "VERTEX": "#version 450 core\nout float value;\nvoid main() {\n\tvalue = 0.0f;\n\tgl_Position = vec4(0, 0, 0, 1);\n}\n",
+        "FRAGMENT": "#version 450 core\nin float value;\nvoid main() {\n\tfloat copy = value;\n}\n"
+      }
+    },
+    {
+      "name": "numeric-int",
+      "stages": {
+        "VERTEX": "#version 450 core\nvoid main(){gl_Position=vec4(0,0,0,1);}",
+        "FRAGMENT": "#version 450 core\nin int value;void main(){int copy=value;}"
+      },
+      "expected": {
+        "VERTEX": "#version 450 core\nout int value;\nvoid main() {\n\tvalue = 0;\n\tgl_Position = vec4(0, 0, 0, 1);\n}\n",
+        "FRAGMENT": "#version 450 core\nin int value;\nvoid main() {\n\tint copy = value;\n}\n"
+      }
+    },
+    {
+      "name": "numeric-uint",
+      "stages": {
+        "VERTEX": "#version 450 core\nvoid main(){gl_Position=vec4(0,0,0,1);}",
+        "FRAGMENT": "#version 450 core\nin uint value;void main(){uint copy=value;}"
+      },
+      "expected": {
+        "VERTEX": "#version 450 core\nout uint value;\nvoid main() {\n\tvalue = 0;\n\tgl_Position = vec4(0, 0, 0, 1);\n}\n",
+        "FRAGMENT": "#version 450 core\nin uint value;\nvoid main() {\n\tuint copy = value;\n}\n"
+      }
+    },
+    {
+      "name": "numeric-bool",
+      "stages": {
+        "VERTEX": "#version 450 core\nvoid main(){gl_Position=vec4(0,0,0,1);}",
+        "FRAGMENT": "#version 450 core\nin bool value;void main(){bool copy=value;}"
+      },
+      "expected": {
+        "VERTEX": "#version 450 core\nout bool value;\nvoid main() {\n\tvalue = false;\n\tgl_Position = vec4(0, 0, 0, 1);\n}\n",
+        "FRAGMENT": "#version 450 core\nin bool value;\nvoid main() {\n\tbool copy = value;\n}\n"
+      }
+    },
+    {
+      "name": "numeric-double",
+      "stages": {
+        "VERTEX": "#version 450 core\nvoid main(){gl_Position=vec4(0,0,0,1);}",
+        "FRAGMENT": "#version 450 core\nin double value;void main(){double copy=value;}"
+      },
+      "expected": {
+        "VERTEX": "#version 450 core\nout double value;\nvoid main() {\n\tvalue = 0.0f;\n\tgl_Position = vec4(0, 0, 0, 1);\n}\n",
+        "FRAGMENT": "#version 450 core\nin double value;\nvoid main() {\n\tdouble copy = value;\n}\n"
+      }
+    },
+    {
+      "name": "numeric-vec2",
+      "stages": {
+        "VERTEX": "#version 450 core\nvoid main(){gl_Position=vec4(0,0,0,1);}",
+        "FRAGMENT": "#version 450 core\nin vec2 value;void main(){vec2 copy=value;}"
+      },
+      "expected": {
+        "VERTEX": "#version 450 core\nout vec2 value;\nvoid main() {\n\tvalue = vec2(0.0f);\n\tgl_Position = vec4(0, 0, 0, 1);\n}\n",
+        "FRAGMENT": "#version 450 core\nin vec2 value;\nvoid main() {\n\tvec2 copy = value;\n}\n"
+      }
+    },
+    {
+      "name": "numeric-vec3",
+      "stages": {
+        "VERTEX": "#version 450 core\nvoid main(){gl_Position=vec4(0,0,0,1);}",
+        "FRAGMENT": "#version 450 core\nin vec3 value;void main(){vec3 copy=value;}"
+      },
+      "expected": {
+        "VERTEX": "#version 450 core\nout vec3 value;\nvoid main() {\n\tvalue = vec3(0.0f);\n\tgl_Position = vec4(0, 0, 0, 1);\n}\n",
+        "FRAGMENT": "#version 450 core\nin vec3 value;\nvoid main() {\n\tvec3 copy = value;\n}\n"
+      }
+    },
+    {
+      "name": "numeric-vec4",
+      "stages": {
+        "VERTEX": "#version 450 core\nvoid main(){gl_Position=vec4(0,0,0,1);}",
+        "FRAGMENT": "#version 450 core\nin vec4 value;void main(){vec4 copy=value;}"
+      },
+      "expected": {
+        "VERTEX": "#version 450 core\nout vec4 value;\nvoid main() {\n\tvalue = vec4(0.0f);\n\tgl_Position = vec4(0, 0, 0, 1);\n}\n",
+        "FRAGMENT": "#version 450 core\nin vec4 value;\nvoid main() {\n\tvec4 copy = value;\n}\n"
+      }
+    },
+    {
+      "name": "numeric-ivec2",
+      "stages": {
+        "VERTEX": "#version 450 core\nvoid main(){gl_Position=vec4(0,0,0,1);}",
+        "FRAGMENT": "#version 450 core\nin ivec2 value;void main(){ivec2 copy=value;}"
+      },
+      "expected": {
+        "VERTEX": "#version 450 core\nout ivec2 value;\nvoid main() {\n\tvalue = ivec2(0);\n\tgl_Position = vec4(0, 0, 0, 1);\n}\n",
+        "FRAGMENT": "#version 450 core\nin ivec2 value;\nvoid main() {\n\tivec2 copy = value;\n}\n"
+      }
+    },
+    {
+      "name": "numeric-ivec3",
+      "stages": {
+        "VERTEX": "#version 450 core\nvoid main(){gl_Position=vec4(0,0,0,1);}",
+        "FRAGMENT": "#version 450 core\nin ivec3 value;void main(){ivec3 copy=value;}"
+      },
+      "expected": {
+        "VERTEX": "#version 450 core\nout ivec3 value;\nvoid main() {\n\tvalue = ivec3(0);\n\tgl_Position = vec4(0, 0, 0, 1);\n}\n",
+        "FRAGMENT": "#version 450 core\nin ivec3 value;\nvoid main() {\n\tivec3 copy = value;\n}\n"
+      }
+    },
+    {
+      "name": "numeric-ivec4",
+      "stages": {
+        "VERTEX": "#version 450 core\nvoid main(){gl_Position=vec4(0,0,0,1);}",
+        "FRAGMENT": "#version 450 core\nin ivec4 value;void main(){ivec4 copy=value;}"
+      },
+      "expected": {
+        "VERTEX": "#version 450 core\nout ivec4 value;\nvoid main() {\n\tvalue = ivec4(0);\n\tgl_Position = vec4(0, 0, 0, 1);\n}\n",
+        "FRAGMENT": "#version 450 core\nin ivec4 value;\nvoid main() {\n\tivec4 copy = value;\n}\n"
+      }
+    },
+    {
+      "name": "numeric-uvec2",
+      "stages": {
+        "VERTEX": "#version 450 core\nvoid main(){gl_Position=vec4(0,0,0,1);}",
+        "FRAGMENT": "#version 450 core\nin uvec2 value;void main(){uvec2 copy=value;}"
+      },
+      "expected": {
+        "VERTEX": "#version 450 core\nout uvec2 value;\nvoid main() {\n\tvalue = uvec2(0);\n\tgl_Position = vec4(0, 0, 0, 1);\n}\n",
+        "FRAGMENT": "#version 450 core\nin uvec2 value;\nvoid main() {\n\tuvec2 copy = value;\n}\n"
+      }
+    },
+    {
+      "name": "numeric-uvec3",
+      "stages": {
+        "VERTEX": "#version 450 core\nvoid main(){gl_Position=vec4(0,0,0,1);}",
+        "FRAGMENT": "#version 450 core\nin uvec3 value;void main(){uvec3 copy=value;}"
+      },
+      "expected": {
+        "VERTEX": "#version 450 core\nout uvec3 value;\nvoid main() {\n\tvalue = uvec3(0);\n\tgl_Position = vec4(0, 0, 0, 1);\n}\n",
+        "FRAGMENT": "#version 450 core\nin uvec3 value;\nvoid main() {\n\tuvec3 copy = value;\n}\n"
+      }
+    },
+    {
+      "name": "numeric-uvec4",
+      "stages": {
+        "VERTEX": "#version 450 core\nvoid main(){gl_Position=vec4(0,0,0,1);}",
+        "FRAGMENT": "#version 450 core\nin uvec4 value;void main(){uvec4 copy=value;}"
+      },
+      "expected": {
+        "VERTEX": "#version 450 core\nout uvec4 value;\nvoid main() {\n\tvalue = uvec4(0);\n\tgl_Position = vec4(0, 0, 0, 1);\n}\n",
+        "FRAGMENT": "#version 450 core\nin uvec4 value;\nvoid main() {\n\tuvec4 copy = value;\n}\n"
+      }
+    },
+    {
+      "name": "numeric-bvec2",
+      "stages": {
+        "VERTEX": "#version 450 core\nvoid main(){gl_Position=vec4(0,0,0,1);}",
+        "FRAGMENT": "#version 450 core\nin bvec2 value;void main(){bvec2 copy=value;}"
+      },
+      "expected": {
+        "VERTEX": "#version 450 core\nout bvec2 value;\nvoid main() {\n\tvalue = bvec2(false);\n\tgl_Position = vec4(0, 0, 0, 1);\n}\n",
+        "FRAGMENT": "#version 450 core\nin bvec2 value;\nvoid main() {\n\tbvec2 copy = value;\n}\n"
+      }
+    },
+    {
+      "name": "numeric-bvec3",
+      "stages": {
+        "VERTEX": "#version 450 core\nvoid main(){gl_Position=vec4(0,0,0,1);}",
+        "FRAGMENT": "#version 450 core\nin bvec3 value;void main(){bvec3 copy=value;}"
+      },
+      "expected": {
+        "VERTEX": "#version 450 core\nout bvec3 value;\nvoid main() {\n\tvalue = bvec3(false);\n\tgl_Position = vec4(0, 0, 0, 1);\n}\n",
+        "FRAGMENT": "#version 450 core\nin bvec3 value;\nvoid main() {\n\tbvec3 copy = value;\n}\n"
+      }
+    },
+    {
+      "name": "numeric-bvec4",
+      "stages": {
+        "VERTEX": "#version 450 core\nvoid main(){gl_Position=vec4(0,0,0,1);}",
+        "FRAGMENT": "#version 450 core\nin bvec4 value;void main(){bvec4 copy=value;}"
+      },
+      "expected": {
+        "VERTEX": "#version 450 core\nout bvec4 value;\nvoid main() {\n\tvalue = bvec4(false);\n\tgl_Position = vec4(0, 0, 0, 1);\n}\n",
+        "FRAGMENT": "#version 450 core\nin bvec4 value;\nvoid main() {\n\tbvec4 copy = value;\n}\n"
+      }
+    },
+    {
+      "name": "numeric-dvec2",
+      "stages": {
+        "VERTEX": "#version 450 core\nvoid main(){gl_Position=vec4(0,0,0,1);}",
+        "FRAGMENT": "#version 450 core\nin dvec2 value;void main(){dvec2 copy=value;}"
+      },
+      "expected": {
+        "VERTEX": "#version 450 core\nout dvec2 value;\nvoid main() {\n\tvalue = dvec2(0.0f);\n\tgl_Position = vec4(0, 0, 0, 1);\n}\n",
+        "FRAGMENT": "#version 450 core\nin dvec2 value;\nvoid main() {\n\tdvec2 copy = value;\n}\n"
+      }
+    },
+    {
+      "name": "numeric-dvec3",
+      "stages": {
+        "VERTEX": "#version 450 core\nvoid main(){gl_Position=vec4(0,0,0,1);}",
+        "FRAGMENT": "#version 450 core\nin dvec3 value;void main(){dvec3 copy=value;}"
+      },
+      "expected": {
+        "VERTEX": "#version 450 core\nout dvec3 value;\nvoid main() {\n\tvalue = dvec3(0.0f);\n\tgl_Position = vec4(0, 0, 0, 1);\n}\n",
+        "FRAGMENT": "#version 450 core\nin dvec3 value;\nvoid main() {\n\tdvec3 copy = value;\n}\n"
+      }
+    },
+    {
+      "name": "numeric-dvec4",
+      "stages": {
+        "VERTEX": "#version 450 core\nvoid main(){gl_Position=vec4(0,0,0,1);}",
+        "FRAGMENT": "#version 450 core\nin dvec4 value;void main(){dvec4 copy=value;}"
+      },
+      "expected": {
+        "VERTEX": "#version 450 core\nout dvec4 value;\nvoid main() {\n\tvalue = dvec4(0.0f);\n\tgl_Position = vec4(0, 0, 0, 1);\n}\n",
+        "FRAGMENT": "#version 450 core\nin dvec4 value;\nvoid main() {\n\tdvec4 copy = value;\n}\n"
+      }
+    },
+    {
+      "name": "numeric-mat2",
+      "stages": {
+        "VERTEX": "#version 450 core\nvoid main(){gl_Position=vec4(0,0,0,1);}",
+        "FRAGMENT": "#version 450 core\nin mat2 value;void main(){mat2 copy=value;}"
+      },
+      "expected": {
+        "VERTEX": "#version 450 core\nout mat2 value;\nvoid main() {\n\tvalue = mat2(0.0f);\n\tgl_Position = vec4(0, 0, 0, 1);\n}\n",
+        "FRAGMENT": "#version 450 core\nin mat2 value;\nvoid main() {\n\tmat2 copy = value;\n}\n"
+      }
+    },
+    {
+      "name": "numeric-mat2x2",
+      "stages": {
+        "VERTEX": "#version 450 core\nvoid main(){gl_Position=vec4(0,0,0,1);}",
+        "FRAGMENT": "#version 450 core\nin mat2x2 value;void main(){mat2x2 copy=value;}"
+      },
+      "expected": {
+        "VERTEX": "#version 450 core\nout mat2 value;\nvoid main() {\n\tvalue = mat2(0.0f);\n\tgl_Position = vec4(0, 0, 0, 1);\n}\n",
+        "FRAGMENT": "#version 450 core\nin mat2 value;\nvoid main() {\n\tmat2 copy = value;\n}\n"
+      }
+    },
+    {
+      "name": "numeric-mat2x3",
+      "stages": {
+        "VERTEX": "#version 450 core\nvoid main(){gl_Position=vec4(0,0,0,1);}",
+        "FRAGMENT": "#version 450 core\nin mat2x3 value;void main(){mat2x3 copy=value;}"
+      },
+      "expected": {
+        "VERTEX": "#version 450 core\nout mat2x3 value;\nvoid main() {\n\tvalue = mat2x3(0.0f);\n\tgl_Position = vec4(0, 0, 0, 1);\n}\n",
+        "FRAGMENT": "#version 450 core\nin mat2x3 value;\nvoid main() {\n\tmat2x3 copy = value;\n}\n"
+      }
+    },
+    {
+      "name": "numeric-mat2x4",
+      "stages": {
+        "VERTEX": "#version 450 core\nvoid main(){gl_Position=vec4(0,0,0,1);}",
+        "FRAGMENT": "#version 450 core\nin mat2x4 value;void main(){mat2x4 copy=value;}"
+      },
+      "expected": {
+        "VERTEX": "#version 450 core\nout mat2x4 value;\nvoid main() {\n\tvalue = mat2x4(0.0f);\n\tgl_Position = vec4(0, 0, 0, 1);\n}\n",
+        "FRAGMENT": "#version 450 core\nin mat2x4 value;\nvoid main() {\n\tmat2x4 copy = value;\n}\n"
+      }
+    },
+    {
+      "name": "numeric-mat3",
+      "stages": {
+        "VERTEX": "#version 450 core\nvoid main(){gl_Position=vec4(0,0,0,1);}",
+        "FRAGMENT": "#version 450 core\nin mat3 value;void main(){mat3 copy=value;}"
+      },
+      "expected": {
+        "VERTEX": "#version 450 core\nout mat3 value;\nvoid main() {\n\tvalue = mat3(0.0f);\n\tgl_Position = vec4(0, 0, 0, 1);\n}\n",
+        "FRAGMENT": "#version 450 core\nin mat3 value;\nvoid main() {\n\tmat3 copy = value;\n}\n"
+      }
+    },
+    {
+      "name": "numeric-mat3x2",
+      "stages": {
+        "VERTEX": "#version 450 core\nvoid main(){gl_Position=vec4(0,0,0,1);}",
+        "FRAGMENT": "#version 450 core\nin mat3x2 value;void main(){mat3x2 copy=value;}"
+      },
+      "expected": {
+        "VERTEX": "#version 450 core\nout mat3x2 value;\nvoid main() {\n\tvalue = mat3x2(0.0f);\n\tgl_Position = vec4(0, 0, 0, 1);\n}\n",
+        "FRAGMENT": "#version 450 core\nin mat3x2 value;\nvoid main() {\n\tmat3x2 copy = value;\n}\n"
+      }
+    },
+    {
+      "name": "numeric-mat3x3",
+      "stages": {
+        "VERTEX": "#version 450 core\nvoid main(){gl_Position=vec4(0,0,0,1);}",
+        "FRAGMENT": "#version 450 core\nin mat3x3 value;void main(){mat3x3 copy=value;}"
+      },
+      "expected": {
+        "VERTEX": "#version 450 core\nout mat3 value;\nvoid main() {\n\tvalue = mat3(0.0f);\n\tgl_Position = vec4(0, 0, 0, 1);\n}\n",
+        "FRAGMENT": "#version 450 core\nin mat3 value;\nvoid main() {\n\tmat3 copy = value;\n}\n"
+      }
+    },
+    {
+      "name": "numeric-mat3x4",
+      "stages": {
+        "VERTEX": "#version 450 core\nvoid main(){gl_Position=vec4(0,0,0,1);}",
+        "FRAGMENT": "#version 450 core\nin mat3x4 value;void main(){mat3x4 copy=value;}"
+      },
+      "expected": {
+        "VERTEX": "#version 450 core\nout mat3x4 value;\nvoid main() {\n\tvalue = mat3x4(0.0f);\n\tgl_Position = vec4(0, 0, 0, 1);\n}\n",
+        "FRAGMENT": "#version 450 core\nin mat3x4 value;\nvoid main() {\n\tmat3x4 copy = value;\n}\n"
+      }
+    },
+    {
+      "name": "numeric-mat4",
+      "stages": {
+        "VERTEX": "#version 450 core\nvoid main(){gl_Position=vec4(0,0,0,1);}",
+        "FRAGMENT": "#version 450 core\nin mat4 value;void main(){mat4 copy=value;}"
+      },
+      "expected": {
+        "VERTEX": "#version 450 core\nout mat4 value;\nvoid main() {\n\tvalue = mat4(0.0f);\n\tgl_Position = vec4(0, 0, 0, 1);\n}\n",
+        "FRAGMENT": "#version 450 core\nin mat4 value;\nvoid main() {\n\tmat4 copy = value;\n}\n"
+      }
+    },
+    {
+      "name": "numeric-mat4x2",
+      "stages": {
+        "VERTEX": "#version 450 core\nvoid main(){gl_Position=vec4(0,0,0,1);}",
+        "FRAGMENT": "#version 450 core\nin mat4x2 value;void main(){mat4x2 copy=value;}"
+      },
+      "expected": {
+        "VERTEX": "#version 450 core\nout mat4x2 value;\nvoid main() {\n\tvalue = mat4x2(0.0f);\n\tgl_Position = vec4(0, 0, 0, 1);\n}\n",
+        "FRAGMENT": "#version 450 core\nin mat4x2 value;\nvoid main() {\n\tmat4x2 copy = value;\n}\n"
+      }
+    },
+    {
+      "name": "numeric-mat4x3",
+      "stages": {
+        "VERTEX": "#version 450 core\nvoid main(){gl_Position=vec4(0,0,0,1);}",
+        "FRAGMENT": "#version 450 core\nin mat4x3 value;void main(){mat4x3 copy=value;}"
+      },
+      "expected": {
+        "VERTEX": "#version 450 core\nout mat4x3 value;\nvoid main() {\n\tvalue = mat4x3(0.0f);\n\tgl_Position = vec4(0, 0, 0, 1);\n}\n",
+        "FRAGMENT": "#version 450 core\nin mat4x3 value;\nvoid main() {\n\tmat4x3 copy = value;\n}\n"
+      }
+    },
+    {
+      "name": "numeric-mat4x4",
+      "stages": {
+        "VERTEX": "#version 450 core\nvoid main(){gl_Position=vec4(0,0,0,1);}",
+        "FRAGMENT": "#version 450 core\nin mat4x4 value;void main(){mat4x4 copy=value;}"
+      },
+      "expected": {
+        "VERTEX": "#version 450 core\nout mat4 value;\nvoid main() {\n\tvalue = mat4(0.0f);\n\tgl_Position = vec4(0, 0, 0, 1);\n}\n",
+        "FRAGMENT": "#version 450 core\nin mat4 value;\nvoid main() {\n\tmat4 copy = value;\n}\n"
+      }
+    },
+    {
+      "name": "numeric-dmat2",
+      "stages": {
+        "VERTEX": "#version 450 core\nvoid main(){gl_Position=vec4(0,0,0,1);}",
+        "FRAGMENT": "#version 450 core\nin dmat2 value;void main(){dmat2 copy=value;}"
+      },
+      "expected": {
+        "VERTEX": "#version 450 core\nout dmat2 value;\nvoid main() {\n\tvalue = dmat2(0.0f);\n\tgl_Position = vec4(0, 0, 0, 1);\n}\n",
+        "FRAGMENT": "#version 450 core\nin dmat2 value;\nvoid main() {\n\tdmat2 copy = value;\n}\n"
+      }
+    },
+    {
+      "name": "numeric-dmat2x2",
+      "stages": {
+        "VERTEX": "#version 450 core\nvoid main(){gl_Position=vec4(0,0,0,1);}",
+        "FRAGMENT": "#version 450 core\nin dmat2x2 value;void main(){dmat2x2 copy=value;}"
+      },
+      "expected": {
+        "VERTEX": "#version 450 core\nout dmat2 value;\nvoid main() {\n\tvalue = dmat2(0.0f);\n\tgl_Position = vec4(0, 0, 0, 1);\n}\n",
+        "FRAGMENT": "#version 450 core\nin dmat2 value;\nvoid main() {\n\tdmat2 copy = value;\n}\n"
+      }
+    },
+    {
+      "name": "numeric-dmat2x3",
+      "stages": {
+        "VERTEX": "#version 450 core\nvoid main(){gl_Position=vec4(0,0,0,1);}",
+        "FRAGMENT": "#version 450 core\nin dmat2x3 value;void main(){dmat2x3 copy=value;}"
+      },
+      "expected": {
+        "VERTEX": "#version 450 core\nout dmat2x3 value;\nvoid main() {\n\tvalue = dmat2x3(0.0f);\n\tgl_Position = vec4(0, 0, 0, 1);\n}\n",
+        "FRAGMENT": "#version 450 core\nin dmat2x3 value;\nvoid main() {\n\tdmat2x3 copy = value;\n}\n"
+      }
+    },
+    {
+      "name": "numeric-dmat2x4",
+      "stages": {
+        "VERTEX": "#version 450 core\nvoid main(){gl_Position=vec4(0,0,0,1);}",
+        "FRAGMENT": "#version 450 core\nin dmat2x4 value;void main(){dmat2x4 copy=value;}"
+      },
+      "expected": {
+        "VERTEX": "#version 450 core\nout dmat2x4 value;\nvoid main() {\n\tvalue = dmat2x4(0.0f);\n\tgl_Position = vec4(0, 0, 0, 1);\n}\n",
+        "FRAGMENT": "#version 450 core\nin dmat2x4 value;\nvoid main() {\n\tdmat2x4 copy = value;\n}\n"
+      }
+    },
+    {
+      "name": "numeric-dmat3",
+      "stages": {
+        "VERTEX": "#version 450 core\nvoid main(){gl_Position=vec4(0,0,0,1);}",
+        "FRAGMENT": "#version 450 core\nin dmat3 value;void main(){dmat3 copy=value;}"
+      },
+      "expected": {
+        "VERTEX": "#version 450 core\nout dmat3 value;\nvoid main() {\n\tvalue = dmat3(0.0f);\n\tgl_Position = vec4(0, 0, 0, 1);\n}\n",
+        "FRAGMENT": "#version 450 core\nin dmat3 value;\nvoid main() {\n\tdmat3 copy = value;\n}\n"
+      }
+    },
+    {
+      "name": "numeric-dmat3x2",
+      "stages": {
+        "VERTEX": "#version 450 core\nvoid main(){gl_Position=vec4(0,0,0,1);}",
+        "FRAGMENT": "#version 450 core\nin dmat3x2 value;void main(){dmat3x2 copy=value;}"
+      },
+      "expected": {
+        "VERTEX": "#version 450 core\nout dmat3x2 value;\nvoid main() {\n\tvalue = dmat3x2(0.0f);\n\tgl_Position = vec4(0, 0, 0, 1);\n}\n",
+        "FRAGMENT": "#version 450 core\nin dmat3x2 value;\nvoid main() {\n\tdmat3x2 copy = value;\n}\n"
+      }
+    },
+    {
+      "name": "numeric-dmat3x3",
+      "stages": {
+        "VERTEX": "#version 450 core\nvoid main(){gl_Position=vec4(0,0,0,1);}",
+        "FRAGMENT": "#version 450 core\nin dmat3x3 value;void main(){dmat3x3 copy=value;}"
+      },
+      "expected": {
+        "VERTEX": "#version 450 core\nout dmat3 value;\nvoid main() {\n\tvalue = dmat3(0.0f);\n\tgl_Position = vec4(0, 0, 0, 1);\n}\n",
+        "FRAGMENT": "#version 450 core\nin dmat3 value;\nvoid main() {\n\tdmat3 copy = value;\n}\n"
+      }
+    },
+    {
+      "name": "numeric-dmat3x4",
+      "stages": {
+        "VERTEX": "#version 450 core\nvoid main(){gl_Position=vec4(0,0,0,1);}",
+        "FRAGMENT": "#version 450 core\nin dmat3x4 value;void main(){dmat3x4 copy=value;}"
+      },
+      "expected": {
+        "VERTEX": "#version 450 core\nout dmat3x4 value;\nvoid main() {\n\tvalue = dmat3x4(0.0f);\n\tgl_Position = vec4(0, 0, 0, 1);\n}\n",
+        "FRAGMENT": "#version 450 core\nin dmat3x4 value;\nvoid main() {\n\tdmat3x4 copy = value;\n}\n"
+      }
+    },
+    {
+      "name": "numeric-dmat4",
+      "stages": {
+        "VERTEX": "#version 450 core\nvoid main(){gl_Position=vec4(0,0,0,1);}",
+        "FRAGMENT": "#version 450 core\nin dmat4 value;void main(){dmat4 copy=value;}"
+      },
+      "expected": {
+        "VERTEX": "#version 450 core\nout dmat4 value;\nvoid main() {\n\tvalue = dmat4(0.0f);\n\tgl_Position = vec4(0, 0, 0, 1);\n}\n",
+        "FRAGMENT": "#version 450 core\nin dmat4 value;\nvoid main() {\n\tdmat4 copy = value;\n}\n"
+      }
+    },
+    {
+      "name": "numeric-dmat4x2",
+      "stages": {
+        "VERTEX": "#version 450 core\nvoid main(){gl_Position=vec4(0,0,0,1);}",
+        "FRAGMENT": "#version 450 core\nin dmat4x2 value;void main(){dmat4x2 copy=value;}"
+      },
+      "expected": {
+        "VERTEX": "#version 450 core\nout dmat4x2 value;\nvoid main() {\n\tvalue = dmat4x2(0.0f);\n\tgl_Position = vec4(0, 0, 0, 1);\n}\n",
+        "FRAGMENT": "#version 450 core\nin dmat4x2 value;\nvoid main() {\n\tdmat4x2 copy = value;\n}\n"
+      }
+    },
+    {
+      "name": "numeric-dmat4x3",
+      "stages": {
+        "VERTEX": "#version 450 core\nvoid main(){gl_Position=vec4(0,0,0,1);}",
+        "FRAGMENT": "#version 450 core\nin dmat4x3 value;void main(){dmat4x3 copy=value;}"
+      },
+      "expected": {
+        "VERTEX": "#version 450 core\nout dmat4x3 value;\nvoid main() {\n\tvalue = dmat4x3(0.0f);\n\tgl_Position = vec4(0, 0, 0, 1);\n}\n",
+        "FRAGMENT": "#version 450 core\nin dmat4x3 value;\nvoid main() {\n\tdmat4x3 copy = value;\n}\n"
+      }
+    },
+    {
+      "name": "numeric-dmat4x4",
+      "stages": {
+        "VERTEX": "#version 450 core\nvoid main(){gl_Position=vec4(0,0,0,1);}",
+        "FRAGMENT": "#version 450 core\nin dmat4x4 value;void main(){dmat4x4 copy=value;}"
+      },
+      "expected": {
+        "VERTEX": "#version 450 core\nout dmat4 value;\nvoid main() {\n\tvalue = dmat4(0.0f);\n\tgl_Position = vec4(0, 0, 0, 1);\n}\n",
+        "FRAGMENT": "#version 450 core\nin dmat4 value;\nvoid main() {\n\tdmat4 copy = value;\n}\n"
+      }
+    },
+    {
+      "name": "mellow-minimal",
+      "stages": {
+        "VERTEX": "#version 450 core\nvoid main(){gl_Position=vec4(0,0,0,1);}",
+        "FRAGMENT": "#version 450 core\nin vec3 ViewPos;out vec4 color;void main(){color=vec4(ViewPos,1);}"
+      },
+      "expected": {
+        "VERTEX": "#version 450 core\nout vec3 ViewPos;\nvoid main() {\n\tViewPos = vec3(0.0f);\n\tgl_Position = vec4(0, 0, 0, 1);\n}\n",
+        "FRAGMENT": "#version 450 core\nin vec3 ViewPos;\nout vec4 color;\nvoid main() {\n\tcolor = vec4(ViewPos, 1);\n}\n"
+      }
+    },
+    {
+      "name": "qualifiers",
+      "stages": {
+        "VERTEX": "#version 450 core\nvoid main(){gl_Position=vec4(0,0,0,1);}",
+        "FRAGMENT": "#version 450 core\nlayout(location=3) flat highp in ivec3 index;out vec4 color;void main(){color=vec4(index,1);}"
+      },
+      "expected": {
+        "VERTEX": "#version 450 core\nlayout(location = 3) flat highp out ivec3 index;\nvoid main() {\n\tindex = ivec3(0);\n\tgl_Position = vec4(0, 0, 0, 1);\n}\n",
+        "FRAGMENT": "#version 450 core\nlayout(location = 3) flat highp in ivec3 index;\nout vec4 color;\nvoid main() {\n\tcolor = vec4(index, 1);\n}\n"
+      }
+    },
+    {
+      "name": "local-and-prefix",
+      "stages": {
+        "VERTEX": "#version 450 core\nvoid helper(){vec3 ViewPos;ViewPos=vec3(1);}void main(){vec3 ViewPosition;ViewPosition=vec3(2);helper();gl_Position=vec4(0,0,0,1);}",
+        "FRAGMENT": "#version 450 core\nin vec3 ViewPos;out vec4 color;void main(){color=vec4(ViewPos,1);}"
+      },
+      "expected": {
+        "VERTEX": "#version 450 core\nout vec3 ViewPos;\nvoid helper() {\n\tvec3 ViewPos;\n\tViewPos = vec3(1);\n}\nvoid main() {\n\tViewPos = vec3(0.0f);\n\tvec3 ViewPosition;\n\tViewPosition = vec3(2);\n\thelper();\n\tgl_Position = vec4(0, 0, 0, 1);\n}\n",
+        "FRAGMENT": "#version 450 core\nin vec3 ViewPos;\nout vec4 color;\nvoid main() {\n\tcolor = vec4(ViewPos, 1);\n}\n"
+      }
+    },
+    {
+      "name": "multiple",
+      "stages": {
+        "VERTEX": "#version 450 core\nvoid main(){gl_Position=vec4(0,0,0,1);}",
+        "FRAGMENT": "#version 450 core\nin vec3 first, second;out vec4 color;void main(){color=vec4(first+second,1);}"
+      },
+      "expected": {
+        "VERTEX": "#version 450 core\nout vec3 second;\nout vec3 first;\nvoid main() {\n\tsecond = vec3(0.0f);\n\tfirst = vec3(0.0f);\n\tgl_Position = vec4(0, 0, 0, 1);\n}\n",
+        "FRAGMENT": "#version 450 core\nin vec3 first, second;\nout vec4 color;\nvoid main() {\n\tcolor = vec4(first + second, 1);\n}\n"
+      }
+    },
+    {
+      "name": "assigned-and-unused",
+      "stages": {
+        "VERTEX": "#version 450 core\nout vec3 value;void main(){value=vec3(4);gl_Position=vec4(0,0,0,1);}",
+        "FRAGMENT": "#version 450 core\nin vec3 value, unused;out vec4 color;void main(){color=vec4(value,1);}"
+      },
+      "expected": {
+        "VERTEX": "#version 450 core\nout vec3 value;\nvoid main() {\n\tvalue = vec3(4);\n\tgl_Position = vec4(0, 0, 0, 1);\n}\n",
+        "FRAGMENT": "#version 450 core\nin vec3 value, unused;\nout vec4 color;\nvoid main() {\n\tcolor = vec4(value, 1);\n}\n"
+      }
+    },
+    {
+      "name": "declared-unassigned",
+      "stages": {
+        "VERTEX": "#version 450 core\nout vec3 value;void main(){gl_Position=vec4(0,0,0,1);}",
+        "FRAGMENT": "#version 450 core\nin vec3 value;out vec4 color;void main(){color=vec4(value,1);}"
+      },
+      "expected": {
+        "VERTEX": "#version 450 core\nout vec3 value;\nvoid main() {\n\tvalue = vec3(0.0f);\n\tgl_Position = vec4(0, 0, 0, 1);\n}\n",
+        "FRAGMENT": "#version 450 core\nin vec3 value;\nout vec4 color;\nvoid main() {\n\tcolor = vec4(value, 1);\n}\n"
+      }
+    },
+    {
+      "name": "declared-double-unassigned",
+      "stages": {
+        "VERTEX": "#version 450 core\nout dmat2x3 value;void main(){gl_Position=vec4(0,0,0,1);}",
+        "FRAGMENT": "#version 450 core\nin dmat2x3 value;void main(){dmat2x3 copy=value;}"
+      },
+      "expected": {
+        "VERTEX": "#version 450 core\nout dmat2x3 value;\nvoid main() {\n\tvalue = dmat2x3(0.0f);\n\tgl_Position = vec4(0, 0, 0, 1);\n}\n",
+        "FRAGMENT": "#version 450 core\nin dmat2x3 value;\nvoid main() {\n\tdmat2x3 copy = value;\n}\n"
+      }
+    },
+    {
+      "name": "non-numeric",
+      "stages": {
+        "VERTEX": "#version 450 core\nvoid main(){gl_Position=vec4(0,0,0,1);}",
+        "FRAGMENT": "#version 450 core\nstruct Payload{vec3 color;};in Payload value;void main(){vec3 copy=value.color;}"
+      },
+      "expected": {
+        "VERTEX": "#version 450 core\nvoid main() {\n\tgl_Position = vec4(0, 0, 0, 1);\n}\n",
+        "FRAGMENT": "#version 450 core\nstruct Payload { vec3 color; };\nin Payload value;\nvoid main() {\n\tvec3 copy = value.color;\n}\n"
+      }
+    },
+    {
+      "name": "geometry-array",
+      "stages": {
+        "VERTEX": "#version 450 core\nvoid main(){gl_Position=vec4(0,0,0,1);}",
+        "GEOMETRY": "#version 450 core\nlayout(points) in;layout(points,max_vertices=1) out;in vec3 value[];void main(){gl_Position=vec4(value[0],1);EmitVertex();EndPrimitive();}"
+      },
+      "expected": {
+        "VERTEX": "#version 450 core\nout vec3 value;\nvoid main() {\n\tvalue = vec3(0.0f);\n\tgl_Position = vec4(0, 0, 0, 1);\n}\n",
+        "GEOMETRY": "#version 450 core\nlayout(points) in;\nlayout(points, max_vertices = 1) out;\nin vec3 value[];\nvoid main() {\n\tgl_Position = vec4(value[0], 1);\n\tEmitVertex();\n\tEndPrimitive();\n}\n"
+      }
+    }
+  ]
+}

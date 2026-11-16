@@ -1,6 +1,6 @@
 {
   "revision": "26f000239eb8ddf7ee191f0ddf369147e3c92ef6",
-  "identical": 1562,
+  "identical": 1561,
   "changes": [
     {
       "path": "buildSrc/build.gradle.kts",
@@ -281,6 +281,11 @@
       "path": "modern/src/main/shaders_java/net/irisshaders/iris/pipeline/IrisRenderingPipeline.java",
       "upstream": "89f1a72f1dfd2f394aae84a7873e7f7fbd609a690d1eb7633fd6cf68a737c7db",
       "local": "07e1a8e77788880da1c52ee93fedc97c534c65b11b7a8e8776e20223faa7740b"
+    },
+    {
+      "path": "modern/src/main/shaders_java/net/irisshaders/iris/pipeline/foss_transform/CompTransformer.java",
+      "upstream": "9279c469a5a1a4cb9c09b1d780f13f8c55c4bf9933483370bfcb16fabe1d3f62",
+      "local": "253b35ba51a03d3adbde9df898eaefa6eeb038688c7cd0a0baf726f59b7201c9"
     },
     {
       "path": "modern/src/main/shaders_java/net/irisshaders/iris/pipeline/programs/GbufferProgram.java",
@@ -1586,6 +1591,10 @@
       "local": "c4ad03f7971822e028a5198156b52cd722bc6e268bf447bdad547c588322498e"
     },
     {
+      "path": "modern/src/test/java/net/irisshaders/iris/pipeline/foss_transform/CompatibilityVaryingTest.java",
+      "local": "5eaf2c14e7d8d064e3af26bb5e00eeefd216f489ba8c6ce92efde253b1db6c2a"
+    },
+    {
       "path": "modern/src/test/java/net/irisshaders/iris/shaderpack/preprocessor/PreprocessedSourceCacheTest.java",
       "local": "062fe8d2ace86915c5bd43093fe42cffdb468b6e2a427286b2b834f117843b24"
     },
@@ -1640,6 +1649,10 @@
     {
       "path": "modern/src/test/java/org/embeddedt/embeddium/impl/util/sorting/VertexSortersTest.java",
       "local": "21e6ef115419389b1f5e25f9303a169e2578fdebc9e5b80cf4980525e0b85ac1"
+    },
+    {
+      "path": "modern/src/test/resources/iris-varying-reference.json",
+      "local": "950fb24e912eae3e222ad46e6624a738abc2c644943317f17fdc03c830a56945"
     },
     {
       "path": "modern/src/test/resources/legacy-public-api.txt",

@@ -4,8 +4,8 @@ gradle.beforeProject { p ->
     p.afterEvaluate {
     def sources = p.property('shaderProbeSources')
     def probe = p.sourceSets.create('shaderProbe') {
-        java.srcDir("$sources/java")
-        resources.srcDir("$sources/resources")
+        java.setSrcDirs(["$sources/java"])
+        resources.setSrcDirs(["$sources/resources"])
         compileClasspath += p.sourceSets.main.output + p.sourceSets.main.compileClasspath
         runtimeClasspath += p.sourceSets.main.runtimeClasspath
     }

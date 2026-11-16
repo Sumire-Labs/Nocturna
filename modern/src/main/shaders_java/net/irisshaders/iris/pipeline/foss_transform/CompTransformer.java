@@ -2,10 +2,14 @@ package net.irisshaders.iris.pipeline.foss_transform;
 
 import net.irisshaders.iris.pipeline.transform.parameter.Parameters;
 import org.embeddedt.embeddium.impl.gl.shader.ShaderType;
+import org.taumc.glsl.BuiltinFunction;
+import org.taumc.glsl.ShaderParser;
+import org.taumc.glsl.ShaderPrinter;
 import org.taumc.glsl.Transformer;
-import org.taumc.glsl.Util;
 import org.taumc.glsl.grammar.GLSLLexer;
 import org.taumc.glsl.grammar.GLSLParser;
+import org.taumc.glsl.shadowed.org.antlr.v4.runtime.CommonToken;
+import org.taumc.glsl.shadowed.org.antlr.v4.runtime.tree.TerminalNode;
 
 import java.util.Map;
 
@@ -98,11 +102,15 @@ public class CompTransformer {
                         continue;
                     }
 
-                    prevTree.makeOutDeclaration(inDec.get(in), in);
-
-                    if (!prevTree.hasAssigment(in)) {
-                        prevTree.initialize(inDec.get(in), in);
+                    // Iris only synthesizes numeric outputs, and always initializes a newly added output.
+                    // References/assignments to a local variable with the same name are not an output value.
+                    var declaration = inDec.get(in);
+                    if (numericType(declaration) == null) {
+                        continue;
                     }
+                    makeOutDeclaration(prevTree, declaration, in);
+                    initializeOutput(prevTree, declaration, in);
+                    outDec.put(in, declaration);
 
                 } else {
                     var outType = outDec.get(in).fully_specified_type().type_specifier().type_specifier_nonarray().children.get(0);
@@ -114,7 +122,7 @@ public class CompTransformer {
 
                     if (inType.getText().equals(outType.getText())) {
                         if (!prevTree.hasAssigment(in)) {
-                            prevTree.initialize(inDec.get(in), in);
+                            initializeOutput(prevTree, inDec.get(in), in);
                         }
                     }
 
@@ -125,10 +133,41 @@ public class CompTransformer {
         }
     }
 
-    private static void makeOutDeclarationtemp(Transformer root, GLSLParser.Single_declarationContext inDeclarationContext, String name) {
-        String insert = ShaderTransformer.getFormattedShader(inDeclarationContext.fully_specified_type(), "") + name + ";";
-        insert = insert.replaceFirst("in", "out");
-        root.injectVariable(insert);
+    private static void makeOutDeclaration(Transformer root, GLSLParser.Single_declarationContext input, String name) {
+        // Clone the qualifiers: changing IN on the consumer's tree would also change its interface.
+        var type = ShaderParser.parseSnippet(ShaderPrinter.getFormattedShader(input.fully_specified_type()),
+                GLSLParser::fully_specified_type);
+        for (var qualifier : type.type_qualifier().single_type_qualifier()) {
+            var storage = qualifier.storage_qualifier();
+            if (storage != null && storage.IN() != null) {
+                var token = (CommonToken) storage.IN().getSymbol();
+                token.setType(GLSLLexer.OUT);
+                token.setText("out");
+            }
+        }
+        // Cornea's makeOutDeclaration concatenates these tokens without a separator (e.g. vec3ViewPos).
+        root.injectVariable(ShaderPrinter.getFormattedShader(type) + " " + name + ";");
+    }
+
+    private static BuiltinFunction numericType(GLSLParser.Single_declarationContext declaration) {
+        var type = declaration.fully_specified_type().type_specifier().type_specifier_nonarray().getChild(0);
+        return type instanceof TerminalNode token ? BuiltinFunction.getByType(token.getSymbol().getType()) : null;
+    }
+
+    private static void initializeOutput(Transformer root, GLSLParser.Single_declarationContext declaration, String name) {
+        var numeric = numericType(declaration);
+        if (numeric == null) return;
+        String zero = switch (numeric) {
+            case BOOL, BVEC2, BVEC3, BVEC4 -> "false";
+            case INT, IVEC2, IVEC3, IVEC4, UINT, UVEC2, UVEC3, UVEC4 -> "0";
+            default -> numeric.name().startsWith("D") ? "0.0lf" : "0.0";
+        };
+        String initializer = switch (numeric) {
+            case BOOL, INT, UINT, FLOAT, DOUBLE -> zero;
+            default -> declaration.fully_specified_type().type_specifier().type_specifier_nonarray().getText() + "(" + zero + ")";
+        };
+        // Iris uses typed zero/default literals. Cornea's double initializer uses the invalid GLSL suffix 'd'.
+        root.prependMain(name + " = " + initializer + ";");
     }
 
     //  public static void transformFragmentCore(ASTParser t, TranslationUnit tree, Root root, Parameters parameters) {
