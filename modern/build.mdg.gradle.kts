@@ -33,7 +33,7 @@ version = rootProject.version
 val modLoader = ModLoader.fromProject(project)!!
 val minecraftVersion = ModLoader.getMinecraftVersion(project)!!
 
-val defaultArchiveBaseName = "embeddium"
+val defaultArchiveBaseName = "nocturna"
 
 // Forge versions before 1.17 predate JarJar and run on Java 8, so their dependencies have to be
 // shaded into the jar and the whole jar has to be downgraded after building.

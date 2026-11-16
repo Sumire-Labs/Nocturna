@@ -1,6 +1,6 @@
 <img src="modern/src/main/resources/icon.png" width="128">
 
-# Embeddium Continuous
+# Nocturna
 
 A LGPL-3.0 FOSS renderer for **Minecraft 1.20.1 / Forge / Java 17**.
 This Sumire Labs fork now uses Celeritas common and its Forge 1.20.1 platform implementation,
@@ -8,7 +8,7 @@ while retaining the supported Embeddium public APIs and local fixes. See [source
 and the [migration report](docs/celeritas-migration-2026-11-16.md).
 
 Only Minecraft 1.20.1 is configured or supported. This is not an official Celeritas or Sodium release.
-Report issues to [this repository](https://github.com/Sumire-Labs/Embeddium-1.20.1-Continuous/issues).
+Report issues to [this repository](https://github.com/Sumire-Labs/Nocturna/issues).
 
 ## Building and checking
 

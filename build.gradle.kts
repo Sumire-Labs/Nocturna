@@ -3,7 +3,7 @@ import org.embeddedt.embeddium.gradle.versioning.ProjectVersioner
 plugins { base }
 
 version = ProjectVersioner.computeVersion(projectDir, properties)
-println("Embeddium Continuous (Celeritas base): $version")
+println("Nocturna (Celeritas base): $version")
 
 tasks.assemble { dependsOn(":modern:1.20.1-forge:packageJar") }
 tasks.check { dependsOn(":common:test", ":modern:1.20.1-forge:check") }

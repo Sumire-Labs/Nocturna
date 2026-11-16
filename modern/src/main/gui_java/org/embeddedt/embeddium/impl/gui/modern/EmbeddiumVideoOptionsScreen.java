@@ -29,7 +29,7 @@ public class EmbeddiumVideoOptionsScreen extends Screen {
     private final CeleritasVideoOptionsController controller;
 
     public EmbeddiumVideoOptionsScreen(Screen prev) {
-        super(ComponentUtil.literal("Embeddium Options"));
+        super(ComponentUtil.literal("Nocturna Options"));
         this.prevScreen = prev;
         this.controller = new CeleritasVideoOptionsController(this::onClose, List.of(
                 SodiumGameOptionPages.general(),

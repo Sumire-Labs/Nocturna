@@ -59,9 +59,9 @@
   "sodium.options.buttons.apply": "Aplicar",
   "sodium.options.buttons.donate": "¡Apoya a Sodium!",
   "sodium.console.game_restart": "¡Es necesario reiniciar el juego para aplicar una o más configuraciones de video!",
-  "sodium.console.broken_nvidia_driver": "¡Tus controladores gráficos NVIDIA están desactualizados!\n  * Esto provocará graves problemas de rendimiento y bloqueos al instalar Embeddium.\n  * Actualice sus controladores gráficos a la última versión (versión 536.23 o más reciente).",
-  "sodium.console.pojav_launcher": "PojavLauncher no es compatible cuando se utiliza Embeddium.\n  * Es muy probable que te encuentres con problemas extremos de rendimiento, errores gráficos y fallas.\n  * Estarás solo si decides continuar -- ¡No le ayudaremos con ningún error o falla!",
-  "sodium.console.core_shaders_error": "Los siguientes paquetes de recursos son incompatibles con Embeddium:",
-  "sodium.console.core_shaders_warn": "Los siguientes paquetes de recursos pueden ser incompatibles con Embeddium:",
+  "sodium.console.broken_nvidia_driver": "¡Tus controladores gráficos NVIDIA están desactualizados!\n  * Esto provocará graves problemas de rendimiento y bloqueos al instalar Nocturna.\n  * Actualice sus controladores gráficos a la última versión (versión 536.23 o más reciente).",
+  "sodium.console.pojav_launcher": "PojavLauncher no es compatible cuando se utiliza Nocturna.\n  * Es muy probable que te encuentres con problemas extremos de rendimiento, errores gráficos y fallas.\n  * Estarás solo si decides continuar -- ¡No le ayudaremos con ningún error o falla!",
+  "sodium.console.core_shaders_error": "Los siguientes paquetes de recursos son incompatibles con Nocturna:",
+  "sodium.console.core_shaders_warn": "Los siguientes paquetes de recursos pueden ser incompatibles con Nocturna:",
   "sodium.console.core_shaders_info": "Consulte el registro del juego para obtener información detallada."
 }

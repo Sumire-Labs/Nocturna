@@ -1,6 +1,6 @@
 # Source provenance
 
-Embeddium Continuous targets Minecraft **1.20.1 / Forge / Java 17** only.
+Nocturna targets Minecraft **1.20.1 / Forge / Java 17** only.
 
 The renderer and platform implementation are based on [Celeritas](https://git.taumc.org/embeddedt/celeritas),
 `stonecutter` commit **26f000239eb8ddf7ee191f0ddf369147e3c92ef6** (2026-11-14).

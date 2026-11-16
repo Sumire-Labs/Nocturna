@@ -84,7 +84,7 @@ plugins {
     id("dev.kikugie.stonecutter") version(extra["stonecutter_version"].toString())
 }
 
-rootProject.name = "embeddium-continuous"
+rootProject.name = "nocturna"
 
 includeBuild("plugins/celeritas-mdg-plugin")
 include("common", "modern")
