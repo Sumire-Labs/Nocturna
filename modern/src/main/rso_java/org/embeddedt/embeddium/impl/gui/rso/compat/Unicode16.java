@@ -38,5 +38,8 @@ public final class Unicode16 {
     public static boolean isWhitespace(int codePoint) {
         return UCharacter.isWhitespace(codePoint);
     }
-    public static boolean isLetterOrDigit(int codePoint) { return UCharacter.isLetterOrDigit(codePoint); }
+
+    public static boolean isLetterOrDigit(int codePoint) {
+        return UCharacter.isLetterOrDigit(codePoint);
+    }
 }

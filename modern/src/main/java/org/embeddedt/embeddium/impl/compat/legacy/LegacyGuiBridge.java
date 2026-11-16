@@ -175,6 +175,7 @@ public final class LegacyGuiBridge {
         public boolean charTyped(char ch,int mods){return widget.charTyped(ch,mods);}
         public boolean isFocused(){return widget.isFocused();}
         public void setFocused(boolean focused){widget.setFocused(focused);}
+        public void setDimensions(org.embeddedt.embeddium.impl.util.Dim2i dim){super.setDimensions(dim);widget.setDimensions(new me.jellysquid.mods.sodium.client.util.Dim2i(dim.x(),dim.y(),dim.width(),dim.height()));}
         public NarrationPriority narrationPriority(){return widget.narrationPriority();}
         public void updateNarration(net.minecraft.client.gui.narration.NarrationElementOutput output){widget.updateNarration(output);}
     }

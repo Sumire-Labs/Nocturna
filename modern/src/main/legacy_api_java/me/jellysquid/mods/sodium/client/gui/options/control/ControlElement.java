@@ -15,7 +15,7 @@ import org.jetbrains.annotations.Nullable;
 public class ControlElement<T> extends AbstractWidget {
     protected final Option<T> option;
 
-    protected final Dim2i dim;
+    protected Dim2i dim;
 
     private @NotNull FlatButtonWidget.Style style = FlatButtonWidget.Style.defaults();
 
@@ -59,6 +59,10 @@ public class ControlElement<T> extends AbstractWidget {
 
     public Dim2i getDimensions() {
         return this.dim;
+    }
+
+    public void setDimensions(Dim2i dim) {
+        this.dim = java.util.Objects.requireNonNull(dim);
     }
 
     @Override

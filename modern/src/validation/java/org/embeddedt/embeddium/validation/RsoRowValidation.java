@@ -91,6 +91,7 @@ public final class RsoRowValidation {
 
     private static void verifyLegacy(Screen screen) {
         boolean[] stored = {false};
+        int[] constructions = {0};
         var storage =
                 new me.jellysquid.mods.sodium.client.gui.options.storage.OptionStorage<Object>() {
                     public Object getData() {
@@ -132,6 +133,7 @@ public final class RsoRowValidation {
                                                             me.jellysquid.mods.sodium.client.util
                                                                             .Dim2i
                                                                     dim) {
+                                                constructions[0]++;
                                                 return new me.jellysquid.mods.sodium.client.gui
                                                                 .options.control.ControlElement<
                                                         Boolean>(option, dim) {
@@ -198,6 +200,12 @@ public final class RsoRowValidation {
                         && option.getValidatedValue(),
                 "Moved legacy control lost hit testing");
         option.apply();
+        element.rso$setDimensions(
+                new org.embeddedt.embeddium.impl.gui.rso.compat.sodium.client.util.Dim2i(
+                        30, 60, 380, 18));
+        RsoValidation.require(
+                constructions[0] == 1 && element.isFocused(),
+                "Resize recreated the legacy control or lost focus");
         RsoValidation.require(stored[0], "Legacy custom binding was not applied");
         client.setLastInputType(previousInputType);
     }

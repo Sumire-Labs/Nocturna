@@ -6,6 +6,8 @@ import org.lwjgl.glfw.GLFW;
 
 public record KeyEvent(int key, int scancode, int modifiers) {
     public int shortcutKey() {
+        Integer logical = TextInputBridge.logicalKey();
+        if (logical != null) return logical;
         String name = GLFW.glfwGetKeyName(key, scancode);
         if (name != null && name.codePointCount(0, name.length()) == 1) {
             return Character.toUpperCase(name.codePointAt(0));

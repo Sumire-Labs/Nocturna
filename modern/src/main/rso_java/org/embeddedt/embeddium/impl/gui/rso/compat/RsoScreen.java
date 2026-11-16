@@ -10,6 +10,12 @@ public abstract class RsoScreen extends net.minecraft.client.gui.screens.Screen 
         super(title);
     }
 
+    @Override
+    public void added() {
+        super.added();
+        TextInputBridge.beginSession();
+    }
+
     public void extractRenderState(GuiGraphicsExtractor graphics, int x, int y, float delta) {
         renderBackground(graphics.nativeGraphics());
         super.render(graphics.nativeGraphics(), x, y, delta);
@@ -50,6 +56,21 @@ public abstract class RsoScreen extends net.minecraft.client.gui.screens.Screen 
     }
 
     public boolean keyPressed(KeyEvent event) {
+        if (event.key() == org.lwjgl.glfw.GLFW.GLFW_KEY_TAB) {
+            if (getFocused() != null && getFocused().keyPressed(event)) return true;
+            var navigation =
+                    new net.minecraft.client.gui.navigation.FocusNavigationEvent.TabNavigation(
+                            !event.hasShiftDown());
+            var next = nextFocusPath(navigation);
+            if (next == null) {
+                var current = getCurrentFocusPath();
+                if (current != null) current.applyFocus(false);
+                super.setFocused(null);
+                next = nextFocusPath(navigation);
+            }
+            if (next != null) changeFocus(next);
+            return false;
+        }
         return super.keyPressed(event.key(), event.scancode(), event.modifiers());
     }
 
@@ -74,7 +95,12 @@ public abstract class RsoScreen extends net.minecraft.client.gui.screens.Screen 
     }
 
     public boolean mouseScrolled(double x, double y, double dx, double dy) {
-        return super.mouseScrolled(x, y, dy);
+        return getChildAt(x, y)
+                .filter(
+                        child ->
+                                child instanceof GuiEventListener input
+                                        && input.mouseScrolled(x, y, dx, dy))
+                .isPresent();
     }
 
     @Override

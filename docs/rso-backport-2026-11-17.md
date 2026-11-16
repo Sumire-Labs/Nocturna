@@ -18,20 +18,38 @@ Nocturna supplies its existing option pages, addon construction events, storage 
 Existing Minecraft and Nocturna bindings provide the actual default values for reset actions.
 
 Custom legacy controls retain their rendering, mouse input, keyboard input and edit transaction.
-Their coordinates follow scrolling and layout changes. The legacy API does not expose defaults for arbitrary
-custom options; these controls use RSO's original custom-control fallback, which has no reset/undo overlays.
+Their bounds update in place, including resized built-in slider/checkbox geometry; the control instance,
+focus and in-progress editing state survive layout changes. Legacy standard controls use the original RSO rows.
+Addons can provide dynamic names, tooltips, defaults, availability, control visibility and validators through
+`org.embeddedt.embeddium.api.options.RsoOptionMetadata`. `RsoModTheme` supplies per-mod ARGB palettes.
+The default palette and five presets match the reference runtime's public output.
+Arbitrary custom controls retain RSO's original fallback behavior, including its absence of action overlays.
 
 When RSO is disabled, the classic Nocturna menu still exposes every RSO preference, including the enable switch.
 Opening the former Nocturna screen class directly also selects RSO when enabled. Shader-pack selection continues
 to open the bundled shader menu.
 
 Minecraft 1.20.1 drawing, focus, input and narration APIs are adapted at the platform boundary.
-Horizontal wheel input reaches RSO without losing Forge's surrounding input hooks. Windows IME composition
-position follows the search caret. OS input behavior on Linux and macOS has not been exercised here.
+Horizontal wheel values reach child controls; Tab and Shift+Tab use the event's modifiers and wrap correctly.
+SDL's public text-input API wraps the existing GLFW window on Windows, X11/XWayland and macOS. The renderer
+and GLFW context remain owned by Minecraft. SDL input is routed through Minecraft/Forge callbacks, while
+duplicate GLFW keyboard/character events are suppressed only during an RSO screen's input session.
+Candidate placement uses window coordinates, including the framebuffer/window scale on Retina displays.
+The SDL native libraries are from LWJGL 3.4.3, source revision `147a8ee32dbf9ac02f3794964490687b6bbda1bc`.
+Only the SDL native libraries are embedded; Minecraft's LWJGL Java classes are retained.
+
+Real GLFW/OpenGL input-session checks pass on Windows 11 and Ubuntu 24.04 through WSLg/XWayland.
+They check the caret rectangle, UTF-8 events, keyboard routing and focus/session teardown while preserving
+the host window, context and framebuffer. These are native API/dispatch tests, not a manual IME conversion
+or dictionary-candidate test. macOS x64/ARM64 code and native libraries are included but have not been run:
+neither the local environment nor the user has an available Mac. The optional manual CI workflow and
+`scripts/run-rso-native-input.mjs` provide the same native-window checks for a future Mac runner.
 
 The internal configuration bridge implements the contracts consumed by RSO. It does not expose the newer
 Sodium configuration API to addons. No newer Sodium implementation sources are included.
 The prompt and fingerprint compatibility helpers come from the previous LGPL Embeddium code.
+Their button bounds and Escape/Tab/Enter/Space responses match the reference prompt in executable traces.
+Original MIT RSO button narration output and priority also match with and without keyboard focus.
 
 ## Java 17 search behavior
 
@@ -67,11 +85,44 @@ Verified on Windows 11 with Forge 47.3.0 and Java 17:
 
 | Check | Result |
 | --- | --- |
-| Common and Forge unit tests | 120 passed |
-| Java 17 product class audit | 4,293 classes, no class version above 61 |
-| RSO client with CCL, Immersive Engineering and BrandonsCore | Passed, 66 options registered |
+| Common and Forge unit tests | 160 passed |
+| Java 17 product class audit | 4,459 classes; no class version above 61; validation/reference classes excluded |
+| RSO client | 240 options with the metadata fixture; live defaults, legacy transactions, horizontal input, Tab wrap and SDL/Forge dispatch passed |
 | Renderer and addon integration client | Passed, including compact vertices, asynchronous terrain, legacy geometry hooks and weather |
 | Full shader-pack warm reload | Zero stage compiles, including terrain programs |
+
+Seven whole-screen comparisons against the original MIT RSO sources adapted to the same Java17/1.20.1 host
+have zero differing pixels: general, quality, RSO preferences, search, narrow layout, pending edits and themes off.
+Each comparison contains 409,920 pixels. The recorded host patch maps APIs and Java syntax; reference classes
+are generated into the validation source set and never shipped. Both variants share the platform adapter,
+which is separately checked against public reference API outputs and native input tests. These comparisons
+do not assert identical Minecraft 26.3 and 1.20.1 fonts or operating-system candidate-window appearance.
+
+Enable that comparison with `-PrsoReferenceSource=<checkout-of-mc26.3-2.2.5>` when running
+`:modern:1.20.1-forge:runRsoValidationClient`. Executable palette, prompt and narration contract comparisons
+are available through `scripts/verify-rso-ui-contracts.mjs`.
+
+Example metadata for an existing addon option:
+
+```java
+new RsoOptionMetadata<Boolean>()
+    .defaultValue(() -> true)
+    .tooltip(() -> Component.literal(option.getValue() ? "Enabled" : "Disabled"))
+    .register(new ResourceLocation("example", "option"));
+```
+
+`RsoOptionMetadata.pendingValue(id, type)` lets suppliers depend on unapplied edits without writing storage.
+The bridge remains a Nocturna API for Minecraft 1.20.1; newer Sodium mods still require their own version port.
+
+To run the native-window input harness with a Java 17 JDK after preparing the SDL resources:
+
+```text
+node scripts/run-rso-native-input.mjs <JDK17-home> run modern/versions/1.20.1-forge/build/generated/rsoSdlResources
+```
+
+Prepare those resources with `:modern:1.20.1-forge:rsoSdlResources` using the Java 25 build toolchain.
+Linux requires X11/XWayland, matching the official GLFW backend used by Minecraft 1.20.1.
+The manual `RSO native input` workflow contains Linux and macOS runner jobs; it has not been dispatched.
 
 To reproduce the source audit:
 

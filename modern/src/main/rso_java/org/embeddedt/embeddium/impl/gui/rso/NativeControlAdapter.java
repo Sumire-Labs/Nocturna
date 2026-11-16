@@ -37,7 +37,7 @@ public final class NativeControlAdapter implements Control {
                         dim.x(), dim.y(), dim.width(), dim.height());
         return new ControlElement(dim) {
             private org.embeddedt.embeddium.impl.util.Dim2i origin = initialDim;
-            private org.taumc.celeritas.api.options.control.ControlElement element =
+            private final org.taumc.celeritas.api.options.control.ControlElement element =
                     original.getControl().createElement(origin);
 
             private int dx() {
@@ -173,16 +173,10 @@ public final class NativeControlAdapter implements Control {
 
             public void rso$setDimensions(Dim2i updated) {
                 super.rso$setDimensions(updated);
-                if (origin.width() != updated.width() || origin.height() != updated.height()) {
-                    origin =
-                            new org.embeddedt.embeddium.impl.util.Dim2i(
-                                    updated.x(), updated.y(), updated.width(), updated.height());
-                    element = original.getControl().createElement(origin);
-                    if (element
-                            instanceof
-                            net.minecraft.client.gui.components.events.GuiEventListener input)
-                        input.setFocused(isFocused());
-                }
+                origin =
+                        new org.embeddedt.embeddium.impl.util.Dim2i(
+                                updated.x(), updated.y(), updated.width(), updated.height());
+                element.setDimensions(origin);
             }
         };
     }

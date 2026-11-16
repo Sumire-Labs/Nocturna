@@ -31,11 +31,17 @@ public class TickBoxControl implements Control<Boolean> {
     }
 
     private static class TickBoxControlElement extends ControlElement<Boolean> {
-        private final Rect2i button;
+        private Rect2i button;
 
         public TickBoxControlElement(Option<Boolean> option, Dim2i dim) {
             super(option, dim);
 
+            this.button = new Rect2i(dim.getLimitX() - 16, dim.getCenterY() - 5, 10, 10);
+        }
+
+        @Override
+        public void setDimensions(Dim2i dim) {
+            super.setDimensions(dim);
             this.button = new Rect2i(dim.getLimitX() - 16, dim.getCenterY() - 5, 10, 10);
         }
 

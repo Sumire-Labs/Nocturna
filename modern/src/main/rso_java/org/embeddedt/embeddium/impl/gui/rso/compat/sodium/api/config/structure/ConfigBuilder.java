@@ -10,6 +10,15 @@ public final class ConfigBuilder {
     private final Config config = new Config();
     private final List<Page> pages = new ArrayList<>();
     private ResourceLocation icon;
+    private org.embeddedt.embeddium.impl.gui.rso.compat.sodium.client.gui.ColorTheme theme =
+            org.embeddedt.embeddium.impl.gui.rso.compat.sodium.client.gui.ColorTheme.forMod(
+                    "reeses-sodium-options", 0);
+
+    public ConfigBuilder setColorTheme(
+            org.embeddedt.embeddium.impl.gui.rso.compat.sodium.client.gui.ColorTheme theme) {
+        this.theme = java.util.Objects.requireNonNull(theme);
+        return this;
+    }
 
     public ConfigBuilder registerOwnModOptions() {
         return this;
@@ -57,7 +66,7 @@ public final class ConfigBuilder {
                 "2.2.5",
                 icon,
                 false,
-                org.embeddedt.embeddium.impl.gui.rso.compat.sodium.client.gui.ColorTheme.DEFAULT,
+                theme,
                 List.copyOf(pages));
     }
 }

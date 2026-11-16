@@ -50,6 +50,7 @@ public final class RsoValidation {
     }
 
     public static void install() {
+        RsoParityValidation.install();
         org.embeddedt.embeddium.api.OptionGroupConstructionEvent.BUS.addListener(e -> groups++);
         org.embeddedt.embeddium.api.OptionPageConstructionEvent.BUS.addListener(e -> pages++);
         org.embeddedt.embeddium.api.OptionGUIConstructionEvent.BUS.addListener(e -> guis++);
@@ -78,13 +79,17 @@ public final class RsoValidation {
                 screen = (SodiumVideoOptionsScreen) mc.screen;
                 initialWidth = screen.width;
                 initialHeight = screen.height;
+                RsoVisualValidation.prepare();
                 stage = 1;
                 ticks = 0;
             } else if (stage == 1 && ticks > 5) {
+                if (RsoVisualValidation.tick(mc, screen)) return;
                 verifyBindings(mc);
                 verifyInput(mc);
                 verifyGroupCollapse();
                 RsoRowValidation.verify(screen);
+                RsoParityValidation.verify(mc, screen);
+                RsoSdlValidation.verify(mc, screen);
                 screen.resize(mc, 360, 240);
                 stage = 2;
                 ticks = 0;

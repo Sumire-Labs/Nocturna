@@ -13,7 +13,7 @@ import org.jetbrains.annotations.NotNull;
 public class ControlElement<T> extends AbstractWidget implements OptionControlElement<T> {
     protected final Option<T> option;
 
-    protected final Dim2i dim;
+    protected Dim2i dim;
 
     private @NotNull FlatButtonWidget.Style style = FlatButtonWidget.Style.defaults();
 
@@ -53,6 +53,11 @@ public class ControlElement<T> extends AbstractWidget implements OptionControlEl
 
     public Dim2i getDimensions() {
         return this.dim;
+    }
+
+    /** Updates layout without replacing this control or its editing state. */
+    public void setDimensions(Dim2i dim) {
+        this.dim = java.util.Objects.requireNonNull(dim);
     }
 
     @Override

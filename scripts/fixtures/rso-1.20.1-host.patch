@@ -1,0 +1,2412 @@
+diff --git a/client/config/ReeseSodiumOptionsConfig.java b/client/config/ReeseSodiumOptionsConfig.java
+index 3ca52803..ac218a73 100644
+--- a/client/config/ReeseSodiumOptionsConfig.java
++++ b/client/config/ReeseSodiumOptionsConfig.java
+@@ -6,10 +6,10 @@ import com.google.gson.JsonParseException;
+ import com.google.gson.annotations.SerializedName;
+ import me.flashyreese.mods.reeses_sodium_options.client.gui.PreviousScreenHolder;
+ import me.flashyreese.mods.reeses_sodium_options.client.gui.SodiumVideoOptionsScreen;
+-import net.caffeinemc.mods.sodium.api.config.ConfigState;
+-import net.caffeinemc.mods.sodium.api.config.StorageEventHandler;
+-import net.caffeinemc.mods.sodium.client.gui.VideoSettingsScreen;
+-import net.caffeinemc.mods.sodium.client.services.PlatformRuntimeInformation;
++import org.embeddedt.embeddium.impl.gui.rso.compat.sodium.api.config.ConfigState;
++import org.embeddedt.embeddium.impl.gui.rso.compat.sodium.api.config.StorageEventHandler;
++import org.embeddedt.embeddium.impl.gui.rso.compat.sodium.client.gui.VideoSettingsScreen;
++import org.embeddedt.embeddium.impl.gui.rso.compat.sodium.client.services.PlatformRuntimeInformation;
+ import net.minecraft.client.Minecraft;
+ import net.minecraft.client.gui.screens.Screen;
+ import org.slf4j.Logger;
+@@ -51,7 +51,7 @@ public final class ReeseSodiumOptionsConfig {
+     }
+ 
+     static void rebuildCurrentScreen(ConfigState ignored) {
+-        Screen screen = Minecraft.getInstance().gui.screen();
++        Screen screen = Minecraft.getInstance().screen;
+         if (screen instanceof SodiumVideoOptionsScreen sodiumVideoOptionsScreen) {
+             sodiumVideoOptionsScreen.rebuildUI();
+         }
+@@ -59,14 +59,14 @@ public final class ReeseSodiumOptionsConfig {
+ 
+     static void reopenScreen(ConfigState ignored) {
+         Minecraft minecraft = Minecraft.getInstance();
+-        if (!(minecraft.gui.screen() instanceof PreviousScreenHolder holder)) {
++        if (!(minecraft.screen instanceof PreviousScreenHolder holder)) {
+             return;
+         }
+ 
+         // Reopen Sodium's options screen and let MixinSodiumOptionsGUI re-route to RSO (or not)
+         // based on the new enabled value. Deferred to run after the current apply pass completes.
+         Screen previousScreen = holder.rso$previousScreen();
+-        minecraft.execute(() -> minecraft.gui.setScreen(VideoSettingsScreen.createScreen(previousScreen)));
++        minecraft.execute(() -> minecraft.setScreen(VideoSettingsScreen.createScreen(previousScreen)));
+     }
+ 
+     private static void readFromDisk() {
+@@ -248,7 +248,7 @@ public final class ReeseSodiumOptionsConfig {
+         }
+ 
+         public void setTooltipDelayMs(int tooltipDelayMs) {
+-            this.tooltipDelayMs = Math.clamp(tooltipDelayMs, MIN_TOOLTIP_DELAY_MS, MAX_TOOLTIP_DELAY_MS);
++            this.tooltipDelayMs = org.embeddedt.embeddium.impl.gui.rso.compat.Java17Math.clamp(tooltipDelayMs, MIN_TOOLTIP_DELAY_MS, MAX_TOOLTIP_DELAY_MS);
+         }
+ 
+         public boolean isTooltipOptionIds() {
+@@ -312,7 +312,7 @@ public final class ReeseSodiumOptionsConfig {
+         }
+ 
+         public void setSearchResultLimit(int searchResultLimit) {
+-            this.searchResultLimit = Math.clamp(searchResultLimit, MIN_SEARCH_RESULT_LIMIT, MAX_SEARCH_RESULT_LIMIT);
++            this.searchResultLimit = org.embeddedt.embeddium.impl.gui.rso.compat.Java17Math.clamp(searchResultLimit, MIN_SEARCH_RESULT_LIMIT, MAX_SEARCH_RESULT_LIMIT);
+         }
+ 
+         public boolean isHideNonMatchingOptions() {
+@@ -392,8 +392,8 @@ public final class ReeseSodiumOptionsConfig {
+             if (this.focusBorderMode == null) {
+                 this.focusBorderMode = DEFAULT_FOCUS_BORDER_MODE;
+             }
+-            this.tooltipDelayMs = Math.clamp(this.tooltipDelayMs, MIN_TOOLTIP_DELAY_MS, MAX_TOOLTIP_DELAY_MS);
+-            this.searchResultLimit = Math.clamp(this.searchResultLimit, MIN_SEARCH_RESULT_LIMIT, MAX_SEARCH_RESULT_LIMIT);
++            this.tooltipDelayMs = org.embeddedt.embeddium.impl.gui.rso.compat.Java17Math.clamp(this.tooltipDelayMs, MIN_TOOLTIP_DELAY_MS, MAX_TOOLTIP_DELAY_MS);
++            this.searchResultLimit = org.embeddedt.embeddium.impl.gui.rso.compat.Java17Math.clamp(this.searchResultLimit, MIN_SEARCH_RESULT_LIMIT, MAX_SEARCH_RESULT_LIMIT);
+ 
+             return this;
+         }
+diff --git a/client/config/ReeseSodiumOptionsConfigEntryPoint.java b/client/config/ReeseSodiumOptionsConfigEntryPoint.java
+index 7ec6b4cd..a8705bd3 100644
+--- a/client/config/ReeseSodiumOptionsConfigEntryPoint.java
++++ b/client/config/ReeseSodiumOptionsConfigEntryPoint.java
+@@ -1,13 +1,13 @@
+ package me.flashyreese.mods.reeses_sodium_options.client.config;
+ 
+ import com.mojang.blaze3d.Blaze3D;
+-import net.caffeinemc.mods.sodium.api.config.ConfigEntryPoint;
+-import net.caffeinemc.mods.sodium.api.config.structure.ConfigBuilder;
+-import net.caffeinemc.mods.sodium.api.config.structure.OptionBuilder;
+-import net.caffeinemc.mods.sodium.api.config.structure.OptionGroupBuilder;
+-import net.caffeinemc.mods.sodium.api.config.structure.OptionPageBuilder;
++import org.embeddedt.embeddium.impl.gui.rso.compat.sodium.api.config.ConfigEntryPoint;
++import org.embeddedt.embeddium.impl.gui.rso.compat.sodium.api.config.structure.ConfigBuilder;
++import org.embeddedt.embeddium.impl.gui.rso.compat.sodium.api.config.structure.OptionBuilder;
++import org.embeddedt.embeddium.impl.gui.rso.compat.sodium.api.config.structure.OptionGroupBuilder;
++import org.embeddedt.embeddium.impl.gui.rso.compat.sodium.api.config.structure.OptionPageBuilder;
+ import net.minecraft.network.chat.Component;
+-import net.minecraft.resources.Identifier;
++import net.minecraft.resources.ResourceLocation;
+ 
+ import java.net.URI;
+ import java.util.function.Consumer;
+@@ -245,7 +245,7 @@ public class ReeseSodiumOptionsConfigEntryPoint implements ConfigEntryPoint {
+                 .addOption(builder.createExternalButtonOption(this.optionId("support_project"))
+                         .setName(Component.translatable("rso.options.support_project.name"))
+                         .setTooltip(Component.translatable("rso.options.support_project.tooltip"))
+-                        .setScreenConsumer(screen -> Blaze3D.openUri(KO_FI_URL)));
++                        .setScreenConsumer(screen -> net.minecraft.Util.getPlatform().openUri(KO_FI_URL)));
+     }
+ 
+     private OptionBuilder createBooleanOption(ConfigBuilder builder, String name, Consumer<Boolean> setter, Supplier<Boolean> getter, boolean defaultValue, boolean rebuildScreen) {
+@@ -263,11 +263,11 @@ public class ReeseSodiumOptionsConfigEntryPoint implements ConfigEntryPoint {
+         return option;
+     }
+ 
+-    private Identifier optionId(String path) {
+-        return Identifier.fromNamespaceAndPath(MOD_ID, path);
++    private ResourceLocation optionId(String path) {
++        return new ResourceLocation(MOD_ID, path);
+     }
+ 
+-    private Identifier modIcon() {
+-        return Identifier.fromNamespaceAndPath(MOD_ID, "icon.png");
++    private ResourceLocation modIcon() {
++        return new ResourceLocation(MOD_ID, "icon.png");
+     }
+ }
+diff --git a/client/gui/SodiumVideoOptionsScreen.java b/client/gui/SodiumVideoOptionsScreen.java
+index f3fcd13d..6c2d6af9 100644
+--- a/client/gui/SodiumVideoOptionsScreen.java
++++ b/client/gui/SodiumVideoOptionsScreen.java
+@@ -14,34 +14,33 @@ import me.flashyreese.mods.reeses_sodium_options.client.gui.layout.LayoutBounds;
+ import me.flashyreese.mods.reeses_sodium_options.client.gui.option.OptionExtended;
+ import me.flashyreese.mods.reeses_sodium_options.client.gui.state.OptionsScreenUiState;
+ import me.flashyreese.mods.reeses_sodium_options.client.gui.widget.BaseWidget;
+-import net.caffeinemc.mods.sodium.client.SodiumClientMod;
+-import net.caffeinemc.mods.sodium.client.config.ConfigManager;
+-import net.caffeinemc.mods.sodium.client.config.structure.ExternalPage;
+-import net.caffeinemc.mods.sodium.client.config.structure.ModOptions;
+-import net.caffeinemc.mods.sodium.client.config.structure.StatefulOption;
+-import net.caffeinemc.mods.sodium.client.data.fingerprint.HashedFingerprint;
+-import net.caffeinemc.mods.sodium.client.gui.SodiumOptions;
+-import net.caffeinemc.mods.sodium.client.gui.prompt.ScreenPrompt;
+-import net.caffeinemc.mods.sodium.client.gui.prompt.ScreenPromptable;
+-import net.caffeinemc.mods.sodium.client.services.PlatformRuntimeInformation;
+-import net.caffeinemc.mods.sodium.client.util.Dim2i;
++import me.jellysquid.mods.sodium.client.SodiumClientMod;
++import org.embeddedt.embeddium.impl.gui.rso.compat.sodium.client.config.ConfigManager;
++import org.embeddedt.embeddium.impl.gui.rso.compat.sodium.client.config.structure.ExternalPage;
++import org.embeddedt.embeddium.impl.gui.rso.compat.sodium.client.config.structure.ModOptions;
++import org.embeddedt.embeddium.impl.gui.rso.compat.sodium.client.config.structure.StatefulOption;
++import org.embeddedt.embeddium.impl.gui.rso.compat.sodium.client.data.fingerprint.HashedFingerprint;
++import me.jellysquid.mods.sodium.client.gui.SodiumGameOptions;
++import org.embeddedt.embeddium.impl.gui.rso.compat.sodium.client.gui.prompt.ScreenPrompt;
++import org.embeddedt.embeddium.impl.gui.rso.compat.sodium.client.gui.prompt.ScreenPromptable;
++import org.embeddedt.embeddium.impl.gui.rso.compat.sodium.client.services.PlatformRuntimeInformation;
++import org.embeddedt.embeddium.impl.gui.rso.compat.sodium.client.util.Dim2i;
+ import net.minecraft.client.gui.ComponentPath;
+-import net.minecraft.client.gui.GuiGraphicsExtractor;
+-import net.minecraft.client.gui.components.events.ContainerEventHandler;
+-import net.minecraft.client.gui.components.events.GuiEventListener;
++import org.embeddedt.embeddium.impl.gui.rso.compat.GuiGraphicsExtractor;
++import org.embeddedt.embeddium.impl.gui.rso.compat.ContainerEventHandler;
++import org.embeddedt.embeddium.impl.gui.rso.compat.GuiEventListener;
+ import net.minecraft.client.gui.navigation.FocusNavigationEvent;
+ import net.minecraft.client.gui.navigation.ScreenDirection;
+ import net.minecraft.client.gui.screens.Screen;
+-import net.minecraft.client.gui.screens.options.VideoSettingsScreen;
+-import net.minecraft.client.input.KeyEvent;
+-import net.minecraft.client.input.MouseButtonEvent;
++import net.minecraft.client.gui.screens.VideoSettingsScreen;
++import org.embeddedt.embeddium.impl.gui.rso.compat.KeyEvent;
++import org.embeddedt.embeddium.impl.gui.rso.compat.MouseButtonEvent;
+ import net.minecraft.network.chat.Component;
+ import net.minecraft.network.chat.FormattedText;
+-import net.minecraft.resources.Identifier;
++import net.minecraft.resources.ResourceLocation;
+ import org.jetbrains.annotations.NotNull;
+ import org.jetbrains.annotations.Nullable;
+-import org.jspecify.annotations.NonNull;
+-import org.lwjgl.sdl.SDLKeycode;
++import org.embeddedt.embeddium.impl.gui.rso.compat.SDLKeycode;
+ 
+ import java.io.IOException;
+ import java.net.URI;
+@@ -52,7 +51,7 @@ import java.util.Objects;
+ import java.util.Optional;
+ import java.util.Set;
+ 
+-public class SodiumVideoOptionsScreen extends Screen implements ScreenPromptable, PreviousScreenHolder {
++public class SodiumVideoOptionsScreen extends org.embeddedt.embeddium.impl.gui.rso.compat.RsoScreen implements ScreenPromptable, PreviousScreenHolder {
+ 
+     private static final OptionsScreenUiState SHARED_UI_STATE = new OptionsScreenUiState();
+     private static final Set<String> RSO_CONFIG_IDS = Set.of("reeses-sodium-options", "reeses_sodium_options");
+@@ -69,9 +68,9 @@ public class SodiumVideoOptionsScreen extends Screen implements ScreenPromptable
+     static {
+         DONATION_PROMPT_MESSAGE = List.of(
+                 FormattedText.composite(Component.literal("Hello!")),
+-                FormattedText.composite(Component.literal("It seems that you've been enjoying "), Component.literal("Sodium").withColor(0x27eb92), Component.literal(", the free and open-source optimization mod for Minecraft.")),
+-                FormattedText.composite(Component.literal("Mods like these are complex. They require "), Component.literal("thousands of hours").withColor(0xff6e00), Component.literal(" of development, debugging, and tuning to create the experience that players have come to expect.")),
+-                FormattedText.composite(Component.literal("If you'd like to show your token of appreciation, and support the development of our mod in the process, then consider "), Component.literal("buying us a coffee").withColor(0xed49ce), Component.literal(".")),
++                FormattedText.composite(Component.literal("It seems that you've been enjoying "), Component.literal("Sodium").withStyle(style -> style.withColor(0x27eb92)), Component.literal(", the free and open-source optimization mod for Minecraft.")),
++                FormattedText.composite(Component.literal("Mods like these are complex. They require "), Component.literal("thousands of hours").withStyle(style -> style.withColor(0xff6e00)), Component.literal(" of development, debugging, and tuning to create the experience that players have come to expect.")),
++                FormattedText.composite(Component.literal("If you'd like to show your token of appreciation, and support the development of our mod in the process, then consider "), Component.literal("buying us a coffee").withStyle(style -> style.withColor(0xed49ce)), Component.literal(".")),
+                 FormattedText.composite(Component.literal("And thanks again for using our mod! We hope it helps you (and your computer.)"))
+         );
+     }
+@@ -93,6 +92,7 @@ public class SodiumVideoOptionsScreen extends Screen implements ScreenPromptable
+         super(Component.literal("Reese's Sodium Menu"));
+         this.prevScreen = prev;
+         this.uiState = SHARED_UI_STATE;
++        ConfigManager.CONFIG.beginScreenSession();
+ 
+         this.checkPromptTimers();
+ 
+@@ -162,7 +162,7 @@ public class SodiumVideoOptionsScreen extends Screen implements ScreenPromptable
+         }
+     }
+ 
+-    private void openDonationPrompt(SodiumOptions options) {
++    private void openDonationPrompt(SodiumGameOptions options) {
+         var prompt = new ScreenPrompt(this, DONATION_PROMPT_MESSAGE, 320, 190,
+                 new ScreenPrompt.Action(Component.literal("Buy us a coffee"), this::openDonationPage));
+         prompt.setFocused(true);
+@@ -170,7 +170,7 @@ public class SodiumVideoOptionsScreen extends Screen implements ScreenPromptable
+         options.notifications.hasSeenDonationPrompt = true;
+ 
+         try {
+-            SodiumOptions.writeToDisk(options);
++            SodiumGameOptions.writeToDisk(options);
+         } catch (IOException e) {
+             SodiumClientMod.logger()
+                     .error("Failed to update config file", e);
+@@ -354,11 +354,11 @@ public class SodiumVideoOptionsScreen extends Screen implements ScreenPromptable
+     }
+ 
+     private void hideDonationButton() {
+-        SodiumOptions options = SodiumClientMod.options();
++        SodiumGameOptions options = SodiumClientMod.options();
+         options.notifications.hasClearedDonationButton = true;
+ 
+         try {
+-            SodiumOptions.writeToDisk(options);
++            SodiumGameOptions.writeToDisk(options);
+         } catch (IOException e) {
+             throw new RuntimeException("Failed to save configuration", e);
+         }
+@@ -370,11 +370,11 @@ public class SodiumVideoOptionsScreen extends Screen implements ScreenPromptable
+     }
+ 
+     private void openDonationPage() {
+-        Blaze3D.openUri(URI.create("https://caffeinemc.net/donate"));
++        net.minecraft.Util.getPlatform().openUri(URI.create("https://caffeinemc.net/donate"));
+     }
+ 
+     @Override
+-    public boolean mouseClicked(@NonNull MouseButtonEvent event, boolean repeated) {
++    public boolean mouseClicked(@NotNull MouseButtonEvent event, boolean repeated) {
+         this.clearArrowNavigationMemory();
+         String previousTabKey = this.getSelectedTabKey();
+ 
+@@ -389,7 +389,7 @@ public class SodiumVideoOptionsScreen extends Screen implements ScreenPromptable
+     }
+ 
+     @Override
+-    public boolean mouseReleased(@NonNull MouseButtonEvent event) {
++    public boolean mouseReleased(@NotNull MouseButtonEvent event) {
+         boolean handled = super.mouseReleased(event);
+ 
+         if (event.button() == InputConstants.MOUSE_BUTTON_LEFT && this.rootFrame != null) {
+@@ -400,7 +400,7 @@ public class SodiumVideoOptionsScreen extends Screen implements ScreenPromptable
+     }
+ 
+     @Override
+-    public boolean keyPressed(@NonNull KeyEvent event) {
++    public boolean keyPressed(@NotNull KeyEvent event) {
+         BaseWidget.setKeyboardFocusVisible(true);
+ 
+         if (this.prompt != null) {
+@@ -431,7 +431,7 @@ public class SodiumVideoOptionsScreen extends Screen implements ScreenPromptable
+         }
+ 
+         if (event.shortcutKey() == SDLKeycode.SDLK_P && event.hasShiftDown() && !this.isSearchTextFieldFocused()) {
+-            this.minecraft.gui.setScreen(new VideoSettingsScreen(this.prevScreen, this.minecraft, this.minecraft.options));
++            this.minecraft.setScreen(new VideoSettingsScreen(this.prevScreen, this.minecraft.options));
+ 
+             return true;
+         }
+@@ -487,11 +487,11 @@ public class SodiumVideoOptionsScreen extends Screen implements ScreenPromptable
+     }
+ 
+     private boolean isSearchShortcut(KeyEvent event) {
+-        return event.shortcutKey() == InputConstants.KEYCODE_F && event.hasControlDown();
++        return event.shortcutKey() == org.lwjgl.glfw.GLFW.GLFW_KEY_F && event.hasControlDown();
+     }
+ 
+     private boolean isUndoShortcut(KeyEvent event) {
+-        return event.shortcutKey() == InputConstants.KEYCODE_Z && event.hasControlDown();
++        return event.shortcutKey() == org.lwjgl.glfw.GLFW.GLFW_KEY_Z && event.hasControlDown();
+     }
+ 
+     private boolean isApplyShortcut(KeyEvent event) {
+@@ -522,19 +522,19 @@ public class SodiumVideoOptionsScreen extends Screen implements ScreenPromptable
+         boolean handled = true;
+ 
+         switch (event.shortcutKey()) {
+-            case InputConstants.KEYCODE_HOME -> {
++            case org.lwjgl.glfw.GLFW.GLFW_KEY_HOME -> {
+                 this.tabFrame.scrollSelectedPageToStart();
+                 target = this.tabFrame.findFirstSelectedOptionRow();
+             }
+-            case InputConstants.KEYCODE_END -> {
++            case org.lwjgl.glfw.GLFW.GLFW_KEY_END -> {
+                 this.tabFrame.scrollSelectedPageToEnd();
+                 target = this.tabFrame.findLastSelectedOptionRow();
+             }
+-            case InputConstants.KEYCODE_PAGEUP -> {
++            case org.lwjgl.glfw.GLFW.GLFW_KEY_PAGE_UP -> {
+                 handled = this.tabFrame.scrollSelectedPage(-1);
+                 target = this.tabFrame.findFirstVisibleSelectedOptionRow();
+             }
+-            case InputConstants.KEYCODE_PAGEDOWN -> {
++            case org.lwjgl.glfw.GLFW.GLFW_KEY_PAGE_DOWN -> {
+                 handled = this.tabFrame.scrollSelectedPage(1);
+                 target = this.tabFrame.findLastVisibleSelectedOptionRow();
+             }
+@@ -578,7 +578,7 @@ public class SodiumVideoOptionsScreen extends Screen implements ScreenPromptable
+             return false;
+         }
+ 
+-        Identifier optionId = this.uiState.focusedOptionIdsByTab().get(tabKey);
++        ResourceLocation optionId = this.uiState.focusedOptionIdsByTab().get(tabKey);
+ 
+         return optionId != null && this.focusOptionRow(this.tabFrame.findSelectedOptionRow(optionId));
+     }
+@@ -715,7 +715,7 @@ public class SodiumVideoOptionsScreen extends Screen implements ScreenPromptable
+     public boolean rso$handleControllerPress() {
+         BaseWidget.setKeyboardFocusVisible(true);
+ 
+-        return this.keyPressed(new KeyEvent(InputConstants.KEY_RETURN, InputConstants.KEYCODE_RETURN, 0));
++        return this.keyPressed(new KeyEvent(InputConstants.KEY_RETURN, org.lwjgl.glfw.GLFW.GLFW_KEY_ENTER, 0));
+     }
+ 
+     public void rso$afterControllerInput(@Nullable String previousTabKey) {
+@@ -769,28 +769,28 @@ public class SodiumVideoOptionsScreen extends Screen implements ScreenPromptable
+                 || this.lastArrowDirection == null
+                 || currentFocusPath == null
+                 || direction != this.lastArrowDirection.getOpposite()
+-                || currentFocusPath.leafComponent() != this.currentArrowFocusLeaf
+-                || !this.containsFocusLeaf(this.previousArrowFocusPath.leafComponent())) {
++                || org.embeddedt.embeddium.impl.gui.rso.compat.FocusPaths.leaf(currentFocusPath) != this.currentArrowFocusLeaf
++                || !this.containsFocusLeaf(org.embeddedt.embeddium.impl.gui.rso.compat.FocusPaths.leaf(this.previousArrowFocusPath))) {
+             return false;
+         }
+ 
+         ComponentPath previousPath = this.previousArrowFocusPath;
+         this.changeFocus(previousPath);
+         this.previousArrowFocusPath = currentFocusPath;
+-        this.currentArrowFocusLeaf = previousPath.leafComponent();
++        this.currentArrowFocusLeaf = org.embeddedt.embeddium.impl.gui.rso.compat.FocusPaths.leaf(previousPath);
+         this.lastArrowDirection = direction;
+ 
+         return true;
+     }
+ 
+     private void rememberArrowNavigation(ScreenDirection direction, @Nullable ComponentPath previousPath, ComponentPath currentPath) {
+-        if (previousPath == null || previousPath.leafComponent() == currentPath.leafComponent()) {
++        if (previousPath == null || org.embeddedt.embeddium.impl.gui.rso.compat.FocusPaths.leaf(previousPath) == org.embeddedt.embeddium.impl.gui.rso.compat.FocusPaths.leaf(currentPath)) {
+             this.clearArrowNavigationMemory();
+             return;
+         }
+ 
+         this.previousArrowFocusPath = previousPath;
+-        this.currentArrowFocusLeaf = currentPath.leafComponent();
++        this.currentArrowFocusLeaf = org.embeddedt.embeddium.impl.gui.rso.compat.FocusPaths.leaf(currentPath);
+         this.lastArrowDirection = direction;
+     }
+ 
+@@ -801,7 +801,7 @@ public class SodiumVideoOptionsScreen extends Screen implements ScreenPromptable
+     }
+ 
+     private boolean containsFocusLeaf(GuiEventListener leaf) {
+-        for (GuiEventListener child : this.children()) {
++        for (net.minecraft.client.gui.components.events.GuiEventListener child : this.children()) {
+             if (containsFocusLeaf(child, leaf)) {
+                 return true;
+             }
+@@ -810,13 +810,13 @@ public class SodiumVideoOptionsScreen extends Screen implements ScreenPromptable
+         return false;
+     }
+ 
+-    private static boolean containsFocusLeaf(GuiEventListener component, GuiEventListener leaf) {
++    private static boolean containsFocusLeaf(net.minecraft.client.gui.components.events.GuiEventListener component, GuiEventListener leaf) {
+         if (component == leaf) {
+             return true;
+         }
+ 
+         if (component instanceof ContainerEventHandler container) {
+-            for (GuiEventListener child : container.children()) {
++            for (net.minecraft.client.gui.components.events.GuiEventListener child : container.children()) {
+                 if (containsFocusLeaf(child, leaf)) {
+                     return true;
+                 }
+@@ -838,10 +838,10 @@ public class SodiumVideoOptionsScreen extends Screen implements ScreenPromptable
+ 
+     private static KeyEvent keyEventForDirection(ScreenDirection direction) {
+         return switch (direction) {
+-            case LEFT -> new KeyEvent(InputConstants.KEY_LEFT, InputConstants.KEYCODE_LEFT, 0);
+-            case RIGHT -> new KeyEvent(InputConstants.KEY_RIGHT, InputConstants.KEYCODE_RIGHT, 0);
+-            case UP -> new KeyEvent(InputConstants.KEY_UP, InputConstants.KEYCODE_UP, 0);
+-            case DOWN -> new KeyEvent(InputConstants.KEY_DOWN, InputConstants.KEYCODE_DOWN, 0);
++            case LEFT -> new KeyEvent(InputConstants.KEY_LEFT, org.lwjgl.glfw.GLFW.GLFW_KEY_LEFT, 0);
++            case RIGHT -> new KeyEvent(InputConstants.KEY_RIGHT, org.lwjgl.glfw.GLFW.GLFW_KEY_RIGHT, 0);
++            case UP -> new KeyEvent(InputConstants.KEY_UP, org.lwjgl.glfw.GLFW.GLFW_KEY_UP, 0);
++            case DOWN -> new KeyEvent(InputConstants.KEY_DOWN, org.lwjgl.glfw.GLFW.GLFW_KEY_DOWN, 0);
+         };
+     }
+ 
+@@ -857,7 +857,7 @@ public class SodiumVideoOptionsScreen extends Screen implements ScreenPromptable
+         this.uiState.updateSearchResults(false, List.of());
+         this.uiState.clearOptionUiStates();
+         this.uiState.focusedOptionIdsByTab().clear();
+-        this.minecraft.gui.setScreen(this.prevScreen);
++        this.minecraft.setScreen(this.prevScreen);
+     }
+ 
+     @Override
+diff --git a/client/gui/SodiumWidgetDimensions.java b/client/gui/SodiumWidgetDimensions.java
+index 9d6a7d22..46b06dfe 100644
+--- a/client/gui/SodiumWidgetDimensions.java
++++ b/client/gui/SodiumWidgetDimensions.java
+@@ -1,6 +1,6 @@
+ package me.flashyreese.mods.reeses_sodium_options.client.gui;
+ 
+-import net.caffeinemc.mods.sodium.client.util.Dim2i;
++import org.embeddedt.embeddium.impl.gui.rso.compat.sodium.client.util.Dim2i;
+ 
+ public interface SodiumWidgetDimensions {
+     void rso$setDimensions(Dim2i dim);
+diff --git a/client/gui/frame/AbstractFrame.java b/client/gui/frame/AbstractFrame.java
+index 09908945..7d86c382 100644
+--- a/client/gui/frame/AbstractFrame.java
++++ b/client/gui/frame/AbstractFrame.java
+@@ -3,19 +3,18 @@ package me.flashyreese.mods.reeses_sodium_options.client.gui.frame;
+ import me.flashyreese.mods.reeses_sodium_options.client.gui.layout.LayoutBounds;
+ import me.flashyreese.mods.reeses_sodium_options.client.gui.widget.BaseWidget;
+ import me.flashyreese.mods.reeses_sodium_options.client.gui.frame.option.OptionRow;
+-import net.caffeinemc.mods.sodium.client.config.structure.ModOptions;
++import org.embeddedt.embeddium.impl.gui.rso.compat.sodium.client.config.structure.ModOptions;
+ import net.minecraft.client.gui.ComponentPath;
+-import net.minecraft.client.gui.GuiGraphicsExtractor;
+-import net.minecraft.client.gui.components.Renderable;
+-import net.minecraft.client.gui.components.events.ContainerEventHandler;
+-import net.minecraft.client.gui.components.events.GuiEventListener;
++import org.embeddedt.embeddium.impl.gui.rso.compat.GuiGraphicsExtractor;
++import org.embeddedt.embeddium.impl.gui.rso.compat.Renderable;
++import org.embeddedt.embeddium.impl.gui.rso.compat.ContainerEventHandler;
++import org.embeddedt.embeddium.impl.gui.rso.compat.GuiEventListener;
+ import net.minecraft.client.gui.navigation.FocusNavigationEvent;
+-import net.minecraft.client.gui.narration.NarratableEntry;
++import org.embeddedt.embeddium.impl.gui.rso.compat.NarratableEntry;
+ import net.minecraft.client.gui.screens.Screen;
+-import net.minecraft.client.input.KeyEvent;
++import org.embeddedt.embeddium.impl.gui.rso.compat.KeyEvent;
+ import org.jetbrains.annotations.NotNull;
+ import org.jetbrains.annotations.Nullable;
+-import org.jspecify.annotations.NonNull;
+ 
+ import java.util.ArrayList;
+ import java.util.Collection;
+@@ -194,7 +193,7 @@ public abstract class AbstractFrame extends BaseWidget implements ContainerEvent
+     }
+ 
+     @Override
+-    public @NonNull Collection<? extends NarratableEntry> getNarratables() {
++    public @NotNull Collection<? extends NarratableEntry> getNarratables() {
+         List<NarratableEntry> narratables = new ArrayList<>();
+ 
+         for (GuiEventListener child : this.children) {
+@@ -207,7 +206,7 @@ public abstract class AbstractFrame extends BaseWidget implements ContainerEvent
+     }
+ 
+     @Override
+-    public boolean keyPressed(@NonNull KeyEvent event) {
++    public boolean keyPressed(@NotNull KeyEvent event) {
+         GuiEventListener focused = this.getFocused();
+ 
+         return focused != null && focused.keyPressed(event);
+diff --git a/client/gui/frame/BasicFrame.java b/client/gui/frame/BasicFrame.java
+index fc8c752c..1676f413 100644
+--- a/client/gui/frame/BasicFrame.java
++++ b/client/gui/frame/BasicFrame.java
+@@ -1,7 +1,7 @@
+ package me.flashyreese.mods.reeses_sodium_options.client.gui.frame;
+ 
+ import me.flashyreese.mods.reeses_sodium_options.client.gui.layout.LayoutBounds;
+-import net.minecraft.client.gui.components.events.GuiEventListener;
++import org.embeddedt.embeddium.impl.gui.rso.compat.GuiEventListener;
+ import net.minecraft.client.gui.screens.Screen;
+ import org.apache.commons.lang3.Validate;
+ 
+diff --git a/client/gui/frame/ScrollableFrame.java b/client/gui/frame/ScrollableFrame.java
+index b8062959..c80b987a 100644
+--- a/client/gui/frame/ScrollableFrame.java
++++ b/client/gui/frame/ScrollableFrame.java
+@@ -5,13 +5,12 @@ import me.flashyreese.mods.reeses_sodium_options.client.gui.widget.BaseWidget;
+ import me.flashyreese.mods.reeses_sodium_options.client.gui.widget.ScrollBarWidget;
+ import me.flashyreese.mods.reeses_sodium_options.client.gui.frame.option.OptionRow;
+ import me.flashyreese.mods.reeses_sodium_options.client.gui.state.Holder;
+-import net.caffeinemc.mods.sodium.client.config.structure.ModOptions;
+-import net.minecraft.client.gui.GuiGraphicsExtractor;
++import org.embeddedt.embeddium.impl.gui.rso.compat.sodium.client.config.structure.ModOptions;
++import org.embeddedt.embeddium.impl.gui.rso.compat.GuiGraphicsExtractor;
+ import net.minecraft.client.gui.screens.Screen;
+-import net.minecraft.client.input.MouseButtonEvent;
++import org.embeddedt.embeddium.impl.gui.rso.compat.MouseButtonEvent;
+ import org.jetbrains.annotations.NotNull;
+ import org.jetbrains.annotations.Nullable;
+-import org.jspecify.annotations.NonNull;
+ 
+ public class ScrollableFrame extends AbstractFrame {
+ 
+@@ -143,17 +142,17 @@ public class ScrollableFrame extends AbstractFrame {
+     }
+ 
+     @Override
+-    public boolean mouseClicked(@NonNull MouseButtonEvent event, boolean doubleClick) {
++    public boolean mouseClicked(@NotNull MouseButtonEvent event, boolean doubleClick) {
+         return super.mouseClicked(event, doubleClick) || (this.scrollLayout.canScrollHorizontal() && this.horizontalScrollBar.mouseClicked(event, doubleClick)) || (this.scrollLayout.canScrollVertical() && this.verticalScrollBar.mouseClicked(event, doubleClick));
+     }
+ 
+     @Override
+-    public boolean mouseDragged(@NonNull MouseButtonEvent event, double deltaX, double deltaY) {
++    public boolean mouseDragged(@NotNull MouseButtonEvent event, double deltaX, double deltaY) {
+         return super.mouseDragged(event, deltaX, deltaY) || (this.scrollLayout.canScrollHorizontal() && this.horizontalScrollBar.mouseDragged(event, deltaX, deltaY)) || (this.scrollLayout.canScrollVertical() && this.verticalScrollBar.mouseDragged(event, deltaX, deltaY));
+     }
+ 
+     @Override
+-    public boolean mouseReleased(@NonNull MouseButtonEvent event) {
++    public boolean mouseReleased(@NotNull MouseButtonEvent event) {
+         return super.mouseReleased(event) || (this.scrollLayout.canScrollHorizontal() && this.horizontalScrollBar.mouseReleased(event)) || (this.scrollLayout.canScrollVertical() && this.verticalScrollBar.mouseReleased(event));
+     }
+ 
+diff --git a/client/gui/frame/option/AbstractOptionRow.java b/client/gui/frame/option/AbstractOptionRow.java
+index 3c2eaf18..0c92560a 100644
+--- a/client/gui/frame/option/AbstractOptionRow.java
++++ b/client/gui/frame/option/AbstractOptionRow.java
+@@ -1,7 +1,7 @@
+ package me.flashyreese.mods.reeses_sodium_options.client.gui.frame.option;
+ 
+ import com.mojang.blaze3d.platform.InputConstants;
+-import com.mojang.blaze3d.platform.cursor.CursorTypes;
++import org.embeddedt.embeddium.impl.gui.rso.compat.CursorTypes;
+ import me.flashyreese.mods.reeses_sodium_options.client.gui.control.ControlGuide;
+ import me.flashyreese.mods.reeses_sodium_options.client.gui.control.ControlGuideProvider;
+ import me.flashyreese.mods.reeses_sodium_options.client.gui.layout.LayoutBounds;
+@@ -13,27 +13,26 @@ import me.flashyreese.mods.reeses_sodium_options.client.gui.theme.GuiTheme;
+ import me.flashyreese.mods.reeses_sodium_options.client.gui.widget.BaseWidget;
+ import me.flashyreese.mods.reeses_sodium_options.client.gui.frame.option.action.OptionActionButtonController;
+ import me.flashyreese.mods.reeses_sodium_options.client.gui.frame.option.action.OptionUndoAction;
+-import net.caffeinemc.mods.sodium.client.config.structure.Option;
+-import net.caffeinemc.mods.sodium.client.config.structure.StatefulOption;
++import org.embeddedt.embeddium.impl.gui.rso.compat.sodium.client.config.structure.Option;
++import org.embeddedt.embeddium.impl.gui.rso.compat.sodium.client.config.structure.StatefulOption;
+ import net.minecraft.network.chat.Component;
+ import net.minecraft.network.chat.MutableComponent;
+ import net.minecraft.network.chat.Style;
+ import net.minecraft.client.gui.ComponentPath;
+-import net.minecraft.client.gui.GuiGraphicsExtractor;
+-import net.minecraft.client.gui.components.events.ContainerEventHandler;
+-import net.minecraft.client.gui.components.events.GuiEventListener;
++import org.embeddedt.embeddium.impl.gui.rso.compat.GuiGraphicsExtractor;
++import org.embeddedt.embeddium.impl.gui.rso.compat.ContainerEventHandler;
++import org.embeddedt.embeddium.impl.gui.rso.compat.GuiEventListener;
+ import net.minecraft.client.gui.navigation.FocusNavigationEvent;
+-import net.minecraft.client.gui.narration.NarratableEntry;
++import org.embeddedt.embeddium.impl.gui.rso.compat.NarratableEntry;
+ import net.minecraft.client.gui.narration.NarratedElementType;
+ import net.minecraft.client.gui.narration.NarrationElementOutput;
+-import net.minecraft.client.input.KeyEvent;
+-import net.minecraft.client.input.MouseButtonEvent;
++import org.embeddedt.embeddium.impl.gui.rso.compat.KeyEvent;
++import org.embeddedt.embeddium.impl.gui.rso.compat.MouseButtonEvent;
+ import net.minecraft.ChatFormatting;
+ import net.minecraft.network.chat.CommonComponents;
+ import org.jetbrains.annotations.NotNull;
+ import org.jetbrains.annotations.Nullable;
+-import org.jspecify.annotations.NonNull;
+-import org.lwjgl.sdl.SDLMouse;
++import org.embeddedt.embeddium.impl.gui.rso.compat.SDLMouse;
+ 
+ import java.util.ArrayList;
+ import java.util.Collection;
+@@ -75,7 +74,7 @@ abstract class AbstractOptionRow extends BaseWidget implements ContainerEventHan
+     }
+ 
+     @Override
+-    public void extractRenderState(@NonNull GuiGraphicsExtractor guiGraphics, int mouseX, int mouseY, float delta) {
++    public void extractRenderState(@NotNull GuiGraphicsExtractor guiGraphics, int mouseX, int mouseY, float delta) {
+         if (this.statefulOption != null) {
+             // Collapse no-op changes (validated value back to applied) so change tracking stays
+             // accurate. Done here as an explicit per-frame step rather than inside isActive/canUndo,
+@@ -95,13 +94,13 @@ abstract class AbstractOptionRow extends BaseWidget implements ContainerEventHan
+     }
+ 
+     @Override
+-    public final boolean mouseClicked(@NonNull MouseButtonEvent event, boolean doubleClick) {
++    public final boolean mouseClicked(@NotNull MouseButtonEvent event, boolean doubleClick) {
+         return this.actionButtons.mouseClicked(event, doubleClick)
+                 || this.controlMouseClicked(event, doubleClick);
+     }
+ 
+     @Override
+-    public final boolean keyPressed(@NonNull KeyEvent event) {
++    public final boolean keyPressed(@NotNull KeyEvent event) {
+         return this.actionButtons.keyPressedFocusedChild(event)
+                 || this.controlKeyPressed(event);
+     }
+@@ -135,7 +134,7 @@ abstract class AbstractOptionRow extends BaseWidget implements ContainerEventHan
+     }
+ 
+     @Override
+-    public @Nullable ComponentPath nextFocusPath(@NonNull FocusNavigationEvent navigation) {
++    public @Nullable ComponentPath nextFocusPath(@NotNull FocusNavigationEvent navigation) {
+         OptionActionButtonController.FocusPathResult result = this.actionButtons
+                 .nextFocusPath(this, this, this.rowFocused, navigation);
+         if (result.handled()) {
+@@ -155,7 +154,7 @@ abstract class AbstractOptionRow extends BaseWidget implements ContainerEventHan
+     }
+ 
+     @Override
+-    public @NonNull NarrationPriority narrationPriority() {
++    public @NotNull NarrationPriority narrationPriority() {
+         if (this.rowFocused) {
+             return NarrationPriority.FOCUSED;
+         }
+@@ -164,7 +163,7 @@ abstract class AbstractOptionRow extends BaseWidget implements ContainerEventHan
+     }
+ 
+     @Override
+-    public @NonNull Collection<? extends NarratableEntry> getNarratables() {
++    public @NotNull Collection<? extends NarratableEntry> getNarratables() {
+         List<NarratableEntry> narratables = new ArrayList<>();
+         narratables.add(this);
+ 
+@@ -178,7 +177,7 @@ abstract class AbstractOptionRow extends BaseWidget implements ContainerEventHan
+     }
+ 
+     @Override
+-    public void updateNarration(@NonNull NarrationElementOutput builder) {
++    public void updateNarration(@NotNull NarrationElementOutput builder) {
+         Component value = this.narrationValue();
+         Component title = value == null ? this.getOption().getName() : CommonComponents.optionNameValue(this.getOption().getName(), value);
+ 
+diff --git a/client/gui/frame/option/BooleanOptionRow.java b/client/gui/frame/option/BooleanOptionRow.java
+index a1aa7617..54f73a2a 100644
+--- a/client/gui/frame/option/BooleanOptionRow.java
++++ b/client/gui/frame/option/BooleanOptionRow.java
+@@ -4,8 +4,8 @@ import me.flashyreese.mods.reeses_sodium_options.client.gui.layout.LayoutBounds;
+ import me.flashyreese.mods.reeses_sodium_options.client.gui.control.ControlGuide;
+ import me.flashyreese.mods.reeses_sodium_options.client.gui.state.OptionStateStore;
+ import me.flashyreese.mods.reeses_sodium_options.client.gui.theme.GuiTheme;
+-import net.caffeinemc.mods.sodium.client.config.structure.BooleanOption;
+-import net.minecraft.client.gui.GuiGraphicsExtractor;
++import org.embeddedt.embeddium.impl.gui.rso.compat.sodium.client.config.structure.BooleanOption;
++import org.embeddedt.embeddium.impl.gui.rso.compat.GuiGraphicsExtractor;
+ import net.minecraft.client.gui.narration.NarratedElementType;
+ import net.minecraft.client.gui.narration.NarrationElementOutput;
+ import net.minecraft.network.chat.CommonComponents;
+diff --git a/client/gui/frame/option/EnumOptionRow.java b/client/gui/frame/option/EnumOptionRow.java
+index b1eb2453..ecbb8bc3 100644
+--- a/client/gui/frame/option/EnumOptionRow.java
++++ b/client/gui/frame/option/EnumOptionRow.java
+@@ -6,13 +6,13 @@ import me.flashyreese.mods.reeses_sodium_options.client.gui.control.ControlGuide
+ import me.flashyreese.mods.reeses_sodium_options.client.gui.layout.LayoutBounds;
+ import me.flashyreese.mods.reeses_sodium_options.client.gui.state.OptionStateStore;
+ import me.flashyreese.mods.reeses_sodium_options.client.gui.theme.GuiTheme;
+-import net.caffeinemc.mods.sodium.client.config.structure.EnumOption;
++import org.embeddedt.embeddium.impl.gui.rso.compat.sodium.client.config.structure.EnumOption;
+ import net.minecraft.client.Minecraft;
+-import net.minecraft.client.gui.GuiGraphicsExtractor;
++import org.embeddedt.embeddium.impl.gui.rso.compat.GuiGraphicsExtractor;
+ import net.minecraft.client.gui.narration.NarratedElementType;
+ import net.minecraft.client.gui.narration.NarrationElementOutput;
+-import net.minecraft.client.input.KeyEvent;
+-import net.minecraft.client.input.MouseButtonEvent;
++import org.embeddedt.embeddium.impl.gui.rso.compat.KeyEvent;
++import org.embeddedt.embeddium.impl.gui.rso.compat.MouseButtonEvent;
+ import net.minecraft.network.chat.Component;
+ 
+ import java.util.List;
+@@ -62,7 +62,7 @@ final class EnumOptionRow<E extends Enum<E>> extends AbstractOptionRow {
+ 
+     @Override
+     protected boolean controlMouseClicked(MouseButtonEvent event, boolean doubleClick) {
+-        boolean reverse = Minecraft.getInstance().hasShiftDown();
++        boolean reverse = net.minecraft.client.gui.screens.Screen.hasShiftDown();
+         if (event.button() == InputConstants.MOUSE_BUTTON_RIGHT) {
+             if (!ReeseSodiumOptionsConfig.config().isReverseCyclingControls()) {
+                 return false;
+@@ -90,14 +90,14 @@ final class EnumOptionRow<E extends Enum<E>> extends AbstractOptionRow {
+             return false;
+         }
+ 
+-        this.cycleControl(Minecraft.getInstance().hasShiftDown());
++        this.cycleControl(net.minecraft.client.gui.screens.Screen.hasShiftDown());
+ 
+         return true;
+     }
+ 
+     @Override
+     protected boolean activateControl() {
+-        this.cycleControl(Minecraft.getInstance().hasShiftDown());
++        this.cycleControl(net.minecraft.client.gui.screens.Screen.hasShiftDown());
+ 
+         return true;
+     }
+diff --git a/client/gui/frame/option/ExternalButtonOptionRow.java b/client/gui/frame/option/ExternalButtonOptionRow.java
+index 40b590ae..49885d54 100644
+--- a/client/gui/frame/option/ExternalButtonOptionRow.java
++++ b/client/gui/frame/option/ExternalButtonOptionRow.java
+@@ -3,9 +3,9 @@ package me.flashyreese.mods.reeses_sodium_options.client.gui.frame.option;
+ import me.flashyreese.mods.reeses_sodium_options.client.gui.layout.LayoutBounds;
+ import me.flashyreese.mods.reeses_sodium_options.client.gui.state.OptionStateStore;
+ import me.flashyreese.mods.reeses_sodium_options.client.gui.theme.GuiTheme;
+-import net.caffeinemc.mods.sodium.client.config.structure.ExternalButtonOption;
++import org.embeddedt.embeddium.impl.gui.rso.compat.sodium.client.config.structure.ExternalButtonOption;
+ import net.minecraft.ChatFormatting;
+-import net.minecraft.client.gui.GuiGraphicsExtractor;
++import org.embeddedt.embeddium.impl.gui.rso.compat.GuiGraphicsExtractor;
+ import net.minecraft.client.gui.narration.NarratedElementType;
+ import net.minecraft.client.gui.narration.NarrationElementOutput;
+ import net.minecraft.client.gui.screens.Screen;
+diff --git a/client/gui/frame/option/IntegerSliderOptionRow.java b/client/gui/frame/option/IntegerSliderOptionRow.java
+index a60ba981..beba55ca 100644
+--- a/client/gui/frame/option/IntegerSliderOptionRow.java
++++ b/client/gui/frame/option/IntegerSliderOptionRow.java
+@@ -1,24 +1,24 @@
+ package me.flashyreese.mods.reeses_sodium_options.client.gui.frame.option;
+ 
+ import com.mojang.blaze3d.platform.InputConstants;
+-import com.mojang.blaze3d.platform.cursor.CursorTypes;
++import org.embeddedt.embeddium.impl.gui.rso.compat.CursorTypes;
+ import me.flashyreese.mods.reeses_sodium_options.client.config.ReeseSodiumOptionsConfig;
+ import me.flashyreese.mods.reeses_sodium_options.client.gui.control.ControlGuide;
+ import me.flashyreese.mods.reeses_sodium_options.client.gui.layout.LayoutBounds;
+ import me.flashyreese.mods.reeses_sodium_options.client.gui.state.OptionStateStore;
+ import me.flashyreese.mods.reeses_sodium_options.client.gui.theme.GuiTheme;
+ import me.flashyreese.mods.reeses_sodium_options.client.gui.widget.BaseWidget;
+-import net.caffeinemc.mods.sodium.api.config.option.SteppedValidator;
+-import net.caffeinemc.mods.sodium.client.config.structure.IntegerOption;
++import org.embeddedt.embeddium.impl.gui.rso.compat.sodium.api.config.option.SteppedValidator;
++import org.embeddedt.embeddium.impl.gui.rso.compat.sodium.client.config.structure.IntegerOption;
+ import net.minecraft.client.Minecraft;
+-import net.minecraft.client.gui.GuiGraphicsExtractor;
++import org.embeddedt.embeddium.impl.gui.rso.compat.GuiGraphicsExtractor;
+ import net.minecraft.client.gui.narration.NarratedElementType;
+ import net.minecraft.client.gui.narration.NarrationElementOutput;
+-import net.minecraft.client.input.KeyEvent;
+-import net.minecraft.client.input.MouseButtonEvent;
++import org.embeddedt.embeddium.impl.gui.rso.compat.KeyEvent;
++import org.embeddedt.embeddium.impl.gui.rso.compat.MouseButtonEvent;
+ import net.minecraft.network.chat.Component;
+ import net.minecraft.util.Mth;
+-import org.jspecify.annotations.NonNull;
++import org.jetbrains.annotations.NotNull;
+ 
+ import java.util.List;
+ 
+@@ -126,7 +126,7 @@ final class IntegerSliderOptionRow extends AbstractOptionRow {
+     }
+ 
+     @Override
+-    public boolean mouseDragged(@NonNull MouseButtonEvent event, double deltaX, double deltaY) {
++    public boolean mouseDragged(@NotNull MouseButtonEvent event, double deltaX, double deltaY) {
+         if (!this.sliderHeld || event.button() != InputConstants.MOUSE_BUTTON_LEFT || !this.option.isEnabled()) {
+             return false;
+         }
+@@ -138,7 +138,7 @@ final class IntegerSliderOptionRow extends AbstractOptionRow {
+     }
+ 
+     @Override
+-    public boolean mouseReleased(@NonNull MouseButtonEvent event) {
++    public boolean mouseReleased(@NotNull MouseButtonEvent event) {
+         if (event.button() != InputConstants.MOUSE_BUTTON_LEFT || !this.sliderHeld) {
+             return false;
+         }
+@@ -155,7 +155,7 @@ final class IntegerSliderOptionRow extends AbstractOptionRow {
+         if (!ReeseSodiumOptionsConfig.config().isShiftScrollSliderAdjustments()
+                 || !this.option.isEnabled()
+                 || this.option.shouldHideControl()
+-                || !Minecraft.getInstance().hasShiftDown()
++                || !net.minecraft.client.gui.screens.Screen.hasShiftDown()
+                 || !this.isMouseOverSlider(mouseX, mouseY)) {
+             return false;
+         }
+diff --git a/client/gui/frame/option/OptionRow.java b/client/gui/frame/option/OptionRow.java
+index a70de7f8..d763946e 100644
+--- a/client/gui/frame/option/OptionRow.java
++++ b/client/gui/frame/option/OptionRow.java
+@@ -1,10 +1,10 @@
+ package me.flashyreese.mods.reeses_sodium_options.client.gui.frame.option;
+ 
+ import me.flashyreese.mods.reeses_sodium_options.client.gui.layout.LayoutBounds;
+-import net.caffeinemc.mods.sodium.client.config.structure.Option;
+-import net.minecraft.client.gui.components.Renderable;
+-import net.minecraft.client.gui.components.events.GuiEventListener;
+-import net.minecraft.client.gui.narration.NarratableEntry;
++import org.embeddedt.embeddium.impl.gui.rso.compat.sodium.client.config.structure.Option;
++import org.embeddedt.embeddium.impl.gui.rso.compat.Renderable;
++import org.embeddedt.embeddium.impl.gui.rso.compat.GuiEventListener;
++import org.embeddedt.embeddium.impl.gui.rso.compat.NarratableEntry;
+ 
+ public interface OptionRow extends Renderable, GuiEventListener, NarratableEntry {
+     Option getOption();
+diff --git a/client/gui/frame/option/OptionRowFactory.java b/client/gui/frame/option/OptionRowFactory.java
+index 7485b8af..8b7fdc9d 100644
+--- a/client/gui/frame/option/OptionRowFactory.java
++++ b/client/gui/frame/option/OptionRowFactory.java
+@@ -4,17 +4,17 @@ import me.flashyreese.mods.reeses_sodium_options.client.gui.layout.LayoutBounds;
+ import me.flashyreese.mods.reeses_sodium_options.client.gui.option.OptionExtended;
+ import me.flashyreese.mods.reeses_sodium_options.client.gui.state.OptionStateStore;
+ import me.flashyreese.mods.reeses_sodium_options.client.gui.theme.GuiTheme;
+-import net.caffeinemc.mods.sodium.client.gui.ColorTheme;
+-import net.caffeinemc.mods.sodium.client.config.structure.BooleanOption;
+-import net.caffeinemc.mods.sodium.client.config.structure.EnumOption;
+-import net.caffeinemc.mods.sodium.client.config.structure.ExternalButtonOption;
+-import net.caffeinemc.mods.sodium.client.config.structure.IntegerOption;
+-import net.caffeinemc.mods.sodium.client.config.structure.Option;
+-import net.caffeinemc.mods.sodium.client.gui.options.control.Control;
+-import net.caffeinemc.mods.sodium.client.gui.options.control.CyclingControl;
+-import net.caffeinemc.mods.sodium.client.gui.options.control.ExternalButtonControl;
+-import net.caffeinemc.mods.sodium.client.gui.options.control.SliderControl;
+-import net.caffeinemc.mods.sodium.client.gui.options.control.TickBoxControl;
++import org.embeddedt.embeddium.impl.gui.rso.compat.sodium.client.gui.ColorTheme;
++import org.embeddedt.embeddium.impl.gui.rso.compat.sodium.client.config.structure.BooleanOption;
++import org.embeddedt.embeddium.impl.gui.rso.compat.sodium.client.config.structure.EnumOption;
++import org.embeddedt.embeddium.impl.gui.rso.compat.sodium.client.config.structure.ExternalButtonOption;
++import org.embeddedt.embeddium.impl.gui.rso.compat.sodium.client.config.structure.IntegerOption;
++import org.embeddedt.embeddium.impl.gui.rso.compat.sodium.client.config.structure.Option;
++import org.embeddedt.embeddium.impl.gui.rso.compat.sodium.client.gui.options.control.Control;
++import org.embeddedt.embeddium.impl.gui.rso.compat.sodium.client.gui.options.control.CyclingControl;
++import org.embeddedt.embeddium.impl.gui.rso.compat.sodium.client.gui.options.control.ExternalButtonControl;
++import org.embeddedt.embeddium.impl.gui.rso.compat.sodium.client.gui.options.control.SliderControl;
++import org.embeddedt.embeddium.impl.gui.rso.compat.sodium.client.gui.options.control.TickBoxControl;
+ import net.minecraft.client.gui.screens.Screen;
+ import org.slf4j.Logger;
+ import org.slf4j.LoggerFactory;
+@@ -61,13 +61,11 @@ final class OptionRowFactory {
+     private OptionRow createOptionRow(Option option, LayoutBounds dim) {
+         Control control = option.getControl();
+ 
+-        return switch (option) {
+-            case BooleanOption booleanOption when control instanceof TickBoxControl -> new BooleanOptionRow(dim, this.theme, this.optionStateStore, booleanOption);
+-            case IntegerOption integerOption when control instanceof SliderControl -> new IntegerSliderOptionRow(dim, this.theme, this.optionStateStore, integerOption);
+-            case EnumOption<?> enumOption when control instanceof CyclingControl<?> -> new EnumOptionRow<>(dim, this.theme, this.optionStateStore, enumOption);
+-            case ExternalButtonOption externalButtonOption when control instanceof ExternalButtonControl -> new ExternalButtonOptionRow(this.screen, dim, this.theme, this.optionStateStore, externalButtonOption);
+-            default -> this.createSodiumFallbackRow(option, dim);
+-        };
++        if (option instanceof BooleanOption value && control instanceof TickBoxControl) return new BooleanOptionRow(dim, this.theme, this.optionStateStore, value);
++        if (option instanceof IntegerOption value && control instanceof SliderControl) return new IntegerSliderOptionRow(dim, this.theme, this.optionStateStore, value);
++        if (option instanceof EnumOption<?> value && control instanceof CyclingControl<?>) return new EnumOptionRow<>(dim, this.theme, this.optionStateStore, value);
++        if (option instanceof ExternalButtonOption value && control instanceof ExternalButtonControl) return new ExternalButtonOptionRow(this.screen, dim, this.theme, this.optionStateStore, value);
++        return this.createSodiumFallbackRow(option, dim);
+     }
+ 
+     private OptionRow createSodiumFallbackRow(Option option, LayoutBounds dim) {
+diff --git a/client/gui/frame/option/OptionTooltipController.java b/client/gui/frame/option/OptionTooltipController.java
+index f56aceb4..c5005c97 100644
+--- a/client/gui/frame/option/OptionTooltipController.java
++++ b/client/gui/frame/option/OptionTooltipController.java
+@@ -6,12 +6,12 @@ import me.flashyreese.mods.reeses_sodium_options.client.gui.option.OptionExtende
+ import me.flashyreese.mods.reeses_sodium_options.client.gui.state.OptionStateStore;
+ import me.flashyreese.mods.reeses_sodium_options.client.gui.theme.GuiThemes;
+ import me.flashyreese.mods.reeses_sodium_options.client.gui.widget.BaseWidget;
+-import net.caffeinemc.mods.sodium.api.config.option.OptionImpact;
+-import net.caffeinemc.mods.sodium.client.config.structure.ModOptions;
+-import net.caffeinemc.mods.sodium.client.config.structure.Option;
++import org.embeddedt.embeddium.impl.gui.rso.compat.sodium.api.config.option.OptionImpact;
++import org.embeddedt.embeddium.impl.gui.rso.compat.sodium.client.config.structure.ModOptions;
++import org.embeddedt.embeddium.impl.gui.rso.compat.sodium.client.config.structure.Option;
+ import net.minecraft.ChatFormatting;
+ import net.minecraft.client.Minecraft;
+-import net.minecraft.client.gui.GuiGraphicsExtractor;
++import org.embeddedt.embeddium.impl.gui.rso.compat.GuiGraphicsExtractor;
+ import net.minecraft.locale.Language;
+ import net.minecraft.network.chat.Component;
+ import net.minecraft.util.FormattedCharSequence;
+diff --git a/client/gui/frame/option/PageFrame.java b/client/gui/frame/option/PageFrame.java
+index e0a45631..d67ee8dd 100644
+--- a/client/gui/frame/option/PageFrame.java
++++ b/client/gui/frame/option/PageFrame.java
+@@ -10,13 +10,13 @@ import me.flashyreese.mods.reeses_sodium_options.client.gui.theme.GuiThemes;
+ import me.flashyreese.mods.reeses_sodium_options.client.gui.theme.GuiTheme;
+ import me.flashyreese.mods.reeses_sodium_options.client.gui.state.SearchResultOrder;
+ import me.flashyreese.mods.reeses_sodium_options.client.gui.widget.LabelWidget;
+-import net.caffeinemc.mods.sodium.client.config.structure.ModOptions;
+-import net.caffeinemc.mods.sodium.client.config.structure.Option;
+-import net.caffeinemc.mods.sodium.client.config.structure.Page;
+-import net.minecraft.client.gui.GuiGraphicsExtractor;
+-import net.minecraft.client.gui.components.events.GuiEventListener;
++import org.embeddedt.embeddium.impl.gui.rso.compat.sodium.client.config.structure.ModOptions;
++import org.embeddedt.embeddium.impl.gui.rso.compat.sodium.client.config.structure.Option;
++import org.embeddedt.embeddium.impl.gui.rso.compat.sodium.client.config.structure.Page;
++import org.embeddedt.embeddium.impl.gui.rso.compat.GuiGraphicsExtractor;
++import org.embeddedt.embeddium.impl.gui.rso.compat.GuiEventListener;
+ import net.minecraft.client.gui.screens.Screen;
+-import net.minecraft.resources.Identifier;
++import net.minecraft.resources.ResourceLocation;
+ import org.apache.commons.lang3.Validate;
+ import org.jetbrains.annotations.NotNull;
+ import org.jetbrains.annotations.Nullable;
+@@ -31,9 +31,9 @@ public class PageFrame extends AbstractFrame {
+     private final OptionStateStore optionStateStore;
+     private final OptionRowFactory optionRowFactory;
+     private final OptionTooltipController tooltipController;
+-    private final Map<Identifier, LabelWidget> groupHeaderWidgets = new HashMap<>();
+-    private final Map<Identifier, OptionRow> optionRowWidgets = new HashMap<>();
+-    private @Nullable Consumer<Identifier> groupToggleRebuildHandler;
++    private final Map<ResourceLocation, LabelWidget> groupHeaderWidgets = new HashMap<>();
++    private final Map<ResourceLocation, OptionRow> optionRowWidgets = new HashMap<>();
++    private @Nullable Consumer<ResourceLocation> groupToggleRebuildHandler;
+     private PageLayout layout;
+ 
+     public PageFrame(Screen screen, LayoutBounds dim, boolean renderOutline, Page page, ModOptions modOptions, OptionStateStore optionStateStore) {
+@@ -90,7 +90,7 @@ public class PageFrame extends AbstractFrame {
+             return new LabelWidget(dim, labelRow.text(), labelColor);
+         }
+ 
+-        Identifier collapseKey = labelRow.collapseKey();
++        ResourceLocation collapseKey = labelRow.collapseKey();
+         LabelWidget widget = this.groupHeaderWidgets.computeIfAbsent(collapseKey, key ->
+                 new LabelWidget(dim, labelRow.text(), labelColor, this.optionRowTheme(), key, () -> this.toggleGroup(key), labelRow.collapsed()));
+         widget.setDim(dim);
+@@ -99,8 +99,8 @@ public class PageFrame extends AbstractFrame {
+         return widget;
+     }
+ 
+-    private void toggleGroup(Identifier collapseKey) {
+-        Set<Identifier> collapsed = this.optionStateStore.collapsedOptionGroups();
++    private void toggleGroup(ResourceLocation collapseKey) {
++        Set<ResourceLocation> collapsed = this.optionStateStore.collapsedOptionGroups();
+         if (!collapsed.remove(collapseKey)) {
+             collapsed.add(collapseKey);
+         }
+@@ -112,11 +112,11 @@ public class PageFrame extends AbstractFrame {
+         }
+     }
+ 
+-    public void setGroupToggleRebuildHandler(@Nullable Consumer<Identifier> groupToggleRebuildHandler) {
++    public void setGroupToggleRebuildHandler(@Nullable Consumer<ResourceLocation> groupToggleRebuildHandler) {
+         this.groupToggleRebuildHandler = groupToggleRebuildHandler;
+     }
+ 
+-    public boolean focusGroupHeader(Identifier collapseKey) {
++    public boolean focusGroupHeader(ResourceLocation collapseKey) {
+         for (GuiEventListener child : this.children) {
+             if (child instanceof LabelWidget labelWidget && collapseKey.equals(labelWidget.collapseKey())) {
+                 this.setFocused(labelWidget);
+@@ -133,7 +133,7 @@ public class PageFrame extends AbstractFrame {
+     }
+ 
+     private OptionRow getOptionRow(Option option, LayoutBounds dim) {
+-        Identifier optionId = option instanceof OptionExtended optionExtended ? optionExtended.rso$getId() : null;
++        ResourceLocation optionId = option instanceof OptionExtended optionExtended ? optionExtended.rso$getId() : null;
+         if (optionId == null) {
+             return this.optionRowFactory.create(option, dim);
+         }
+diff --git a/client/gui/frame/option/PageLayout.java b/client/gui/frame/option/PageLayout.java
+index 53d1d433..8a64a6c0 100644
+--- a/client/gui/frame/option/PageLayout.java
++++ b/client/gui/frame/option/PageLayout.java
+@@ -3,11 +3,11 @@ package me.flashyreese.mods.reeses_sodium_options.client.gui.frame.option;
+ import me.flashyreese.mods.reeses_sodium_options.client.gui.option.OptionExtended;
+ import me.flashyreese.mods.reeses_sodium_options.client.gui.state.SearchResultEntry;
+ import me.flashyreese.mods.reeses_sodium_options.client.gui.state.SearchResultOrder;
+-import net.caffeinemc.mods.sodium.client.config.structure.Option;
+-import net.caffeinemc.mods.sodium.client.config.structure.OptionGroup;
+-import net.caffeinemc.mods.sodium.client.config.structure.Page;
++import org.embeddedt.embeddium.impl.gui.rso.compat.sodium.client.config.structure.Option;
++import org.embeddedt.embeddium.impl.gui.rso.compat.sodium.client.config.structure.OptionGroup;
++import org.embeddedt.embeddium.impl.gui.rso.compat.sodium.client.config.structure.Page;
+ import net.minecraft.network.chat.Component;
+-import net.minecraft.resources.Identifier;
++import net.minecraft.resources.ResourceLocation;
+ import org.jetbrains.annotations.Nullable;
+ 
+ import java.util.ArrayList;
+@@ -30,7 +30,7 @@ final class PageLayout {
+         this.contentHeight = contentHeight;
+     }
+ 
+-    static PageLayout create(Page page, boolean searchActive, List<SearchResultEntry> results, SearchResultOrder resultOrder, boolean hideDisabledOptions, boolean collapsible, Set<Identifier> collapsedGroups) {
++    static PageLayout create(Page page, boolean searchActive, List<SearchResultEntry> results, SearchResultOrder resultOrder, boolean hideDisabledOptions, boolean collapsible, Set<ResourceLocation> collapsedGroups) {
+         if (searchActive) {
+             return createSearchLayout(buildSearchEntries(page, results, resultOrder, hideDisabledOptions));
+         }
+@@ -75,7 +75,7 @@ final class PageLayout {
+         return new PageLayout(rows, y);
+     }
+ 
+-    private static PageLayout createPageLayout(Page page, boolean hideDisabledOptions, boolean collapsible, Set<Identifier> collapsedGroups) {
++    private static PageLayout createPageLayout(Page page, boolean hideDisabledOptions, boolean collapsible, Set<ResourceLocation> collapsedGroups) {
+         List<Row> rows = new ArrayList<>();
+         List<VisibleGroup> groups = visibleGroups(page.groups(), hideDisabledOptions);
+         int y = 0;
+@@ -84,7 +84,7 @@ final class PageLayout {
+             VisibleGroup visibleGroup = groups.get(i);
+             OptionGroup group = visibleGroup.group();
+ 
+-            Identifier collapseKey = collapsible ? groupCollapseKey(group) : null;
++            ResourceLocation collapseKey = collapsible ? groupCollapseKey(group) : null;
+             boolean collapsed = collapseKey != null && collapsedGroups.contains(collapseKey);
+ 
+             if (hasLabel(group)) {
+@@ -130,7 +130,7 @@ final class PageLayout {
+         return visibleGroups;
+     }
+ 
+-    private static @Nullable Identifier groupCollapseKey(OptionGroup group) {
++    private static @Nullable ResourceLocation groupCollapseKey(OptionGroup group) {
+         for (Option option : group.options()) {
+             if (option instanceof OptionExtended optionExtended) {
+                 return optionExtended.rso$getId();
+@@ -200,7 +200,7 @@ final class PageLayout {
+         int y();
+     }
+ 
+-    record LabelRow(OptionGroup group, Component text, int y, @Nullable Identifier collapseKey, boolean collapsed) implements Row {
++    record LabelRow(OptionGroup group, Component text, int y, @Nullable ResourceLocation collapseKey, boolean collapsed) implements Row {
+         boolean collapsible() {
+             return this.collapseKey != null;
+         }
+diff --git a/client/gui/frame/option/SodiumControlElementOptionRow.java b/client/gui/frame/option/SodiumControlElementOptionRow.java
+index 6e8eb77c..2a86a97f 100644
+--- a/client/gui/frame/option/SodiumControlElementOptionRow.java
++++ b/client/gui/frame/option/SodiumControlElementOptionRow.java
+@@ -3,22 +3,21 @@ package me.flashyreese.mods.reeses_sodium_options.client.gui.frame.option;
+ import me.flashyreese.mods.reeses_sodium_options.client.gui.SodiumWidgetDimensions;
+ import me.flashyreese.mods.reeses_sodium_options.client.gui.layout.LayoutBounds;
+ import me.flashyreese.mods.reeses_sodium_options.client.gui.widget.BaseWidget;
+-import net.caffeinemc.mods.sodium.client.config.structure.Option;
+-import net.caffeinemc.mods.sodium.client.gui.ColorTheme;
+-import net.caffeinemc.mods.sodium.client.gui.options.control.AbstractOptionList;
+-import net.caffeinemc.mods.sodium.client.gui.options.control.ControlElement;
+-import net.caffeinemc.mods.sodium.client.util.Dim2i;
++import org.embeddedt.embeddium.impl.gui.rso.compat.sodium.client.config.structure.Option;
++import org.embeddedt.embeddium.impl.gui.rso.compat.sodium.client.gui.ColorTheme;
++import org.embeddedt.embeddium.impl.gui.rso.compat.sodium.client.gui.options.control.AbstractOptionList;
++import org.embeddedt.embeddium.impl.gui.rso.compat.sodium.client.gui.options.control.ControlElement;
++import org.embeddedt.embeddium.impl.gui.rso.compat.sodium.client.util.Dim2i;
+ import net.minecraft.client.gui.ComponentPath;
+-import net.minecraft.client.gui.GuiGraphicsExtractor;
+-import net.minecraft.client.gui.components.events.GuiEventListener;
++import org.embeddedt.embeddium.impl.gui.rso.compat.GuiGraphicsExtractor;
++import org.embeddedt.embeddium.impl.gui.rso.compat.GuiEventListener;
+ import net.minecraft.client.gui.navigation.FocusNavigationEvent;
+ import net.minecraft.client.gui.narration.NarrationElementOutput;
+ import net.minecraft.client.gui.screens.Screen;
+-import net.minecraft.client.input.KeyEvent;
+-import net.minecraft.client.input.MouseButtonEvent;
++import org.embeddedt.embeddium.impl.gui.rso.compat.KeyEvent;
++import org.embeddedt.embeddium.impl.gui.rso.compat.MouseButtonEvent;
+ import org.jetbrains.annotations.NotNull;
+ import org.jetbrains.annotations.Nullable;
+-import org.jspecify.annotations.NonNull;
+ 
+ import java.util.List;
+ 
+@@ -56,22 +55,22 @@ final class SodiumControlElementOptionRow extends BaseWidget implements OptionRo
+     }
+ 
+     @Override
+-    public void extractRenderState(@NonNull GuiGraphicsExtractor guiGraphics, int mouseX, int mouseY, float delta) {
++    public void extractRenderState(@NotNull GuiGraphicsExtractor guiGraphics, int mouseX, int mouseY, float delta) {
+         this.element.extractRenderState(guiGraphics, mouseX, mouseY, delta);
+     }
+ 
+     @Override
+-    public boolean mouseClicked(@NonNull MouseButtonEvent event, boolean doubleClick) {
++    public boolean mouseClicked(@NotNull MouseButtonEvent event, boolean doubleClick) {
+         return this.element.mouseClicked(event, doubleClick);
+     }
+ 
+     @Override
+-    public boolean mouseReleased(@NonNull MouseButtonEvent event) {
++    public boolean mouseReleased(@NotNull MouseButtonEvent event) {
+         return this.element.mouseReleased(event);
+     }
+ 
+     @Override
+-    public boolean mouseDragged(@NonNull MouseButtonEvent event, double deltaX, double deltaY) {
++    public boolean mouseDragged(@NotNull MouseButtonEvent event, double deltaX, double deltaY) {
+         return this.element.mouseDragged(event, deltaX, deltaY);
+     }
+ 
+@@ -81,7 +80,7 @@ final class SodiumControlElementOptionRow extends BaseWidget implements OptionRo
+     }
+ 
+     @Override
+-    public boolean keyPressed(@NonNull KeyEvent event) {
++    public boolean keyPressed(@NotNull KeyEvent event) {
+         return this.element.keyPressed(event);
+     }
+ 
+@@ -101,17 +100,17 @@ final class SodiumControlElementOptionRow extends BaseWidget implements OptionRo
+     }
+ 
+     @Override
+-    public @Nullable ComponentPath nextFocusPath(@NonNull FocusNavigationEvent navigation) {
++    public @Nullable ComponentPath nextFocusPath(@NotNull FocusNavigationEvent navigation) {
+         return this.isFocused() || !this.option.isEnabled() ? null : ComponentPath.leaf(this);
+     }
+ 
+     @Override
+-    public @NonNull NarrationPriority narrationPriority() {
++    public @NotNull NarrationPriority narrationPriority() {
+         return this.element.narrationPriority();
+     }
+ 
+     @Override
+-    public void updateNarration(@NonNull NarrationElementOutput builder) {
++    public void updateNarration(@NotNull NarrationElementOutput builder) {
+         this.element.updateNarration(builder);
+     }
+ 
+diff --git a/client/gui/frame/option/UnsupportedOptionRow.java b/client/gui/frame/option/UnsupportedOptionRow.java
+index 0e457bca..4316cbcd 100644
+--- a/client/gui/frame/option/UnsupportedOptionRow.java
++++ b/client/gui/frame/option/UnsupportedOptionRow.java
+@@ -3,8 +3,8 @@ package me.flashyreese.mods.reeses_sodium_options.client.gui.frame.option;
+ import me.flashyreese.mods.reeses_sodium_options.client.gui.layout.LayoutBounds;
+ import me.flashyreese.mods.reeses_sodium_options.client.gui.state.OptionStateStore;
+ import me.flashyreese.mods.reeses_sodium_options.client.gui.theme.GuiTheme;
+-import net.caffeinemc.mods.sodium.client.config.structure.Option;
+-import net.minecraft.client.gui.GuiGraphicsExtractor;
++import org.embeddedt.embeddium.impl.gui.rso.compat.sodium.client.config.structure.Option;
++import org.embeddedt.embeddium.impl.gui.rso.compat.GuiGraphicsExtractor;
+ import org.slf4j.Logger;
+ import org.slf4j.LoggerFactory;
+ 
+diff --git a/client/gui/frame/option/action/OptionActionButtonController.java b/client/gui/frame/option/action/OptionActionButtonController.java
+index cfe641c1..f34a1094 100644
+--- a/client/gui/frame/option/action/OptionActionButtonController.java
++++ b/client/gui/frame/option/action/OptionActionButtonController.java
+@@ -2,17 +2,17 @@ package me.flashyreese.mods.reeses_sodium_options.client.gui.frame.option.action
+ 
+ import com.mojang.blaze3d.platform.InputConstants;
+ import me.flashyreese.mods.reeses_sodium_options.client.gui.layout.LayoutBounds;
+-import net.caffeinemc.mods.sodium.client.config.structure.StatefulOption;
++import org.embeddedt.embeddium.impl.gui.rso.compat.sodium.client.config.structure.StatefulOption;
+ import net.minecraft.client.gui.ComponentPath;
+-import net.minecraft.client.gui.GuiGraphicsExtractor;
+-import net.minecraft.client.gui.components.events.ContainerEventHandler;
+-import net.minecraft.client.gui.components.events.GuiEventListener;
++import org.embeddedt.embeddium.impl.gui.rso.compat.GuiGraphicsExtractor;
++import org.embeddedt.embeddium.impl.gui.rso.compat.ContainerEventHandler;
++import org.embeddedt.embeddium.impl.gui.rso.compat.GuiEventListener;
+ import net.minecraft.client.gui.navigation.FocusNavigationEvent;
+ import net.minecraft.client.gui.navigation.ScreenDirection;
+-import net.minecraft.client.input.KeyEvent;
+-import net.minecraft.client.input.MouseButtonEvent;
++import org.embeddedt.embeddium.impl.gui.rso.compat.KeyEvent;
++import org.embeddedt.embeddium.impl.gui.rso.compat.MouseButtonEvent;
+ import net.minecraft.network.chat.Component;
+-import net.minecraft.resources.Identifier;
++import net.minecraft.resources.ResourceLocation;
+ import org.jetbrains.annotations.Nullable;
+ 
+ import java.util.ArrayList;
+@@ -286,7 +286,7 @@ public final class OptionActionButtonController {
+             return arrowNavigation.direction() == ScreenDirection.RIGHT;
+         }
+ 
+-        return navigation instanceof FocusNavigationEvent.TabNavigation(boolean forward) && forward;
++        return navigation instanceof FocusNavigationEvent.TabNavigation tab && tab.forward();
+     }
+ 
+     private boolean shouldReturnToControl(FocusNavigationEvent navigation) {
+@@ -294,7 +294,7 @@ public final class OptionActionButtonController {
+             return arrowNavigation.direction() == ScreenDirection.LEFT;
+         }
+ 
+-        return navigation instanceof FocusNavigationEvent.TabNavigation(boolean forward) && !forward;
++        return navigation instanceof FocusNavigationEvent.TabNavigation tab && !tab.forward();
+     }
+ 
+     private final class ActionButton {
+@@ -302,7 +302,7 @@ public final class OptionActionButtonController {
+         private final OptionActionButtonElement element;
+         private boolean heldVisible;
+ 
+-        private ActionButton(int index, Identifier icon, Component guideLabel, Function<StatefulOption<?>, Component> narrationLabelProvider, Predicate<StatefulOption<?>> visiblePredicate, Predicate<StatefulOption<?>> activePredicate, Consumer<StatefulOption<?>> action, Runnable clickSound) {
++        private ActionButton(int index, ResourceLocation icon, Component guideLabel, Function<StatefulOption<?>, Component> narrationLabelProvider, Predicate<StatefulOption<?>> visiblePredicate, Predicate<StatefulOption<?>> activePredicate, Consumer<StatefulOption<?>> action, Runnable clickSound) {
+             this.index = index;
+             this.element = new OptionActionButtonElement(
+                     OptionActionButtonController.this.rowBoundsSupplier,
+diff --git a/client/gui/frame/option/action/OptionActionButtonElement.java b/client/gui/frame/option/action/OptionActionButtonElement.java
+index 5ddc075a..8825b7be 100644
+--- a/client/gui/frame/option/action/OptionActionButtonElement.java
++++ b/client/gui/frame/option/action/OptionActionButtonElement.java
+@@ -4,21 +4,21 @@ import com.mojang.blaze3d.platform.InputConstants;
+ import me.flashyreese.mods.reeses_sodium_options.client.gui.layout.LayoutBounds;
+ import me.flashyreese.mods.reeses_sodium_options.client.gui.control.ControlGuide;
+ import me.flashyreese.mods.reeses_sodium_options.client.gui.control.ControlGuideProvider;
+-import net.caffeinemc.mods.sodium.client.config.structure.StatefulOption;
++import org.embeddedt.embeddium.impl.gui.rso.compat.sodium.client.config.structure.StatefulOption;
+ import net.minecraft.client.gui.ComponentPath;
+-import net.minecraft.client.gui.GuiGraphicsExtractor;
+-import net.minecraft.client.gui.components.events.GuiEventListener;
++import org.embeddedt.embeddium.impl.gui.rso.compat.GuiGraphicsExtractor;
++import org.embeddedt.embeddium.impl.gui.rso.compat.GuiEventListener;
+ import net.minecraft.client.gui.navigation.FocusNavigationEvent;
+ import net.minecraft.client.gui.navigation.ScreenRectangle;
+-import net.minecraft.client.gui.narration.NarratableEntry;
++import org.embeddedt.embeddium.impl.gui.rso.compat.NarratableEntry;
+ import net.minecraft.client.gui.narration.NarratedElementType;
+ import net.minecraft.client.gui.narration.NarrationElementOutput;
+-import net.minecraft.client.input.KeyEvent;
+-import net.minecraft.client.input.MouseButtonEvent;
++import org.embeddedt.embeddium.impl.gui.rso.compat.KeyEvent;
++import org.embeddedt.embeddium.impl.gui.rso.compat.MouseButtonEvent;
+ import net.minecraft.network.chat.Component;
+-import net.minecraft.resources.Identifier;
++import net.minecraft.resources.ResourceLocation;
+ import org.jetbrains.annotations.Nullable;
+-import org.jspecify.annotations.NonNull;
++import org.jetbrains.annotations.NotNull;
+ 
+ import java.util.function.Consumer;
+ import java.util.function.Function;
+@@ -31,7 +31,7 @@ final class OptionActionButtonElement implements GuiEventListener, NarratableEnt
+     private final Supplier<LayoutBounds> rowBoundsSupplier;
+     private final Supplier<@Nullable StatefulOption<?>> optionSupplier;
+     private final IntSupplier buttonsFromRight;
+-    private final Identifier icon;
++    private final ResourceLocation icon;
+     private final Component guideLabel;
+     private final Function<StatefulOption<?>, Component> narrationLabelProvider;
+     private final Predicate<StatefulOption<?>> visiblePredicate;
+@@ -43,7 +43,7 @@ final class OptionActionButtonElement implements GuiEventListener, NarratableEnt
+     private boolean hovered;
+ 
+     OptionActionButtonElement(Supplier<LayoutBounds> rowBoundsSupplier, Supplier<@Nullable StatefulOption<?>> optionSupplier,
+-                              IntSupplier buttonsFromRight, Identifier icon, Component guideLabel, Function<StatefulOption<?>, Component> narrationLabelProvider, Predicate<StatefulOption<?>> visiblePredicate, Predicate<StatefulOption<?>> activePredicate,
++                              IntSupplier buttonsFromRight, ResourceLocation icon, Component guideLabel, Function<StatefulOption<?>, Component> narrationLabelProvider, Predicate<StatefulOption<?>> visiblePredicate, Predicate<StatefulOption<?>> activePredicate,
+                               Consumer<StatefulOption<?>> action, Runnable clickSound, Runnable afterAction) {
+         this.rowBoundsSupplier = rowBoundsSupplier;
+         this.optionSupplier = optionSupplier;
+@@ -93,7 +93,7 @@ final class OptionActionButtonElement implements GuiEventListener, NarratableEnt
+     }
+ 
+     @Override
+-    public boolean mouseClicked(@NonNull MouseButtonEvent event, boolean doubleClick) {
++    public boolean mouseClicked(@NotNull MouseButtonEvent event, boolean doubleClick) {
+         if (event.button() != InputConstants.MOUSE_BUTTON_LEFT || !this.isMouseOver(event.x(), event.y())) {
+             return false;
+         }
+@@ -102,7 +102,7 @@ final class OptionActionButtonElement implements GuiEventListener, NarratableEnt
+     }
+ 
+     @Override
+-    public boolean keyPressed(@NonNull KeyEvent event) {
++    public boolean keyPressed(@NotNull KeyEvent event) {
+         if (!this.focused || !event.isSelection()) {
+             return false;
+         }
+@@ -125,7 +125,7 @@ final class OptionActionButtonElement implements GuiEventListener, NarratableEnt
+     }
+ 
+     @Override
+-    public @Nullable ComponentPath nextFocusPath(@NonNull FocusNavigationEvent navigation) {
++    public @Nullable ComponentPath nextFocusPath(@NotNull FocusNavigationEvent navigation) {
+         return this.isActive() && !this.focused ? ComponentPath.leaf(this) : null;
+     }
+ 
+@@ -138,7 +138,7 @@ final class OptionActionButtonElement implements GuiEventListener, NarratableEnt
+     }
+ 
+     @Override
+-    public @NonNull ScreenRectangle getRectangle() {
++    public @NotNull ScreenRectangle getRectangle() {
+         if (!this.isActive()) {
+             return ScreenRectangle.empty();
+         }
+@@ -159,7 +159,7 @@ final class OptionActionButtonElement implements GuiEventListener, NarratableEnt
+     }
+ 
+     @Override
+-    public @NonNull NarrationPriority narrationPriority() {
++    public @NotNull NarrationPriority narrationPriority() {
+         if (this.focused) {
+             return NarrationPriority.FOCUSED;
+         }
+@@ -168,7 +168,7 @@ final class OptionActionButtonElement implements GuiEventListener, NarratableEnt
+     }
+ 
+     @Override
+-    public void updateNarration(@NonNull NarrationElementOutput builder) {
++    public void updateNarration(@NotNull NarrationElementOutput builder) {
+         StatefulOption<?> option = this.optionSupplier.get();
+ 
+         if (option == null || !this.visiblePredicate.test(option) || !this.activePredicate.test(option)) {
+diff --git a/client/gui/frame/option/action/OptionActionButtonRenderer.java b/client/gui/frame/option/action/OptionActionButtonRenderer.java
+index a12816fd..6c0da910 100644
+--- a/client/gui/frame/option/action/OptionActionButtonRenderer.java
++++ b/client/gui/frame/option/action/OptionActionButtonRenderer.java
+@@ -1,11 +1,11 @@
+ package me.flashyreese.mods.reeses_sodium_options.client.gui.frame.option.action;
+ 
+-import com.mojang.blaze3d.platform.cursor.CursorTypes;
++import org.embeddedt.embeddium.impl.gui.rso.compat.CursorTypes;
+ import me.flashyreese.mods.reeses_sodium_options.client.gui.layout.LayoutBounds;
+ import me.flashyreese.mods.reeses_sodium_options.client.gui.widget.BaseWidget;
+-import net.minecraft.client.gui.GuiGraphicsExtractor;
+-import net.minecraft.client.renderer.RenderPipelines;
+-import net.minecraft.resources.Identifier;
++import org.embeddedt.embeddium.impl.gui.rso.compat.GuiGraphicsExtractor;
++import org.embeddedt.embeddium.impl.gui.rso.compat.RenderPipelines;
++import net.minecraft.resources.ResourceLocation;
+ 
+ final class OptionActionButtonRenderer {
+     private static final int ICON_SIZE = 10;
+@@ -23,7 +23,7 @@ final class OptionActionButtonRenderer {
+         return new LayoutBounds(x, rowBounds.y(), size, size);
+     }
+ 
+-    static void render(GuiGraphicsExtractor guiGraphics, Identifier icon, LayoutBounds buttonBounds, int mouseX, int mouseY, boolean focused, boolean active) {
++    static void render(GuiGraphicsExtractor guiGraphics, ResourceLocation icon, LayoutBounds buttonBounds, int mouseX, int mouseY, boolean focused, boolean active) {
+         boolean hovered = active && buttonBounds.contains(mouseX, mouseY);
+ 
+         guiGraphics.fill(buttonBounds.x(), buttonBounds.y(), buttonBounds.getLimitX(), buttonBounds.getLimitY(), active ? (hovered ? BACKGROUND_HOVERED : BACKGROUND) : BACKGROUND_DISABLED);
+diff --git a/client/gui/frame/option/action/OptionResetAction.java b/client/gui/frame/option/action/OptionResetAction.java
+index b7776633..29bf7ba2 100644
+--- a/client/gui/frame/option/action/OptionResetAction.java
++++ b/client/gui/frame/option/action/OptionResetAction.java
+@@ -2,14 +2,14 @@ package me.flashyreese.mods.reeses_sodium_options.client.gui.frame.option.action
+ 
+ import me.flashyreese.mods.reeses_sodium_options.client.config.ReeseSodiumOptionsConfig;
+ import me.flashyreese.mods.reeses_sodium_options.client.gui.option.OptionStateProvider;
+-import net.caffeinemc.mods.sodium.client.config.structure.Config;
+-import net.caffeinemc.mods.sodium.client.config.structure.StatefulOption;
+-import net.minecraft.resources.Identifier;
++import org.embeddedt.embeddium.impl.gui.rso.compat.sodium.client.config.structure.Config;
++import org.embeddedt.embeddium.impl.gui.rso.compat.sodium.client.config.structure.StatefulOption;
++import net.minecraft.resources.ResourceLocation;
+ 
+ import java.util.Objects;
+ 
+ public final class OptionResetAction {
+-    static final Identifier ICON = Identifier.fromNamespaceAndPath("reeses-sodium-options", "textures/gui/reset_to_default.png");
++    static final ResourceLocation ICON = new ResourceLocation("reeses-sodium-options", "textures/gui/reset_to_default.png");
+ 
+     public static boolean isVisible(StatefulOption<?> option) {
+         return ReeseSodiumOptionsConfig.config().isResetButtonOverlay()
+diff --git a/client/gui/frame/option/action/OptionUndoAction.java b/client/gui/frame/option/action/OptionUndoAction.java
+index a9cb8ccf..7f3887f8 100644
+--- a/client/gui/frame/option/action/OptionUndoAction.java
++++ b/client/gui/frame/option/action/OptionUndoAction.java
+@@ -1,13 +1,13 @@
+ package me.flashyreese.mods.reeses_sodium_options.client.gui.frame.option.action;
+ 
+ import me.flashyreese.mods.reeses_sodium_options.client.config.ReeseSodiumOptionsConfig;
+-import net.caffeinemc.mods.sodium.client.config.structure.StatefulOption;
+-import net.minecraft.resources.Identifier;
++import org.embeddedt.embeddium.impl.gui.rso.compat.sodium.client.config.structure.StatefulOption;
++import net.minecraft.resources.ResourceLocation;
+ 
+ import java.util.Objects;
+ 
+ public final class OptionUndoAction {
+-    static final Identifier ICON = Identifier.fromNamespaceAndPath("reeses-sodium-options", "textures/gui/undo_to_unmodified.png");
++    static final ResourceLocation ICON = new ResourceLocation("reeses-sodium-options", "textures/gui/undo_to_unmodified.png");
+ 
+     public static boolean isVisible(StatefulOption<?> option) {
+         return ReeseSodiumOptionsConfig.config().isUndoButtonOverlay()
+diff --git a/client/gui/frame/tab/Tab.java b/client/gui/frame/tab/Tab.java
+index a8129a56..56789f21 100644
+--- a/client/gui/frame/tab/Tab.java
++++ b/client/gui/frame/tab/Tab.java
+@@ -6,8 +6,8 @@ import me.flashyreese.mods.reeses_sodium_options.client.gui.state.OptionStateSto
+ import me.flashyreese.mods.reeses_sodium_options.client.gui.frame.AbstractFrame;
+ import me.flashyreese.mods.reeses_sodium_options.client.gui.frame.option.PageFrame;
+ import me.flashyreese.mods.reeses_sodium_options.client.gui.frame.ScrollableFrame;
+-import net.caffeinemc.mods.sodium.client.config.structure.ModOptions;
+-import net.caffeinemc.mods.sodium.client.config.structure.Page;
++import org.embeddedt.embeddium.impl.gui.rso.compat.sodium.client.config.structure.ModOptions;
++import org.embeddedt.embeddium.impl.gui.rso.compat.sodium.client.config.structure.Page;
+ import net.minecraft.client.gui.screens.Screen;
+ import net.minecraft.network.chat.Component;
+ 
+diff --git a/client/gui/frame/tab/TabButtonWidget.java b/client/gui/frame/tab/TabButtonWidget.java
+index efcb0c69..1072ff3c 100644
+--- a/client/gui/frame/tab/TabButtonWidget.java
++++ b/client/gui/frame/tab/TabButtonWidget.java
+@@ -6,14 +6,13 @@ import me.flashyreese.mods.reeses_sodium_options.client.gui.layout.LayoutBounds;
+ import me.flashyreese.mods.reeses_sodium_options.client.gui.theme.GuiThemes;
+ import me.flashyreese.mods.reeses_sodium_options.client.gui.theme.GuiTheme;
+ import me.flashyreese.mods.reeses_sodium_options.client.gui.widget.BaseWidget;
+-import net.minecraft.client.gui.GuiGraphicsExtractor;
++import org.embeddedt.embeddium.impl.gui.rso.compat.GuiGraphicsExtractor;
+ import net.minecraft.client.gui.narration.NarratedElementType;
+ import net.minecraft.client.gui.narration.NarrationElementOutput;
+-import net.minecraft.client.input.KeyEvent;
+-import net.minecraft.client.input.MouseButtonEvent;
++import org.embeddedt.embeddium.impl.gui.rso.compat.KeyEvent;
++import org.embeddedt.embeddium.impl.gui.rso.compat.MouseButtonEvent;
+ import net.minecraft.network.chat.Component;
+ import org.jetbrains.annotations.NotNull;
+-import org.jspecify.annotations.NonNull;
+ 
+ final class TabButtonWidget extends BaseWidget {
+     private static final int TEXT_X = 10;
+@@ -67,7 +66,7 @@ final class TabButtonWidget extends BaseWidget {
+     }
+ 
+     @Override
+-    public boolean keyPressed(@NonNull KeyEvent event) {
++    public boolean keyPressed(@NotNull KeyEvent event) {
+         if (this.isFocused() && event.isSelection()) {
+             this.doAction();
+             return true;
+@@ -77,7 +76,7 @@ final class TabButtonWidget extends BaseWidget {
+     }
+ 
+     @Override
+-    public void updateNarration(@NonNull NarrationElementOutput builder) {
++    public void updateNarration(@NotNull NarrationElementOutput builder) {
+         builder.add(NarratedElementType.TITLE, Component.translatable("gui.narrate.tab", this.tab.getTitle()));
+ 
+         if (!this.selected) {
+diff --git a/client/gui/frame/tab/TabFrame.java b/client/gui/frame/tab/TabFrame.java
+index dbfd56b7..11749ddd 100644
+--- a/client/gui/frame/tab/TabFrame.java
++++ b/client/gui/frame/tab/TabFrame.java
+@@ -6,16 +6,15 @@ import me.flashyreese.mods.reeses_sodium_options.client.gui.frame.option.OptionR
+ import me.flashyreese.mods.reeses_sodium_options.client.gui.state.Holder;
+ import me.flashyreese.mods.reeses_sodium_options.client.gui.state.OptionStateStore;
+ import me.flashyreese.mods.reeses_sodium_options.client.gui.widget.BaseWidget;
+-import net.caffeinemc.mods.sodium.client.config.structure.ModOptions;
+-import net.minecraft.client.gui.GuiGraphicsExtractor;
+-import net.minecraft.client.gui.components.Renderable;
+-import net.minecraft.client.gui.components.events.GuiEventListener;
++import org.embeddedt.embeddium.impl.gui.rso.compat.sodium.client.config.structure.ModOptions;
++import org.embeddedt.embeddium.impl.gui.rso.compat.GuiGraphicsExtractor;
++import org.embeddedt.embeddium.impl.gui.rso.compat.Renderable;
++import org.embeddedt.embeddium.impl.gui.rso.compat.GuiEventListener;
+ import net.minecraft.client.gui.screens.Screen;
+-import net.minecraft.client.input.MouseButtonEvent;
+-import net.minecraft.resources.Identifier;
++import org.embeddedt.embeddium.impl.gui.rso.compat.MouseButtonEvent;
++import net.minecraft.resources.ResourceLocation;
+ import org.apache.commons.lang3.Validate;
+ import org.jetbrains.annotations.NotNull;
+-import org.jspecify.annotations.NonNull;
+ 
+ import java.util.ArrayList;
+ import java.util.HashSet;
+@@ -138,12 +137,12 @@ public class TabFrame extends AbstractFrame {
+     }
+ 
+     @Override
+-    public boolean mouseDragged(@NonNull MouseButtonEvent event, double deltaX, double deltaY) {
++    public boolean mouseDragged(@NotNull MouseButtonEvent event, double deltaX, double deltaY) {
+         return super.mouseDragged(event, deltaX, deltaY) || this.tabRail.mouseDragged(event, deltaX, deltaY);
+     }
+ 
+     @Override
+-    public boolean mouseReleased(@NonNull MouseButtonEvent event) {
++    public boolean mouseReleased(@NotNull MouseButtonEvent event) {
+         return super.mouseReleased(event) || this.tabRail.mouseReleased(event);
+     }
+ 
+@@ -168,7 +167,7 @@ public class TabFrame extends AbstractFrame {
+         return this.tabSelection.selectedTabKey();
+     }
+ 
+-    public OptionRow findSelectedOptionRow(Identifier optionId) {
++    public OptionRow findSelectedOptionRow(ResourceLocation optionId) {
+         return this.tabSelection.findSelectedOptionRow(optionId);
+     }
+ 
+diff --git a/client/gui/frame/tab/TabGroup.java b/client/gui/frame/tab/TabGroup.java
+index 273aa40c..03b2bf9b 100644
+--- a/client/gui/frame/tab/TabGroup.java
++++ b/client/gui/frame/tab/TabGroup.java
+@@ -1,6 +1,6 @@
+ package me.flashyreese.mods.reeses_sodium_options.client.gui.frame.tab;
+ 
+-import net.caffeinemc.mods.sodium.client.config.structure.ModOptions;
++import org.embeddedt.embeddium.impl.gui.rso.compat.sodium.client.config.structure.ModOptions;
+ 
+ import java.util.List;
+ 
+diff --git a/client/gui/frame/tab/TabRail.java b/client/gui/frame/tab/TabRail.java
+index b7a1a70a..9a387edb 100644
+--- a/client/gui/frame/tab/TabRail.java
++++ b/client/gui/frame/tab/TabRail.java
+@@ -9,13 +9,13 @@ import me.flashyreese.mods.reeses_sodium_options.client.gui.state.Holder;
+ import me.flashyreese.mods.reeses_sodium_options.client.gui.state.OptionStateStore;
+ import me.flashyreese.mods.reeses_sodium_options.client.gui.state.SearchResultEntry;
+ import me.flashyreese.mods.reeses_sodium_options.client.gui.widget.TabHeaderWidget;
+-import net.caffeinemc.mods.sodium.client.config.structure.ExternalPage;
++import org.embeddedt.embeddium.impl.gui.rso.compat.sodium.client.config.structure.ExternalPage;
+ import net.minecraft.client.Minecraft;
+-import net.minecraft.client.gui.GuiGraphicsExtractor;
+-import net.minecraft.client.gui.components.events.GuiEventListener;
+-import net.minecraft.client.input.MouseButtonEvent;
++import org.embeddedt.embeddium.impl.gui.rso.compat.GuiGraphicsExtractor;
++import org.embeddedt.embeddium.impl.gui.rso.compat.GuiEventListener;
++import org.embeddedt.embeddium.impl.gui.rso.compat.MouseButtonEvent;
+ import org.jetbrains.annotations.Nullable;
+-import org.jspecify.annotations.NonNull;
++import org.jetbrains.annotations.NotNull;
+ 
+ import java.util.ArrayList;
+ import java.util.HashMap;
+@@ -183,11 +183,11 @@ final class TabRail {
+         return this.canScroll && this.scrollBar.mouseClicked(event, doubleClick);
+     }
+ 
+-    boolean mouseDragged(@NonNull MouseButtonEvent event, double deltaX, double deltaY) {
++    boolean mouseDragged(@NotNull MouseButtonEvent event, double deltaX, double deltaY) {
+         return this.canScroll && this.scrollBar.mouseDragged(event, deltaX, deltaY);
+     }
+ 
+-    boolean mouseReleased(@NonNull MouseButtonEvent event) {
++    boolean mouseReleased(@NotNull MouseButtonEvent event) {
+         return this.canScroll && this.scrollBar.mouseReleased(event);
+     }
+ 
+@@ -199,12 +199,12 @@ final class TabRail {
+         switch (this.groupModel.collapseMode()) {
+             case SELECTED_GROUP -> {
+                 this.groupModel.selectGroup(group);
+-                tabSelector.accept(group.tabs().getFirst());
++                tabSelector.accept(group.tabs().get(0));
+             }
+-            case ALL_EXPANDED -> tabSelector.accept(group.tabs().getFirst());
++            case ALL_EXPANDED -> tabSelector.accept(group.tabs().get(0));
+             case MANUAL -> {
+                 if (this.groupModel.isSinglePageGroupCollapsed(group)) {
+-                    tabSelector.accept(group.tabs().getFirst());
++                    tabSelector.accept(group.tabs().get(0));
+                 } else {
+                     this.groupModel.toggleManualGroup(group);
+                     rebuildFrame.run();
+@@ -275,9 +275,9 @@ final class TabRail {
+                 .max()
+                 .orElse(0);
+         int preferredWidth = textWidth + (this.canScroll ? TabFrame.TAB_RAIL_SCROLL_PADDING : TabFrame.TAB_RAIL_PADDING);
+-        int maximumWidth = Math.clamp((int) (frameDim.width() * TabFrame.TAB_RAIL_MAX_WIDTH_RATIO), TabFrame.TAB_RAIL_MIN_WIDTH, TabFrame.TAB_RAIL_MAX_WIDTH);
++        int maximumWidth = org.embeddedt.embeddium.impl.gui.rso.compat.Java17Math.clamp((int) (frameDim.width() * TabFrame.TAB_RAIL_MAX_WIDTH_RATIO), TabFrame.TAB_RAIL_MIN_WIDTH, TabFrame.TAB_RAIL_MAX_WIDTH);
+ 
+-        return Math.clamp(preferredWidth, TabFrame.TAB_RAIL_MIN_WIDTH, maximumWidth);
++        return org.embeddedt.embeddium.impl.gui.rso.compat.Java17Math.clamp(preferredWidth, TabFrame.TAB_RAIL_MIN_WIDTH, maximumWidth);
+     }
+ 
+     private int getTextWidth(Tab<?> tab) {
+diff --git a/client/gui/frame/tab/TabSelectionState.java b/client/gui/frame/tab/TabSelectionState.java
+index 43c2a358..cf204b7a 100644
+--- a/client/gui/frame/tab/TabSelectionState.java
++++ b/client/gui/frame/tab/TabSelectionState.java
+@@ -6,10 +6,10 @@ import me.flashyreese.mods.reeses_sodium_options.client.gui.frame.AbstractFrame;
+ import me.flashyreese.mods.reeses_sodium_options.client.gui.frame.option.OptionRow;
+ import me.flashyreese.mods.reeses_sodium_options.client.gui.frame.ScrollableFrame;
+ import me.flashyreese.mods.reeses_sodium_options.client.gui.state.Holder;
+-import net.caffeinemc.mods.sodium.client.config.structure.ExternalPage;
+-import net.minecraft.client.gui.components.events.GuiEventListener;
++import org.embeddedt.embeddium.impl.gui.rso.compat.sodium.client.config.structure.ExternalPage;
++import org.embeddedt.embeddium.impl.gui.rso.compat.GuiEventListener;
+ import net.minecraft.client.gui.screens.Screen;
+-import net.minecraft.resources.Identifier;
++import net.minecraft.resources.ResourceLocation;
+ import org.jetbrains.annotations.Nullable;
+ 
+ import java.util.HashMap;
+@@ -48,7 +48,7 @@ final class TabSelectionState {
+             return;
+         }
+ 
+-        this.selectedTab = Optional.ofNullable(this.tabs.getFirst());
++        this.selectedTab = Optional.ofNullable(this.tabs.get(0));
+         this.selectedTab.ifPresent(selectedTabConsumer);
+     }
+ 
+@@ -109,7 +109,7 @@ final class TabSelectionState {
+     }
+ 
+     @Nullable
+-    OptionRow findSelectedOptionRow(Identifier optionId) {
++    OptionRow findSelectedOptionRow(ResourceLocation optionId) {
+         if (this.selectedFrame == null) {
+             return null;
+         }
+diff --git a/client/gui/option/OptionExtended.java b/client/gui/option/OptionExtended.java
+index 3ea083e6..e8ba64f1 100644
+--- a/client/gui/option/OptionExtended.java
++++ b/client/gui/option/OptionExtended.java
+@@ -1,7 +1,7 @@
+ package me.flashyreese.mods.reeses_sodium_options.client.gui.option;
+ 
+-import net.minecraft.resources.Identifier;
++import net.minecraft.resources.ResourceLocation;
+ 
+ public interface OptionExtended {
+-    Identifier rso$getId();
++    ResourceLocation rso$getId();
+ }
+diff --git a/client/gui/option/OptionStateProvider.java b/client/gui/option/OptionStateProvider.java
+index 303ab14b..4e70238c 100644
+--- a/client/gui/option/OptionStateProvider.java
++++ b/client/gui/option/OptionStateProvider.java
+@@ -1,6 +1,6 @@
+ package me.flashyreese.mods.reeses_sodium_options.client.gui.option;
+ 
+-import net.caffeinemc.mods.sodium.client.config.structure.Config;
++import org.embeddedt.embeddium.impl.gui.rso.compat.sodium.client.config.structure.Config;
+ import org.jetbrains.annotations.Nullable;
+ 
+ public interface OptionStateProvider {
+diff --git a/client/gui/search/OptionSearch.java b/client/gui/search/OptionSearch.java
+index dc3e8b7b..6ffa87d1 100644
+--- a/client/gui/search/OptionSearch.java
++++ b/client/gui/search/OptionSearch.java
+@@ -10,10 +10,10 @@ import me.flashyreese.mods.reeses_sodium_options.client.gui.state.SearchResultEn
+ import me.flashyreese.mods.reeses_sodium_options.client.gui.state.SearchResultOrder;
+ import me.flashyreese.mods.reeses_sodium_options.client.search.SearchIndex;
+ import me.flashyreese.mods.reeses_sodium_options.client.search.SearchResult;
+-import net.caffeinemc.mods.sodium.client.config.structure.ModOptions;
+-import net.caffeinemc.mods.sodium.client.config.structure.Option;
+-import net.caffeinemc.mods.sodium.client.config.structure.Page;
+-import net.minecraft.resources.Identifier;
++import org.embeddedt.embeddium.impl.gui.rso.compat.sodium.client.config.structure.ModOptions;
++import org.embeddedt.embeddium.impl.gui.rso.compat.sodium.client.config.structure.Option;
++import org.embeddedt.embeddium.impl.gui.rso.compat.sodium.client.config.structure.Page;
++import net.minecraft.resources.ResourceLocation;
+ import org.jetbrains.annotations.Nullable;
+ 
+ import java.util.ArrayList;
+@@ -118,7 +118,7 @@ final class OptionSearch {
+         return new NavigationTarget(result.tabKey(), optionUiState, bounds, parentBounds);
+     }
+ 
+-    private record SearchableOption(Identifier id, String tabKey, Option option, String searchableText) {
++    private record SearchableOption(ResourceLocation id, String tabKey, Option option, String searchableText) {
+         SearchResultEntry toSearchResult() {
+             return new SearchResultEntry(this.tabKey, this.id, this.option);
+         }
+diff --git a/client/gui/search/SearchTextFieldWidget.java b/client/gui/search/SearchTextFieldWidget.java
+index f33354e7..b9845039 100644
+--- a/client/gui/search/SearchTextFieldWidget.java
++++ b/client/gui/search/SearchTextFieldWidget.java
+@@ -1,20 +1,20 @@
+ package me.flashyreese.mods.reeses_sodium_options.client.gui.search;
+ 
+ import com.mojang.blaze3d.platform.InputConstants;
+-import com.mojang.blaze3d.platform.cursor.CursorTypes;
++import org.embeddedt.embeddium.impl.gui.rso.compat.CursorTypes;
+ import me.flashyreese.mods.reeses_sodium_options.client.gui.layout.LayoutBounds;
+ import me.flashyreese.mods.reeses_sodium_options.client.gui.state.OptionsScreenUiState;
+ import me.flashyreese.mods.reeses_sodium_options.client.gui.state.SearchResultEntry;
+ import me.flashyreese.mods.reeses_sodium_options.client.gui.state.SearchResultOrder;
+ import me.flashyreese.mods.reeses_sodium_options.client.gui.theme.GuiThemes;
+ import me.flashyreese.mods.reeses_sodium_options.client.gui.widget.TextFieldWidget;
+-import net.caffeinemc.mods.sodium.client.config.structure.ModOptions;
++import org.embeddedt.embeddium.impl.gui.rso.compat.sodium.client.config.structure.ModOptions;
+ import net.minecraft.client.Minecraft;
+-import net.minecraft.client.gui.GuiGraphicsExtractor;
+-import net.minecraft.client.input.KeyEvent;
+-import net.minecraft.client.input.MouseButtonEvent;
++import org.embeddedt.embeddium.impl.gui.rso.compat.GuiGraphicsExtractor;
++import org.embeddedt.embeddium.impl.gui.rso.compat.KeyEvent;
++import org.embeddedt.embeddium.impl.gui.rso.compat.MouseButtonEvent;
+ import net.minecraft.network.chat.Component;
+-import org.jspecify.annotations.NonNull;
++import org.jetbrains.annotations.NotNull;
+ 
+ import java.util.List;
+ 
+@@ -43,7 +43,7 @@ public class SearchTextFieldWidget extends TextFieldWidget {
+     }
+ 
+     @Override
+-    public void extractRenderState(@NonNull GuiGraphicsExtractor guiGraphics, int mouseX, int mouseY, float delta) {
++    public void extractRenderState(@NotNull GuiGraphicsExtractor guiGraphics, int mouseX, int mouseY, float delta) {
+         super.extractRenderState(guiGraphics, mouseX, mouseY, delta);
+         if (!this.showClearButton()) {
+             return;
+diff --git a/client/gui/state/OptionStateStore.java b/client/gui/state/OptionStateStore.java
+index 1338856b..cd390920 100644
+--- a/client/gui/state/OptionStateStore.java
++++ b/client/gui/state/OptionStateStore.java
+@@ -1,18 +1,18 @@
+ package me.flashyreese.mods.reeses_sodium_options.client.gui.state;
+ 
+-import net.minecraft.resources.Identifier;
++import net.minecraft.resources.ResourceLocation;
+ 
+ import java.util.List;
+ import java.util.Set;
+ 
+ public interface OptionStateStore {
+-    OptionUiState optionUiState(Identifier id);
++    OptionUiState optionUiState(ResourceLocation id);
+ 
+-    OptionLayoutState optionLayoutState(Identifier id);
++    OptionLayoutState optionLayoutState(ResourceLocation id);
+ 
+     boolean searchActive();
+ 
+     List<SearchResultEntry> searchResults();
+ 
+-    Set<Identifier> collapsedOptionGroups();
++    Set<ResourceLocation> collapsedOptionGroups();
+ }
+diff --git a/client/gui/state/OptionsScreenUiState.java b/client/gui/state/OptionsScreenUiState.java
+index 1f0b311e..5ef9c163 100644
+--- a/client/gui/state/OptionsScreenUiState.java
++++ b/client/gui/state/OptionsScreenUiState.java
+@@ -1,6 +1,6 @@
+ package me.flashyreese.mods.reeses_sodium_options.client.gui.state;
+ 
+-import net.minecraft.resources.Identifier;
++import net.minecraft.resources.ResourceLocation;
+ 
+ import java.util.ArrayList;
+ import java.util.HashMap;
+@@ -20,10 +20,10 @@ public final class OptionsScreenUiState implements OptionStateStore {
+     private final List<SearchResultEntry> searchResults = new ArrayList<>();
+     private boolean searchActive;
+     private final Set<String> manuallyCollapsedTabGroups = new HashSet<>();
+-    private final Set<Identifier> collapsedOptionGroups = new HashSet<>();
+-    private final Map<String, Identifier> focusedOptionIdsByTab = new HashMap<>();
+-    private final Map<Identifier, OptionUiState> optionUiStates = new HashMap<>();
+-    private final Map<Identifier, OptionLayoutState> optionLayoutStates = new HashMap<>();
++    private final Set<ResourceLocation> collapsedOptionGroups = new HashSet<>();
++    private final Map<String, ResourceLocation> focusedOptionIdsByTab = new HashMap<>();
++    private final Map<ResourceLocation, OptionUiState> optionUiStates = new HashMap<>();
++    private final Map<ResourceLocation, OptionLayoutState> optionLayoutStates = new HashMap<>();
+ 
+     public Holder<String> tabFrameSelectedTab() {
+         return tabFrameSelectedTab;
+@@ -50,11 +50,11 @@ public final class OptionsScreenUiState implements OptionStateStore {
+     }
+ 
+     @Override
+-    public Set<Identifier> collapsedOptionGroups() {
++    public Set<ResourceLocation> collapsedOptionGroups() {
+         return collapsedOptionGroups;
+     }
+ 
+-    public Map<String, Identifier> focusedOptionIdsByTab() {
++    public Map<String, ResourceLocation> focusedOptionIdsByTab() {
+         return focusedOptionIdsByTab;
+     }
+ 
+@@ -77,12 +77,12 @@ public final class OptionsScreenUiState implements OptionStateStore {
+     }
+ 
+     @Override
+-    public OptionUiState optionUiState(Identifier id) {
++    public OptionUiState optionUiState(ResourceLocation id) {
+         return this.optionUiStates.computeIfAbsent(id, unused -> new OptionUiState());
+     }
+ 
+     @Override
+-    public OptionLayoutState optionLayoutState(Identifier id) {
++    public OptionLayoutState optionLayoutState(ResourceLocation id) {
+         return this.optionLayoutStates.computeIfAbsent(id, unused -> new OptionLayoutState());
+     }
+ 
+diff --git a/client/gui/state/SearchResultEntry.java b/client/gui/state/SearchResultEntry.java
+index 42472f30..84c6e27b 100644
+--- a/client/gui/state/SearchResultEntry.java
++++ b/client/gui/state/SearchResultEntry.java
+@@ -1,7 +1,7 @@
+ package me.flashyreese.mods.reeses_sodium_options.client.gui.state;
+ 
+-import net.caffeinemc.mods.sodium.client.config.structure.Option;
+-import net.minecraft.resources.Identifier;
++import org.embeddedt.embeddium.impl.gui.rso.compat.sodium.client.config.structure.Option;
++import net.minecraft.resources.ResourceLocation;
+ 
+-public record SearchResultEntry(String tabKey, Identifier optionId, Option option) {
++public record SearchResultEntry(String tabKey, ResourceLocation optionId, Option option) {
+ }
+diff --git a/client/gui/theme/GuiThemes.java b/client/gui/theme/GuiThemes.java
+index 61129394..505fa906 100644
+--- a/client/gui/theme/GuiThemes.java
++++ b/client/gui/theme/GuiThemes.java
+@@ -1,6 +1,6 @@
+ package me.flashyreese.mods.reeses_sodium_options.client.gui.theme;
+ 
+-import net.caffeinemc.mods.sodium.client.gui.ColorTheme;
++import org.embeddedt.embeddium.impl.gui.rso.compat.sodium.client.gui.ColorTheme;
+ 
+ public final class GuiThemes {
+     public static final GuiTheme DEFAULT_BUTTON = new GuiTheme(0xFFFFFFFF, 0xFFFFFFFF, 0xFFAAAAAA, 0xE0000000, 0x90000000, 0x40000000);
+diff --git a/client/gui/theme/IconRenderer.java b/client/gui/theme/IconRenderer.java
+index b87794b0..ba2e3a97 100644
+--- a/client/gui/theme/IconRenderer.java
++++ b/client/gui/theme/IconRenderer.java
+@@ -1,19 +1,17 @@
+ package me.flashyreese.mods.reeses_sodium_options.client.gui.theme;
+ 
+ import net.minecraft.client.Minecraft;
+-import net.minecraft.client.gui.GuiGraphicsExtractor;
+-import net.minecraft.client.renderer.RenderPipelines;
++import org.embeddedt.embeddium.impl.gui.rso.compat.GuiGraphicsExtractor;
++import org.embeddedt.embeddium.impl.gui.rso.compat.RenderPipelines;
+ import net.minecraft.client.renderer.texture.AbstractTexture;
+-import net.minecraft.resources.Identifier;
++import net.minecraft.resources.ResourceLocation;
+ 
+ public final class IconRenderer {
+-    public static int renderIconWithSpacing(GuiGraphicsExtractor guiGraphics, Identifier icon, int color, boolean monochrome, int x, int y, int height, int spacing) {
++    public static int renderIconWithSpacing(GuiGraphicsExtractor guiGraphics, ResourceLocation icon, int color, boolean monochrome, int x, int y, int height, int spacing) {
+         int iconSize = height - spacing * 2;
+-        AbstractTexture texture = Minecraft.getInstance()
+-                .getTextureManager()
+-                .getTexture(icon);
+-        int textureWidth = texture.getTexture().getWidth(0);
+-        int textureHeight = texture.getTexture().getHeight(0);
++        AbstractTexture texture = org.embeddedt.embeddium.impl.gui.rso.compat.TextureDimensions.load(icon);
++        int textureWidth = org.embeddedt.embeddium.impl.gui.rso.compat.TextureDimensions.width(texture);
++        int textureHeight = org.embeddedt.embeddium.impl.gui.rso.compat.TextureDimensions.height(texture);
+         int iconX = x + spacing;
+         int iconY = y + height / 2 - iconSize / 2;
+ 
+diff --git a/client/gui/widget/BaseWidget.java b/client/gui/widget/BaseWidget.java
+index 34c72472..3958fa90 100644
+--- a/client/gui/widget/BaseWidget.java
++++ b/client/gui/widget/BaseWidget.java
+@@ -5,19 +5,19 @@ import me.flashyreese.mods.reeses_sodium_options.client.gui.layout.LayoutBounds;
+ import net.minecraft.client.Minecraft;
+ import net.minecraft.client.gui.ComponentPath;
+ import net.minecraft.client.gui.Font;
+-import net.minecraft.client.gui.GuiGraphicsExtractor;
+-import net.minecraft.client.gui.components.Renderable;
+-import net.minecraft.client.gui.components.events.GuiEventListener;
++import org.embeddedt.embeddium.impl.gui.rso.compat.GuiGraphicsExtractor;
++import org.embeddedt.embeddium.impl.gui.rso.compat.Renderable;
++import org.embeddedt.embeddium.impl.gui.rso.compat.GuiEventListener;
+ import net.minecraft.client.gui.navigation.FocusNavigationEvent;
+ import net.minecraft.client.gui.navigation.ScreenRectangle;
+-import net.minecraft.client.gui.narration.NarratableEntry;
++import org.embeddedt.embeddium.impl.gui.rso.compat.NarratableEntry;
+ import net.minecraft.client.gui.narration.NarratedElementType;
+ import net.minecraft.client.gui.narration.NarrationElementOutput;
+ import net.minecraft.client.resources.sounds.SimpleSoundInstance;
+ import net.minecraft.network.chat.Component;
+ import net.minecraft.network.chat.FormattedText;
+ import net.minecraft.sounds.SoundEvents;
+-import org.jspecify.annotations.NonNull;
++import org.jetbrains.annotations.NotNull;
+ 
+ public abstract class BaseWidget implements Renderable, GuiEventListener, NarratableEntry {
+     protected final Font font;
+@@ -105,12 +105,12 @@ public abstract class BaseWidget implements Renderable, GuiEventListener, Narrat
+     }
+ 
+     @Override
+-    public @NonNull ScreenRectangle getRectangle() {
++    public @NotNull ScreenRectangle getRectangle() {
+         return new ScreenRectangle(this.getX(), this.getY(), this.getWidth(), this.getHeight());
+     }
+ 
+     @Override
+-    public ComponentPath nextFocusPath(@NonNull FocusNavigationEvent navigation) {
++    public ComponentPath nextFocusPath(@NotNull FocusNavigationEvent navigation) {
+         return this.isFocused() ? null : ComponentPath.leaf(this);
+     }
+ 
+@@ -125,7 +125,7 @@ public abstract class BaseWidget implements Renderable, GuiEventListener, Narrat
+     }
+ 
+     @Override
+-    public @NonNull NarrationPriority narrationPriority() {
++    public @NotNull NarrationPriority narrationPriority() {
+         if (this.isFocused()) {
+             return NarrationPriority.FOCUSED;
+         }
+@@ -134,7 +134,7 @@ public abstract class BaseWidget implements Renderable, GuiEventListener, Narrat
+     }
+ 
+     @Override
+-    public void updateNarration(@NonNull NarrationElementOutput builder) {
++    public void updateNarration(@NotNull NarrationElementOutput builder) {
+     }
+ 
+     protected void addButtonNarration(NarrationElementOutput builder, Component label) {
+diff --git a/client/gui/widget/FlatButtonWidget.java b/client/gui/widget/FlatButtonWidget.java
+index 1bf2a82e..618bc335 100644
+--- a/client/gui/widget/FlatButtonWidget.java
++++ b/client/gui/widget/FlatButtonWidget.java
+@@ -5,15 +5,14 @@ import me.flashyreese.mods.reeses_sodium_options.client.gui.layout.LayoutBounds;
+ import me.flashyreese.mods.reeses_sodium_options.client.gui.theme.GuiThemes;
+ import me.flashyreese.mods.reeses_sodium_options.client.gui.theme.GuiTheme;
+ import net.minecraft.client.gui.ComponentPath;
+-import net.minecraft.client.gui.GuiGraphicsExtractor;
++import org.embeddedt.embeddium.impl.gui.rso.compat.GuiGraphicsExtractor;
+ import net.minecraft.client.gui.navigation.FocusNavigationEvent;
+ import net.minecraft.client.gui.narration.NarrationElementOutput;
+-import net.minecraft.client.input.KeyEvent;
+-import net.minecraft.client.input.MouseButtonEvent;
++import org.embeddedt.embeddium.impl.gui.rso.compat.KeyEvent;
++import org.embeddedt.embeddium.impl.gui.rso.compat.MouseButtonEvent;
+ import net.minecraft.network.chat.Component;
+ import org.jetbrains.annotations.NotNull;
+ import org.jetbrains.annotations.Nullable;
+-import org.jspecify.annotations.NonNull;
+ 
+ import java.util.function.UnaryOperator;
+ 
+@@ -72,7 +71,7 @@ public class FlatButtonWidget extends BaseWidget {
+     }
+ 
+     @Override
+-    public boolean mouseClicked(@NonNull MouseButtonEvent event, boolean doubleClick) {
++    public boolean mouseClicked(@NotNull MouseButtonEvent event, boolean doubleClick) {
+         if (!this.enabled || !this.visible || event.button() != InputConstants.MOUSE_BUTTON_LEFT || !this.isMouseOver(event.x(), event.y())) {
+             return false;
+         }
+@@ -92,7 +91,7 @@ public class FlatButtonWidget extends BaseWidget {
+     }
+ 
+     @Override
+-    public boolean keyPressed(@NonNull KeyEvent event) {
++    public boolean keyPressed(@NotNull KeyEvent event) {
+         if (!this.enabled || !this.visible || !this.isFocused() || !event.isSelection()) {
+             return false;
+         }
+@@ -103,7 +102,7 @@ public class FlatButtonWidget extends BaseWidget {
+     }
+ 
+     @Override
+-    public @Nullable ComponentPath nextFocusPath(@NonNull FocusNavigationEvent navigation) {
++    public @Nullable ComponentPath nextFocusPath(@NotNull FocusNavigationEvent navigation) {
+         return this.enabled && this.visible ? super.nextFocusPath(navigation) : null;
+     }
+ 
+@@ -113,7 +112,7 @@ public class FlatButtonWidget extends BaseWidget {
+     }
+ 
+     @Override
+-    public void updateNarration(@NonNull NarrationElementOutput builder) {
++    public void updateNarration(@NotNull NarrationElementOutput builder) {
+         this.addButtonNarration(builder, this.label);
+     }
+ 
+diff --git a/client/gui/widget/LabelWidget.java b/client/gui/widget/LabelWidget.java
+index a0d5e52d..4886c37d 100644
+--- a/client/gui/widget/LabelWidget.java
++++ b/client/gui/widget/LabelWidget.java
+@@ -1,24 +1,23 @@
+ package me.flashyreese.mods.reeses_sodium_options.client.gui.widget;
+ 
+ import com.mojang.blaze3d.platform.InputConstants;
+-import com.mojang.blaze3d.platform.cursor.CursorTypes;
++import org.embeddedt.embeddium.impl.gui.rso.compat.CursorTypes;
+ import me.flashyreese.mods.reeses_sodium_options.client.gui.control.ControlGuide;
+ import me.flashyreese.mods.reeses_sodium_options.client.gui.control.ControlGuideProvider;
+ import me.flashyreese.mods.reeses_sodium_options.client.gui.layout.LayoutBounds;
+ import me.flashyreese.mods.reeses_sodium_options.client.gui.theme.GuiTheme;
+ import me.flashyreese.mods.reeses_sodium_options.client.gui.theme.GuiThemes;
+ import net.minecraft.client.gui.ComponentPath;
+-import net.minecraft.client.gui.GuiGraphicsExtractor;
++import org.embeddedt.embeddium.impl.gui.rso.compat.GuiGraphicsExtractor;
+ import net.minecraft.client.gui.navigation.FocusNavigationEvent;
+ import net.minecraft.client.gui.narration.NarrationElementOutput;
+ import net.minecraft.network.chat.CommonComponents;
+-import net.minecraft.client.input.KeyEvent;
+-import net.minecraft.client.input.MouseButtonEvent;
++import org.embeddedt.embeddium.impl.gui.rso.compat.KeyEvent;
++import org.embeddedt.embeddium.impl.gui.rso.compat.MouseButtonEvent;
+ import net.minecraft.network.chat.Component;
+-import net.minecraft.resources.Identifier;
++import net.minecraft.resources.ResourceLocation;
+ import org.jetbrains.annotations.NotNull;
+ import org.jetbrains.annotations.Nullable;
+-import org.jspecify.annotations.NonNull;
+ 
+ import java.util.List;
+ 
+@@ -31,7 +30,7 @@ public class LabelWidget extends BaseWidget implements ControlGuideProvider {
+     private final Component text;
+     private final int color;
+     private final @Nullable GuiTheme theme;
+-    private final @Nullable Identifier collapseKey;
++    private final @Nullable ResourceLocation collapseKey;
+     private final @Nullable Runnable onToggle;
+     private boolean collapsed;
+ 
+@@ -39,11 +38,11 @@ public class LabelWidget extends BaseWidget implements ControlGuideProvider {
+         this(dim, text, color, null, null, null, false);
+     }
+ 
+-    public LabelWidget(LayoutBounds dim, Component text, int color, @Nullable Identifier collapseKey, @Nullable Runnable onToggle, boolean collapsed) {
++    public LabelWidget(LayoutBounds dim, Component text, int color, @Nullable ResourceLocation collapseKey, @Nullable Runnable onToggle, boolean collapsed) {
+         this(dim, text, color, null, collapseKey, onToggle, collapsed);
+     }
+ 
+-    public LabelWidget(LayoutBounds dim, Component text, int color, @Nullable GuiTheme theme, @Nullable Identifier collapseKey, @Nullable Runnable onToggle, boolean collapsed) {
++    public LabelWidget(LayoutBounds dim, Component text, int color, @Nullable GuiTheme theme, @Nullable ResourceLocation collapseKey, @Nullable Runnable onToggle, boolean collapsed) {
+         super(dim);
+         this.text = text;
+         this.color = color;
+@@ -53,7 +52,7 @@ public class LabelWidget extends BaseWidget implements ControlGuideProvider {
+         this.collapsed = collapsed;
+     }
+ 
+-    public @Nullable Identifier collapseKey() {
++    public @Nullable ResourceLocation collapseKey() {
+         return this.collapseKey;
+     }
+ 
+@@ -100,7 +99,7 @@ public class LabelWidget extends BaseWidget implements ControlGuideProvider {
+     }
+ 
+     @Override
+-    public boolean mouseClicked(@NonNull MouseButtonEvent event, boolean doubleClick) {
++    public boolean mouseClicked(@NotNull MouseButtonEvent event, boolean doubleClick) {
+         if (this.onToggle != null && event.button() == InputConstants.MOUSE_BUTTON_LEFT && this.isMouseOver(event.x(), event.y())) {
+             this.onToggle.run();
+             this.playClickSound();
+@@ -111,7 +110,7 @@ public class LabelWidget extends BaseWidget implements ControlGuideProvider {
+     }
+ 
+     @Override
+-    public boolean keyPressed(@NonNull KeyEvent event) {
++    public boolean keyPressed(@NotNull KeyEvent event) {
+         if (this.onToggle != null && this.isFocused() && event.isSelection()) {
+             this.onToggle.run();
+             this.playClickSound();
+@@ -122,7 +121,7 @@ public class LabelWidget extends BaseWidget implements ControlGuideProvider {
+     }
+ 
+     @Override
+-    public @Nullable ComponentPath nextFocusPath(@NonNull FocusNavigationEvent navigation) {
++    public @Nullable ComponentPath nextFocusPath(@NotNull FocusNavigationEvent navigation) {
+         if (this.onToggle == null || this.isFocused()) {
+             return null;
+         }
+@@ -136,7 +135,7 @@ public class LabelWidget extends BaseWidget implements ControlGuideProvider {
+     }
+ 
+     @Override
+-    public void updateNarration(@NonNull NarrationElementOutput builder) {
++    public void updateNarration(@NotNull NarrationElementOutput builder) {
+         if (this.onToggle == null) {
+             return;
+         }
+diff --git a/client/gui/widget/ScrollBarWidget.java b/client/gui/widget/ScrollBarWidget.java
+index 757f673f..35ca4814 100644
+--- a/client/gui/widget/ScrollBarWidget.java
++++ b/client/gui/widget/ScrollBarWidget.java
+@@ -2,17 +2,16 @@ package me.flashyreese.mods.reeses_sodium_options.client.gui.widget;
+ 
+ import com.mojang.blaze3d.platform.InputConstants;
+ import me.flashyreese.mods.reeses_sodium_options.client.gui.layout.LayoutBounds;
+-import net.minecraft.client.gui.GuiGraphicsExtractor;
++import org.embeddedt.embeddium.impl.gui.rso.compat.GuiGraphicsExtractor;
+ import net.minecraft.client.gui.navigation.ScreenRectangle;
+ import net.minecraft.client.gui.narration.NarratedElementType;
+ import net.minecraft.client.gui.narration.NarrationElementOutput;
+-import net.minecraft.client.input.KeyEvent;
+-import net.minecraft.client.input.MouseButtonEvent;
++import org.embeddedt.embeddium.impl.gui.rso.compat.KeyEvent;
++import org.embeddedt.embeddium.impl.gui.rso.compat.MouseButtonEvent;
+ import net.minecraft.network.chat.CommonComponents;
+ import net.minecraft.network.chat.Component;
+ import net.minecraft.util.Mth;
+ import org.jetbrains.annotations.NotNull;
+-import org.jspecify.annotations.NonNull;
+ 
+ import java.util.function.Consumer;
+ 
+@@ -61,7 +60,7 @@ public class ScrollBarWidget extends BaseWidget {
+ 
+ 
+     @Override
+-    public void extractRenderState(@NonNull GuiGraphicsExtractor guiGraphics, int mouseX, int mouseY, float delta) {
++    public void extractRenderState(@NotNull GuiGraphicsExtractor guiGraphics, int mouseX, int mouseY, float delta) {
+         this.drawBorder(guiGraphics, this.getX(), this.getY(), this.getLimitX(), this.getLimitY(), 0xFFAAAAAA);
+         this.drawRect(guiGraphics, this.scrollThumb.x(), this.scrollThumb.y(), this.scrollThumb.getLimitX(), this.scrollThumb.getLimitY(), 0xFFAAAAAA);
+         if (this.shouldRenderFocusBorder()) {
+@@ -97,7 +96,7 @@ public class ScrollBarWidget extends BaseWidget {
+     }
+ 
+     @Override
+-    public boolean mouseDragged(@NonNull MouseButtonEvent event, double deltaX, double deltaY) {
++    public boolean mouseDragged(@NotNull MouseButtonEvent event, double deltaX, double deltaY) {
+         if (this.isDragging) {
+             int thumbLength = this.mode == ScrollDirection.VERTICAL ? this.scrollThumb.height() : this.scrollThumb.width();
+             int trackLength = this.mode == ScrollDirection.VERTICAL ? this.getHeight() : this.getWidth();
+@@ -133,7 +132,7 @@ public class ScrollBarWidget extends BaseWidget {
+     }
+ 
+     @Override
+-    public boolean keyPressed(@NonNull KeyEvent event) {
++    public boolean keyPressed(@NotNull KeyEvent event) {
+         if (!this.isFocused()) {
+             return false;
+         }
+@@ -162,7 +161,7 @@ public class ScrollBarWidget extends BaseWidget {
+     }
+ 
+     @Override
+-    public void updateNarration(@NonNull NarrationElementOutput builder) {
++    public void updateNarration(@NotNull NarrationElementOutput builder) {
+         Component name = Component.translatable(this.mode == ScrollDirection.VERTICAL
+                 ? "rso.narration.scrollbar.vertical"
+                 : "rso.narration.scrollbar.horizontal");
+diff --git a/client/gui/widget/TabHeaderWidget.java b/client/gui/widget/TabHeaderWidget.java
+index ac4f1401..2403beb5 100644
+--- a/client/gui/widget/TabHeaderWidget.java
++++ b/client/gui/widget/TabHeaderWidget.java
+@@ -1,27 +1,26 @@
+ package me.flashyreese.mods.reeses_sodium_options.client.gui.widget;
+ 
+ import com.mojang.blaze3d.platform.InputConstants;
+-import com.mojang.blaze3d.platform.cursor.CursorTypes;
++import org.embeddedt.embeddium.impl.gui.rso.compat.CursorTypes;
+ import me.flashyreese.mods.reeses_sodium_options.client.config.ReeseSodiumOptionsConfig;
+ import me.flashyreese.mods.reeses_sodium_options.client.gui.layout.LayoutBounds;
+ import me.flashyreese.mods.reeses_sodium_options.client.gui.theme.GuiTheme;
+ import me.flashyreese.mods.reeses_sodium_options.client.gui.theme.GuiThemes;
+ import me.flashyreese.mods.reeses_sodium_options.client.gui.theme.IconRenderer;
+-import net.caffeinemc.mods.sodium.client.config.structure.ModOptions;
++import org.embeddedt.embeddium.impl.gui.rso.compat.sodium.client.config.structure.ModOptions;
+ import net.minecraft.client.gui.ComponentPath;
+ import net.minecraft.client.Minecraft;
+ import net.minecraft.client.gui.Font;
+-import net.minecraft.client.gui.GuiGraphicsExtractor;
++import org.embeddedt.embeddium.impl.gui.rso.compat.GuiGraphicsExtractor;
+ import net.minecraft.client.gui.navigation.FocusNavigationEvent;
+ import net.minecraft.client.gui.narration.NarrationElementOutput;
+-import net.minecraft.client.input.KeyEvent;
+-import net.minecraft.client.input.MouseButtonEvent;
++import org.embeddedt.embeddium.impl.gui.rso.compat.KeyEvent;
++import org.embeddedt.embeddium.impl.gui.rso.compat.MouseButtonEvent;
+ import net.minecraft.network.chat.CommonComponents;
+ import net.minecraft.network.chat.Component;
+-import net.minecraft.util.Util;
++import net.minecraft.Util;
+ import org.jetbrains.annotations.NotNull;
+ import org.jetbrains.annotations.Nullable;
+-import org.jspecify.annotations.NonNull;
+ 
+ public class TabHeaderWidget extends BaseWidget {
+ 
+@@ -137,7 +136,7 @@ public class TabHeaderWidget extends BaseWidget {
+                 drawScrollingString(guiGraphics, this.modOptions.name(), textX, this.getY() + 2, primaryTextColor, available);
+                 drawScrollingString(guiGraphics, this.modOptions.version(), textX, this.getY() + 12, secondaryTextColor, available);
+             } else {
+-                int centeredY = this.getY() + Math.ceilDiv(this.getHeight() - Minecraft.getInstance().font.lineHeight, 2);
++                int centeredY = this.getY() + org.embeddedt.embeddium.impl.gui.rso.compat.Java17Math.ceilDiv(this.getHeight() - Minecraft.getInstance().font.lineHeight, 2);
+                 drawScrollingString(guiGraphics, this.modOptions.name(), textX, centeredY, primaryTextColor, available);
+             }
+ 
+@@ -152,7 +151,7 @@ public class TabHeaderWidget extends BaseWidget {
+     }
+ 
+     @Override
+-    public boolean mouseClicked(@NonNull MouseButtonEvent event, boolean doubleClick) {
++    public boolean mouseClicked(@NotNull MouseButtonEvent event, boolean doubleClick) {
+         if (this.action != null && event.button() == InputConstants.MOUSE_BUTTON_LEFT && this.isMouseOver(event.x(), event.y())) {
+             this.action.run();
+             this.playClickSound();
+@@ -163,7 +162,7 @@ public class TabHeaderWidget extends BaseWidget {
+     }
+ 
+     @Override
+-    public boolean keyPressed(@NonNull KeyEvent event) {
++    public boolean keyPressed(@NotNull KeyEvent event) {
+         if (this.action != null && this.isFocused() && event.isSelection()) {
+             this.action.run();
+             this.playClickSound();
+@@ -188,7 +187,7 @@ public class TabHeaderWidget extends BaseWidget {
+     }
+ 
+     @Override
+-    public void updateNarration(@NonNull NarrationElementOutput builder) {
++    public void updateNarration(@NotNull NarrationElementOutput builder) {
+         if (this.action == null) {
+             return;
+         }
+diff --git a/client/gui/widget/TextFieldWidget.java b/client/gui/widget/TextFieldWidget.java
+index 8a130795..c89e623a 100644
+--- a/client/gui/widget/TextFieldWidget.java
++++ b/client/gui/widget/TextFieldWidget.java
+@@ -9,23 +9,22 @@ import me.flashyreese.mods.reeses_sodium_options.client.gui.theme.GuiThemes;
+ import net.minecraft.client.Minecraft;
+ import net.minecraft.client.gui.ComponentPath;
+ import net.minecraft.client.gui.Font;
+-import net.minecraft.client.gui.GuiGraphicsExtractor;
++import org.embeddedt.embeddium.impl.gui.rso.compat.GuiGraphicsExtractor;
+ import net.minecraft.client.gui.navigation.FocusNavigationEvent;
+ import net.minecraft.client.gui.narration.NarratedElementType;
+ import net.minecraft.client.gui.narration.NarrationElementOutput;
+-import net.minecraft.client.input.CharacterEvent;
+-import net.minecraft.client.input.KeyEvent;
+-import net.minecraft.client.input.MouseButtonEvent;
+-import net.minecraft.client.renderer.RenderPipelines;
++import org.embeddedt.embeddium.impl.gui.rso.compat.CharacterEvent;
++import org.embeddedt.embeddium.impl.gui.rso.compat.KeyEvent;
++import org.embeddedt.embeddium.impl.gui.rso.compat.MouseButtonEvent;
++import org.embeddedt.embeddium.impl.gui.rso.compat.RenderPipelines;
+ import net.minecraft.network.chat.Component;
+ import net.minecraft.network.chat.Style;
+ import net.minecraft.util.FormattedCharSequence;
+ import net.minecraft.util.Mth;
+-import net.minecraft.util.StringUtil;
+-import net.minecraft.util.Util;
++import org.embeddedt.embeddium.impl.gui.rso.compat.StringUtil;
++import net.minecraft.Util;
+ import org.jetbrains.annotations.NotNull;
+ import org.jetbrains.annotations.Nullable;
+-import org.jspecify.annotations.NonNull;
+ 
+ import java.util.List;
+ 
+@@ -116,7 +115,7 @@ public class TextFieldWidget extends BaseWidget implements ControlGuideProvider
+             guiGraphics.fill(RenderPipelines.GUI, cursorX, textStartY - 1, cursorX + 1, textStartY + 1 + this.font.lineHeight, color);
+         }
+         if (this.canConsumeTextInput()) {
+-            Minecraft.getInstance().textInputManager().setTextInputArea(cursorX, textStartY, cursorX + 1, textStartY + this.font.lineHeight + 1);
++            org.embeddedt.embeddium.impl.gui.rso.compat.TextInputBridge.setTextInputArea(cursorX, textStartY, cursorX + 1, textStartY + this.font.lineHeight + 1);
+         }
+         // Highlighted text
+         if (selectionEndOffset != selectionStartOffset) {
+@@ -394,11 +393,11 @@ public class TextFieldWidget extends BaseWidget implements ControlGuideProvider
+     @Override
+     public void setFocused(boolean focused) {
+         super.setFocused(focused);
+-        Minecraft.getInstance().onTextInputFocusChange(this, this.canConsumeTextInput());
++        org.embeddedt.embeddium.impl.gui.rso.compat.TextInputBridge.onFocusChange(this, this.canConsumeTextInput());
+     }
+ 
+     @Override
+-    public boolean charTyped(@NonNull CharacterEvent characterEvent) {
++    public boolean charTyped(@NotNull CharacterEvent characterEvent) {
+         if (!this.canConsumeTextInput()) {
+             return false;
+         }
+@@ -412,7 +411,7 @@ public class TextFieldWidget extends BaseWidget implements ControlGuideProvider
+     }
+ 
+     @Override
+-    public boolean keyPressed(@NonNull KeyEvent event) {
++    public boolean keyPressed(@NotNull KeyEvent event) {
+         this.onInteraction();
+         if (!this.canConsumeTextInput()) {
+             return false;
+@@ -440,10 +439,10 @@ public class TextFieldWidget extends BaseWidget implements ControlGuideProvider
+                 return true;
+             } else {
+                 switch (event.shortcutKey()) {
+-                    case InputConstants.KEYCODE_RETURN, InputConstants.KEYCODE_NUMPADENTER -> {
++                    case org.lwjgl.glfw.GLFW.GLFW_KEY_ENTER, org.lwjgl.glfw.GLFW.GLFW_KEY_KP_ENTER -> {
+                         return this.onSubmit(event);
+                     }
+-                    case InputConstants.KEYCODE_BACKSPACE -> {
++                    case org.lwjgl.glfw.GLFW.GLFW_KEY_BACKSPACE -> {
+                         if (this.editable) {
+                             this.selecting = false;
+                             this.erase(-1, event.hasControlDownWithQuirk());
+@@ -451,7 +450,7 @@ public class TextFieldWidget extends BaseWidget implements ControlGuideProvider
+                         }
+                         return true;
+                     }
+-                    case InputConstants.KEYCODE_DELETE -> {
++                    case org.lwjgl.glfw.GLFW.GLFW_KEY_DELETE -> {
+                         if (this.editable) {
+                             this.selecting = false;
+                             this.erase(1, event.hasControlDownWithQuirk());
+@@ -459,7 +458,7 @@ public class TextFieldWidget extends BaseWidget implements ControlGuideProvider
+                         }
+                         return true;
+                     }
+-                    case InputConstants.KEYCODE_RIGHT -> {
++                    case org.lwjgl.glfw.GLFW.GLFW_KEY_RIGHT -> {
+                         if (event.hasControlDownWithQuirk()) {
+                             this.setCursor(this.getWordSkipPosition(1));
+                         } else {
+@@ -469,7 +468,7 @@ public class TextFieldWidget extends BaseWidget implements ControlGuideProvider
+                         this.lastCursorPosition = this.getCursor();
+                         return state;
+                     }
+-                    case InputConstants.KEYCODE_LEFT -> {
++                    case org.lwjgl.glfw.GLFW.GLFW_KEY_LEFT -> {
+                         if (event.hasControlDownWithQuirk()) {
+                             this.setCursor(this.getWordSkipPosition(-1));
+                         } else {
+@@ -479,11 +478,11 @@ public class TextFieldWidget extends BaseWidget implements ControlGuideProvider
+                         this.lastCursorPosition = this.getCursor();
+                         return state;
+                     }
+-                    case InputConstants.KEYCODE_HOME -> {
++                    case org.lwjgl.glfw.GLFW.GLFW_KEY_HOME -> {
+                         this.setCursorToStart();
+                         return true;
+                     }
+-                    case InputConstants.KEYCODE_END -> {
++                    case org.lwjgl.glfw.GLFW.GLFW_KEY_END -> {
+                         this.setCursorToEnd();
+                         return true;
+                     }
+@@ -517,7 +516,7 @@ public class TextFieldWidget extends BaseWidget implements ControlGuideProvider
+             cursorAlpha = 1f;
+         }
+ 
+-        cursorAlpha = Math.clamp(cursorAlpha, 0f, 1f);
++        cursorAlpha = org.embeddedt.embeddium.impl.gui.rso.compat.Java17Math.clamp(cursorAlpha, 0f, 1f);
+ 
+         this.currentCursorAlpha = this.currentCursorState ? 1 : 1 - cursorAlpha;
+     }
+@@ -535,7 +534,7 @@ public class TextFieldWidget extends BaseWidget implements ControlGuideProvider
+     }
+ 
+     @Override
+-    public @Nullable ComponentPath nextFocusPath(@NonNull FocusNavigationEvent navigation) {
++    public @Nullable ComponentPath nextFocusPath(@NotNull FocusNavigationEvent navigation) {
+         if (!this.visible) {
+             return null;
+         }
+@@ -543,7 +542,7 @@ public class TextFieldWidget extends BaseWidget implements ControlGuideProvider
+     }
+ 
+     @Override
+-    public void updateNarration(@NonNull NarrationElementOutput builder) {
++    public void updateNarration(@NotNull NarrationElementOutput builder) {
+         Component label = this.placeholder == null ? Component.empty() : this.placeholder;
+         builder.add(NarratedElementType.TITLE, Component.translatable("gui.narrate.editBox", label, this.text));
+     }
+diff --git a/client/search/NgramGenerator.java b/client/search/NgramGenerator.java
+index 14acb793..a5cfbe90 100644
+--- a/client/search/NgramGenerator.java
++++ b/client/search/NgramGenerator.java
+@@ -1,6 +1,6 @@
+ package me.flashyreese.mods.reeses_sodium_options.client.search;
+ 
+-import net.minecraft.resources.Identifier;
++import net.minecraft.resources.ResourceLocation;
+ 
+ import java.text.Normalizer;
+ import java.util.ArrayList;
+@@ -40,9 +40,7 @@ public final class NgramGenerator {
+     public List<String> generate(String text) {
+         if (text == null || text.isEmpty()) return List.of();
+ 
+-        String norm = Normalizer.normalize(text, Normalizer.Form.NFKC)
+-                .toLowerCase(Locale.ROOT)
+-                .trim();
++        String norm = org.embeddedt.embeddium.impl.gui.rso.compat.Unicode16.nfkcLowercase(text).trim();
+ 
+         if (norm.isEmpty()) return List.of();
+ 
+@@ -75,11 +73,11 @@ public final class NgramGenerator {
+         if (!this.tokenizeOnLetterDigit) return true;
+ 
+         // Normal words + CJK (Chinese/Japanese/Korean letters count as letters)
+-        if (Character.isLetterOrDigit(cp)) return true;
++        if (org.embeddedt.embeddium.impl.gui.rso.compat.Unicode16.isLetterOrDigit(cp)) return true;
+ 
+         // Preserve Minecraft identifier punctuation inside tokens (ASCII only)
+         if (cp <= 0x7F) {
+-            return Identifier.isAllowedInIdentifier((char) cp);
++            return ResourceLocation.isAllowedInResourceLocation((char) cp);
+         }
+ 
+         return false;
+diff --git a/client/search/SearchNormalizer.java b/client/search/SearchNormalizer.java
+index 6d720782..6551b562 100644
+--- a/client/search/SearchNormalizer.java
++++ b/client/search/SearchNormalizer.java
+@@ -2,6 +2,7 @@ package me.flashyreese.mods.reeses_sodium_options.client.search;
+ 
+ import java.text.Normalizer;
+ import java.util.Locale;
++import org.embeddedt.embeddium.impl.gui.rso.compat.Unicode16;
+ 
+ public final class SearchNormalizer {
+     private final boolean foldDiacritics;
+@@ -14,19 +15,17 @@ public final class SearchNormalizer {
+         if (text == null || text.isEmpty()) {
+             return "";
+         }
+-        String normalized = Normalizer.normalize(text, Normalizer.Form.NFKC)
+-                .toLowerCase(Locale.ROOT);
++        String normalized = Unicode16.nfkcLowercase(text);
+         if (this.foldDiacritics) {
+-            normalized = Normalizer.normalize(normalized, Normalizer.Form.NFD)
+-                    .replaceAll("\\p{M}", "");
++            normalized = Unicode16.foldDiacritics(normalized);
+         }
+         StringBuilder builder = new StringBuilder(normalized.length());
+         boolean lastWasSpace = false;
+         int length = normalized.length();
+         for (int offset = 0; offset < length; ) {
+             int codePoint = normalized.codePointAt(offset);
+-            int type = Character.getType(codePoint);
+-            boolean isSpace = Character.isWhitespace(codePoint)
++            int type = Unicode16.getType(codePoint);
++            boolean isSpace = Unicode16.isWhitespace(codePoint)
+                     || type == Character.SPACE_SEPARATOR
+                     || type == Character.LINE_SEPARATOR
+                     || type == Character.PARAGRAPH_SEPARATOR;
+@@ -51,4 +50,4 @@ public final class SearchNormalizer {
+         String result = builder.toString().trim();
+         return result.isEmpty() ? "" : result;
+     }
+-}
+\ No newline at end of file
++}

@@ -168,6 +168,17 @@ val validation = sourceSets.create("validation") {
     runtimeClasspath += sourceSets.main.get().runtimeClasspath
 }
 val validationMod = modDevExtension.mods.create("embeddium_validation") { sourceSet(validation) }
+val rsoReferenceSource = providers.gradleProperty("rsoReferenceSource")
+if (rsoReferenceSource.isPresent) {
+    val generated = layout.buildDirectory.dir("generated/rsoReferenceJava")
+    val referenceJava = tasks.register<Exec>("generateRsoReferenceUi") {
+        inputs.dir(file(rsoReferenceSource.get()).resolve("common/src/main/java"))
+        inputs.file(rootProject.file("scripts/fixtures/rso-1.20.1-host.patch"))
+        outputs.dir(generated)
+        commandLine("node", rootProject.file("scripts/prepare-rso-reference-ui.mjs"), rsoReferenceSource.get(), generated.get().asFile)
+    }
+    validation.java.srcDir(referenceJava)
+}
 
 val extraValidation = sourceSets.create("extraValidation") {
     java.srcDir("src/extraValidation/java")
@@ -221,6 +232,11 @@ modDevExtension.runs {
         client()
         loadedMods.set(listOf(mainMod, validationMod))
         systemProperty("nocturna.validateRso", "true")
+        if (rsoReferenceSource.isPresent) {
+            systemProperty("nocturna.compareRsoReference", "true")
+            programArgument("--mixin.config")
+            programArgument("embeddium-validation.mixins.json")
+        }
         for (mixinConfig in modMixinConfigs) programArgument("--mixin.config").also { programArgument(mixinConfig) }
     }
     create("validationClient") {
@@ -267,6 +283,31 @@ tasks.withType<JavaExec>().configureEach {
 // Keep RSO's Unicode tables isolated in both the development client and the product.
 // Minecraft 1.20.1 must continue using its own ICU version.
 val rsoUnicode = configurations.create("rsoUnicode")
+val rsoSdlRepository = repositories.maven("https://repo.maven.apache.org/maven2") { name = "RsoSdlCentral" }
+repositories.exclusiveContent {
+    forRepositories(rsoSdlRepository)
+    filter { includeModule("org.lwjgl", "lwjgl-sdl") }
+}
+val rsoSdlNatives = configurations.create("rsoSdlNatives")
+listOf("windows", "windows-arm64", "linux", "linux-arm64", "macos", "macos-arm64").forEach {
+    dependencies.add(rsoSdlNatives.name, "org.lwjgl:lwjgl-sdl:3.4.3:natives-$it") { isTransitive = false }
+}
+val rsoSdlResources = tasks.register<Sync>("rsoSdlResources") {
+    doFirst {
+        rsoSdlNatives.files.forEach { archive ->
+            ZipFile(archive).use { zip ->
+                val entry = zip.entries().asSequence().single { it.name.endsWith(".git") && it.name.contains("/org/lwjgl/sdl/") }
+                check(zip.getInputStream(entry).bufferedReader().readText().trim() == "147a8ee32dbf9ac02f3794964490687b6bbda1bc") { "SDL native revision changed: ${archive.name}" }
+            }
+        }
+    }
+    from(provider { rsoSdlNatives.map { zipTree(it) } }) {
+        include("windows/**/SDL3.dll", "linux/**/libSDL3.so", "macos/**/libSDL3.dylib")
+        into("org/embeddedt/embeddium/impl/rso/sdl3")
+    }
+    into(layout.buildDirectory.dir("generated/rsoSdlResources"))
+}
+sourceSets.main { resources.srcDir(rsoSdlResources) }
 dependencies.add(rsoUnicode.name, "com.ibm.icu:icu4j:76.1")
 val rsoUnicodeJar = tasks.register<ShadowJar>("rsoUnicodeJar") {
     configurations = listOf(rsoUnicode)
@@ -400,6 +441,7 @@ val verifyJava17Jar = tasks.register("verifyJava17Jar") {
         var classes = 0
         ZipFile(jar).use { zip ->
             zip.entries().asSequence().forEach { entry ->
+                check(!entry.name.startsWith("net/caffeinemc/mods/sodium/client/")) { "Newer Sodium implementation in product: ${entry.name}" }
                 check(!entry.name.startsWith("org/embeddedt/embeddium/validation/")) { "Validation mod leaked into product" }
                 check(!entry.name.startsWith("codechicken/") && !entry.name.startsWith("blusunrize/") &&
                     !entry.name.startsWith("com/brandon3055/")) { "Test addon leaked into product" }
@@ -416,6 +458,12 @@ val verifyJava17Jar = tasks.register("verifyJava17Jar") {
             check(zip.getEntry("COPYING") != null && zip.getEntry("COPYING.LESSER") != null)
             check(zip.getEntry("UPSTREAM.md") != null)
             check(zip.getEntry("LICENSE-RSO.txt") != null && zip.getEntry("LICENSE-ICU.txt") != null)
+            check(zip.getEntry("LICENSE-SDL.txt") != null && zip.getEntry("licenses/sdl/hidapi/LICENSE-bsd.txt") != null)
+            listOf("windows/x64/org/lwjgl/sdl/SDL3.dll", "windows/arm64/org/lwjgl/sdl/SDL3.dll",
+                "linux/x64/org/lwjgl/sdl/libSDL3.so", "linux/arm64/org/lwjgl/sdl/libSDL3.so",
+                "macos/x64/org/lwjgl/sdl/libSDL3.dylib", "macos/arm64/org/lwjgl/sdl/libSDL3.dylib").forEach {
+                check(zip.getEntry("org/embeddedt/embeddium/impl/rso/sdl3/$it") != null) { "Missing SDL input backend: $it" }
+            }
             check(zip.getEntry("me/flashyreese/mods/reeses_sodium_options/client/gui/SodiumVideoOptionsScreen.class") != null)
             check(zip.getEntry("org/embeddedt/embeddium/impl/shadow/icu/lang/UCharacter.class") != null)
             check(zip.getEntry("com/ibm/icu/lang/UCharacter.class") == null) { "RSO must not replace Minecraft's ICU" }

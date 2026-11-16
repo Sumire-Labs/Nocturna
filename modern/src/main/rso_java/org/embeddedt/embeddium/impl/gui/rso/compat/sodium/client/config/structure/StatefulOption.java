@@ -5,6 +5,7 @@ import net.minecraft.resources.ResourceLocation;
 public class StatefulOption<T> extends Option {
     public java.util.function.Supplier<T> getter;
     public java.util.function.Consumer<T> setter;
+    public java.util.function.Consumer<T> editHook = value -> {};
     public ValueSource<T> defaultValue;
     public java.util.function.UnaryOperator<T> validator =
             java.util.function.UnaryOperator.identity();
@@ -38,6 +39,7 @@ public class StatefulOption<T> extends Option {
         modified = java.util.Objects.requireNonNull(value);
         changed = !java.util.Objects.equals(value, getAppliedValue());
         if (!changed) modified = null;
+        editHook.accept(getValidatedValue());
         if (state != null) state.invalidate();
     }
 

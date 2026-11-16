@@ -678,7 +678,7 @@
         },
         {
           "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/NocturnaOptionsSource.java",
-          "sha256": "3f00c452aa6424e57964124978a87894ec48f3b251d0dbfe4ae598af48471088"
+          "sha256": "1b96711b04d26b532087ea169d1c566862c59ffa1a7843cafb92c72231735ed3"
         },
         {
           "path": "modern/src/main/gui_java/org/embeddedt/embeddium/impl/gui/modern/EmbeddiumVideoOptionsScreen.java",

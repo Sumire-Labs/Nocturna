@@ -47,7 +47,7 @@ public class SliderControl implements Control<Integer> {
     private static class Button extends ControlElement<Integer> {
         private static final int THUMB_WIDTH = 2, TRACK_HEIGHT = 1;
 
-        private final Rect2i sliderBounds;
+        private Rect2i sliderBounds;
         private final ControlValueFormatter formatter;
 
         private final int min;
@@ -71,6 +71,12 @@ public class SliderControl implements Control<Integer> {
 
             this.sliderBounds = new Rect2i(dim.getLimitX() - 96, dim.getCenterY() - 5, 90, 10);
             this.sliderHeld = false;
+        }
+
+        @Override
+        public void setDimensions(Dim2i dim) {
+            super.setDimensions(dim);
+            this.sliderBounds = new Rect2i(dim.getLimitX() - 96, dim.getCenterY() - 5, 90, 10);
         }
 
         @Override

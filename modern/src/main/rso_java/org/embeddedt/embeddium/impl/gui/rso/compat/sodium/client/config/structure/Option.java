@@ -9,6 +9,7 @@ import org.embeddedt.embeddium.impl.gui.rso.compat.sodium.client.gui.options.con
 public class Option {
     public final ResourceLocation id;
     public Component name, tooltip;
+    public java.util.function.Supplier<Component> nameSource, tooltipSource;
     public OptionImpact impact;
     public Config state;
     public java.util.function.BooleanSupplier enabled = () -> true;
@@ -23,11 +24,11 @@ public class Option {
     }
 
     public Component getName() {
-        return name;
+        return nameSource == null ? name : nameSource.get();
     }
 
     public Component getTooltip() {
-        return tooltip;
+        return tooltipSource == null ? tooltip : tooltipSource.get();
     }
 
     public OptionImpact getImpact() {

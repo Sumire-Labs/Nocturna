@@ -123,6 +123,7 @@ public final class NocturnaOptionsSource {
                                     }));
         }
         var result = new ArrayList<ModOptions>();
+        int themeIndex = 0;
         for (var entry : groups.entrySet()) {
             var container =
                     net.minecraftforge.fml.ModList.get().getModContainerById(entry.getKey());
@@ -144,10 +145,11 @@ public final class NocturnaOptionsSource {
                             version,
                             logo,
                             false,
-                            ColorTheme.DEFAULT,
+                            ColorTheme.forMod(entry.getKey(), themeIndex++ - 1),
                             List.copyOf(entry.getValue())));
         }
         var builder = new ConfigBuilder();
+        builder.setColorTheme(ColorTheme.forMod("reeses-sodium-options", themeIndex - 1));
         new ReeseSodiumOptionsConfigEntryPoint().registerConfigLate(builder);
         result.add(builder.build());
         return List.copyOf(result);
@@ -211,18 +213,63 @@ public final class NocturnaOptionsSource {
                     };
             option = enumeration;
         } else {
-            option = new StatefulOption(id, state);
-            option.control =
-                    new org.embeddedt.embeddium.impl.gui.rso.NativeControlAdapter(
-                            nativeOption, option);
+            var legacy =
+                    org.embeddedt.embeddium.impl.compat.legacy.LegacyGuiBridge.toOld(nativeOption)
+                            .getControl();
+            if (legacy.getClass()
+                    == me.jellysquid.mods.sodium.client.gui.options.control.TickBoxControl.class) {
+                option = new BooleanOption(id, state);
+            } else if (legacy.getClass()
+                    == me.jellysquid.mods.sodium.client.gui.options.control.SliderControl.class) {
+                var integer = new IntegerOption(id, state);
+                integer.stepped =
+                        new org.embeddedt.embeddium.impl.gui.rso.compat.sodium.api.config.option
+                                .SteppedValidator(
+                                (int) field(legacy, "min"),
+                                (int) field(legacy, "max"),
+                                (int) field(legacy, "interval"));
+                var format =
+                        (me.jellysquid.mods.sodium.client.gui.options.control.ControlValueFormatter)
+                                field(legacy, "mode");
+                integer.formatter = format::format;
+                option = integer;
+            } else if (legacy.getClass()
+                            == me.jellysquid.mods.sodium.client.gui.options.control.CyclingControl
+                                    .class
+                    && value instanceof Enum<?> e) {
+                var enumeration = new EnumOption(id, state, e.getDeclaringClass());
+                Object[] allowed = (Object[]) field(legacy, "allowedValues");
+                Component[] names =
+                        ((me.jellysquid.mods.sodium.client.gui.options.control.CyclingControl)
+                                        legacy)
+                                .getNames();
+                enumeration.names =
+                        v -> {
+                            for (int i = 0; i < allowed.length; i++)
+                                if (allowed[i] == v) return names[i];
+                            throw new IllegalArgumentException("Unavailable legacy enum value");
+                        };
+                enumeration.validator =
+                        v -> {
+                            for (Object candidate : allowed) if (v == candidate) return v;
+                            return allowed[0];
+                        };
+                option = enumeration;
+            } else {
+                option = new StatefulOption(id, state);
+                option.control = new NativeControlAdapter(nativeOption, option);
+            }
         }
         option.name = text(nativeOption.getName());
         option.tooltip = text(nativeOption.getTooltip());
+        option.nameSource = () -> text(nativeOption.getName());
+        option.tooltipSource = () -> text(nativeOption.getTooltip());
         if (nativeOption.getImpact() != null)
             option.impact =
                     org.embeddedt.embeddium.impl.gui.rso.compat.sodium.api.config.option
                             .OptionImpact.valueOf(nativeOption.getImpact().name());
         option.enabled = nativeOption::isAvailable;
+        option.editHook = nativeOption::setValue;
         option.getter =
                 () -> {
                     nativeOption.reset();
@@ -246,6 +293,20 @@ public final class NocturnaOptionsSource {
             // The legacy API has no default/validator metadata. Retain its value semantics.
             if (option instanceof IntegerOption)
                 option.validator = java.util.function.UnaryOperator.identity();
+        }
+        var metadata = org.embeddedt.embeddium.api.options.RsoOptionMetadata.find(id);
+        if (metadata.isPresent()) {
+            var descriptor = (org.embeddedt.embeddium.api.options.RsoOptionMetadata) metadata.get();
+            if (descriptor.defaultValue() != null) {
+                option.state = state;
+                option.defaultValue = config -> descriptor.defaultValue().get();
+            }
+            if (descriptor.name() != null) option.nameSource = descriptor.name();
+            if (descriptor.tooltip() != null) option.tooltipSource = descriptor.tooltip();
+            option.enabled =
+                    () -> nativeOption.isAvailable() && descriptor.enabled().getAsBoolean();
+            option.hidden = descriptor.hideControl();
+            if (descriptor.validator() != null) option.validator = descriptor.validator();
         }
         return option;
     }

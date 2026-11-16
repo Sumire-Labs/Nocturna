@@ -29,6 +29,9 @@ Intentional departures from the pinned Celeritas snapshot:
   The baseline excludes optional Controlify integration. See `docs/rso-backport-2026-11-17.md`.
   The bundled ICU4J 76.1 Unicode tables preserve Java 25 search behavior on Java 17 and use a private package.
   RSO and ICU license notices are included in the product as `LICENSE-RSO.txt` and `LICENSE-ICU.txt`.
+  SDL 3 native libraries from LWJGL 3.4.3, upstream SDL revision `147a8ee32dbf9ac02f3794964490687b6bbda1bc`,
+  connect the existing GLFW window to the public text-input API. SDL's zlib license and third-party notices are
+  bundled. No newer Sodium implementation is included; see `docs/sodium-provenance-audit-2026-11-17.md`.
 - Angelica's matrix uniform buffer reuse and two-generation render-list pool, from LGPL-3.0 commit
   `d876a203da9b46ee5b5048171b8e5e4deb9bb967`. See `docs/angelica-reuse-backports-2026-11-16.md`.
 - Angelica's preprocessing/disk/GL-program caches, from LGPL-3.0 revision

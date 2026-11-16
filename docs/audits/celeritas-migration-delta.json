@@ -1,6 +1,6 @@
 {
   "revision": "26f000239eb8ddf7ee191f0ddf369147e3c92ef6",
-  "identical": 1559,
+  "identical": 1556,
   "changes": [
     {
       "path": "buildSrc/build.gradle.kts",
@@ -83,6 +83,21 @@
       "local": "eb51cf8a7afb998c53bd22004f6ba7615447836ba8e247d72623b212ff219903"
     },
     {
+      "path": "common/src/main/java/org/taumc/celeritas/api/options/control/ControlElement.java",
+      "upstream": "9fb981a07b6321fcb2fb9b8467a0f6f5ebf9929551675b63285da5f99733baa9",
+      "local": "73b88b04327bfe65d0c448fb177e23f69df6bccf00777028e4b6a33773485ebb"
+    },
+    {
+      "path": "common/src/main/java/org/taumc/celeritas/api/options/control/SliderControl.java",
+      "upstream": "c71cc427c91eb208c31dc60005c86bd2ec490bb921fd3bdb17a787068bdf76b9",
+      "local": "8b0c4304e5a7c16ad0f9912c88a22b6fe4ff5ab5f52b6cc938f5d562689e6143"
+    },
+    {
+      "path": "common/src/main/java/org/taumc/celeritas/api/options/control/TickBoxControl.java",
+      "upstream": "fc104b8879c0cf3333b10a55f3a3feb8b8d435844ba006dc0e4c7c1b0127fbad",
+      "local": "3dfe64eec08a151b1449a7eb84b7081be8ea3ca89fe56065adab5636e4d8e236"
+    },
+    {
       "path": "common/src/main/java/org/taumc/celeritas/api/options/structure/OptionGroup.java",
       "upstream": "730cb10400b4a1cf794a6559303938519d315914b6c6fef8bf8fe38f4ba59b99",
       "local": "32c0e2b702cde7ad45b3268828675bd8ed6ce848d93fe49ee1ea86372e52a89d"
@@ -95,7 +110,7 @@
     {
       "path": "modern/build.mdg.gradle.kts",
       "upstream": "fc793feb77018a5496e0e45940650592266ea42d23bdb56aae9dd625ba47eee7",
-      "local": "6db4677f64c5956ee782925e4b2be8bfe7e90b7e77e03ade8f87a2cf492ff017"
+      "local": "548e3b22ccfcf1cc78344d80164c543ba24080b891e319068442d6b493d61def"
     },
     {
       "path": "modern/src/main/gui_java/org/embeddedt/embeddium/impl/gui/modern/EmbeddiumVideoOptionsScreen.java",
@@ -1190,7 +1205,7 @@
     },
     {
       "path": "modern/src/main/java/org/embeddedt/embeddium/impl/compat/legacy/LegacyGuiBridge.java",
-      "local": "8af64d04a0f51b92699523c9f4ca27cc897997cc592eadde3ce40c4047e2e715"
+      "local": "8d99872e324babfd33730a7a7f59c80a460187557cacf2d9635e0df7c88b5640"
     },
     {
       "path": "modern/src/main/java/org/embeddedt/embeddium/impl/compat/legacy/LegacyOptions.java",
@@ -1298,7 +1313,7 @@
     },
     {
       "path": "modern/src/main/legacy_api_java/me/jellysquid/mods/sodium/client/gui/options/control/ControlElement.java",
-      "local": "19e27c8c53ee98f6dfac0de2e4846f1dd3d001551f270ce3f20c076c4c69455b"
+      "local": "6b2036ed5982515e56cf95f326c4e0042365bb7758e52c9b4abe024e1eda0d6b"
     },
     {
       "path": "modern/src/main/legacy_api_java/me/jellysquid/mods/sodium/client/gui/options/control/ControlValueFormatter.java",
@@ -1310,11 +1325,11 @@
     },
     {
       "path": "modern/src/main/legacy_api_java/me/jellysquid/mods/sodium/client/gui/options/control/SliderControl.java",
-      "local": "6ddde06f8ef15d640fc8f8cfbd6543e0c1677005f4f7ff19fd3f39a3ce6fe342"
+      "local": "7969123eb3ec9806468ce5191f6b5541a80ba2e7f3470578725c4b9e7c444888"
     },
     {
       "path": "modern/src/main/legacy_api_java/me/jellysquid/mods/sodium/client/gui/options/control/TickBoxControl.java",
-      "local": "fb66a387a97dfdba55567f0adbb3c6c52deb592a6cde8f84fe8c125859a3475c"
+      "local": "39ff8aae24fa2f8be919d2c367f60bef6cb4ba953cc247a5688c071736358e41"
     },
     {
       "path": "modern/src/main/legacy_api_java/me/jellysquid/mods/sodium/client/gui/options/storage/MinecraftOptionsStorage.java",
@@ -1525,8 +1540,32 @@
       "local": "c1794cae2f950f9c227268524aba09c0ff59483a1ad9555a616cd1d2b7467491"
     },
     {
+      "path": "modern/src/main/modern_java/org/embeddedt/embeddium/api/options/RsoModTheme.java",
+      "local": "f41815d3afbab889d9679e00655b9a53b2990d851bf8b5879d706ed3d47b7124"
+    },
+    {
+      "path": "modern/src/main/modern_java/org/embeddedt/embeddium/api/options/RsoOptionMetadata.java",
+      "local": "49eb46ed0086252755320d5c898cae56a8b2584038d8ab5f2f2741b11d165f97"
+    },
+    {
       "path": "modern/src/main/modern_java/org/embeddedt/embeddium/impl/mixin/core/gui/OptionInstanceAccessor.java",
       "local": "085f256e9dd65294a2dcd73d39903576350d006e544f88cb6d0517a12ce3c1ad"
+    },
+    {
+      "path": "modern/src/main/modern_java/org/embeddedt/embeddium/impl/mixin/core/gui/RsoEventPumpMixin.java",
+      "local": "4eb4ec0bba61bc443ec872bf357bc9a31c0dd2673acedc364bc073467e45c012"
+    },
+    {
+      "path": "modern/src/main/modern_java/org/embeddedt/embeddium/impl/mixin/core/gui/RsoKeyboardInvoker.java",
+      "local": "3b668456ae95c13c62f668939c3ffcd30d69a6c5657c50575b8c9c20ed8a1c34"
+    },
+    {
+      "path": "modern/src/main/modern_java/org/embeddedt/embeddium/impl/mixin/core/gui/RsoKeyboardMixin.java",
+      "local": "f7926e540ae23f4ff8f96bf9fa94654c21157cbfd12efcdf114b600ad0f89282"
+    },
+    {
+      "path": "modern/src/main/modern_java/org/embeddedt/embeddium/impl/mixin/core/gui/RsoModifierMixin.java",
+      "local": "3974b11b430ab1e33bb65ce90bd11f0723bab9c49ca773521185beb1c7ac77f8"
     },
     {
       "path": "modern/src/main/modern_java/org/embeddedt/embeddium/impl/mixin/core/gui/RsoMouseScrollMixin.java",
@@ -1834,11 +1873,11 @@
     },
     {
       "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/NativeControlAdapter.java",
-      "local": "305f4710703f04a7cf2fc2daf70f5659c738e45743c008e718c4aeff3f9d71e2"
+      "local": "d797313ad468806d8a35a01a7df232488692072e11be5deec5636114d06bd72a"
     },
     {
       "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/NocturnaOptionsSource.java",
-      "local": "19ccfbc3785e62e225e78a99f84590d369a49f89cb88e51ec641f5c712931451"
+      "local": "1b96711b04d26b532087ea169d1c566862c59ffa1a7843cafb92c72231735ed3"
     },
     {
       "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/OptionDefaults.java",
@@ -1870,7 +1909,7 @@
     },
     {
       "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/compat/InputState.java",
-      "local": "48a47de729ebe3d2b4970702dd2977f0792c8c50f50138a8f34bb20b3699c2f5"
+      "local": "81a9e4fa5a9ef722d8b5081636ae8fb87e199fbee0b76ec8d7f1a136d887a805"
     },
     {
       "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/compat/Java17Math.java",
@@ -1878,7 +1917,7 @@
     },
     {
       "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/compat/KeyEvent.java",
-      "local": "01ef6bebe480c7ed6f28043fa074d3807b1ce03f57a86020e54f6b6d1302fc80"
+      "local": "f8d0500aca0a2815eb33e7c77107b6a478336a286ebd78b9e71f7e60cf09c571"
     },
     {
       "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/compat/MouseButtonEvent.java",
@@ -1898,7 +1937,7 @@
     },
     {
       "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/compat/RsoScreen.java",
-      "local": "96cc19de945782d7277ec71ddbb0ab9f5c3dcd24c7b7f3d0c704e7b013057c8c"
+      "local": "88ccba7f91648dbcb3b0b62547af08cb7777445519439f06c0bd444225319025"
     },
     {
       "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/compat/SDLKeycode.java",
@@ -1909,12 +1948,20 @@
       "local": "f3a383a50c23229ae0a08421e07b7c484ee771fef006efc4d6050ce8aa8c5b86"
     },
     {
+      "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/compat/SdlKeyMapping.java",
+      "local": "5fccd532be7635e84c9068072abd48c37199c9fb6214d7cba24675ba8f234d43"
+    },
+    {
+      "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/compat/SdlTextInput.java",
+      "local": "e49b57c936cc4fe1745642e69cda37e032515b06f2dc80048bf628785d0c5d96"
+    },
+    {
       "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/compat/StringUtil.java",
       "local": "fe25ed7d6586771742577aa3127bd90a80f4e08a4f861c8cc03129dd40cf6232"
     },
     {
       "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/compat/TextInputBridge.java",
-      "local": "f9b2ed9f34ac15fb80c2606360d145b25b923abde572d72e0dbc71b51c248e03"
+      "local": "435701483facfa214d8e60db47ebfdaffffb30b543b0e6540f2676998135fa40"
     },
     {
       "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/compat/TextureDimensions.java",
@@ -1922,7 +1969,7 @@
     },
     {
       "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/compat/Unicode16.java",
-      "local": "dae69699a7f7f00448d97341093a721b7591f28a34d3d86ecf60afe90536ea6b"
+      "local": "7e154c905e0f4e1b8e2ee31e88781eb5e977e6662665d915af53fbd5ce54fe9b"
     },
     {
       "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/compat/sodium/api/config/ConfigEntryPoint.java",
@@ -1946,7 +1993,7 @@
     },
     {
       "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/compat/sodium/api/config/structure/ConfigBuilder.java",
-      "local": "6b01593d969072ed1ef992db00025e7f04daa28be52264c9b7e74842d46051df"
+      "local": "96661f582615e5df64d4d63c92f1dc189810f9eae8562bf790eb0553be277a23"
     },
     {
       "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/compat/sodium/api/config/structure/OptionBuilder.java",
@@ -1994,7 +2041,7 @@
     },
     {
       "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/compat/sodium/client/config/structure/Option.java",
-      "local": "78207ea04a4c8f712d3f519d731961118051d0acc0d938654e6a0ba7bb84f9b3"
+      "local": "69d6b49fa9a0917ccca93b72178f22b412ba157ccf747c3a48bf298dfba98762"
     },
     {
       "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/compat/sodium/client/config/structure/OptionGroup.java",
@@ -2006,7 +2053,7 @@
     },
     {
       "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/compat/sodium/client/config/structure/StatefulOption.java",
-      "local": "86691b4411abc99fc1723d6d7dd401ca1b4d1a78475a9393ad3d9128adbfb7df"
+      "local": "1e80c42fd0e7a7c5956ee62da77d36d835fdc82b73fb6a2a7d1c4a9dcfad6dec"
     },
     {
       "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/compat/sodium/client/config/structure/ValueSource.java",
@@ -2018,7 +2065,7 @@
     },
     {
       "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/compat/sodium/client/gui/ColorTheme.java",
-      "local": "f3974d8909bed69cd326c755a3d60d386099e5c426f8998087b4320b07cd457c"
+      "local": "430e2e99bb57651cc242c80c3b07df8f262c23711f883f195b4d7c212e2e9f2c"
     },
     {
       "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/compat/sodium/client/gui/VideoSettingsScreen.java",
@@ -2079,6 +2126,10 @@
     {
       "path": "modern/src/main/rso_resources/LICENSE-RSO.txt",
       "local": "68fcaeff2c3545be8a6a144e55c5c1e1007892eed357b057583aa97e4030a876"
+    },
+    {
+      "path": "modern/src/main/rso_resources/LICENSE-SDL.txt",
+      "local": "1c040b8271b37e5076359f8fd54240e371114112924d2df81ef87c7d6a1dfdfd"
     },
     {
       "path": "modern/src/main/rso_resources/assets/nocturna_rso/lang/en_us.json",
@@ -2171,6 +2222,26 @@
     {
       "path": "modern/src/main/rso_resources/assets/reeses-sodium-options/textures/gui/undo_to_unmodified.png",
       "local": "f10b70c807d6eb30a768a3b0e3c42bf43aa9c529765dac6eb7d32719dfbcb741"
+    },
+    {
+      "path": "modern/src/main/rso_resources/licenses/sdl/hidapi/LICENSE-bsd.txt",
+      "local": "30eb1bef29b46f8ba7ab8b416035dbd93cb034a45481dd97815b944284582cd2"
+    },
+    {
+      "path": "modern/src/main/rso_resources/licenses/sdl/hidapi/LICENSE-gpl3.txt",
+      "local": "8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903"
+    },
+    {
+      "path": "modern/src/main/rso_resources/licenses/sdl/hidapi/LICENSE-orig.txt",
+      "local": "fb5436aa63d1b71a8dfbf74ecaf1a5b4e1ec4df7f80074d11fec99284f69ca5f"
+    },
+    {
+      "path": "modern/src/main/rso_resources/licenses/sdl/hidapi/LICENSE.txt",
+      "local": "7d3b087c34f35d4d538e3bcddd1ff8f66e92f9ef336881999482800ddf840913"
+    },
+    {
+      "path": "modern/src/main/rso_resources/licenses/sdl/yuv2rgb-LICENSE.txt",
+      "local": "f7d74004cc75778cae46c5f0139f244d67c07ef64cf51937e8272352197dcb18"
     },
     {
       "path": "modern/src/main/shaders_java/net/irisshaders/iris/cache/ProgramBinaryAccess.java",
@@ -2329,6 +2400,14 @@
       "local": "a812610d627a16a227707980316a2e208977f117396233902945e91a3d230169"
     },
     {
+      "path": "modern/src/test/java/org/embeddedt/embeddium/impl/gui/rso/RsoThemeTest.java",
+      "local": "4a4322fdcc99830bf3f2c5ff574daa7f35e93ecff62b8a3d0c7f5a7b926201dc"
+    },
+    {
+      "path": "modern/src/test/java/org/embeddedt/embeddium/impl/gui/rso/SdlKeyMappingTest.java",
+      "local": "b222135ba5f590dad7b61d1323c2d0d7659233e6fb6cd32f5c1711921763f23e"
+    },
+    {
       "path": "modern/src/test/java/org/embeddedt/embeddium/impl/gui/rso/SteppedValidatorTest.java",
       "local": "4059eff191b739ac583546ae27c1dd82d502441ae5487013295067653a7992a9"
     },
@@ -2393,12 +2472,24 @@
       "local": "e661af210be9196baaaa2cbf7b11beb7e6627b8f487808aa0681067991081eaa"
     },
     {
+      "path": "modern/src/validation/java/org/embeddedt/embeddium/validation/RsoParityValidation.java",
+      "local": "52d6b63afc791204c2c833c5eac31903dde0dc849fbc5b683bfeb3d9a2296e3e"
+    },
+    {
       "path": "modern/src/validation/java/org/embeddedt/embeddium/validation/RsoRowValidation.java",
-      "local": "86fafc937cb429ede0427429606b89986028c0a6b892944063b4fbf375bb3cbe"
+      "local": "bc58c0d7ba705d1db5f7321f31bec2d9dc9210e204355b3b29326a51ba52c0ba"
+    },
+    {
+      "path": "modern/src/validation/java/org/embeddedt/embeddium/validation/RsoSdlValidation.java",
+      "local": "36b2dd304b7fd126b3e4d822d55a6d517afd728115b0cfed30d04c4548bd1517"
     },
     {
       "path": "modern/src/validation/java/org/embeddedt/embeddium/validation/RsoValidation.java",
-      "local": "fa48fb985c4f0d99cbd837ea3067a1bb3c28c37396d1975d595dcbef377f7fa3"
+      "local": "ba1db9722a48c50b23ab812308a04c43eedc4009ab7ad85e0670fadb73996dfc"
+    },
+    {
+      "path": "modern/src/validation/java/org/embeddedt/embeddium/validation/RsoVisualValidation.java",
+      "local": "20dd7b240f405099d6bff9e616a65f93a54ef4bd3125fd8a7f46ff632f883ab9"
     },
     {
       "path": "modern/src/validation/java/org/embeddedt/embeddium/validation/ShaderCachePackValidation.java",
@@ -2415,6 +2506,10 @@
     {
       "path": "modern/src/validation/java/org/embeddedt/embeddium/validation/mixin/HorizonDrawCounterMixin.java",
       "local": "154d0a8bfff51400ef646888980f74a27ad73307f2e3696a6c17d96d2b01dd3a"
+    },
+    {
+      "path": "modern/src/validation/java/org/embeddedt/embeddium/validation/mixin/RsoVisualPointerMixin.java",
+      "local": "df46c7dca8fb22b6fe9946ea315368c6526815ac1558564d1b80da35d2369e6c"
     },
     {
       "path": "modern/src/validation/java/org/embeddedt/embeddium/validation/mixin/ShaderCompileCounterMixin.java",
@@ -2446,7 +2541,7 @@
     },
     {
       "path": "modern/src/validation/resources/embeddium-validation.mixins.json",
-      "local": "751cb89681b0c3429bed81f006f95be3fdc4a24d66cdb53377733481a4f47a3d"
+      "local": "adef4c7836bbc655396fd88c5d41549ab4f87bb715d2af52f77e0f3d45d7730f"
     },
     {
       "path": "modern/src/validation/resources/pack.mcmeta",
