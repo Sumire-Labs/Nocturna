@@ -100,6 +100,7 @@ public class MigrationValidation {
             if(stage==0&&(mc.screen instanceof TitleScreen||mc.screen instanceof AccessibilityOnboardingScreen)) {
                 if(net.minecraftforge.fml.ModList.get().isLoaded("codechickenlib")) AddonValidation.install();
                 vertices();MatrixUniformValidation.verify();ShaderCacheValidation.verify();PBRResourceIndexValidation.verify();
+                HorizonValidation.verify();
                 org.embeddedt.embeddium.validation.weather.WeatherGeometryValidation.verify();gui(mc);
                 ShaderCachePackValidation.prepare();stage=1;
                 mc.options.renderDistance().set(3);mc.options.simulationDistance().set(3);
@@ -125,6 +126,7 @@ public class MigrationValidation {
                     mc.levelRenderer.allChanged();stage=3;settled=0;
                 } else {
                     if(net.minecraftforge.fml.ModList.get().isLoaded("codechickenlib")) AddonValidation.verify();
+                    HorizonValidation.verifyInWorld();
                     require(System.getProperty("java.specification.version").equals("17"),"wrong Java runtime");
                     var report="PASS Java17; matrix uniform GPU readback; legacy vertex bytes; styled GUI/control/events; vanilla+compact/async terrain; old block/mesh callbacks. blocks="+blocks+" meshes="+meshes;
                     Files.writeString(Path.of("migration-validation.txt"),report);System.out.println(report);

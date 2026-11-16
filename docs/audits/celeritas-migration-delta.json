@@ -1,6 +1,6 @@
 {
   "revision": "26f000239eb8ddf7ee191f0ddf369147e3c92ef6",
-  "identical": 1564,
+  "identical": 1563,
   "changes": [
     {
       "path": "buildSrc/build.gradle.kts",
@@ -316,6 +316,11 @@
       "path": "modern/src/main/shaders_modern_java/net/irisshaders/iris/mixin/texture/MixinTextureManager.java",
       "upstream": "5c2886e03a357b544a12b9d8adbba22d5f7a9f1e0d2e8f2db8045eeee69a5ef1",
       "local": "166ed2677e81df82327c1498ea1b6a1cf99a135af866c970649c324922ac30b8"
+    },
+    {
+      "path": "modern/src/main/shaders_modern_java/net/irisshaders/iris/pathways/HorizonRenderer.java",
+      "upstream": "be0216b7cfb8837010259ab8cbdc6ccebd8e9efb3041775ba2f3c5dc39ff95ea",
+      "local": "3b610ed0b8c25cccf32d44bd4ef364df9afbc8055452c403054d963caff7e413"
     },
     {
       "path": "modern/src/main/shaders_modern_java/net/irisshaders/iris/texture/pbr/loader/AtlasPBRLoader.java",
@@ -920,6 +925,14 @@
       "local": "42893596aa279a159b75249bdf794d9eab2e6e461e0d0c7d73e31bd9145675cc"
     },
     {
+      "path": "modern/src/test/java/net/irisshaders/iris/pathways/HorizonRendererTest.java",
+      "local": "af46d46fef6787e04144585b7ed56cb2ebc1e6efbdbe3ed067ec5077afbf982c"
+    },
+    {
+      "path": "modern/src/test/java/net/irisshaders/iris/pathways/IrisHorizonReference.java",
+      "local": "c4ad03f7971822e028a5198156b52cd722bc6e268bf447bdad547c588322498e"
+    },
+    {
       "path": "modern/src/test/java/net/irisshaders/iris/shaderpack/preprocessor/PreprocessedSourceCacheTest.java",
       "local": "062fe8d2ace86915c5bd43093fe42cffdb468b6e2a427286b2b834f117843b24"
     },
@@ -980,12 +993,16 @@
       "local": "02bf21eb933a46e00276b5340f47ddeb3aa8b7fbde792aa8f2937878a7b75511"
     },
     {
+      "path": "modern/src/validation/java/org/embeddedt/embeddium/validation/HorizonValidation.java",
+      "local": "ab23893b906c7eda3a83e09f0fc6a1172f2bb2312201d6fb0e4157378fbbdba3"
+    },
+    {
       "path": "modern/src/validation/java/org/embeddedt/embeddium/validation/MatrixUniformValidation.java",
       "local": "41688c2449129b1e3112c51c4165579829ae999d1f0db7f39771804a5bf94a62"
     },
     {
       "path": "modern/src/validation/java/org/embeddedt/embeddium/validation/MigrationValidation.java",
-      "local": "046dcc68bcccdf349bd84adfa22a97c2dc669a359990c60061f04f0fcb584454"
+      "local": "0f304894f5e3c0c72d4af2e4b3abfbc2ea9dce3632fb8008d5e704e84a741fce"
     },
     {
       "path": "modern/src/validation/java/org/embeddedt/embeddium/validation/PBRResourceIndexValidation.java",
@@ -998,6 +1015,10 @@
     {
       "path": "modern/src/validation/java/org/embeddedt/embeddium/validation/ShaderCacheValidation.java",
       "local": "27a403ff483af5cdb461e728ac5fb548976ae587ac5892e454c8a0bc7e2923cc"
+    },
+    {
+      "path": "modern/src/validation/java/org/embeddedt/embeddium/validation/mixin/HorizonDrawCounterMixin.java",
+      "local": "154d0a8bfff51400ef646888980f74a27ad73307f2e3696a6c17d96d2b01dd3a"
     },
     {
       "path": "modern/src/validation/java/org/embeddedt/embeddium/validation/mixin/ShaderCompileCounterMixin.java",
@@ -1025,7 +1046,7 @@
     },
     {
       "path": "modern/src/validation/resources/embeddium-validation.mixins.json",
-      "local": "1d0afe37344f7c4664997fa02387e602a83fd712319e583a05decfd4724d568a"
+      "local": "60074456c133190d928c95dad0cfcc07387be1b87ccfbf55c17cf52f98d336fd"
     },
     {
       "path": "modern/src/validation/resources/pack.mcmeta",
