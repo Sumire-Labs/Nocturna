@@ -155,16 +155,28 @@ public final class LegacyGuiBridge {
             public int getMaxWidth(){return old.getMaxWidth();}
             public org.taumc.celeritas.api.options.control.ControlElement createElement(org.embeddedt.embeddium.impl.util.Dim2i dim) {
                 var widget=old.createElement(new me.jellysquid.mods.sodium.client.util.Dim2i(dim.x(),dim.y(),dim.width(),dim.height()));
-                return new org.taumc.celeritas.api.options.control.ControlElement(option,dim) {
-                    public void render(DrawContext context,int x,int y,float delta){widget.render(((ModernDrawContext)context).guiGraphics(),x,y,delta);}
-                    public boolean isMouseOver(double x,double y){return widget.isMouseOver(x,y);}
-                    public boolean mouseClicked(InteractionContext c,double x,double y,int b){return widget.mouseClicked(x,y,b);}
-                    public boolean mouseReleased(InteractionContext c,double x,double y,int b){return widget.mouseReleased(x,y,b);}
-                    public boolean mouseDragged(InteractionContext c,double x,double y,int b,double dx,double dy){return widget.mouseDragged(x,y,b,dx,dy);}
-                    public boolean mouseScrolled(InteractionContext c,double x,double y,double dx,double dy){return widget.mouseScrolled(x,y,dy);}
-                };
+                return new LegacyControlElement(option,dim,widget);
             }
         };
+    }
+    private static final class LegacyControlElement extends org.taumc.celeritas.api.options.control.ControlElement
+            implements net.minecraft.client.gui.components.events.GuiEventListener, net.minecraft.client.gui.narration.NarratableEntry {
+        private final me.jellysquid.mods.sodium.client.gui.options.control.ControlElement widget;
+        private LegacyControlElement(Option option,org.embeddedt.embeddium.impl.util.Dim2i dim,
+                me.jellysquid.mods.sodium.client.gui.options.control.ControlElement widget){super(option,dim);this.widget=widget;}
+        public void render(DrawContext context,int x,int y,float delta){widget.render(((ModernDrawContext)context).guiGraphics(),x,y,delta);}
+        public boolean isMouseOver(double x,double y){return widget.isMouseOver(x,y);}
+        public boolean mouseClicked(InteractionContext c,double x,double y,int b){return widget.mouseClicked(x,y,b);}
+        public boolean mouseReleased(InteractionContext c,double x,double y,int b){return widget.mouseReleased(x,y,b);}
+        public boolean mouseDragged(InteractionContext c,double x,double y,int b,double dx,double dy){return widget.mouseDragged(x,y,b,dx,dy);}
+        public boolean mouseScrolled(InteractionContext c,double x,double y,double dx,double dy){return widget.mouseScrolled(x,y,dy);}
+        public boolean keyPressed(int key,int scan,int mods){return widget.keyPressed(key,scan,mods);}
+        public boolean keyReleased(int key,int scan,int mods){return widget.keyReleased(key,scan,mods);}
+        public boolean charTyped(char ch,int mods){return widget.charTyped(ch,mods);}
+        public boolean isFocused(){return widget.isFocused();}
+        public void setFocused(boolean focused){widget.setFocused(focused);}
+        public NarrationPriority narrationPriority(){return widget.narrationPriority();}
+        public void updateNarration(net.minecraft.client.gui.narration.NarrationElementOutput output){widget.updateNarration(output);}
     }
     private static me.jellysquid.mods.sodium.client.gui.options.control.Control oldControl(me.jellysquid.mods.sodium.client.gui.options.Option option,org.taumc.celeritas.api.options.control.Control current) {
         return new me.jellysquid.mods.sodium.client.gui.options.control.Control() {

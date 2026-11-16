@@ -1,0 +1,13 @@
+{
+  "nocturna.rso.group.rendering": "描画",
+  "nocturna.rso.group.window": "ウィンドウ",
+  "nocturna.rso.group.indicators": "表示要素",
+  "nocturna.rso.group.graphics": "グラフィックス",
+  "nocturna.rso.group.mipmaps": "ミップマップ",
+  "nocturna.rso.group.details": "詳細",
+  "nocturna.rso.group.chunk_updates": "チャンク更新",
+  "nocturna.rso.group.rendering_culling": "可視性",
+  "nocturna.rso.group.cpu_saving": "CPU 使用量",
+  "nocturna.rso.group.sorting": "半透明面の並べ替え",
+  "nocturna.rso.group.lighting": "ライティング"
+}

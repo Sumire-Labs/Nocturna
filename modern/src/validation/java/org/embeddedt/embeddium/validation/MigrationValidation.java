@@ -34,6 +34,7 @@ public class MigrationValidation {
     private static me.jellysquid.mods.sodium.client.gui.options.Option<Boolean> custom;
 
     public MigrationValidation() {
+        if (Boolean.getBoolean("nocturna.validateRso")) { RsoValidation.install(); return; }
         MinecraftForge.EVENT_BUS.register(this);
         MinecraftForge.EVENT_BUS.addListener((OptionGUIConstructionEvent e)->forgeGuis++);
         OptionGroupConstructionEvent.BUS.addListener(e->groups++);

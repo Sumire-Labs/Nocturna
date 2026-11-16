@@ -171,6 +171,8 @@ val validationMod = modDevExtension.mods.create("embeddium_validation") { source
 
 sourceSets.main {
     java.srcDir("src/main/legacy_api_java")
+    java.srcDir("src/main/rso_java")
+    resources.srcDir("src/main/rso_resources")
 }
 
 if (modLoader == ModLoader.NEOFORGE) {
@@ -197,6 +199,12 @@ if (stonecutter.constants.get("shaders") ?: false) {
 }
 
 modDevExtension.runs {
+    create("rsoValidationClient") {
+        client()
+        loadedMods.set(listOf(mainMod, validationMod))
+        systemProperty("nocturna.validateRso", "true")
+        for (mixinConfig in modMixinConfigs) programArgument("--mixin.config").also { programArgument(mixinConfig) }
+    }
     create("validationClient") {
         client()
         loadedMods.set(listOf(mainMod, validationMod))
@@ -238,7 +246,20 @@ tasks.withType<JavaExec>().configureEach {
     javaLauncher = javaToolchains.launcherFor { languageVersion = JavaLanguageVersion.of(17) }
 }
 
+// Keep RSO's Unicode tables isolated in both the development client and the product.
+// Minecraft 1.20.1 must continue using its own ICU version.
+val rsoUnicode = configurations.create("rsoUnicode")
+dependencies.add(rsoUnicode.name, "com.ibm.icu:icu4j:76.1")
+val rsoUnicodeJar = tasks.register<ShadowJar>("rsoUnicodeJar") {
+    configurations = listOf(rsoUnicode)
+    archiveClassifier.set("rso-unicode")
+    relocate("com.ibm.icu", "org.embeddedt.embeddium.impl.shadow.icu")
+}
+
 dependencies {
+    implementation(files(rsoUnicodeJar))
+    "additionalRuntimeClasspath"(files(rsoUnicodeJar))
+    shadow(files(rsoUnicodeJar))
     if (providers.gradleProperty("compatRuntime").isPresent) {
         "modRuntimeOnly"("curse.maven:codechickenlib-242818:5753868")
         "modRuntimeOnly"("curse.maven:immersiveengineering-231951:4782978")
@@ -376,6 +397,11 @@ val verifyJava17Jar = tasks.register("verifyJava17Jar") {
             }
             check(zip.getEntry("COPYING") != null && zip.getEntry("COPYING.LESSER") != null)
             check(zip.getEntry("UPSTREAM.md") != null)
+            check(zip.getEntry("LICENSE-RSO.txt") != null && zip.getEntry("LICENSE-ICU.txt") != null)
+            check(zip.getEntry("me/flashyreese/mods/reeses_sodium_options/client/gui/SodiumVideoOptionsScreen.class") != null)
+            check(zip.getEntry("org/embeddedt/embeddium/impl/shadow/icu/lang/UCharacter.class") != null)
+            check(zip.getEntry("com/ibm/icu/lang/UCharacter.class") == null) { "RSO must not replace Minecraft's ICU" }
+            check(zip.getEntry("net/caffeinemc/mods/sodium/client/config/structure/Config.class") == null) { "Unexpected newer Sodium implementation" }
         }
         check(classes > 1000) { "Incomplete product jar: $classes classes" }
         logger.lifecycle("Verified {} product classes for Java 17", classes)

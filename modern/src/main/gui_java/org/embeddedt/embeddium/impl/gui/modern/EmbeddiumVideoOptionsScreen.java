@@ -24,19 +24,18 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-public class EmbeddiumVideoOptionsScreen extends Screen {
+public class EmbeddiumVideoOptionsScreen extends Screen implements me.flashyreese.mods.reeses_sodium_options.client.gui.PreviousScreenHolder {
     private final Screen prevScreen;
     private final CeleritasVideoOptionsController controller;
 
     public EmbeddiumVideoOptionsScreen(Screen prev) {
         super(ComponentUtil.literal("Nocturna Options"));
         this.prevScreen = prev;
-        this.controller = new CeleritasVideoOptionsController(this::onClose, List.of(
-                SodiumGameOptionPages.general(),
-                SodiumGameOptionPages.quality(),
-                CommonOptionPages.performance(Celeritas.options()),
-                SodiumGameOptionPages.advanced()
-        ), new ModernDrawContext(
+        if (me.flashyreese.mods.reeses_sodium_options.client.config.ReeseSodiumOptionsConfig.config().isEnabled()) {
+            this.controller = null;
+            return;
+        }
+        this.controller = new CeleritasVideoOptionsController(this::onClose, classicPages(), new ModernDrawContext(
                 //? if >=1.20 {
                 new net.minecraft.client.gui.GuiGraphics(Minecraft.getInstance(), Minecraft.getInstance().renderBuffers().bufferSource()),
                 //?} else
@@ -81,8 +80,21 @@ public class EmbeddiumVideoOptionsScreen extends Screen {
         };
     }
 
+    private static List<org.taumc.celeritas.api.options.structure.OptionPage> classicPages() {
+        var pages = new ArrayList<>(List.of(SodiumGameOptionPages.general(), SodiumGameOptionPages.quality(),
+                CommonOptionPages.performance(Celeritas.options()), SodiumGameOptionPages.advanced()));
+        pages.add(org.embeddedt.embeddium.impl.gui.rso.ClassicRsoOptionsPage.create());
+        return pages;
+    }
+
+    @Override public Screen rso$previousScreen() { return this.prevScreen; }
+
     @Override
     protected void init() {
+        if (this.controller == null) {
+            this.minecraft.setScreen(new me.flashyreese.mods.reeses_sodium_options.client.gui.SodiumVideoOptionsScreen(this.prevScreen));
+            return;
+        }
         this.controller.init(this.width, this.height);
     }
 

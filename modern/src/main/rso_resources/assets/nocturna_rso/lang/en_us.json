@@ -1,0 +1,13 @@
+{
+  "nocturna.rso.group.rendering": "Rendering",
+  "nocturna.rso.group.window": "Window",
+  "nocturna.rso.group.indicators": "Indicators",
+  "nocturna.rso.group.graphics": "Graphics",
+  "nocturna.rso.group.mipmaps": "Mipmaps",
+  "nocturna.rso.group.details": "Details",
+  "nocturna.rso.group.chunk_updates": "Chunk updates",
+  "nocturna.rso.group.rendering_culling": "Visibility",
+  "nocturna.rso.group.cpu_saving": "CPU usage",
+  "nocturna.rso.group.sorting": "Transparency sorting",
+  "nocturna.rso.group.lighting": "Lighting"
+}

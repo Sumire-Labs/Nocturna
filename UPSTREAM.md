@@ -21,6 +21,12 @@ Intentional departures from the pinned Celeritas snapshot:
   backing-buffer eligibility guard, adaptive CPU/GPU waiting and removal of the old Intel Gen7 startup block.
 - Previously accepted Spanish, Korean and Russian translations, merged without discarding new upstream keys.
 - Regression tests, a separate validation mod, reproducible build/CI configuration and source audit tooling.
+- Reese's Sodium Options 2.2.5, MIT release `mc26.3-2.2.5` at
+  `7093d1d50514125cf933cd02e1336c69a3147289`, replaces the settings UI. Its UI, configuration,
+  search and resources are embedded with Nocturna bindings and Minecraft 1.20.1 input/drawing adapters.
+  The baseline excludes optional Controlify integration. See `docs/rso-backport-2026-11-17.md`.
+  The bundled ICU4J 76.1 Unicode tables preserve Java 25 search behavior on Java 17 and use a private package.
+  RSO and ICU license notices are included in the product as `LICENSE-RSO.txt` and `LICENSE-ICU.txt`.
 - Angelica's matrix uniform buffer reuse and two-generation render-list pool, from LGPL-3.0 commit
   `d876a203da9b46ee5b5048171b8e5e4deb9bb967`. See `docs/angelica-reuse-backports-2026-11-16.md`.
 - Angelica's preprocessing/disk/GL-program caches, from LGPL-3.0 revision

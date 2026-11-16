@@ -1,0 +1,15 @@
+// Run with either the pinned RSO checkout or Nocturna as the Gradle project.
+allprojects {
+    afterEvaluate {
+        if (path == ':common' || path == ':modern:1.20.1-forge') {
+            tasks.register('rsoWriteClasspath') {
+                dependsOn(sourceSets.main.runtimeClasspath)
+                doLast {
+                    def target = new File(rootDir, 'build/audits/rso-runtime-classpath.txt')
+                    target.parentFile.mkdirs()
+                    target.text = sourceSets.main.runtimeClasspath.asPath
+                }
+            }
+        }
+    }
+}

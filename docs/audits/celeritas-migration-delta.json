@@ -1,6 +1,6 @@
 {
   "revision": "26f000239eb8ddf7ee191f0ddf369147e3c92ef6",
-  "identical": 1563,
+  "identical": 1562,
   "changes": [
     {
       "path": "buildSrc/build.gradle.kts",
@@ -90,12 +90,12 @@
     {
       "path": "modern/build.mdg.gradle.kts",
       "upstream": "fc793feb77018a5496e0e45940650592266ea42d23bdb56aae9dd625ba47eee7",
-      "local": "8ce443d4c9708a8c8137ee92fa69d0d82742d571addf6dcc2a5bb30912c95396"
+      "local": "4ac56512ac10eac785e84597e4f0bc882e616b708c29cfd279f5f96a3797b909"
     },
     {
       "path": "modern/src/main/gui_java/org/embeddedt/embeddium/impl/gui/modern/EmbeddiumVideoOptionsScreen.java",
       "upstream": "8214a33736886c1eae3687ace0d2b9247b9bb3346ef9bd9c2a8bca423b998435",
-      "local": "9e8e9d5afddfbcafe9025d5821f56db870247368dc8e73e9fa158f9c24903c02"
+      "local": "e50dad2045d9e9d84db66e735425d29e832dc0cc902a46ec7557e3cebeb60479"
     },
     {
       "path": "modern/src/main/gui_java/org/embeddedt/embeddium/impl/gui/modern/framework/ModernDrawContext.java",
@@ -151,6 +151,11 @@
       "path": "modern/src/main/java/org/embeddedt/embeddium/impl/mixin/core/MinecraftClientMixin.java",
       "upstream": "4ed877d273f6e3be209b4045ac1484940e0b83d7cd155f3396d7e5a79f059c86",
       "local": "3a1d86eae6933c4a12235377ac62eb9ef70b42b9d71f5f2b7a047240b597494a"
+    },
+    {
+      "path": "modern/src/main/java/org/embeddedt/embeddium/impl/mixin/features/gui/hooks/settings/OptionsScreenMixin.java",
+      "upstream": "be5bda2dd0cea3db4316851d75f37036af86a43bd041186a5001fde543c6bbc1",
+      "local": "a6931396edc7da459e0527f622838b577c18f6aadc19f6f64d3a3560725bdf6a"
     },
     {
       "path": "modern/src/main/java/org/embeddedt/embeddium/impl/modern/render/chunk/compile/pipeline/BlockRenderContext.java",
@@ -466,7 +471,7 @@
   "additions": [
     {
       "path": "buildSrc/src/main/java/org/embeddedt/embeddium/gradle/versioning/ProjectVersioner.java",
-      "local": "f90eb17fcb958ce08903238a6937dee4b58439d4b2cde185d6721215d0f91ec3"
+      "local": "c5a078d417a13d4e2d8cbe56f2a2b3d6e29ab89c70cb5478f6a6e05a387654f8"
     },
     {
       "path": "common/src/main/java/org/embeddedt/embeddium/impl/render/chunk/lists/RenderListPool.java",
@@ -502,7 +507,7 @@
     },
     {
       "path": "modern/src/main/java/org/embeddedt/embeddium/impl/compat/legacy/LegacyGuiBridge.java",
-      "local": "bf6365671a27101719d01145a5eb29b749e68d3cd511bd36e9849f7c3ab82642"
+      "local": "8af64d04a0f51b92699523c9f4ca27cc897997cc592eadde3ce40c4047e2e715"
     },
     {
       "path": "modern/src/main/java/org/embeddedt/embeddium/impl/compat/legacy/LegacyOptions.java",
@@ -837,6 +842,22 @@
       "local": "c1794cae2f950f9c227268524aba09c0ff59483a1ad9555a616cd1d2b7467491"
     },
     {
+      "path": "modern/src/main/modern_java/org/embeddedt/embeddium/impl/mixin/core/gui/OptionInstanceAccessor.java",
+      "local": "085f256e9dd65294a2dcd73d39903576350d006e544f88cb6d0517a12ce3c1ad"
+    },
+    {
+      "path": "modern/src/main/modern_java/org/embeddedt/embeddium/impl/mixin/core/gui/RsoMouseScrollMixin.java",
+      "local": "8a757755d69ff522d5a192a5cfbe09b0bd8a1f2c075ba5e93cd5578af4621807"
+    },
+    {
+      "path": "modern/src/main/modern_java/org/embeddedt/embeddium/impl/mixin/core/gui/RsoOptionMixin.java",
+      "local": "4a328298f95fbb306ae6056e990a8b4f0a3b45716907954f8f359bf9ad8811e8"
+    },
+    {
+      "path": "modern/src/main/modern_java/org/embeddedt/embeddium/impl/mixin/core/gui/ScreenNarratablesAccessor.java",
+      "local": "cf24a7a108e86f9756c5fc22f7e52a43daf9b7c4566d40bba78e556709a3eae3"
+    },
+    {
       "path": "modern/src/main/modern_java/org/embeddedt/embeddium/impl/mixin/features/render/weather/BiomeTemperatureAccessor.java",
       "local": "44d9f357dbb95ae68dbfcf9184d7189c277d89d522bcd5ee2e55fc85e4f832cd"
     },
@@ -871,6 +892,602 @@
     {
       "path": "modern/src/main/resources/assets/sodium/lang/ru_ru.json",
       "local": "560b140a213d9968666855f90febfcdd6cb25c7e68bfe383bb9c7be561b445ed"
+    },
+    {
+      "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/config/ReeseSodiumOptionsConfig.java",
+      "local": "951c21f95d2b95811e1d1e03a9946e4b941c98c681f28f6c9a444adaf2169b14"
+    },
+    {
+      "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/config/ReeseSodiumOptionsConfigEntryPoint.java",
+      "local": "c431a571827c735a567381920affbdfa8a5fc9fad34f7768ae748b157c14775d"
+    },
+    {
+      "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/PreviousScreenHolder.java",
+      "local": "83e29614c910a96913c6caf98cf74daf2edf324d347f7dc551130c722b8e6b3c"
+    },
+    {
+      "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/SodiumVideoOptionsScreen.java",
+      "local": "8467fad3c8278717af939c114b3c587be232d464f9ccedc6062b66cd8b8dd5dc"
+    },
+    {
+      "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/SodiumWidgetDimensions.java",
+      "local": "2a0e62b05f382c6c6dae65628d13478018bfb3ef813eae903080cb2641cafd48"
+    },
+    {
+      "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/control/ControlGuide.java",
+      "local": "c14b5eb61f88c13868ce37a2aa15089acf244887e9d9718bc6100337b41a3b94"
+    },
+    {
+      "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/control/ControlGuideProvider.java",
+      "local": "3bede0305207a77cf4be0b118c31f0e6f0ae3e7b5103cbb6bf774d3951332990"
+    },
+    {
+      "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/frame/AbstractFrame.java",
+      "local": "74dfe5863c089e9654309e01d588172ab3c043b322a8eb97824ea74ae21dfa7e"
+    },
+    {
+      "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/frame/BasicFrame.java",
+      "local": "b54e55ebebc1ab109f2249305b0b237b8513a72404232aca7f496e9ed8e39baa"
+    },
+    {
+      "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/frame/ScrollFrameLayout.java",
+      "local": "5b573aca41fe9396f66d3b53900e6b2b43a716f7a104f3381e114db3720c129a"
+    },
+    {
+      "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/frame/ScrollableFrame.java",
+      "local": "9dd3ca2a076b63c1476b530a704046c8b4b20f9144cc81aaaddfcfe45fe26834"
+    },
+    {
+      "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/frame/option/AbstractOptionRow.java",
+      "local": "1b91446beb52c8a5796214b5977257eb1126e56e1df137d89847419b2089a349"
+    },
+    {
+      "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/frame/option/BooleanOptionRow.java",
+      "local": "bcd3fd9c45da17fec79d1f9859fef1fa321c153f45b886c2842b74fb024e4adf"
+    },
+    {
+      "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/frame/option/EnumOptionRow.java",
+      "local": "98191ed378a5ab5cf9abbdfd1a40a28748ecc416a0fd1ada3618bfd47a68f725"
+    },
+    {
+      "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/frame/option/ExternalButtonOptionRow.java",
+      "local": "043c035e593d51e26c5997820a4fbfa33cb937ab22be6f3480b5cf11c789be31"
+    },
+    {
+      "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/frame/option/IntegerSliderOptionRow.java",
+      "local": "099b951e758dcc61eee7ae584d7a2607dcdbc6f5924f332783a7f47fe8c93a9c"
+    },
+    {
+      "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/frame/option/NativeRowControlElement.java",
+      "local": "ccb7517642c55c8ff3331d005da81a7d8a6a40d2973cd34c1a771177f1b6bdbe"
+    },
+    {
+      "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/frame/option/OptionRow.java",
+      "local": "789b7f2b86fdcfe934cc8745c3c74e9a7f9f822237e4f214ed7f1a9b84da2374"
+    },
+    {
+      "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/frame/option/OptionRowFactory.java",
+      "local": "cc4dd346a4a3b0793b6c1218aaabbac348214e6d0b72a51adcae78168d26a843"
+    },
+    {
+      "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/frame/option/OptionTooltipController.java",
+      "local": "cd1e63c2e5bd09dd749ceb586e59510c1c2f573f30165ea4b87a650b7eaee64a"
+    },
+    {
+      "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/frame/option/PageFrame.java",
+      "local": "d120b3d6a2b26323c0a4e3b61703f53482ad419dde94b38f67ed1c9a72da9a39"
+    },
+    {
+      "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/frame/option/PageLayout.java",
+      "local": "4d0ddf12af8aa9c968c599a9a69a641fec18cfc7e634a5d7f40a7d2e6315f517"
+    },
+    {
+      "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/frame/option/SodiumControlElementOptionRow.java",
+      "local": "b7064092d6cb2b64b3a1e9f6ff17d0571a45379a624dbd0fcfbc7eed0f185789"
+    },
+    {
+      "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/frame/option/UnsupportedOptionRow.java",
+      "local": "fabb02640603e807c75df8983662ed4307288ffb45d666e2d2ca54cbeef7a65e"
+    },
+    {
+      "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/frame/option/action/OptionActionButtonController.java",
+      "local": "0931639d03c3a553899e050be77cce91273e43e12ad330ad5fddfd1c488381ef"
+    },
+    {
+      "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/frame/option/action/OptionActionButtonElement.java",
+      "local": "fefe9f3166b3809a068ab0ef08e7d0c3d03e7776a1a0f7ea026f5a25cfb74363"
+    },
+    {
+      "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/frame/option/action/OptionActionButtonRenderer.java",
+      "local": "e6eb0da6c279de1544262c5e5bde864a6dd3a3f801040221201878e4ccf8387a"
+    },
+    {
+      "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/frame/option/action/OptionResetAction.java",
+      "local": "5c7ddf6d98e2390a9e8be15e1c22b2200181f73909a42431f011dc6098926018"
+    },
+    {
+      "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/frame/option/action/OptionUndoAction.java",
+      "local": "c59444eedcdde12d22e6025d370c6c24231963299b91059e7b02a9f30f0202a0"
+    },
+    {
+      "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/frame/tab/Tab.java",
+      "local": "97a7cd0ca92d6d315a4f721675cafa97d35f44272e9a7159bd77a825962d1013"
+    },
+    {
+      "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/frame/tab/TabButtonWidget.java",
+      "local": "4f82f7b5257ade2e667f746ed052fef280e34df0bb090faa29899d5f20e01600"
+    },
+    {
+      "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/frame/tab/TabFrame.java",
+      "local": "4cfb9e4daf8e396e0881203cde1900914f15c41c529d8c3884e90b1e9c87728d"
+    },
+    {
+      "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/frame/tab/TabGroup.java",
+      "local": "7896ff85722e06e7b03dc18aad86ebef10d8e0cdfa8ed5423227437e71452975"
+    },
+    {
+      "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/frame/tab/TabGroupModel.java",
+      "local": "f5c3dfcdf23259d60325244958819f735a073acbdd39154b6b5a3ec6c5405d21"
+    },
+    {
+      "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/frame/tab/TabRail.java",
+      "local": "97590a0636dd7f2e0b4abe3db9ba5ff765096c4c5429197da73deb1c6398caa7"
+    },
+    {
+      "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/frame/tab/TabSelectionState.java",
+      "local": "b935dfb01a99fac1df292820fc2abc9536cc872dfd5ae62db9eff474cc5cc774"
+    },
+    {
+      "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/layout/LayoutBounds.java",
+      "local": "4c435da478b48bc729ec66ebf098b8d87006da063dd41a8b7c27ffff31ee7195"
+    },
+    {
+      "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/option/OptionExtended.java",
+      "local": "3780083737b86a60116a223c13e6f3429f4f04283e3ec2707fe2ba09d7d21556"
+    },
+    {
+      "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/option/OptionStateProvider.java",
+      "local": "67787f08760c078450599494f0284f2479b5ebb5dbb53a1bcbcf7acafecf5ae9"
+    },
+    {
+      "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/search/OptionSearch.java",
+      "local": "41a39cd3186e55fdbfadafe3d4983e358bade21adece78185a78fc8f40d1008e"
+    },
+    {
+      "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/search/SearchTextFieldWidget.java",
+      "local": "a6dc34b6f8fb83d3b29cbf61c82e4c336cfff6c8b646566ab5b28436852340e8"
+    },
+    {
+      "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/state/Holder.java",
+      "local": "d3b0984c08131886b4a84f050ea82118fd730e160f3d111ac17747be8ada4c7f"
+    },
+    {
+      "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/state/OptionLayoutState.java",
+      "local": "0152ca526ae30c6a603a9ff92333c6c717f6f026c812e0498c8ca538fcf47249"
+    },
+    {
+      "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/state/OptionStateStore.java",
+      "local": "9cd948a38ea83e40fbc7ac0fa94e35e0dec6e2943f1917851eeac4dc8e4d0457"
+    },
+    {
+      "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/state/OptionUiState.java",
+      "local": "9cfb251db488133a0fbcd4aee1f2caff849154aa017887c27089a2a885683fff"
+    },
+    {
+      "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/state/OptionsScreenUiState.java",
+      "local": "30916206218242e8551c4e5d7dfa4729797576e26b46c3a047ded6043d72124b"
+    },
+    {
+      "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/state/SearchResultEntry.java",
+      "local": "ff30262dac668baceef53602b960bf46c0e1f8cd9ab4539a1e8d7ed5ce6cbaef"
+    },
+    {
+      "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/state/SearchResultOrder.java",
+      "local": "b6dd3535f07e34b032841274ce075d4277bb71e91937b5d2c40446254cdfa51a"
+    },
+    {
+      "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/theme/GuiTheme.java",
+      "local": "7648f5a7bf828b8b82156c731cf36b67eacc946a1863e57b93007db2b407b683"
+    },
+    {
+      "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/theme/GuiThemes.java",
+      "local": "925c328200b8eaf35898b3ad225114d13ba45cf75be19a6a90d8b08887abe64c"
+    },
+    {
+      "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/theme/IconRenderer.java",
+      "local": "cb984b1d8784979710261e99e1bd67cfa9327f7dec0a1e087e40484ce4c24a95"
+    },
+    {
+      "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/widget/BaseWidget.java",
+      "local": "940a915401d25389b40891ba92e0d20af33b505fc19f71c8027f708ef129e327"
+    },
+    {
+      "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/widget/FlatButtonWidget.java",
+      "local": "9362ca525161913282cce515efcdfb841d07a5e8f8d4d06dc92833f6b05b481c"
+    },
+    {
+      "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/widget/LabelWidget.java",
+      "local": "6a2fa81590f08f85c20e5f85271f7a8f1a6864e931ebb3f96da923ca0951f50d"
+    },
+    {
+      "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/widget/ScrollBarWidget.java",
+      "local": "1392a02d5a7cbb1b64cb905d2a73a7dd9fb292492a1fa53cdac370e87fd02bad"
+    },
+    {
+      "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/widget/TabHeaderWidget.java",
+      "local": "6af867d5fe4c27dc098846df1763bcc4088cad83dee6619b7e9352a001f78c1a"
+    },
+    {
+      "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/widget/TextFieldWidget.java",
+      "local": "e4282597015149b040f66466dcdf8408f3018f0eabe29f5900fee9825052bf3e"
+    },
+    {
+      "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/search/NgramGenerator.java",
+      "local": "79fa4472cacd01a4effe960bdc183da44dd20dbd72ccfab0a2a47407e2605c70"
+    },
+    {
+      "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/search/SearchIndex.java",
+      "local": "5d40ccd7e844857e8b93fb4c826b71cb6828201016cadd36cbb07d8c8823273b"
+    },
+    {
+      "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/search/SearchIndexContext.java",
+      "local": "0e578c17b418ef70a1e416703e1f197d244e0d31cbd34cfe09fe9bb295e366fc"
+    },
+    {
+      "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/search/SearchNormalizer.java",
+      "local": "5206bce1c2e543510eee7c25cbc9be43d6dac68beed065177dd399421ce61a3a"
+    },
+    {
+      "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/search/SearchResult.java",
+      "local": "b00580bb88ea7387e2496d4223bf47185f0713d85f3d7407129b9b3beef6eeaa"
+    },
+    {
+      "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/search/SearchSession.java",
+      "local": "9cb0345ccccf7c19aa0c2f51a468e6542e86d3d664d2173c183c6d63d9f05cca"
+    },
+    {
+      "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/ClassicRsoOptionsPage.java",
+      "local": "d9dd73f85b897e0348cf6b219fcf46fbb2bcdb9b806aa1643aa4224229d2bad9"
+    },
+    {
+      "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/NativeControlAdapter.java",
+      "local": "305f4710703f04a7cf2fc2daf70f5659c738e45743c008e718c4aeff3f9d71e2"
+    },
+    {
+      "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/NocturnaOptionsSource.java",
+      "local": "3f00c452aa6424e57964124978a87894ec48f3b251d0dbfe4ae598af48471088"
+    },
+    {
+      "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/OptionDefaults.java",
+      "local": "b90f6b0ece51d7ea4c740c50db1587151c7db92d492e310718881b0d3020dcb6"
+    },
+    {
+      "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/compat/CharacterEvent.java",
+      "local": "fa7678519099f174e198c34d56416688dd61e95b3776e93011e0bc6263796a31"
+    },
+    {
+      "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/compat/ContainerEventHandler.java",
+      "local": "53ac3764ce1d26cf976a15dc7bf4cee0f48d10ee0558f0b055a629067c4c4c64"
+    },
+    {
+      "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/compat/CursorTypes.java",
+      "local": "75f6664508d7e20d61efcf707656a1a874538a1c82dbc882bf2e36d1e06179c4"
+    },
+    {
+      "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/compat/FocusPaths.java",
+      "local": "b5a09d331cc4ca397b505c22289d3eab63a53a6c953a15d042aa8d04a7aac274"
+    },
+    {
+      "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/compat/GuiEventListener.java",
+      "local": "c4e26e2ae135a751b18850d5822c356ab6e390fd700eb71652efb0e2185425b5"
+    },
+    {
+      "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/compat/GuiGraphicsExtractor.java",
+      "local": "b7c4d1a723a453c40e48e09a7d8763a48f1c54a164e48057fc8eab0b3be97497"
+    },
+    {
+      "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/compat/InputState.java",
+      "local": "48a47de729ebe3d2b4970702dd2977f0792c8c50f50138a8f34bb20b3699c2f5"
+    },
+    {
+      "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/compat/Java17Math.java",
+      "local": "57d1b5a4c76c552bfd7f73e2dbe7aa35203a7c4228c010863bc3e09ebc7dbbad"
+    },
+    {
+      "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/compat/KeyEvent.java",
+      "local": "01ef6bebe480c7ed6f28043fa074d3807b1ce03f57a86020e54f6b6d1302fc80"
+    },
+    {
+      "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/compat/MouseButtonEvent.java",
+      "local": "c18984379385f4108fa186fcee22b116f3d05b4e0cb0e2530463d2b956921748"
+    },
+    {
+      "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/compat/NarratableEntry.java",
+      "local": "5ec720cc895d5c9655b3c681228396a714a5a905955a240dd1ae6aa681e53e61"
+    },
+    {
+      "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/compat/RenderPipelines.java",
+      "local": "5998e47c06f33a9d04894fcfa50526bf062104ab8b14fbd29da6cb041b00f275"
+    },
+    {
+      "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/compat/Renderable.java",
+      "local": "297c89d72f3d36f5f4dce400c866120c9ee98a91bcc8a8031f71312d2646fcbc"
+    },
+    {
+      "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/compat/RsoScreen.java",
+      "local": "96cc19de945782d7277ec71ddbb0ab9f5c3dcd24c7b7f3d0c704e7b013057c8c"
+    },
+    {
+      "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/compat/SDLKeycode.java",
+      "local": "5c3c23bf3189c2f319c367b373713898f3cdc4fb698628b0693aa6d5d2a0b856"
+    },
+    {
+      "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/compat/SDLMouse.java",
+      "local": "f3a383a50c23229ae0a08421e07b7c484ee771fef006efc4d6050ce8aa8c5b86"
+    },
+    {
+      "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/compat/StringUtil.java",
+      "local": "fe25ed7d6586771742577aa3127bd90a80f4e08a4f861c8cc03129dd40cf6232"
+    },
+    {
+      "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/compat/TextInputBridge.java",
+      "local": "f9b2ed9f34ac15fb80c2606360d145b25b923abde572d72e0dbc71b51c248e03"
+    },
+    {
+      "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/compat/TextureDimensions.java",
+      "local": "a27eb7c31af70955d4586feaa1772ea9c5e587c54f8644e34ecf6bccd13bd347"
+    },
+    {
+      "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/compat/Unicode16.java",
+      "local": "dae69699a7f7f00448d97341093a721b7591f28a34d3d86ecf60afe90536ea6b"
+    },
+    {
+      "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/compat/sodium/api/config/ConfigEntryPoint.java",
+      "local": "10dac6444c8e7bb4366ea0abd83cbbc9d7c6e4d9e9ed90ed9a1faabc36575d98"
+    },
+    {
+      "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/compat/sodium/api/config/ConfigState.java",
+      "local": "e8f3b894069f4a658fdf9d133ac79950702550770ecb053f020f9b1594b58048"
+    },
+    {
+      "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/compat/sodium/api/config/StorageEventHandler.java",
+      "local": "209124eea1f07d9aab8dcf85950401ebe5180f627a982e8c953bf2baed6ee88c"
+    },
+    {
+      "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/compat/sodium/api/config/option/OptionImpact.java",
+      "local": "24c7c3557069247eaf496272e8e7a7d427b93a50d20772d3bf52aa580f05946f"
+    },
+    {
+      "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/compat/sodium/api/config/option/SteppedValidator.java",
+      "local": "7b890e72233ee17e0166c93c8babd94e42f2b4192e9cc6d090ca60cd8151e8d3"
+    },
+    {
+      "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/compat/sodium/api/config/structure/ConfigBuilder.java",
+      "local": "6b01593d969072ed1ef992db00025e7f04daa28be52264c9b7e74842d46051df"
+    },
+    {
+      "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/compat/sodium/api/config/structure/OptionBuilder.java",
+      "local": "95023470a325c6112b900cac0931fbb7fb59f76ba90f4838d23eea73fd9ccf9e"
+    },
+    {
+      "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/compat/sodium/api/config/structure/OptionGroupBuilder.java",
+      "local": "6291e9034b4b3a13190c5443b4cb05c7a406b3d2530131a15a4bb79089fd2d6b"
+    },
+    {
+      "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/compat/sodium/api/config/structure/OptionPageBuilder.java",
+      "local": "77e1b5981b91aeb99c12040df5b0172b89e902638c4379ed3251998d5fa3cbad"
+    },
+    {
+      "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/compat/sodium/client/config/ConfigManager.java",
+      "local": "04e3fd3f01b55c97811f2c20620293bb03630e4de2143a07490e315a8cd6fee7"
+    },
+    {
+      "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/compat/sodium/client/config/structure/BooleanOption.java",
+      "local": "c6104e08af2b4e7339b275bac146f9fd327b3b0103e54188e403b73209628333"
+    },
+    {
+      "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/compat/sodium/client/config/structure/Config.java",
+      "local": "6ceb3ddddfd004ea136b9a2cacd4969ae5b624c17aa5388247880074d9f886e9"
+    },
+    {
+      "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/compat/sodium/client/config/structure/EnumOption.java",
+      "local": "cdc6e607fa79993989bac70df7553ad3f6a2495ba27ba435b623c847005ea711"
+    },
+    {
+      "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/compat/sodium/client/config/structure/ExternalButtonOption.java",
+      "local": "fb6810b001cb57a2beb6e26d7eaa17c6a2cad2527b9e2063433e4011852abe42"
+    },
+    {
+      "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/compat/sodium/client/config/structure/ExternalPage.java",
+      "local": "8b690668c0c7da0e03e3dc9e428e0258667e00cce0db21cddb398358db94111a"
+    },
+    {
+      "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/compat/sodium/client/config/structure/IntegerOption.java",
+      "local": "f0620b4bf8173f925d6890c1a7b6dbba11dd52f2b2a500809afbc0ace56e0560"
+    },
+    {
+      "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/compat/sodium/client/config/structure/ModOptions.java",
+      "local": "65b70069aad1487131d0cd7017f2b2ca2767cb60bf0cdb6ea73177a33f4182bd"
+    },
+    {
+      "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/compat/sodium/client/config/structure/Option.java",
+      "local": "78207ea04a4c8f712d3f519d731961118051d0acc0d938654e6a0ba7bb84f9b3"
+    },
+    {
+      "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/compat/sodium/client/config/structure/OptionGroup.java",
+      "local": "a9bd9dfa65664926cee0e69c30b0ddb388de63d92a67f28f72ec599e996b83eb"
+    },
+    {
+      "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/compat/sodium/client/config/structure/Page.java",
+      "local": "b78d1f63d8a3f318e43464ce82cab888806147b4d748b5507ae156282c16d115"
+    },
+    {
+      "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/compat/sodium/client/config/structure/StatefulOption.java",
+      "local": "86691b4411abc99fc1723d6d7dd401ca1b4d1a78475a9393ad3d9128adbfb7df"
+    },
+    {
+      "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/compat/sodium/client/config/structure/ValueSource.java",
+      "local": "94cc9c52feaea025e417c9892b34b3e0ebc0ffce9d443be018b180636411a689"
+    },
+    {
+      "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/compat/sodium/client/data/fingerprint/HashedFingerprint.java",
+      "local": "6f4b79252249846bf57507375ec9609ab308e769cf948d40cf3c606254a646bb"
+    },
+    {
+      "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/compat/sodium/client/gui/ColorTheme.java",
+      "local": "f3974d8909bed69cd326c755a3d60d386099e5c426f8998087b4320b07cd457c"
+    },
+    {
+      "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/compat/sodium/client/gui/VideoSettingsScreen.java",
+      "local": "5173ee57b43ecc2540b383577af166b94bd9ba2883be3a8415d32d6844d88beb"
+    },
+    {
+      "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/compat/sodium/client/gui/options/control/AbstractOptionList.java",
+      "local": "1702a06d47b0509f8decc243245da95de2f42a441dd03a0b99e38268198d6733"
+    },
+    {
+      "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/compat/sodium/client/gui/options/control/Control.java",
+      "local": "2557d58d15deb1aeda1324b25ef09a4022cf2b6cb30fafa1289bf1867a91c10f"
+    },
+    {
+      "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/compat/sodium/client/gui/options/control/ControlElement.java",
+      "local": "ee628681c9621de4e456280e01f44f68dba489fa4d000df1432d294274a53c85"
+    },
+    {
+      "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/compat/sodium/client/gui/options/control/CyclingControl.java",
+      "local": "ff70bda35bd3dea68682867bd2170c0e41cb585e6503e74bfa5b89ea83bb1520"
+    },
+    {
+      "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/compat/sodium/client/gui/options/control/ExternalButtonControl.java",
+      "local": "5b2ad799d85e7b2d566403de03565f4658cf420b063d359b36daea99ec975bba"
+    },
+    {
+      "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/compat/sodium/client/gui/options/control/SliderControl.java",
+      "local": "10854651a425c34de5492fc2cd164da7074647b35853e73a54e81799dbb88fe5"
+    },
+    {
+      "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/compat/sodium/client/gui/options/control/TickBoxControl.java",
+      "local": "df0ab904aa1375f62669b5b791d0c2bdc1a68671a7eec9c4e8437e96109a2501"
+    },
+    {
+      "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/compat/sodium/client/gui/prompt/ScreenPrompt.java",
+      "local": "e507f39f9c3b7d4a7dc7d1ea9e43b133ba72e9548f070a644da3d3be461eb6fe"
+    },
+    {
+      "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/compat/sodium/client/gui/prompt/ScreenPromptable.java",
+      "local": "6d03d01db48c60b5837d91fc3bdfc2c607e4b64726cae6301a996ee174f0f2fc"
+    },
+    {
+      "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/compat/sodium/client/services/PlatformRuntimeInformation.java",
+      "local": "637215dd63db0e9496897c99cce2640b49ad8648c583b7f934c3e49c4176e8c6"
+    },
+    {
+      "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/compat/sodium/client/util/Dim2i.java",
+      "local": "faefa1264eba02d5c250fac7a964a6c290facad2fd2aa57480f0d5e6f6a72b21"
+    },
+    {
+      "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/compat/sodium/client/util/FileUtil.java",
+      "local": "8939fd74920528b969e959fc97fb4bd1961e5bacd5150ad868cd8208a3406ec4"
+    },
+    {
+      "path": "modern/src/main/rso_resources/LICENSE-ICU.txt",
+      "local": "01edac20612b1e590c1c1cfb02b7218c6adc7b0a944eda7a1e03aeee10725aed"
+    },
+    {
+      "path": "modern/src/main/rso_resources/LICENSE-RSO.txt",
+      "local": "68fcaeff2c3545be8a6a144e55c5c1e1007892eed357b057583aa97e4030a876"
+    },
+    {
+      "path": "modern/src/main/rso_resources/assets/nocturna_rso/lang/en_us.json",
+      "local": "83899d76e72fa51fef07191dbedb15a8784ecd1435ab7034ff1499f75b571323"
+    },
+    {
+      "path": "modern/src/main/rso_resources/assets/nocturna_rso/lang/ja_jp.json",
+      "local": "cff13a8b88ad6767d6adb689470521cadd19c0cbf3819dd104a71089d136e0b2"
+    },
+    {
+      "path": "modern/src/main/rso_resources/assets/reeses-sodium-options/icon.png",
+      "local": "d8c51f457072ed715ce62d1572fbbf914282a85abd583aeb1c6bb7606f9c34f5"
+    },
+    {
+      "path": "modern/src/main/rso_resources/assets/reeses-sodium-options/lang/be_by.json",
+      "local": "5e23cb53ca0acbbafe4543c91eccfaf35a53172c3a3fce4196bdfc1687750856"
+    },
+    {
+      "path": "modern/src/main/rso_resources/assets/reeses-sodium-options/lang/en_us.json",
+      "local": "f32895fa7de9f7ae6a2d0eb475e9ef445d360777e063ebc46035bf897c8e8907"
+    },
+    {
+      "path": "modern/src/main/rso_resources/assets/reeses-sodium-options/lang/es_es.json",
+      "local": "44e71d42a66b504c50ed2ffc42281bffba65b9ca2b29b0995ea060c1e6c62546"
+    },
+    {
+      "path": "modern/src/main/rso_resources/assets/reeses-sodium-options/lang/es_mx.json",
+      "local": "868c082621119dce7710f33fa179c063c6cf0c7832964d5c7042586047ace96c"
+    },
+    {
+      "path": "modern/src/main/rso_resources/assets/reeses-sodium-options/lang/fr_fr.json",
+      "local": "c6c23cdca1c13ab57803248817901e3ddc598ff38c10e06d99062faa9b11b9a5"
+    },
+    {
+      "path": "modern/src/main/rso_resources/assets/reeses-sodium-options/lang/it_it.json",
+      "local": "c45fde5dcbe33f761d22b9fa31c12481d64034e71ab390ff81e597d43d1a039c"
+    },
+    {
+      "path": "modern/src/main/rso_resources/assets/reeses-sodium-options/lang/ja_jp.json",
+      "local": "701fa2138034f19681375a05329cec7b8c6ddb1df96d8693930d88143cc5408e"
+    },
+    {
+      "path": "modern/src/main/rso_resources/assets/reeses-sodium-options/lang/ms_my.json",
+      "local": "9cad6c62b2f24bbd8e3b857a36186428039ac51869bc4c726df2c825f138c55f"
+    },
+    {
+      "path": "modern/src/main/rso_resources/assets/reeses-sodium-options/lang/nl_nl.json",
+      "local": "9b549aff37833496da65e47e43719c424b278c2cb6ff9c46ba706cc8044f7fae"
+    },
+    {
+      "path": "modern/src/main/rso_resources/assets/reeses-sodium-options/lang/pl_pl.json",
+      "local": "4f7e1d94cc139bbe48265a20996b7c487a5deff5965f9fed1f4b0b23fdb2b038"
+    },
+    {
+      "path": "modern/src/main/rso_resources/assets/reeses-sodium-options/lang/pt_br.json",
+      "local": "a9384698d0e291568f72f3d63daa0ad6ede980c286813b940fe988009e93117a"
+    },
+    {
+      "path": "modern/src/main/rso_resources/assets/reeses-sodium-options/lang/ru_ru.json",
+      "local": "4b3f5a5429b3fc7014715d938234d566e2553d4960b116f209fdf41b552a83f5"
+    },
+    {
+      "path": "modern/src/main/rso_resources/assets/reeses-sodium-options/lang/tr_tr.json",
+      "local": "480e042cd1b185d35fe81367447aa827c9f0c343303cd49bcddc4ca2a4131221"
+    },
+    {
+      "path": "modern/src/main/rso_resources/assets/reeses-sodium-options/lang/uk_ua.json",
+      "local": "d47f641b0c11bbdcf2ff570857e3ba3ca5cf9d58fcfede565f8762d68d81de19"
+    },
+    {
+      "path": "modern/src/main/rso_resources/assets/reeses-sodium-options/lang/vi_vn.json",
+      "local": "d645dad669f1e742bc37dcccf096913878b4057295f81dd26d2db1e5cf150ea2"
+    },
+    {
+      "path": "modern/src/main/rso_resources/assets/reeses-sodium-options/lang/zh_cn.json",
+      "local": "b480f6a44970de99716bb4f123af00eee694c6a6c1ca776d31334a25baa5ecdc"
+    },
+    {
+      "path": "modern/src/main/rso_resources/assets/reeses-sodium-options/lang/zh_tw.json",
+      "local": "0b82c482cb43985267fec5a44658bd0bee38b50279536a01c9149f62b2b3f03f"
+    },
+    {
+      "path": "modern/src/main/rso_resources/assets/reeses-sodium-options/lang/zlm_arab.json",
+      "local": "a773d42f2857459b6ba8b45e932501e76a1893af5b74c858172dfe136b9097e7"
+    },
+    {
+      "path": "modern/src/main/rso_resources/assets/reeses-sodium-options/textures/gui/reset_to_default.png",
+      "local": "7d296a4e5f8e96183bbad8f81aee18288678099a14bb5b1ce38797fe5279d892"
+    },
+    {
+      "path": "modern/src/main/rso_resources/assets/reeses-sodium-options/textures/gui/undo_to_unmodified.png",
+      "local": "f10b70c807d6eb30a768a3b0e3c42bf43aa9c529765dac6eb7d32719dfbcb741"
     },
     {
       "path": "modern/src/main/shaders_java/net/irisshaders/iris/cache/ProgramBinaryAccess.java",
@@ -977,6 +1594,10 @@
       "local": "a812610d627a16a227707980316a2e208977f117396233902945e91a3d230169"
     },
     {
+      "path": "modern/src/test/java/org/embeddedt/embeddium/impl/gui/rso/SteppedValidatorTest.java",
+      "local": "4059eff191b739ac583546ae27c1dd82d502441ae5487013295067653a7992a9"
+    },
+    {
       "path": "modern/src/test/java/org/embeddedt/embeddium/impl/mixin/core/render/immediate/consumer/BufferBuilderEligibilityTest.java",
       "local": "c3b30521772ac885548dbdfe995a68c7a9968490bb81f019bf8f3494b2149481"
     },
@@ -1022,11 +1643,19 @@
     },
     {
       "path": "modern/src/validation/java/org/embeddedt/embeddium/validation/MigrationValidation.java",
-      "local": "0f304894f5e3c0c72d4af2e4b3abfbc2ea9dce3632fb8008d5e704e84a741fce"
+      "local": "bae81caba355bab4aa17f60d249ab5e05534f1a773af2b967330db2b3eb6a8e3"
     },
     {
       "path": "modern/src/validation/java/org/embeddedt/embeddium/validation/PBRResourceIndexValidation.java",
       "local": "e661af210be9196baaaa2cbf7b11beb7e6627b8f487808aa0681067991081eaa"
+    },
+    {
+      "path": "modern/src/validation/java/org/embeddedt/embeddium/validation/RsoRowValidation.java",
+      "local": "86fafc937cb429ede0427429606b89986028c0a6b892944063b4fbf375bb3cbe"
+    },
+    {
+      "path": "modern/src/validation/java/org/embeddedt/embeddium/validation/RsoValidation.java",
+      "local": "fa48fb985c4f0d99cbd837ea3067a1bb3c28c37396d1975d595dcbef377f7fa3"
     },
     {
       "path": "modern/src/validation/java/org/embeddedt/embeddium/validation/ShaderCachePackValidation.java",

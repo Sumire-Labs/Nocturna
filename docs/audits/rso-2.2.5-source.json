@@ -1,0 +1,915 @@
+{
+  "repository": "https://github.com/FlashyReese/reeses-sodium-options",
+  "tag": "mc26.3-2.2.5",
+  "revision": "7093d1d50514125cf933cd02e1336c69a3147289",
+  "entries": [
+    {
+      "path": "LICENSE.txt",
+      "sha256": "68fcaeff2c3545be8a6a144e55c5c1e1007892eed357b057583aa97e4030a876",
+      "targets": [
+        {
+          "path": "modern/src/main/rso_resources/LICENSE-RSO.txt",
+          "sha256": "68fcaeff2c3545be8a6a144e55c5c1e1007892eed357b057583aa97e4030a876"
+        }
+      ]
+    },
+    {
+      "path": "common/src/main/java/me/flashyreese/mods/reeses_sodium_options/client/config/ReeseSodiumOptionsConfig.java",
+      "sha256": "494eb232fef1d944384213f5f3b7ba92fa922ae0e64ff7f7db288fc0d4073afa",
+      "targets": [
+        {
+          "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/config/ReeseSodiumOptionsConfig.java",
+          "sha256": "951c21f95d2b95811e1d1e03a9946e4b941c98c681f28f6c9a444adaf2169b14"
+        }
+      ]
+    },
+    {
+      "path": "common/src/main/java/me/flashyreese/mods/reeses_sodium_options/client/config/ReeseSodiumOptionsConfigEntryPoint.java",
+      "sha256": "598b9faaf4b0120e5e1f1e2ea91050a042797b0627b3f3aca689c47be7897acc",
+      "targets": [
+        {
+          "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/config/ReeseSodiumOptionsConfigEntryPoint.java",
+          "sha256": "c431a571827c735a567381920affbdfa8a5fc9fad34f7768ae748b157c14775d"
+        }
+      ]
+    },
+    {
+      "path": "common/src/main/java/me/flashyreese/mods/reeses_sodium_options/client/controlify/ReeseSodiumOptionsControlifyEntrypoint.java",
+      "sha256": "1660da81149e32cfbcd212fea983cac5e41e3f28ded7569275cf1d13c7f42ec4",
+      "excluded": "Controlify integration excluded by the requested baseline"
+    },
+    {
+      "path": "common/src/main/java/me/flashyreese/mods/reeses_sodium_options/client/controlify/RsoOptionsScreenProcessor.java",
+      "sha256": "52b674b7342fb17b1c2703ce47a4de7b56fcbe393eab03d153b734bbc5405046",
+      "excluded": "Controlify integration excluded by the requested baseline"
+    },
+    {
+      "path": "common/src/main/java/me/flashyreese/mods/reeses_sodium_options/client/controlify/RsoSearchTextFieldProcessor.java",
+      "sha256": "05f43113234449f89a755e0400ceee0b3722de39f3b724d16c72ae85b02e0386",
+      "excluded": "Controlify integration excluded by the requested baseline"
+    },
+    {
+      "path": "common/src/main/java/me/flashyreese/mods/reeses_sodium_options/client/gui/PreviousScreenHolder.java",
+      "sha256": "83e29614c910a96913c6caf98cf74daf2edf324d347f7dc551130c722b8e6b3c",
+      "targets": [
+        {
+          "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/PreviousScreenHolder.java",
+          "sha256": "83e29614c910a96913c6caf98cf74daf2edf324d347f7dc551130c722b8e6b3c"
+        }
+      ]
+    },
+    {
+      "path": "common/src/main/java/me/flashyreese/mods/reeses_sodium_options/client/gui/SodiumVideoOptionsScreen.java",
+      "sha256": "7b3acc3a1790060ab4f71c7eda6ca42ad83ebeda81545c3700b0c1f92a0c3fd2",
+      "targets": [
+        {
+          "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/SodiumVideoOptionsScreen.java",
+          "sha256": "8467fad3c8278717af939c114b3c587be232d464f9ccedc6062b66cd8b8dd5dc"
+        }
+      ]
+    },
+    {
+      "path": "common/src/main/java/me/flashyreese/mods/reeses_sodium_options/client/gui/SodiumWidgetDimensions.java",
+      "sha256": "12c3f00c0da4c8ba4d6500f6a9aedcbb3b24fb5b01750cf31229b1fd83d2b8d4",
+      "targets": [
+        {
+          "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/SodiumWidgetDimensions.java",
+          "sha256": "2a0e62b05f382c6c6dae65628d13478018bfb3ef813eae903080cb2641cafd48"
+        }
+      ]
+    },
+    {
+      "path": "common/src/main/java/me/flashyreese/mods/reeses_sodium_options/client/gui/control/ControlGuide.java",
+      "sha256": "c14b5eb61f88c13868ce37a2aa15089acf244887e9d9718bc6100337b41a3b94",
+      "targets": [
+        {
+          "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/control/ControlGuide.java",
+          "sha256": "c14b5eb61f88c13868ce37a2aa15089acf244887e9d9718bc6100337b41a3b94"
+        }
+      ]
+    },
+    {
+      "path": "common/src/main/java/me/flashyreese/mods/reeses_sodium_options/client/gui/control/ControlGuideProvider.java",
+      "sha256": "3bede0305207a77cf4be0b118c31f0e6f0ae3e7b5103cbb6bf774d3951332990",
+      "targets": [
+        {
+          "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/control/ControlGuideProvider.java",
+          "sha256": "3bede0305207a77cf4be0b118c31f0e6f0ae3e7b5103cbb6bf774d3951332990"
+        }
+      ]
+    },
+    {
+      "path": "common/src/main/java/me/flashyreese/mods/reeses_sodium_options/client/gui/frame/AbstractFrame.java",
+      "sha256": "656dedd161ea2088706332251d9e62487780630ceac056554b1e06ef8a0a0d89",
+      "targets": [
+        {
+          "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/frame/AbstractFrame.java",
+          "sha256": "74dfe5863c089e9654309e01d588172ab3c043b322a8eb97824ea74ae21dfa7e"
+        }
+      ]
+    },
+    {
+      "path": "common/src/main/java/me/flashyreese/mods/reeses_sodium_options/client/gui/frame/BasicFrame.java",
+      "sha256": "cf740c856a3094389a08ead353114fe4c34023db43d53be68354de7a82289b5a",
+      "targets": [
+        {
+          "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/frame/BasicFrame.java",
+          "sha256": "b54e55ebebc1ab109f2249305b0b237b8513a72404232aca7f496e9ed8e39baa"
+        }
+      ]
+    },
+    {
+      "path": "common/src/main/java/me/flashyreese/mods/reeses_sodium_options/client/gui/frame/ScrollFrameLayout.java",
+      "sha256": "5b573aca41fe9396f66d3b53900e6b2b43a716f7a104f3381e114db3720c129a",
+      "targets": [
+        {
+          "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/frame/ScrollFrameLayout.java",
+          "sha256": "5b573aca41fe9396f66d3b53900e6b2b43a716f7a104f3381e114db3720c129a"
+        }
+      ]
+    },
+    {
+      "path": "common/src/main/java/me/flashyreese/mods/reeses_sodium_options/client/gui/frame/ScrollableFrame.java",
+      "sha256": "aed7d940f16c06cefe2f4465c89514c333558946adeb909ada43eed26cac6236",
+      "targets": [
+        {
+          "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/frame/ScrollableFrame.java",
+          "sha256": "9dd3ca2a076b63c1476b530a704046c8b4b20f9144cc81aaaddfcfe45fe26834"
+        }
+      ]
+    },
+    {
+      "path": "common/src/main/java/me/flashyreese/mods/reeses_sodium_options/client/gui/frame/option/AbstractOptionRow.java",
+      "sha256": "0c82be34a9e2b886f8d973a209267f199c0f86806dd50be1130db599cbdefbb8",
+      "targets": [
+        {
+          "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/frame/option/AbstractOptionRow.java",
+          "sha256": "1b91446beb52c8a5796214b5977257eb1126e56e1df137d89847419b2089a349"
+        }
+      ]
+    },
+    {
+      "path": "common/src/main/java/me/flashyreese/mods/reeses_sodium_options/client/gui/frame/option/BooleanOptionRow.java",
+      "sha256": "b5cc84235bc29de058158dd204bcf90fdd454821371d6c4f1e7786671f930030",
+      "targets": [
+        {
+          "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/frame/option/BooleanOptionRow.java",
+          "sha256": "bcd3fd9c45da17fec79d1f9859fef1fa321c153f45b886c2842b74fb024e4adf"
+        }
+      ]
+    },
+    {
+      "path": "common/src/main/java/me/flashyreese/mods/reeses_sodium_options/client/gui/frame/option/EnumOptionRow.java",
+      "sha256": "d6e816fc6eee37cdb252e4199e02dafef222a7381067baeaf3f85c54fc7184a8",
+      "targets": [
+        {
+          "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/frame/option/EnumOptionRow.java",
+          "sha256": "98191ed378a5ab5cf9abbdfd1a40a28748ecc416a0fd1ada3618bfd47a68f725"
+        }
+      ]
+    },
+    {
+      "path": "common/src/main/java/me/flashyreese/mods/reeses_sodium_options/client/gui/frame/option/ExternalButtonOptionRow.java",
+      "sha256": "854109102f275ebc70f13ed9411c3c5d0a3b493b85bec6ea6ad2483753b3aaf7",
+      "targets": [
+        {
+          "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/frame/option/ExternalButtonOptionRow.java",
+          "sha256": "043c035e593d51e26c5997820a4fbfa33cb937ab22be6f3480b5cf11c789be31"
+        }
+      ]
+    },
+    {
+      "path": "common/src/main/java/me/flashyreese/mods/reeses_sodium_options/client/gui/frame/option/IntegerSliderOptionRow.java",
+      "sha256": "8bc0c9ccc7beacbf4c2cfe80dea648fd768b9942d8ac0f402931470317e49885",
+      "targets": [
+        {
+          "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/frame/option/IntegerSliderOptionRow.java",
+          "sha256": "099b951e758dcc61eee7ae584d7a2607dcdbc6f5924f332783a7f47fe8c93a9c"
+        }
+      ]
+    },
+    {
+      "path": "common/src/main/java/me/flashyreese/mods/reeses_sodium_options/client/gui/frame/option/OptionRow.java",
+      "sha256": "e3ddb95f673029aa07d45f4474dde557408ff15a2cd190c7f1d83e1d309440b9",
+      "targets": [
+        {
+          "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/frame/option/OptionRow.java",
+          "sha256": "789b7f2b86fdcfe934cc8745c3c74e9a7f9f822237e4f214ed7f1a9b84da2374"
+        }
+      ]
+    },
+    {
+      "path": "common/src/main/java/me/flashyreese/mods/reeses_sodium_options/client/gui/frame/option/OptionRowFactory.java",
+      "sha256": "53e364bbbba2aaf1a628ca5c2c7b5efe5ade430298d2c256b9954a5bf72de17b",
+      "targets": [
+        {
+          "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/frame/option/OptionRowFactory.java",
+          "sha256": "cc4dd346a4a3b0793b6c1218aaabbac348214e6d0b72a51adcae78168d26a843"
+        }
+      ]
+    },
+    {
+      "path": "common/src/main/java/me/flashyreese/mods/reeses_sodium_options/client/gui/frame/option/OptionTooltipController.java",
+      "sha256": "7f277629ced835aa38292263144f4a820b2179113706cc577bae412a44d9ad28",
+      "targets": [
+        {
+          "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/frame/option/OptionTooltipController.java",
+          "sha256": "cd1e63c2e5bd09dd749ceb586e59510c1c2f573f30165ea4b87a650b7eaee64a"
+        }
+      ]
+    },
+    {
+      "path": "common/src/main/java/me/flashyreese/mods/reeses_sodium_options/client/gui/frame/option/PageFrame.java",
+      "sha256": "bc1e44710163900472b222a7f3637b9190d3b703c6d922d01a37992df5008b23",
+      "targets": [
+        {
+          "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/frame/option/PageFrame.java",
+          "sha256": "d120b3d6a2b26323c0a4e3b61703f53482ad419dde94b38f67ed1c9a72da9a39"
+        }
+      ]
+    },
+    {
+      "path": "common/src/main/java/me/flashyreese/mods/reeses_sodium_options/client/gui/frame/option/PageLayout.java",
+      "sha256": "663235a6f8290852ad4d805adf181fc17d78dccd4ec0982286a50e466ee85bb5",
+      "targets": [
+        {
+          "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/frame/option/PageLayout.java",
+          "sha256": "4d0ddf12af8aa9c968c599a9a69a641fec18cfc7e634a5d7f40a7d2e6315f517"
+        }
+      ]
+    },
+    {
+      "path": "common/src/main/java/me/flashyreese/mods/reeses_sodium_options/client/gui/frame/option/SodiumControlElementOptionRow.java",
+      "sha256": "3a5cfade19e2dcde472e7b283cf0c36f99217bcdfb531ebcf39f17fd9a9d89dc",
+      "targets": [
+        {
+          "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/frame/option/SodiumControlElementOptionRow.java",
+          "sha256": "b7064092d6cb2b64b3a1e9f6ff17d0571a45379a624dbd0fcfbc7eed0f185789"
+        }
+      ]
+    },
+    {
+      "path": "common/src/main/java/me/flashyreese/mods/reeses_sodium_options/client/gui/frame/option/UnsupportedOptionRow.java",
+      "sha256": "7a57c87450820f4cf44178db5ee72375485662e1df956ffdcb7949d16d443b4c",
+      "targets": [
+        {
+          "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/frame/option/UnsupportedOptionRow.java",
+          "sha256": "fabb02640603e807c75df8983662ed4307288ffb45d666e2d2ca54cbeef7a65e"
+        }
+      ]
+    },
+    {
+      "path": "common/src/main/java/me/flashyreese/mods/reeses_sodium_options/client/gui/frame/option/action/OptionActionButtonController.java",
+      "sha256": "6a65b47e5e5d962c3f5a4aafeadd4af28020465f91b2f1aa0bd8201a084f162f",
+      "targets": [
+        {
+          "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/frame/option/action/OptionActionButtonController.java",
+          "sha256": "0931639d03c3a553899e050be77cce91273e43e12ad330ad5fddfd1c488381ef"
+        }
+      ]
+    },
+    {
+      "path": "common/src/main/java/me/flashyreese/mods/reeses_sodium_options/client/gui/frame/option/action/OptionActionButtonElement.java",
+      "sha256": "f478450a5df9fd8e5eab2c0da9f3f2943269be60995a0c2a6fe07c9151198155",
+      "targets": [
+        {
+          "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/frame/option/action/OptionActionButtonElement.java",
+          "sha256": "fefe9f3166b3809a068ab0ef08e7d0c3d03e7776a1a0f7ea026f5a25cfb74363"
+        }
+      ]
+    },
+    {
+      "path": "common/src/main/java/me/flashyreese/mods/reeses_sodium_options/client/gui/frame/option/action/OptionActionButtonRenderer.java",
+      "sha256": "399cbd98de851d0321265fd2bc3e40831f5215f3dc1482924dc5acdfae626a62",
+      "targets": [
+        {
+          "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/frame/option/action/OptionActionButtonRenderer.java",
+          "sha256": "e6eb0da6c279de1544262c5e5bde864a6dd3a3f801040221201878e4ccf8387a"
+        }
+      ]
+    },
+    {
+      "path": "common/src/main/java/me/flashyreese/mods/reeses_sodium_options/client/gui/frame/option/action/OptionResetAction.java",
+      "sha256": "3ec6d773f462f5c881d4dd20c421bf4dac3b10ed609a0cd35859061ec878bbe4",
+      "targets": [
+        {
+          "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/frame/option/action/OptionResetAction.java",
+          "sha256": "5c7ddf6d98e2390a9e8be15e1c22b2200181f73909a42431f011dc6098926018"
+        }
+      ]
+    },
+    {
+      "path": "common/src/main/java/me/flashyreese/mods/reeses_sodium_options/client/gui/frame/option/action/OptionUndoAction.java",
+      "sha256": "78490c0fb86e2f9d82eac65a24f98cbe6f9f41c034a2137a92315b3af565f43c",
+      "targets": [
+        {
+          "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/frame/option/action/OptionUndoAction.java",
+          "sha256": "c59444eedcdde12d22e6025d370c6c24231963299b91059e7b02a9f30f0202a0"
+        }
+      ]
+    },
+    {
+      "path": "common/src/main/java/me/flashyreese/mods/reeses_sodium_options/client/gui/frame/tab/Tab.java",
+      "sha256": "491de3681257f3a03a134f31686ed36c3684b5c49130f5361eda1239de500cb6",
+      "targets": [
+        {
+          "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/frame/tab/Tab.java",
+          "sha256": "97a7cd0ca92d6d315a4f721675cafa97d35f44272e9a7159bd77a825962d1013"
+        }
+      ]
+    },
+    {
+      "path": "common/src/main/java/me/flashyreese/mods/reeses_sodium_options/client/gui/frame/tab/TabButtonWidget.java",
+      "sha256": "a51e9ffd1025a5a2d73e822cf62a36a21c98a0bdfb3bf23d66d63d9e563905ca",
+      "targets": [
+        {
+          "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/frame/tab/TabButtonWidget.java",
+          "sha256": "4f82f7b5257ade2e667f746ed052fef280e34df0bb090faa29899d5f20e01600"
+        }
+      ]
+    },
+    {
+      "path": "common/src/main/java/me/flashyreese/mods/reeses_sodium_options/client/gui/frame/tab/TabFrame.java",
+      "sha256": "8230975df9f3c926fecd66529407b7ebdf8a0e164fb85586eea6cf56a4f57cd3",
+      "targets": [
+        {
+          "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/frame/tab/TabFrame.java",
+          "sha256": "4cfb9e4daf8e396e0881203cde1900914f15c41c529d8c3884e90b1e9c87728d"
+        }
+      ]
+    },
+    {
+      "path": "common/src/main/java/me/flashyreese/mods/reeses_sodium_options/client/gui/frame/tab/TabGroup.java",
+      "sha256": "7371f300c28949c6563a1c12af110ce17b566911d100cc6d8643be40ea2c9959",
+      "targets": [
+        {
+          "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/frame/tab/TabGroup.java",
+          "sha256": "7896ff85722e06e7b03dc18aad86ebef10d8e0cdfa8ed5423227437e71452975"
+        }
+      ]
+    },
+    {
+      "path": "common/src/main/java/me/flashyreese/mods/reeses_sodium_options/client/gui/frame/tab/TabGroupModel.java",
+      "sha256": "f5c3dfcdf23259d60325244958819f735a073acbdd39154b6b5a3ec6c5405d21",
+      "targets": [
+        {
+          "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/frame/tab/TabGroupModel.java",
+          "sha256": "f5c3dfcdf23259d60325244958819f735a073acbdd39154b6b5a3ec6c5405d21"
+        }
+      ]
+    },
+    {
+      "path": "common/src/main/java/me/flashyreese/mods/reeses_sodium_options/client/gui/frame/tab/TabRail.java",
+      "sha256": "76f8337438fd25d5289b09cf35b4f851f77d1cb9b70502f490d3878b8983f31f",
+      "targets": [
+        {
+          "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/frame/tab/TabRail.java",
+          "sha256": "97590a0636dd7f2e0b4abe3db9ba5ff765096c4c5429197da73deb1c6398caa7"
+        }
+      ]
+    },
+    {
+      "path": "common/src/main/java/me/flashyreese/mods/reeses_sodium_options/client/gui/frame/tab/TabSelectionState.java",
+      "sha256": "42906e3ef6f5e680cddbd78a7381b24f1dded5252dad3830d2d1d48714a5f5ac",
+      "targets": [
+        {
+          "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/frame/tab/TabSelectionState.java",
+          "sha256": "b935dfb01a99fac1df292820fc2abc9536cc872dfd5ae62db9eff474cc5cc774"
+        }
+      ]
+    },
+    {
+      "path": "common/src/main/java/me/flashyreese/mods/reeses_sodium_options/client/gui/layout/LayoutBounds.java",
+      "sha256": "4c435da478b48bc729ec66ebf098b8d87006da063dd41a8b7c27ffff31ee7195",
+      "targets": [
+        {
+          "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/layout/LayoutBounds.java",
+          "sha256": "4c435da478b48bc729ec66ebf098b8d87006da063dd41a8b7c27ffff31ee7195"
+        }
+      ]
+    },
+    {
+      "path": "common/src/main/java/me/flashyreese/mods/reeses_sodium_options/client/gui/option/OptionExtended.java",
+      "sha256": "2e8dc02494713a6660a1ff45739f47d7b55aabcc0e61af9573e657a9cad6feb9",
+      "targets": [
+        {
+          "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/option/OptionExtended.java",
+          "sha256": "3780083737b86a60116a223c13e6f3429f4f04283e3ec2707fe2ba09d7d21556"
+        }
+      ]
+    },
+    {
+      "path": "common/src/main/java/me/flashyreese/mods/reeses_sodium_options/client/gui/option/OptionStateProvider.java",
+      "sha256": "39cf550744fca6078b34aaa9da96f96b35a047a3a72ab699bde679f92ba5269c",
+      "targets": [
+        {
+          "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/option/OptionStateProvider.java",
+          "sha256": "67787f08760c078450599494f0284f2479b5ebb5dbb53a1bcbcf7acafecf5ae9"
+        }
+      ]
+    },
+    {
+      "path": "common/src/main/java/me/flashyreese/mods/reeses_sodium_options/client/gui/search/OptionSearch.java",
+      "sha256": "20d5b93f8a6e46f81baa28f5bd1e1efdbba90d2b97f7ec0222584e778c730459",
+      "targets": [
+        {
+          "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/search/OptionSearch.java",
+          "sha256": "41a39cd3186e55fdbfadafe3d4983e358bade21adece78185a78fc8f40d1008e"
+        }
+      ]
+    },
+    {
+      "path": "common/src/main/java/me/flashyreese/mods/reeses_sodium_options/client/gui/search/SearchTextFieldWidget.java",
+      "sha256": "6c837495783f900e6c68d73ed85122cea48f3367788338e7b2b316294f0676e2",
+      "targets": [
+        {
+          "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/search/SearchTextFieldWidget.java",
+          "sha256": "a6dc34b6f8fb83d3b29cbf61c82e4c336cfff6c8b646566ab5b28436852340e8"
+        }
+      ]
+    },
+    {
+      "path": "common/src/main/java/me/flashyreese/mods/reeses_sodium_options/client/gui/state/Holder.java",
+      "sha256": "d3b0984c08131886b4a84f050ea82118fd730e160f3d111ac17747be8ada4c7f",
+      "targets": [
+        {
+          "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/state/Holder.java",
+          "sha256": "d3b0984c08131886b4a84f050ea82118fd730e160f3d111ac17747be8ada4c7f"
+        }
+      ]
+    },
+    {
+      "path": "common/src/main/java/me/flashyreese/mods/reeses_sodium_options/client/gui/state/OptionLayoutState.java",
+      "sha256": "0152ca526ae30c6a603a9ff92333c6c717f6f026c812e0498c8ca538fcf47249",
+      "targets": [
+        {
+          "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/state/OptionLayoutState.java",
+          "sha256": "0152ca526ae30c6a603a9ff92333c6c717f6f026c812e0498c8ca538fcf47249"
+        }
+      ]
+    },
+    {
+      "path": "common/src/main/java/me/flashyreese/mods/reeses_sodium_options/client/gui/state/OptionStateStore.java",
+      "sha256": "ad38dda0bc8eae09a330653d66eed5aa524f1df4e2d7f67b5f2881a0d423777d",
+      "targets": [
+        {
+          "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/state/OptionStateStore.java",
+          "sha256": "9cd948a38ea83e40fbc7ac0fa94e35e0dec6e2943f1917851eeac4dc8e4d0457"
+        }
+      ]
+    },
+    {
+      "path": "common/src/main/java/me/flashyreese/mods/reeses_sodium_options/client/gui/state/OptionUiState.java",
+      "sha256": "9cfb251db488133a0fbcd4aee1f2caff849154aa017887c27089a2a885683fff",
+      "targets": [
+        {
+          "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/state/OptionUiState.java",
+          "sha256": "9cfb251db488133a0fbcd4aee1f2caff849154aa017887c27089a2a885683fff"
+        }
+      ]
+    },
+    {
+      "path": "common/src/main/java/me/flashyreese/mods/reeses_sodium_options/client/gui/state/OptionsScreenUiState.java",
+      "sha256": "f02a356552d998ce521fa765eeee172373e6cac768d5aa6186ae4e5c5ccf1fb7",
+      "targets": [
+        {
+          "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/state/OptionsScreenUiState.java",
+          "sha256": "30916206218242e8551c4e5d7dfa4729797576e26b46c3a047ded6043d72124b"
+        }
+      ]
+    },
+    {
+      "path": "common/src/main/java/me/flashyreese/mods/reeses_sodium_options/client/gui/state/SearchResultEntry.java",
+      "sha256": "43801be6807e1d1d01709a787857a420c3829e8d52aa59a8af9bb84b10710243",
+      "targets": [
+        {
+          "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/state/SearchResultEntry.java",
+          "sha256": "ff30262dac668baceef53602b960bf46c0e1f8cd9ab4539a1e8d7ed5ce6cbaef"
+        }
+      ]
+    },
+    {
+      "path": "common/src/main/java/me/flashyreese/mods/reeses_sodium_options/client/gui/state/SearchResultOrder.java",
+      "sha256": "b6dd3535f07e34b032841274ce075d4277bb71e91937b5d2c40446254cdfa51a",
+      "targets": [
+        {
+          "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/state/SearchResultOrder.java",
+          "sha256": "b6dd3535f07e34b032841274ce075d4277bb71e91937b5d2c40446254cdfa51a"
+        }
+      ]
+    },
+    {
+      "path": "common/src/main/java/me/flashyreese/mods/reeses_sodium_options/client/gui/theme/GuiTheme.java",
+      "sha256": "7648f5a7bf828b8b82156c731cf36b67eacc946a1863e57b93007db2b407b683",
+      "targets": [
+        {
+          "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/theme/GuiTheme.java",
+          "sha256": "7648f5a7bf828b8b82156c731cf36b67eacc946a1863e57b93007db2b407b683"
+        }
+      ]
+    },
+    {
+      "path": "common/src/main/java/me/flashyreese/mods/reeses_sodium_options/client/gui/theme/GuiThemes.java",
+      "sha256": "8cb2c105d1b192f9b73920d2340260a53e3e43b636648395a892f89edc065139",
+      "targets": [
+        {
+          "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/theme/GuiThemes.java",
+          "sha256": "925c328200b8eaf35898b3ad225114d13ba45cf75be19a6a90d8b08887abe64c"
+        }
+      ]
+    },
+    {
+      "path": "common/src/main/java/me/flashyreese/mods/reeses_sodium_options/client/gui/theme/IconRenderer.java",
+      "sha256": "89817a88ac5d0e5c97edbf954083c01b72193f0c56a52eb2bd88a3e0c44f3d7b",
+      "targets": [
+        {
+          "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/theme/IconRenderer.java",
+          "sha256": "cb984b1d8784979710261e99e1bd67cfa9327f7dec0a1e087e40484ce4c24a95"
+        }
+      ]
+    },
+    {
+      "path": "common/src/main/java/me/flashyreese/mods/reeses_sodium_options/client/gui/widget/BaseWidget.java",
+      "sha256": "5a32ab76d8677fe8ba634fb26dea48d294269bfd23d61ca330bed0bda4ab5585",
+      "targets": [
+        {
+          "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/widget/BaseWidget.java",
+          "sha256": "940a915401d25389b40891ba92e0d20af33b505fc19f71c8027f708ef129e327"
+        }
+      ]
+    },
+    {
+      "path": "common/src/main/java/me/flashyreese/mods/reeses_sodium_options/client/gui/widget/FlatButtonWidget.java",
+      "sha256": "15fa981f311e385cc4005a3b3e16dbe1492477578f983802f2a9839f19237fcc",
+      "targets": [
+        {
+          "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/widget/FlatButtonWidget.java",
+          "sha256": "9362ca525161913282cce515efcdfb841d07a5e8f8d4d06dc92833f6b05b481c"
+        }
+      ]
+    },
+    {
+      "path": "common/src/main/java/me/flashyreese/mods/reeses_sodium_options/client/gui/widget/LabelWidget.java",
+      "sha256": "728d070d98f88867e0aca0c4c63662ff45eaba84f0c323967516aa2fe1174c8e",
+      "targets": [
+        {
+          "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/widget/LabelWidget.java",
+          "sha256": "6a2fa81590f08f85c20e5f85271f7a8f1a6864e931ebb3f96da923ca0951f50d"
+        }
+      ]
+    },
+    {
+      "path": "common/src/main/java/me/flashyreese/mods/reeses_sodium_options/client/gui/widget/ScrollBarWidget.java",
+      "sha256": "b3a5407227346b06f06b863e246a5906b3634afce2eceaf213864acc99d3cc4c",
+      "targets": [
+        {
+          "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/widget/ScrollBarWidget.java",
+          "sha256": "1392a02d5a7cbb1b64cb905d2a73a7dd9fb292492a1fa53cdac370e87fd02bad"
+        }
+      ]
+    },
+    {
+      "path": "common/src/main/java/me/flashyreese/mods/reeses_sodium_options/client/gui/widget/TabHeaderWidget.java",
+      "sha256": "17a1e0b42311087e9ce5891cb2370768e98fbd4e8fb79961ad9b0072c9c2c9e1",
+      "targets": [
+        {
+          "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/widget/TabHeaderWidget.java",
+          "sha256": "6af867d5fe4c27dc098846df1763bcc4088cad83dee6619b7e9352a001f78c1a"
+        }
+      ]
+    },
+    {
+      "path": "common/src/main/java/me/flashyreese/mods/reeses_sodium_options/client/gui/widget/TextFieldWidget.java",
+      "sha256": "5a7edfaac25ce4e8b62225329f324abbd93fc2b7d118b41161650cd4106eeda9",
+      "targets": [
+        {
+          "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/widget/TextFieldWidget.java",
+          "sha256": "e4282597015149b040f66466dcdf8408f3018f0eabe29f5900fee9825052bf3e"
+        }
+      ]
+    },
+    {
+      "path": "common/src/main/java/me/flashyreese/mods/reeses_sodium_options/client/search/NgramGenerator.java",
+      "sha256": "50220e12d78d93f30569c31d4788c74b0a73c585f3d4d5bbc968995df889340c",
+      "targets": [
+        {
+          "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/search/NgramGenerator.java",
+          "sha256": "79fa4472cacd01a4effe960bdc183da44dd20dbd72ccfab0a2a47407e2605c70"
+        }
+      ]
+    },
+    {
+      "path": "common/src/main/java/me/flashyreese/mods/reeses_sodium_options/client/search/SearchIndex.java",
+      "sha256": "5d40ccd7e844857e8b93fb4c826b71cb6828201016cadd36cbb07d8c8823273b",
+      "targets": [
+        {
+          "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/search/SearchIndex.java",
+          "sha256": "5d40ccd7e844857e8b93fb4c826b71cb6828201016cadd36cbb07d8c8823273b"
+        }
+      ]
+    },
+    {
+      "path": "common/src/main/java/me/flashyreese/mods/reeses_sodium_options/client/search/SearchIndexContext.java",
+      "sha256": "0e578c17b418ef70a1e416703e1f197d244e0d31cbd34cfe09fe9bb295e366fc",
+      "targets": [
+        {
+          "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/search/SearchIndexContext.java",
+          "sha256": "0e578c17b418ef70a1e416703e1f197d244e0d31cbd34cfe09fe9bb295e366fc"
+        }
+      ]
+    },
+    {
+      "path": "common/src/main/java/me/flashyreese/mods/reeses_sodium_options/client/search/SearchNormalizer.java",
+      "sha256": "7dcfe5878ed72fdf932be9d4ce45a30d1d089cb9dc5dfd30ee2c3e5e20112493",
+      "targets": [
+        {
+          "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/search/SearchNormalizer.java",
+          "sha256": "5206bce1c2e543510eee7c25cbc9be43d6dac68beed065177dd399421ce61a3a"
+        }
+      ]
+    },
+    {
+      "path": "common/src/main/java/me/flashyreese/mods/reeses_sodium_options/client/search/SearchResult.java",
+      "sha256": "b00580bb88ea7387e2496d4223bf47185f0713d85f3d7407129b9b3beef6eeaa",
+      "targets": [
+        {
+          "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/search/SearchResult.java",
+          "sha256": "b00580bb88ea7387e2496d4223bf47185f0713d85f3d7407129b9b3beef6eeaa"
+        }
+      ]
+    },
+    {
+      "path": "common/src/main/java/me/flashyreese/mods/reeses_sodium_options/client/search/SearchSession.java",
+      "sha256": "9cb0345ccccf7c19aa0c2f51a468e6542e86d3d664d2173c183c6d63d9f05cca",
+      "targets": [
+        {
+          "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/search/SearchSession.java",
+          "sha256": "9cb0345ccccf7c19aa0c2f51a468e6542e86d3d664d2173c183c6d63d9f05cca"
+        }
+      ]
+    },
+    {
+      "path": "common/src/main/java/me/flashyreese/mods/reeses_sodium_options/mixin/sodium/MixinAbstractWidget.java",
+      "sha256": "8affafa09a672de02aeeb6d56595a5cd1b1322c82bc8828941cfef2ead816512",
+      "targets": [
+        {
+          "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/compat/sodium/client/gui/options/control/ControlElement.java",
+          "sha256": "ee628681c9621de4e456280e01f44f68dba489fa4d000df1432d294274a53c85"
+        }
+      ]
+    },
+    {
+      "path": "common/src/main/java/me/flashyreese/mods/reeses_sodium_options/mixin/sodium/MixinOption.java",
+      "sha256": "3f1bca70449afebdb211ac7858899a1cb72c1fa08b1f136bb1d6bb3116dcf60b",
+      "targets": [
+        {
+          "path": "modern/src/main/modern_java/org/embeddedt/embeddium/impl/mixin/core/gui/RsoOptionMixin.java",
+          "sha256": "4a328298f95fbb306ae6056e990a8b4f0a3b45716907954f8f359bf9ad8811e8"
+        }
+      ]
+    },
+    {
+      "path": "common/src/main/java/me/flashyreese/mods/reeses_sodium_options/mixin/sodium/MixinSodiumOptionsGUI.java",
+      "sha256": "dc24317a1cf9b5876a9c6c49af7b42e1b3e5ea9cbe464348c6905ddceda1b47f",
+      "targets": [
+        {
+          "path": "modern/src/main/java/org/embeddedt/embeddium/impl/mixin/features/gui/hooks/settings/OptionsScreenMixin.java",
+          "sha256": "a6931396edc7da459e0527f622838b577c18f6aadc19f6f64d3a3560725bdf6a"
+        },
+        {
+          "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/NocturnaOptionsSource.java",
+          "sha256": "3f00c452aa6424e57964124978a87894ec48f3b251d0dbfe4ae598af48471088"
+        },
+        {
+          "path": "modern/src/main/gui_java/org/embeddedt/embeddium/impl/gui/modern/EmbeddiumVideoOptionsScreen.java",
+          "sha256": "e50dad2045d9e9d84db66e735425d29e832dc0cc902a46ec7557e3cebeb60479"
+        }
+      ]
+    },
+    {
+      "path": "common/src/main/resources/META-INF/services/dev.isxander.controlify.api.entrypoint.ControlifyEntrypoint",
+      "sha256": "f5dc42e576d488e8731ca18971d8f56c53033a478713f36e511f09f8c1482492",
+      "excluded": "Controlify integration excluded by the requested baseline"
+    },
+    {
+      "path": "common/src/main/resources/assets/reeses-sodium-options/icon.png",
+      "sha256": "7710879a9f125b96ff2b6b2ba375174a2063915b5b2d5a63c2e8ee5e5f740f44",
+      "targets": [
+        {
+          "path": "modern/src/main/rso_resources/assets/reeses-sodium-options/icon.png",
+          "sha256": "7710879a9f125b96ff2b6b2ba375174a2063915b5b2d5a63c2e8ee5e5f740f44"
+        }
+      ]
+    },
+    {
+      "path": "common/src/main/resources/assets/reeses-sodium-options/lang/be_by.json",
+      "sha256": "5e23cb53ca0acbbafe4543c91eccfaf35a53172c3a3fce4196bdfc1687750856",
+      "targets": [
+        {
+          "path": "modern/src/main/rso_resources/assets/reeses-sodium-options/lang/be_by.json",
+          "sha256": "5e23cb53ca0acbbafe4543c91eccfaf35a53172c3a3fce4196bdfc1687750856"
+        }
+      ]
+    },
+    {
+      "path": "common/src/main/resources/assets/reeses-sodium-options/lang/en_us.json",
+      "sha256": "f32895fa7de9f7ae6a2d0eb475e9ef445d360777e063ebc46035bf897c8e8907",
+      "targets": [
+        {
+          "path": "modern/src/main/rso_resources/assets/reeses-sodium-options/lang/en_us.json",
+          "sha256": "f32895fa7de9f7ae6a2d0eb475e9ef445d360777e063ebc46035bf897c8e8907"
+        }
+      ]
+    },
+    {
+      "path": "common/src/main/resources/assets/reeses-sodium-options/lang/es_es.json",
+      "sha256": "44e71d42a66b504c50ed2ffc42281bffba65b9ca2b29b0995ea060c1e6c62546",
+      "targets": [
+        {
+          "path": "modern/src/main/rso_resources/assets/reeses-sodium-options/lang/es_es.json",
+          "sha256": "44e71d42a66b504c50ed2ffc42281bffba65b9ca2b29b0995ea060c1e6c62546"
+        }
+      ]
+    },
+    {
+      "path": "common/src/main/resources/assets/reeses-sodium-options/lang/es_mx.json",
+      "sha256": "868c082621119dce7710f33fa179c063c6cf0c7832964d5c7042586047ace96c",
+      "targets": [
+        {
+          "path": "modern/src/main/rso_resources/assets/reeses-sodium-options/lang/es_mx.json",
+          "sha256": "868c082621119dce7710f33fa179c063c6cf0c7832964d5c7042586047ace96c"
+        }
+      ]
+    },
+    {
+      "path": "common/src/main/resources/assets/reeses-sodium-options/lang/fr_fr.json",
+      "sha256": "c6c23cdca1c13ab57803248817901e3ddc598ff38c10e06d99062faa9b11b9a5",
+      "targets": [
+        {
+          "path": "modern/src/main/rso_resources/assets/reeses-sodium-options/lang/fr_fr.json",
+          "sha256": "c6c23cdca1c13ab57803248817901e3ddc598ff38c10e06d99062faa9b11b9a5"
+        }
+      ]
+    },
+    {
+      "path": "common/src/main/resources/assets/reeses-sodium-options/lang/it_it.json",
+      "sha256": "c45fde5dcbe33f761d22b9fa31c12481d64034e71ab390ff81e597d43d1a039c",
+      "targets": [
+        {
+          "path": "modern/src/main/rso_resources/assets/reeses-sodium-options/lang/it_it.json",
+          "sha256": "c45fde5dcbe33f761d22b9fa31c12481d64034e71ab390ff81e597d43d1a039c"
+        }
+      ]
+    },
+    {
+      "path": "common/src/main/resources/assets/reeses-sodium-options/lang/ja_jp.json",
+      "sha256": "701fa2138034f19681375a05329cec7b8c6ddb1df96d8693930d88143cc5408e",
+      "targets": [
+        {
+          "path": "modern/src/main/rso_resources/assets/reeses-sodium-options/lang/ja_jp.json",
+          "sha256": "701fa2138034f19681375a05329cec7b8c6ddb1df96d8693930d88143cc5408e"
+        }
+      ]
+    },
+    {
+      "path": "common/src/main/resources/assets/reeses-sodium-options/lang/ms_my.json",
+      "sha256": "9cad6c62b2f24bbd8e3b857a36186428039ac51869bc4c726df2c825f138c55f",
+      "targets": [
+        {
+          "path": "modern/src/main/rso_resources/assets/reeses-sodium-options/lang/ms_my.json",
+          "sha256": "9cad6c62b2f24bbd8e3b857a36186428039ac51869bc4c726df2c825f138c55f"
+        }
+      ]
+    },
+    {
+      "path": "common/src/main/resources/assets/reeses-sodium-options/lang/nl_nl.json",
+      "sha256": "9b549aff37833496da65e47e43719c424b278c2cb6ff9c46ba706cc8044f7fae",
+      "targets": [
+        {
+          "path": "modern/src/main/rso_resources/assets/reeses-sodium-options/lang/nl_nl.json",
+          "sha256": "9b549aff37833496da65e47e43719c424b278c2cb6ff9c46ba706cc8044f7fae"
+        }
+      ]
+    },
+    {
+      "path": "common/src/main/resources/assets/reeses-sodium-options/lang/pl_pl.json",
+      "sha256": "4f7e1d94cc139bbe48265a20996b7c487a5deff5965f9fed1f4b0b23fdb2b038",
+      "targets": [
+        {
+          "path": "modern/src/main/rso_resources/assets/reeses-sodium-options/lang/pl_pl.json",
+          "sha256": "4f7e1d94cc139bbe48265a20996b7c487a5deff5965f9fed1f4b0b23fdb2b038"
+        }
+      ]
+    },
+    {
+      "path": "common/src/main/resources/assets/reeses-sodium-options/lang/pt_br.json",
+      "sha256": "a9384698d0e291568f72f3d63daa0ad6ede980c286813b940fe988009e93117a",
+      "targets": [
+        {
+          "path": "modern/src/main/rso_resources/assets/reeses-sodium-options/lang/pt_br.json",
+          "sha256": "a9384698d0e291568f72f3d63daa0ad6ede980c286813b940fe988009e93117a"
+        }
+      ]
+    },
+    {
+      "path": "common/src/main/resources/assets/reeses-sodium-options/lang/ru_ru.json",
+      "sha256": "4b3f5a5429b3fc7014715d938234d566e2553d4960b116f209fdf41b552a83f5",
+      "targets": [
+        {
+          "path": "modern/src/main/rso_resources/assets/reeses-sodium-options/lang/ru_ru.json",
+          "sha256": "4b3f5a5429b3fc7014715d938234d566e2553d4960b116f209fdf41b552a83f5"
+        }
+      ]
+    },
+    {
+      "path": "common/src/main/resources/assets/reeses-sodium-options/lang/tr_tr.json",
+      "sha256": "480e042cd1b185d35fe81367447aa827c9f0c343303cd49bcddc4ca2a4131221",
+      "targets": [
+        {
+          "path": "modern/src/main/rso_resources/assets/reeses-sodium-options/lang/tr_tr.json",
+          "sha256": "480e042cd1b185d35fe81367447aa827c9f0c343303cd49bcddc4ca2a4131221"
+        }
+      ]
+    },
+    {
+      "path": "common/src/main/resources/assets/reeses-sodium-options/lang/uk_ua.json",
+      "sha256": "d47f641b0c11bbdcf2ff570857e3ba3ca5cf9d58fcfede565f8762d68d81de19",
+      "targets": [
+        {
+          "path": "modern/src/main/rso_resources/assets/reeses-sodium-options/lang/uk_ua.json",
+          "sha256": "d47f641b0c11bbdcf2ff570857e3ba3ca5cf9d58fcfede565f8762d68d81de19"
+        }
+      ]
+    },
+    {
+      "path": "common/src/main/resources/assets/reeses-sodium-options/lang/vi_vn.json",
+      "sha256": "d645dad669f1e742bc37dcccf096913878b4057295f81dd26d2db1e5cf150ea2",
+      "targets": [
+        {
+          "path": "modern/src/main/rso_resources/assets/reeses-sodium-options/lang/vi_vn.json",
+          "sha256": "d645dad669f1e742bc37dcccf096913878b4057295f81dd26d2db1e5cf150ea2"
+        }
+      ]
+    },
+    {
+      "path": "common/src/main/resources/assets/reeses-sodium-options/lang/zh_cn.json",
+      "sha256": "b480f6a44970de99716bb4f123af00eee694c6a6c1ca776d31334a25baa5ecdc",
+      "targets": [
+        {
+          "path": "modern/src/main/rso_resources/assets/reeses-sodium-options/lang/zh_cn.json",
+          "sha256": "b480f6a44970de99716bb4f123af00eee694c6a6c1ca776d31334a25baa5ecdc"
+        }
+      ]
+    },
+    {
+      "path": "common/src/main/resources/assets/reeses-sodium-options/lang/zh_tw.json",
+      "sha256": "0b82c482cb43985267fec5a44658bd0bee38b50279536a01c9149f62b2b3f03f",
+      "targets": [
+        {
+          "path": "modern/src/main/rso_resources/assets/reeses-sodium-options/lang/zh_tw.json",
+          "sha256": "0b82c482cb43985267fec5a44658bd0bee38b50279536a01c9149f62b2b3f03f"
+        }
+      ]
+    },
+    {
+      "path": "common/src/main/resources/assets/reeses-sodium-options/lang/zlm_arab.json",
+      "sha256": "a773d42f2857459b6ba8b45e932501e76a1893af5b74c858172dfe136b9097e7",
+      "targets": [
+        {
+          "path": "modern/src/main/rso_resources/assets/reeses-sodium-options/lang/zlm_arab.json",
+          "sha256": "a773d42f2857459b6ba8b45e932501e76a1893af5b74c858172dfe136b9097e7"
+        }
+      ]
+    },
+    {
+      "path": "common/src/main/resources/assets/reeses-sodium-options/textures/gui/reset_to_default.png",
+      "sha256": "2b718ea558be25729779781c9b5c1b7084da747a18d3a2a73e3c31d9955cef54",
+      "targets": [
+        {
+          "path": "modern/src/main/rso_resources/assets/reeses-sodium-options/textures/gui/reset_to_default.png",
+          "sha256": "2b718ea558be25729779781c9b5c1b7084da747a18d3a2a73e3c31d9955cef54"
+        }
+      ]
+    },
+    {
+      "path": "common/src/main/resources/assets/reeses-sodium-options/textures/gui/undo_to_unmodified.png",
+      "sha256": "59638cb84558a79cd35b3b17afbf82c118c6f2e001aec2b0213d1cc3e2b745a0",
+      "targets": [
+        {
+          "path": "modern/src/main/rso_resources/assets/reeses-sodium-options/textures/gui/undo_to_unmodified.png",
+          "sha256": "59638cb84558a79cd35b3b17afbf82c118c6f2e001aec2b0213d1cc3e2b745a0"
+        }
+      ]
+    },
+    {
+      "path": "common/src/main/resources/reeses-sodium-options.mixins.json",
+      "sha256": "0ba8c6dc0343bccd36d6c2bdd669e46c4fbe488517f1afe141d56063b5dc5e01",
+      "targets": [
+        {
+          "path": "modern/src/main/resources/embeddium.mixins.json",
+          "sha256": "f3bb102d426971ef37a636b2ac0707d7c05d5aec379a5bd10dee81c083e51e19"
+        }
+      ]
+    }
+  ]
+}
