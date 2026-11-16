@@ -41,3 +41,9 @@ bin/
 **/run/
 
 /versions-local.json
+
+
+logs/
+docs/
+UPSTREAM.md
+scripts/
