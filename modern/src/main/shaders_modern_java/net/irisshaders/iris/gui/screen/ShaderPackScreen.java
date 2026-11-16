@@ -185,7 +185,7 @@ public class ShaderPackScreen extends Screen implements HudHideable {
 			}
 		}
 
-        int bottomOfList = this.height - 58 /*? if >=1.20.6 {*/ /*- 32 *//*?}*/;
+        int bottomOfList = this.height - 82 /*? if >=1.20.6 {*/ /*- 32 *//*?}*/;
 
 		this.shaderPackList = new ShaderPackSelectionList(this, this.minecraft, this.width, this.height, 32, bottomOfList, 0, this.width);
 
@@ -249,6 +249,23 @@ public class ShaderPackScreen extends Screen implements HudHideable {
 			).build());
 
 			refreshScreenSwitchButton();
+            var saveCompiled = Button.builder(Component.translatable(Iris.getIrisConfig().shouldSaveCompiledShaders()
+                    ? "options.iris.saveCompiledShaders.on" : "options.iris.saveCompiledShaders.off"), button -> {
+                try {
+                    var config = Iris.getIrisConfig();
+                    config.setSaveCompiledShaders(!config.shouldSaveCompiledShaders());
+                    this.init();
+                } catch (IOException e) {
+                    CeleritasShaders.logger().error("Could not save compiled-shader cache preference", e);
+                }
+            }).bounds(topCenter - 78, this.height - 75, 152, 20).build();
+            saveCompiled.active = net.irisshaders.iris.cache.ProgramBinaryCache.isSupported();
+            saveCompiled.setTooltip(Tooltip.create(Component.translatable(saveCompiled.active
+                    ? "options.iris.saveCompiledShaders.tooltip" : "options.iris.saveCompiledShaders.unsupported")));
+            this.addRenderableWidget(saveCompiled);
+            this.addRenderableWidget(Button.builder(Component.translatable("options.iris.saveCompiledShaders.clear"), button -> {
+                net.irisshaders.iris.cache.ProgramBinaryCache.deleteAll();
+            }).bounds(topCenter + 78, this.height - 75, 152, 20).build());
 		}
 
 		if (inWorld) {

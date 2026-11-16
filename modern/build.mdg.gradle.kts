@@ -200,6 +200,8 @@ modDevExtension.runs {
     create("validationClient") {
         client()
         loadedMods.set(listOf(mainMod, validationMod))
+        programArgument("--mixin.config")
+        programArgument("embeddium-validation.mixins.json")
         for (mixinConfig in modMixinConfigs) {
             programArgument("--mixin.config")
             programArgument(mixinConfig)

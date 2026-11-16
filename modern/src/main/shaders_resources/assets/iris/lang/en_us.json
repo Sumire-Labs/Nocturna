@@ -77,5 +77,10 @@
   "pack.iris.configure.title": "Configure",
   "pack.iris.list.label": "+ Drag and Drop Shader Packs to add",
   "label.iris.true": "On",
-  "label.iris.false": "Off"
+  "label.iris.false": "Off",
+  "options.iris.saveCompiledShaders.on": "Save compiled shaders: On",
+  "options.iris.saveCompiledShaders.off": "Save compiled shaders: Off",
+  "options.iris.saveCompiledShaders.tooltip": "Reuse compiled shaders on later loads. Changed shaders or graphics drivers are recompiled automatically.",
+  "options.iris.saveCompiledShaders.clear": "Clear compiled shaders",
+  "options.iris.saveCompiledShaders.unsupported": "This graphics driver does not support saving compiled shaders. Shaders will compile normally."
 }

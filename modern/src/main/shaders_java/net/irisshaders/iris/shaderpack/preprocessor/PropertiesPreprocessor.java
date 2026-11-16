@@ -29,6 +29,14 @@ public class PropertiesPreprocessor {
 		List<String> booleanValues = getBooleanValues(shaderPackOptions);
 		Map<String, String> stringValues = getStringValues(shaderPackOptions);
 
+        List<StringPair> macros = new ArrayList<>();
+        for (String value : booleanValues) macros.add(new StringPair(value, ""));
+        for (StringPair define : environmentDefines) macros.add(define);
+        stringValues.forEach((name, value) -> macros.add(new StringPair(name, value)));
+        var cacheKey = PreprocessedSourceCache.key("properties", source, macros);
+        String cached = PreprocessedSourceCache.get(cacheKey);
+        if (cached != null) return cached;
+
 		try (Preprocessor pp = new Preprocessor()) {
 			for (String value : booleanValues) {
 				pp.addMacro(value);
@@ -46,7 +54,9 @@ public class PropertiesPreprocessor {
 				}
 			});
 
-			return process(pp, source);
+            String preprocessed = process(pp, source);
+            PreprocessedSourceCache.put(cacheKey, preprocessed);
+            return preprocessed;
 		} catch (IOException e) {
 			throw new RuntimeException("Unexpected IOException while processing macros", e);
 		} catch (LexerException e) {

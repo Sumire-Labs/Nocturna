@@ -267,27 +267,13 @@ public class ShaderPack {
 
 		Function<AbsolutePackPath, String> preprocess = (path) -> {
 			long preprocessStart = ShaderLoadTimings.now();
-			ImmutableList<String> lines = includeProcessor.getIncludedFile(path);
-
-			if (lines == null) {
-				return null;
-			}
-
-			StringBuilder builder = new StringBuilder();
-
-			for (String line : lines) {
-				builder.append(line);
-				builder.append('\n');
-			}
-
-			// Apply GLSL preprocessor to source, while making environment defines available.
-			//
-			// This uses similar techniques to the *.properties preprocessor to avoid actually putting
-			// #define statements in the actual source - instead, we tell the preprocessor about them
-			// directly. This removes one obstacle to accurate reporting of line numbers for errors,
-			// though there exist many more (such as relocating all #extension directives and similar things)
-			String source = builder.toString();
-			source = JcppProcessor.glslPreprocessSource(source, finalEnvironmentDefines1);
+            byte[] hash = includeProcessor.getIncludedFileHash(path);
+            if (hash == null) return null;
+            String source = JcppProcessor.glslPreprocessSource(hash, () -> {
+                StringBuilder builder = new StringBuilder();
+                for (String line : includeProcessor.getIncludedFile(path)) builder.append(line).append('\n');
+                return builder.toString();
+            }, finalEnvironmentDefines1);
 			ShaderLoadTimings.record(ShaderLoadTimings.Stage.PREPROCESSING, preprocessStart);
 
 			return source;

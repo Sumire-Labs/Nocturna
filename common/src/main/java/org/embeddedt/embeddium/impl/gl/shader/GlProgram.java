@@ -37,6 +37,11 @@ public class GlProgram<T> extends GlObject implements ShaderBindingContext {
         return this.shaderInterface;
     }
 
+    /** Takes ownership of an already linked (and validated) program, e.g. one restored by the shader cache. */
+    public static <T> GlProgram<T> fromLinkedProgram(int program, Function<ShaderBindingContext, T> factory) {
+        return new GlProgram<>(program, factory);
+    }
+
     public static Builder builder(String identifier) {
         return new Builder(identifier);
     }
@@ -86,6 +91,11 @@ public class GlProgram<T> extends GlObject implements ShaderBindingContext {
         public Builder(String name) {
             this.name = name;
             this.program = LWJGL.glCreateProgram();
+        }
+
+        /** Native program handle, for platform linker parameters set before linkDeferred(). */
+        public int getProgramId() {
+            return this.program;
         }
 
         public Builder attachShader(GlShader shader) {

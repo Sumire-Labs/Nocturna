@@ -8,6 +8,16 @@ import org.anarres.cpp.StringLexerSource;
 import org.anarres.cpp.Token;
 
 public class JcppProcessor {
+    public static String glslPreprocessSource(byte[] contentHash, java.util.function.Supplier<String> source,
+                                             Iterable<StringPair> environmentDefines) {
+        var cacheKey = PreprocessedSourceCache.key("glsl", contentHash, environmentDefines);
+        String cached = PreprocessedSourceCache.get(cacheKey);
+        if (cached != null) return cached;
+        String preprocessed = glslPreprocessSource(source.get(), environmentDefines);
+        PreprocessedSourceCache.put(cacheKey, preprocessed);
+        return preprocessed;
+    }
+
 	// Derived from GlShader from Canvas, licenced under LGPL
 	public static String glslPreprocessSource(String source, Iterable<StringPair> environmentDefines) {
 		if (source.contains(GlslCollectingListener.VERSION_MARKER)

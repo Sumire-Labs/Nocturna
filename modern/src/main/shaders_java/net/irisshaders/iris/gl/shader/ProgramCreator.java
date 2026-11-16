@@ -6,6 +6,8 @@ import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.irisshaders.iris.gl.IrisRenderSystem;
 import net.irisshaders.iris.pipeline.ShaderLoadTimings;
+import net.irisshaders.iris.cache.ProgramBinaryCache;
+import org.embeddedt.embeddium.impl.gl.shader.ShaderType;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.embeddedt.embeddium.impl.gl.debug.GLDebug;
@@ -29,14 +31,45 @@ public class ProgramCreator {
 		"UV0", 1
 	);
 
+    /** Complete native linker inputs; deterministic attribute order also makes keys stable across JVM starts. */
+    public static ProgramBinaryCache.Key cacheKey(Map<ShaderType, String> sources, Map<String, Integer> attributes) {
+        if (!ProgramBinaryCache.isEnabled()) return null;
+        var key = ProgramBinaryCache.key();
+        new java.util.TreeMap<>(attributes).forEach(key::attribute);
+        if (sources.containsKey(ShaderType.COMPUTE)) {
+            key.stage(ShaderType.COMPUTE.id, sources.get(ShaderType.COMPUTE));
+        } else {
+            key.stage(ShaderType.VERTEX.id, sources.get(ShaderType.VERTEX));
+            for (var type : new ShaderType[]{ShaderType.GEOM, ShaderType.TESS_CTRL, ShaderType.TESS_EVALUATE}) {
+                if (sources.get(type) != null) key.stage(type.id, sources.get(type));
+            }
+            key.stage(ShaderType.FRAGMENT.id, sources.get(ShaderType.FRAGMENT));
+        }
+        return key;
+    }
+
+    public static Submitted load(String name, ProgramBinaryCache.Key key) {
+        if (key == null) return null;
+        int program = ProgramBinaryCache.load(key);
+        if (program == 0) return null;
+        GLDebug.nameObject(KHRDebug.GL_PROGRAM, program, name);
+        return new Submitted(name, program, List.of(), null);
+    }
+
 	/**
 	 * Compiles and links a program without waiting for either to finish, so that the driver can work on it while
 	 * further programs are submitted. The program must not be used before {@link Submitted#finish()} returns.
 	 */
 	public static Submitted submit(String name, List<GlShader.Deferred> shaders, Map<String, Integer> attributeLocations) {
+        return submit(name, shaders, attributeLocations, null);
+    }
+
+    public static Submitted submit(String name, List<GlShader.Deferred> shaders,
+                                   Map<String, Integer> attributeLocations, ProgramBinaryCache.Key cacheKey) {
 		RenderSystem.assertOnRenderThread();
 
 		int program = GlStateManager.glCreateProgram();
+        if (cacheKey != null) ProgramBinaryCache.markRetrievable(program);
 
 		attributeLocations.forEach((attribute, location) -> GlStateManager._glBindAttribLocation(program, location, attribute));
 
@@ -48,19 +81,21 @@ public class ProgramCreator {
 
 		GLDebug.nameObject(KHRDebug.GL_PROGRAM, program, name);
 
-		return new Submitted(name, program, shaders);
+		return new Submitted(name, program, shaders, cacheKey);
 	}
 
 	public static final class Submitted {
 		private final String name;
 		private final int program;
 		private final List<GlShader.Deferred> shaders;
+        private final ProgramBinaryCache.Key cacheKey;
 		private boolean done;
 
-		private Submitted(String name, int program, List<GlShader.Deferred> shaders) {
+		private Submitted(String name, int program, List<GlShader.Deferred> shaders, ProgramBinaryCache.Key cacheKey) {
 			this.name = name;
 			this.program = program;
 			this.shaders = shaders;
+            this.cacheKey = cacheKey;
 		}
 
 		public String getName() {
@@ -106,6 +141,7 @@ public class ProgramCreator {
 				throw new ShaderCompileException(name, log);
 			}
 
+            if (cacheKey != null) ProgramBinaryCache.save(cacheKey, program);
 			return program;
 		}
 

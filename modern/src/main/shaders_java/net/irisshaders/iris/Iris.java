@@ -368,6 +368,7 @@ public class Iris {
 			currentPackFingerprint = reusable.fingerprint();
 			fallback = false;
 			currentPackName = name;
+            net.irisshaders.iris.cache.ProgramBinaryCache.usePack(name);
 
 			CeleritasShaders.logger().info("Using shaderpack: " + name + " (unchanged since shaders were turned off)");
 
@@ -412,6 +413,7 @@ public class Iris {
 
 		fallback = false;
 		currentPackName = name;
+        net.irisshaders.iris.cache.ProgramBinaryCache.usePack(name);
 
 		CeleritasShaders.logger().info("Using shaderpack: " + name);
 
@@ -483,6 +485,7 @@ public class Iris {
 		currentPack = null;
 		fallback = false;
 		currentPackName = "(off)";
+        net.irisshaders.iris.cache.ProgramBinaryCache.usePack(null);
 
 		CeleritasShaders.logger().info("Shaders are disabled");
 	}
@@ -923,6 +926,7 @@ public class Iris {
 	 */
 	public static void onEarlyInitialize() {
 		createKeybinds();
+        net.irisshaders.iris.cache.ShaderCacheRuntime.initialize();
 
         //? if fabric {
         /*KeyBindingHelper.registerKeyBinding(net.irisshaders.iris.Iris.reloadKeybind);

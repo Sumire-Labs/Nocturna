@@ -66,6 +66,10 @@ public class ProgramBuilder extends ProgramUniforms.Builder implements SamplerHo
 	public static ProgramCreator.Submitted submit(String name, Map<ShaderType, String> sources, Map<String, Integer> attributeLocations) {
 		RenderSystem.assertOnRenderThread();
 
+        var cacheKey = ProgramCreator.cacheKey(sources, attributeLocations);
+        var cached = ProgramCreator.load(name, cacheKey);
+        if (cached != null) return cached;
+
 		List<GlShader.Deferred> shaders = new ArrayList<>(GRAPHICS_STAGES.length);
 
 		for (ShaderType type : GRAPHICS_STAGES) {
@@ -76,7 +80,7 @@ public class ProgramBuilder extends ProgramUniforms.Builder implements SamplerHo
 			}
 		}
 
-		return ProgramCreator.submit(name, shaders, attributeLocations);
+		return ProgramCreator.submit(name, shaders, attributeLocations, cacheKey);
 	}
 
 	public static ProgramCreator.Submitted submitCompute(String name, @Nullable String source) {
@@ -86,7 +90,13 @@ public class ProgramBuilder extends ProgramUniforms.Builder implements SamplerHo
 			throw new IllegalStateException("This PC does not support compute shaders, but it's attempting to be used???");
 		}
 
-		return ProgramCreator.submit(name, List.of(buildShader(ShaderType.COMPUTE, name + ".csh", source)), ProgramCreator.DEFAULT_ATTRIBUTE_LOCATIONS);
+        Map<ShaderType, String> sources = new EnumMap<>(ShaderType.class);
+        sources.put(ShaderType.COMPUTE, source);
+        var cacheKey = ProgramCreator.cacheKey(sources, ProgramCreator.DEFAULT_ATTRIBUTE_LOCATIONS);
+        var cached = ProgramCreator.load(name, cacheKey);
+        if (cached != null) return cached;
+		return ProgramCreator.submit(name, List.of(buildShader(ShaderType.COMPUTE, name + ".csh", source)),
+                ProgramCreator.DEFAULT_ATTRIBUTE_LOCATIONS, cacheKey);
 	}
 
 	public static ProgramBuilder finish(ProgramCreator.Submitted program, ImmutableSet<Integer> reservedTextureUnits) {

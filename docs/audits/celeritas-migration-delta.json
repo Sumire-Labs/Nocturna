@@ -1,6 +1,6 @@
 {
   "revision": "26f000239eb8ddf7ee191f0ddf369147e3c92ef6",
-  "identical": 1618,
+  "identical": 1574,
   "changes": [
     {
       "path": "buildSrc/build.gradle.kts",
@@ -21,6 +21,11 @@
       "path": "common/src/main/java/org/embeddedt/embeddium/impl/gl/arena/GlBufferArena.java",
       "upstream": "ed6855ac3235b84c6ce149bae5a4656f09c8cc725fe86de7d66ef10643a9a35c",
       "local": "b056106175ea44de66578ce48cad978b15fb98b8cc46df862c3327a3e95f3d57"
+    },
+    {
+      "path": "common/src/main/java/org/embeddedt/embeddium/impl/gl/shader/GlProgram.java",
+      "upstream": "896fda17df92789a33a111ea1d1dfd78357e0093e1fb41e3e7fc5091f86ec743",
+      "local": "3419c9abd954235e9d7e0372094f037f9884f1a8bfcc5d4f863f10d4a5aaee7f"
     },
     {
       "path": "common/src/main/java/org/embeddedt/embeddium/impl/gl/shader/uniform/GlUniformMatrix3f.java",
@@ -75,7 +80,12 @@
     {
       "path": "modern/build.mdg.gradle.kts",
       "upstream": "fc793feb77018a5496e0e45940650592266ea42d23bdb56aae9dd625ba47eee7",
-      "local": "378910b3b891f97239676b8f44c7cfa24f564c2fb54ba3a5b7b93cfd7620e7c3"
+      "local": "8ce443d4c9708a8c8137ee92fa69d0d82742d571addf6dcc2a5bb30912c95396"
+    },
+    {
+      "path": "modern/src/main/gui_java/org/embeddedt/embeddium/impl/gui/modern/EmbeddiumVideoOptionsScreen.java",
+      "upstream": "8214a33736886c1eae3687ace0d2b9247b9bb3346ef9bd9c2a8bca423b998435",
+      "local": "9e8e9d5afddfbcafe9025d5821f56db870247368dc8e73e9fa158f9c24903c02"
     },
     {
       "path": "modern/src/main/gui_java/org/embeddedt/embeddium/impl/gui/modern/framework/ModernDrawContext.java",
@@ -95,7 +105,7 @@
     {
       "path": "modern/src/main/java/org/embeddedt/embeddium/api/EmbeddiumConstants.java",
       "upstream": "f4ae1656d2b448cfa763990f8ad463e599cd0c6acad566fc6f44cb02be86b877",
-      "local": "8b9676511b325631788072092941a6bd5d69033fcf8670a8e0d2acc5c32f7ad1"
+      "local": "79d79fbd3cdb9b73df6e12eeb8c25949227c06d10534e3efe1a45f3349798eb2"
     },
     {
       "path": "modern/src/main/java/org/embeddedt/embeddium/api/MeshAppender.java",
@@ -180,12 +190,222 @@
     {
       "path": "modern/src/main/resources/META-INF/mods.toml",
       "upstream": "21f3feb3ef8f58b491d799419b6ce9bbe1ae015cb47d6a7de5807ed8686b77f7",
-      "local": "79f0aeaaa46c04819d1d27541f2f6ab78f1bf8e3c072add688e47b58db618783"
+      "local": "388b5c1d09598cbaef4b53e721f07f4fad50f2eda5e09227e4fba4c003df3f01"
+    },
+    {
+      "path": "modern/src/main/resources/assets/embeddium/lang/de_de.json",
+      "upstream": "13bc1f5dd12a5be7e270b2a8b310611ddd74ed5d8962a96077af0eeb095a3a99",
+      "local": "3688f892d10e1aa92c26be6f1659625c9479eb56dc8ad403d316d8e15dfecc6f"
+    },
+    {
+      "path": "modern/src/main/resources/assets/embeddium/lang/en_us.json",
+      "upstream": "54efb46012cbbf04862b919ec739c2cfd5a460cb4ccaeb6966220988bafd10a0",
+      "local": "4f95ea31cfe45c9a89418af257daddd7480da7a69ec3ab12f2df3cb997e9bffb"
     },
     {
       "path": "modern/src/main/resources/assets/embeddium/lang/es_es.json",
       "upstream": "73060eafaaced30e1280316fa814ba4991d6f7b830500a61c98672a19b101f9d",
-      "local": "86e3ab1038bbca6943e02b0278cd9688d69c8aae02b99f6ce03d799cfce1fd90"
+      "local": "94e3f52aeaae5fa4f889b5b08e900db7979facefb77b0bcb831ffef242fdc7b9"
+    },
+    {
+      "path": "modern/src/main/resources/assets/embeddium/lang/fr_fr.json",
+      "upstream": "7e7f625fc2d58a8420bc7490c10c9eaef1c87bf271977e620385b4416cbcb7b3",
+      "local": "4ae4aa07fa06ad0220b07ba05f04ebf18f326c4cdb20965790cb1b6c47183f2e"
+    },
+    {
+      "path": "modern/src/main/resources/assets/embeddium/lang/uk_ua.json",
+      "upstream": "7bcd7617e1922920b8c59a4f2f0139d227ba0eb998aaac9bb18b74199e4bcbcc",
+      "local": "c58dc374a96bd13f18f6f5becf606747b7d582c752525049bfaa537ed49e410a"
+    },
+    {
+      "path": "modern/src/main/resources/assets/embeddium/lang/zh_cn.json",
+      "upstream": "58a4789bf669216b33448490e0003c56b073136d46610735335d5f35227b26eb",
+      "local": "67735d32053b5c9fb097a082d031a6b15aa79dec7ed39bd68d192ce2f36e8426"
+    },
+    {
+      "path": "modern/src/main/resources/assets/sodium/lang/en_us.json",
+      "upstream": "da6aabf00da0376bc209a5b6e57a5e130d9c02c27130eebbea8830a36d42dfc6",
+      "local": "20e26d5b998b066cd46730c238fc3266e2e2c517dcb64ba8de8e7a460fe50f97"
+    },
+    {
+      "path": "modern/src/main/shaders_java/net/irisshaders/iris/Iris.java",
+      "upstream": "d74f868fd29b5aec24d5171b44776721716edb76ee1222ee683b4a685b253ed5",
+      "local": "e6e27059f86c6517aaaaf8207b1bcaf2141bdd7b482b705f6acb2a2a9e0938a2"
+    },
+    {
+      "path": "modern/src/main/shaders_java/net/irisshaders/iris/compat/sodium/impl/shader_overrides/IrisChunkProgramOverrides.java",
+      "upstream": "89b9e4d785f9a5da0944ab1ca491f8d54d7673018f27b83bc232c913198daef4",
+      "local": "7217b64010657bd43ad0b968ca46d077eea7dfee6c3957cd89319ed4276d31f6"
+    },
+    {
+      "path": "modern/src/main/shaders_java/net/irisshaders/iris/config/IrisConfig.java",
+      "upstream": "8f267921c9acea53ff05e6bfd1a87ac63177a02f967d79ac15c63d24b97d110a",
+      "local": "94c2ddae753e2225a2e4ebeb6b7d71533d4e96eacf6aa200777bbf0c538ff327"
+    },
+    {
+      "path": "modern/src/main/shaders_java/net/irisshaders/iris/gl/program/ProgramBuilder.java",
+      "upstream": "63748e069b6050aa431f702981ec9d40d0d5e9e86796e183037a2f4671489fb3",
+      "local": "f9135f412c078fca9f4256570df29342724545b3193c5618f4d2e81ef747c680"
+    },
+    {
+      "path": "modern/src/main/shaders_java/net/irisshaders/iris/gl/shader/ProgramCreator.java",
+      "upstream": "a6f6a247a2f8c46356f16da8cd0301cbbb6f0715594d008eada7a1a3d6c71e2b",
+      "local": "09954d9dfd23deb6ec01d3cdc756190c2171eb626895b7c79e02bc69318f39fa"
+    },
+    {
+      "path": "modern/src/main/shaders_java/net/irisshaders/iris/shaderpack/ShaderPack.java",
+      "upstream": "62a6977c56753f2516cf8a8a0f023f4e76ff32a29b967495900d61cf3830a212",
+      "local": "d66748164e8b06063f0bc05ffd00b712bb14b3557b4d4c2ea1dc569e74e607d7"
+    },
+    {
+      "path": "modern/src/main/shaders_java/net/irisshaders/iris/shaderpack/include/IncludeProcessor.java",
+      "upstream": "b6b516d3768c05af4ca993f98df358e8d78554d3f733b4e1ad5678bfd90553d8",
+      "local": "06a11d47c6a37a8c91ff08fa0783a601a1803839e5a0b05331b964794cfbb3f2"
+    },
+    {
+      "path": "modern/src/main/shaders_java/net/irisshaders/iris/shaderpack/preprocessor/JcppProcessor.java",
+      "upstream": "85dd92b544195baabdf09a22ca881fd0993983cfa207d2e68cb8161a66cdee47",
+      "local": "39d781843a951634b8ec943fb983dd068655db8bf07008e5e0a97af21ad29502"
+    },
+    {
+      "path": "modern/src/main/shaders_java/net/irisshaders/iris/shaderpack/preprocessor/PropertiesPreprocessor.java",
+      "upstream": "35b8deb8acb2c4c340fb5c3ce3f0b14d1c86c4ced56fb02a9656447ee3824ef0",
+      "local": "4d9cc41390efebd3449054a9758e9572d0e6855e6a3b83bf10b6978c54d9eb39"
+    },
+    {
+      "path": "modern/src/main/shaders_modern_java/net/irisshaders/iris/gui/screen/ShaderPackScreen.java",
+      "upstream": "5d5ac7d63fba4065683f2032f7a39af3a5542193116ea930db2f059657fd1196",
+      "local": "8234d8aa1eb4128c4f53fc57d0b41dbee16bd42b44360c732e082c4c7b792f57"
+    },
+    {
+      "path": "modern/src/main/shaders_resources/assets/iris/lang/cs_cz.json",
+      "upstream": "ca026ef1ce9dbf4d358103182987e7d0a3a9e35534d5d1f1682039d9dbaced0c",
+      "local": "599d248884dbf423bc14b4ab3957426393f535ad1fe3ecf26c400b6b2262ec5c"
+    },
+    {
+      "path": "modern/src/main/shaders_resources/assets/iris/lang/de_ch.json",
+      "upstream": "7cc5ead9a4383c6c6aa54d45e27492d9eaaa6f05df3e5d4d6c3a12ae272e83dd",
+      "local": "6b0b5c59cc8e38c52d791db9a7c269cf216cb8040c3758cc498c9099a8e3e2e6"
+    },
+    {
+      "path": "modern/src/main/shaders_resources/assets/iris/lang/de_de.json",
+      "upstream": "118734cafef9d3f0b20feaaaf0633e55a8a4075ae110842de397eee00f8fc291",
+      "local": "756e505d8cd2db2f158d5e44da948202d09e1998246cbfcc57b67f12be4b5112"
+    },
+    {
+      "path": "modern/src/main/shaders_resources/assets/iris/lang/en_pt.json",
+      "upstream": "cfb4c8c4d98acaed9c0a454565c3fb9f84e6f40a4fbceb6ebf54974d79e6d119",
+      "local": "06177cef1bf6679b32f9ec4b1a5ff6692329cb9b5486c5ab6ba2f83d3882d889"
+    },
+    {
+      "path": "modern/src/main/shaders_resources/assets/iris/lang/en_us.json",
+      "upstream": "12d238687a9f400285e1687862507f5ac8b42ccab43dee56b9610ae6fe3d5d73",
+      "local": "6f35d8d0fc3653974bf4924e55c46b1247269aa272dee3556e0e55ccfb4c6881"
+    },
+    {
+      "path": "modern/src/main/shaders_resources/assets/iris/lang/es_ar.json",
+      "upstream": "206e58060d6c59fb9cb6bdedfdf76a246d6097201973c1afb01bfb10fce69e94",
+      "local": "ad2a6f461db69b04bfdb6ecf00745c03413a66c7826c8157112bf3067f55c9ce"
+    },
+    {
+      "path": "modern/src/main/shaders_resources/assets/iris/lang/es_es.json",
+      "upstream": "1c33d4be114353a658ad2cec0aeb8c424fec41a48fb9339be4f1329a09437ef2",
+      "local": "98087caa1e2b4181632271b8d66848ac169de2896b826a6099619b873fc03887"
+    },
+    {
+      "path": "modern/src/main/shaders_resources/assets/iris/lang/et_ee.json",
+      "upstream": "852188873be0a98df4cda83b87dfe4d98070a9bd7a85d99e5f03019ec5abfb28",
+      "local": "ebecaecdbf42d33657fe72d01b44622c065dab52e4df76cb4d2a0a85fcaa4eda"
+    },
+    {
+      "path": "modern/src/main/shaders_resources/assets/iris/lang/fa_ir.json",
+      "upstream": "9f395e67f7d1507443a7a7d5c8f0f1021ebd429ef417dfbc8330fef092a6b2d5",
+      "local": "b1777c33bc9f2a5572fa05aaf3ef8b925d3cf7e5cc263a4e013083bdc08ed362"
+    },
+    {
+      "path": "modern/src/main/shaders_resources/assets/iris/lang/fi_fi.json",
+      "upstream": "02ade6df47408c7b9c47cc58727bc1046c37b6d7b0cb2098e62517c54bd16acf",
+      "local": "215c617614d0d735dc7076064d2a85682cccea78a728416a45d29efb4b80bd38"
+    },
+    {
+      "path": "modern/src/main/shaders_resources/assets/iris/lang/fr_fr.json",
+      "upstream": "fbdaa5706c1c55d30bd605fe2b90a2b7207128f8ae94668e40d539366d1604f8",
+      "local": "99c386ee9a9a7f0cdcc116e45c8d9b256e73ffe4189d87cded3ca4005a039d09"
+    },
+    {
+      "path": "modern/src/main/shaders_resources/assets/iris/lang/hu_hu.json",
+      "upstream": "0aa7f1ce26ff6344b5d6363768a44a825352424eb766c52044766deb399c4fdb",
+      "local": "0fabbae247a92f378034c28bc98b9a075c28d2efaf347a6d97eef3069012590a"
+    },
+    {
+      "path": "modern/src/main/shaders_resources/assets/iris/lang/it_it.json",
+      "upstream": "8d6ae68386408112f0c0dcbcc5016aa8a2784dd048eae2a4079f5a2611b83325",
+      "local": "a22f800088b9c0a938f8635f10c197cb2cb0217c270bcbbba621ad550b0d7d87"
+    },
+    {
+      "path": "modern/src/main/shaders_resources/assets/iris/lang/ja_jp.json",
+      "upstream": "0f65d5d2a55e46adc2deb8f1cba62305da36285c480f8fa50e26481243754226",
+      "local": "e55c4f97699050e47ec36f146a37ea0e23fab5a36ac428e4747bc1b8c8354c58"
+    },
+    {
+      "path": "modern/src/main/shaders_resources/assets/iris/lang/ko_kr.json",
+      "upstream": "3125a7eb21ae046815c0ade529c8692146659d9ae0ba4e5dd9aec696bfb3a165",
+      "local": "9f382b92d8b26b27f4569ccca7f7e4fdb2f7897436f5367323422e3f4119daa2"
+    },
+    {
+      "path": "modern/src/main/shaders_resources/assets/iris/lang/lzh.json",
+      "upstream": "1420d13cd7c65148120f5a73cdfb05a9c63a436fc8c25381dc86c9fac3bf7287",
+      "local": "e1825ae0b5d527d26ac38d6b7b9c85522cc3d2664b299cfc2050422646d58289"
+    },
+    {
+      "path": "modern/src/main/shaders_resources/assets/iris/lang/nl_nl.json",
+      "upstream": "1e6ceb69ff7d0f0adb022c034a00d97d901621f68d5af3be12bf817eb44564a3",
+      "local": "e3becc752ee3d56271ae05996d0bef65b05a78ea3826eb3a261bcf04ba0323d5"
+    },
+    {
+      "path": "modern/src/main/shaders_resources/assets/iris/lang/pl_pl.json",
+      "upstream": "67e7bda201b430e222dc83680d9f5746edd47a1a4323b701ca1d9c47fec32c1f",
+      "local": "677112263b5cb8352aa1bee241f64bbdbd952e6397be10d7b87b8fe3ca037077"
+    },
+    {
+      "path": "modern/src/main/shaders_resources/assets/iris/lang/pt_br.json",
+      "upstream": "4206b05374720db8335b1fc236089187294c3dcf9b6c0c31a13264d6d429d7d1",
+      "local": "56257e334a66300344473332dbc5cf6eb11c358116a3a6858496202306b95dfc"
+    },
+    {
+      "path": "modern/src/main/shaders_resources/assets/iris/lang/ru_ru.json",
+      "upstream": "66785645c38efc2be6a2a057edacdb7dd9eaedb759f70f9220763e826f61a951",
+      "local": "af087b03b86748a5f99c3dd13f656b39285e38f6c2e5e6d4d0f46ecb8c6addfa"
+    },
+    {
+      "path": "modern/src/main/shaders_resources/assets/iris/lang/sk_sk.json",
+      "upstream": "388773618efda178d20262a9acb5a80d395db205d49ba22d72b1c798c907cd9f",
+      "local": "9aba1cc73c02fd7c675034c266a77fc39abdfad13838faf4924bc7d53f49cdb8"
+    },
+    {
+      "path": "modern/src/main/shaders_resources/assets/iris/lang/th_th.json",
+      "upstream": "0528704a859bf66ca143dcb2c04122080e1426fa7e50eb97f26e7cefa2babfd6",
+      "local": "400a2ce5c5924b29efd961cceab0c8caf1911f370bd05fdf811d615617a51ae1"
+    },
+    {
+      "path": "modern/src/main/shaders_resources/assets/iris/lang/tr_tr.json",
+      "upstream": "29956cf85f06d0f1d228160d1bfc014e01fa9217a292a80ef93dcd655655ff76",
+      "local": "dfbb26fdf7b70568030575a78b2813255d1a30e6485f77e43839981d94060605"
+    },
+    {
+      "path": "modern/src/main/shaders_resources/assets/iris/lang/uk_ua.json",
+      "upstream": "655f24c114afd93061cf61793fdd63753dd1d58bbc82685bac2e1e8c27b16885",
+      "local": "ab808e5d91e0675911054295da4675fd0269b310be95dfba629141aa35b4cc53"
+    },
+    {
+      "path": "modern/src/main/shaders_resources/assets/iris/lang/zh_cn.json",
+      "upstream": "269e72399640812a92582bfb92afc6bb8dcd301b9f536cfd872e01f2c89de001",
+      "local": "5972e3616316c90cc15f7894972e4ebcfdeb015eb422f316067e1d134bfcefb6"
+    },
+    {
+      "path": "modern/src/main/shaders_resources/assets/iris/lang/zh_tw.json",
+      "upstream": "124a255e37054d0662c6db61586363406739510f7f626a0257b428d7f71773ac",
+      "local": "2831a3c6b169f15ebb0dcb8b32f3f120377658ec15f29e93d63a5711d2faef4e"
     }
   ],
   "additions": [
@@ -235,7 +455,7 @@
     },
     {
       "path": "modern/src/main/legacy_api_java/me/jellysquid/mods/sodium/client/SodiumClientMod.java",
-      "local": "f3b818d7d2c9f091a478f2a04885325afa727bb319be2d5b5b17a40073c26600"
+      "local": "71d4cb025239f5156d68d2e12ae69feee18c358ed992d2ca85cd76842fa2e772"
     },
     {
       "path": "modern/src/main/legacy_api_java/me/jellysquid/mods/sodium/client/gui/SodiumGameOptions.java",
@@ -515,23 +735,67 @@
     },
     {
       "path": "modern/src/main/resources/assets/embeddium/lang/ko_kr.json",
-      "local": "5f384aabed71bafd2e804a94c87039ce6ce6bd2cb02bedeff272302948c66ad2"
+      "local": "ed4e6c321fd824bb6ef7e6f0154ac13c6bccff918128ff623d23a8b0ca450058"
     },
     {
       "path": "modern/src/main/resources/assets/embeddium/lang/ru_ru.json",
-      "local": "3d4407ecadeecde3253ff78df125f85b67fe1f3d0536986b93ee7fe12ef3f058"
+      "local": "72603dbf2b65459c1a936b343a09ca97ce02c5ab1c71f827efe8fc9e18b37c85"
     },
     {
       "path": "modern/src/main/resources/assets/sodium/lang/es_es.json",
-      "local": "cb1830ea057a577cd63a539cf35fe88e97cfc780402feedd2e9ecf0b920a0681"
+      "local": "e97a9af4fbf4c9a026df8bb96fb8364c2d17a9d19f693c4140d7cec14e580586"
     },
     {
       "path": "modern/src/main/resources/assets/sodium/lang/ko_kr.json",
-      "local": "f40ac3d22f74e919441b5649566f0dc6624c3520f28036ca9a66699434dd9b50"
+      "local": "b692fb4ccdad0e138b5b8a6ec75148f130f27a36fff0f968d6d322f85e89a133"
     },
     {
       "path": "modern/src/main/resources/assets/sodium/lang/ru_ru.json",
-      "local": "fa6d7dad0abb38265e8300475db8f5640a29b22b70df8f7130ea20d63930e45c"
+      "local": "560b140a213d9968666855f90febfcdd6cb25c7e68bfe383bb9c7be561b445ed"
+    },
+    {
+      "path": "modern/src/main/shaders_java/net/irisshaders/iris/cache/ProgramBinaryAccess.java",
+      "local": "e4e0181fb37298b1f843888a8a9aeeb930e8ea0b1da05df6a0a2da0b70a39d82"
+    },
+    {
+      "path": "modern/src/main/shaders_java/net/irisshaders/iris/cache/ProgramBinaryCache.java",
+      "local": "62b1bbc4954ee32374777c47448fdf6bf2397345895b96e2f224fbfd85b1fa8e"
+    },
+    {
+      "path": "modern/src/main/shaders_java/net/irisshaders/iris/cache/ShaderCacheIO.java",
+      "local": "70b6b818da4b553e837230958b7823f3c5ed6295d448348cdf06a32f7a62a9bd"
+    },
+    {
+      "path": "modern/src/main/shaders_java/net/irisshaders/iris/cache/ShaderCacheRuntime.java",
+      "local": "60ece5de9c1ef26d84400bb44e12e2eab57f5b42ea7a39c39c502cf1611fed7e"
+    },
+    {
+      "path": "modern/src/main/shaders_java/net/irisshaders/iris/cache/ShaderCacheWorkers.java",
+      "local": "0e536f34ee8f4653432653d906b013c33fc529676aeb7a8e7ed8feb1a14b0bb3"
+    },
+    {
+      "path": "modern/src/main/shaders_java/net/irisshaders/iris/cache/ShaderDiskCache.java",
+      "local": "812c556db87cd6347dc050c8abab372c3a78619111982547071de396827c7bc7"
+    },
+    {
+      "path": "modern/src/main/shaders_java/net/irisshaders/iris/shaderpack/preprocessor/PreprocessedSourceCache.java",
+      "local": "31e26d59ba82252e59348a8ad83502f10599941a47af2cb6b99f578a87f2da51"
+    },
+    {
+      "path": "modern/src/test/java/net/irisshaders/iris/cache/ProgramCacheLifecycleTest.java",
+      "local": "3e51a43962dade5db1e878767cfd0756e10c40ea9d0d954fecda14c9ad254714"
+    },
+    {
+      "path": "modern/src/test/java/net/irisshaders/iris/cache/ShaderCacheRuntimeTest.java",
+      "local": "bd5bd7ebce3e7e89e9994da7c8e69e685bcbe571dd78ce000edc371de97758d4"
+    },
+    {
+      "path": "modern/src/test/java/net/irisshaders/iris/cache/ShaderDiskCacheTest.java",
+      "local": "42893596aa279a159b75249bdf794d9eab2e6e461e0d0c7d73e31bd9145675cc"
+    },
+    {
+      "path": "modern/src/test/java/net/irisshaders/iris/shaderpack/preprocessor/PreprocessedSourceCacheTest.java",
+      "local": "062fe8d2ace86915c5bd43093fe42cffdb468b6e2a427286b2b834f117843b24"
     },
     {
       "path": "modern/src/test/java/org/embeddedt/embeddium/impl/compat/legacy/LegacyGuiBridgeTest.java",
@@ -579,11 +843,27 @@
     },
     {
       "path": "modern/src/validation/java/org/embeddedt/embeddium/validation/MigrationValidation.java",
-      "local": "c58316fdac781a344a90dfdaa3ce2ecc2256a5ee6d3d97977c15c1ea155cd0c6"
+      "local": "e3577ee6c48bebd8dbb6eda5d57c41036c94354f10cc066444ccafe2c2e79345"
+    },
+    {
+      "path": "modern/src/validation/java/org/embeddedt/embeddium/validation/ShaderCachePackValidation.java",
+      "local": "86265080f34c274488735d652df642b7a196e9f50c59bd168ec26475821d9b08"
+    },
+    {
+      "path": "modern/src/validation/java/org/embeddedt/embeddium/validation/ShaderCacheValidation.java",
+      "local": "27a403ff483af5cdb461e728ac5fb548976ae587ac5892e454c8a0bc7e2923cc"
+    },
+    {
+      "path": "modern/src/validation/java/org/embeddedt/embeddium/validation/mixin/ShaderCompileCounterMixin.java",
+      "local": "ecdda22097001864302ebfddea565f4be655d7733dff1a5b9d10f8a8674bd727"
     },
     {
       "path": "modern/src/validation/resources/META-INF/mods.toml",
       "local": "a077b04085c760311afb576cd6717ff45456fa274b4fc8cbfe242761b3b8eece"
+    },
+    {
+      "path": "modern/src/validation/resources/embeddium-validation.mixins.json",
+      "local": "05773a7fb973301e6b102cce362cc5390c816ebb3b805a63867baa8b8254ecb6"
     },
     {
       "path": "modern/src/validation/resources/pack.mcmeta",

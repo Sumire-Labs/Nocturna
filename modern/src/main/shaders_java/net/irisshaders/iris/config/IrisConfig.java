@@ -35,6 +35,17 @@ public class IrisConfig {
 	 * If debug features should be enabled. Gives much more detailed OpenGL error outputs at the cost of performance.
 	 */
 	private boolean enableDebugOptions;
+    private boolean saveCompiledShaders;
+
+    public boolean shouldSaveCompiledShaders() {
+        return this.saveCompiledShaders;
+    }
+
+    public void setSaveCompiledShaders(boolean save) throws IOException {
+        this.saveCompiledShaders = save;
+        net.irisshaders.iris.cache.ProgramBinaryCache.setEnabled(save);
+        save();
+    }
 	/**
 	 * If the update notification should be disabled or not.
 	 */
@@ -149,6 +160,8 @@ public class IrisConfig {
 		shaderPackName = properties.getProperty("shaderPack");
 		enableShaders = !"false".equals(properties.getProperty("enableShaders"));
 		enableDebugOptions = "true".equals(properties.getProperty("enableDebugOptions"));
+        saveCompiledShaders = "true".equals(properties.getProperty("saveCompiledShaders"));
+        net.irisshaders.iris.cache.ProgramBinaryCache.setEnabled(saveCompiledShaders);
         disableUpdateMessage = "true".equals(properties.getProperty("disableUpdateMessage"));
         blockUnknownShaders = "true".equals(properties.getProperty("blockUnknownShaders"));
         flywheelFallbackMode = "true".equals(properties.getProperty("flywheelFallbackMode"));
@@ -191,6 +204,7 @@ public class IrisConfig {
 		properties.setProperty("shaderPack", getShaderPackName().orElse(""));
 		properties.setProperty("enableShaders", enableShaders ? "true" : "false");
 		properties.setProperty("enableDebugOptions", enableDebugOptions ? "true" : "false");
+        properties.setProperty("saveCompiledShaders", saveCompiledShaders ? "true" : "false");
         properties.setProperty("disableUpdateMessage", disableUpdateMessage ? "true" : "false");
         properties.setProperty("blockUnknownShaders", blockUnknownShaders ? "true" : "false");
         properties.setProperty("flywheelFallbackMode", flywheelFallbackMode ? "true" : "false");

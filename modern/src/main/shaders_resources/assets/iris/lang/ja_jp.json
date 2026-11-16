@@ -60,5 +60,10 @@
   "pack.iris.configure.title": "シェーダー設定",
   "pack.iris.list.label": "+ ドラッグアンドドロップでシェーダーを追加",
   "label.iris.true": "ON",
-  "label.iris.false": "OFF"
+  "label.iris.false": "OFF",
+  "options.iris.saveCompiledShaders.on": "コンパイル結果の保存: ON",
+  "options.iris.saveCompiledShaders.off": "コンパイル結果の保存: OFF",
+  "options.iris.saveCompiledShaders.tooltip": "次回の読み込みでコンパイル結果を再利用します。シェーダーやドライバーが変わると再コンパイルします。",
+  "options.iris.saveCompiledShaders.clear": "保存したコンパイル結果を削除",
+  "options.iris.saveCompiledShaders.unsupported": "このグラフィックスドライバーはコンパイル結果の保存に対応していません。通常どおりコンパイルします。"
 }

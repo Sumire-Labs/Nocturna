@@ -14,6 +14,8 @@ import org.embeddedt.embeddium.impl.render.chunk.terrain.TerrainRenderPass;
 import org.embeddedt.embeddium.impl.render.chunk.vertex.format.ChunkVertexLayout;
 import org.embeddedt.embeddium.impl.render.chunk.vertex.format.VertexFetchMode;
 import net.irisshaders.iris.Iris;
+import net.irisshaders.iris.cache.ProgramBinaryCache;
+import net.irisshaders.iris.gl.shader.ProgramCreator;
 import net.irisshaders.iris.gl.blending.BlendModeOverride;
 import net.irisshaders.iris.gl.blending.BufferBlendOverride;
 import net.irisshaders.iris.pipeline.ShaderLoadTimings;
@@ -33,7 +35,20 @@ public class IrisChunkProgramOverrides {
 	private boolean shadersCreated = false;
 	private int versionCounterForSodiumShaderReload = -1;
 
-	private record SubmittedProgram(GlProgram.Deferred program, Function<ShaderBindingContext, IrisChunkShaderInterface> factory) {}
+    private record SubmittedProgram(GlProgram.Deferred program, int restored, ProgramBinaryCache.Key cacheKey,
+                                    Function<ShaderBindingContext, IrisChunkShaderInterface> factory) {
+        GlProgram<IrisChunkShaderInterface> finish() {
+            if (program == null) return GlProgram.fromLinkedProgram(restored, factory);
+            var linked = program.finish(factory);
+            if (cacheKey != null) ProgramBinaryCache.save(cacheKey, linked.handle());
+            return linked;
+        }
+
+        void delete() {
+            if (program != null) program.delete();
+            else com.mojang.blaze3d.platform.GlStateManager.glDeleteProgram(restored);
+        }
+    }
 
 	private GlShader.Deferred createShader(ShaderType type, IrisTerrainPass pass, SodiumTerrainPipeline pipeline) {
 		Optional<String> irisVertexShader;
@@ -66,43 +81,41 @@ public class IrisChunkProgramOverrides {
 
 	@Nullable
 	private SubmittedProgram submitProgram(IrisTerrainPass pass, SodiumTerrainPipeline pipeline, RenderPassConfiguration configuration) {
-        Map<ShaderType, GlShader.Deferred> createdShaders = new EnumMap<>(ShaderType.class);
-
-        for (var type : RELEVANT_SHADER_TYPES) {
-            var shader = createShader(type, pass, pipeline);
-            if (shader != null) {
-                createdShaders.put(type, shader);
-            }
-        }
-
 		BlendModeOverride blendOverride = getBlendOverride(pass, pipeline);
 		List<BufferBlendOverride> bufferOverrides = getBufferBlendOverride(pass, pipeline);
 		float alpha = getAlphaReference(pass, pipeline);
 
-		if (createdShaders.get(ShaderType.VERTEX) == null || createdShaders.get(ShaderType.FRAGMENT) == null) {
-            createdShaders.values().forEach(GlShader.Deferred::delete);
-
-			// TODO: Partial shader programs?
-			return null;
-		}
-
-		GlProgram.Builder builder = GlProgram.builder("sodium:chunk_shader_for_"
-			+ pass.getName());
-
-        createdShaders.values().forEach(builder::attachShader);
-
+        Map<ShaderType, String> sources = new EnumMap<>(ShaderType.class);
+        for (var type : RELEVANT_SHADER_TYPES) pipeline.getPassInfo(pass).sources().get(type)
+                .ifPresent(source -> sources.put(type, source));
+        if (!sources.containsKey(ShaderType.VERTEX) || !sources.containsKey(ShaderType.FRAGMENT)) return null;
+        Map<String, Integer> attributes = new java.util.TreeMap<>();
         var terrainPass = pass.toTerrainPass(configuration);
         if (terrainPass.vertexFetchMode() == VertexFetchMode.ATTRIBUTES) {
             int i = 0;
             var vertexType = configuration.getVertexTypeForPass(terrainPass);
             for (var attr : ChunkVertexLayout.requireAttributes(vertexType.getLayout()).getAttributes()) {
-                builder.bindAttribute(attr.getName(), i++);
+                attributes.put(attr.getName(), i++);
             }
         }
 
-		boolean hasTessellation = createdShaders.get(ShaderType.TESS_CTRL) != null || createdShaders.get(ShaderType.TESS_EVALUATE) != null;
+        var key = ProgramCreator.cacheKey(sources, attributes);
+        var cached = ProgramCreator.load("sodium:chunk_shader_for_" + pass.getName(), key);
+        int restored = cached == null ? 0 : cached.finish();
+        GlProgram.Deferred deferred = null;
+        if (restored == 0) {
+            var builder = GlProgram.builder("sodium:chunk_shader_for_" + pass.getName());
+            if (key != null) ProgramBinaryCache.markRetrievable(builder.getProgramId());
+            for (var type : RELEVANT_SHADER_TYPES) {
+                var shader = createShader(type, pass, pipeline);
+                if (shader != null) builder.attachShader(shader);
+            }
+            attributes.forEach(builder::bindAttribute);
+            deferred = builder.linkDeferred();
+        }
+		boolean hasTessellation = sources.containsKey(ShaderType.TESS_CTRL) || sources.containsKey(ShaderType.TESS_EVALUATE);
 
-		return new SubmittedProgram(builder.linkDeferred(), (shader) -> {
+		return new SubmittedProgram(deferred, restored, key, (shader) -> {
 			int handle = ((GlObject) shader).handle();
 			ShaderBindingContext contextExt = shader;
 			GLDebug.nameObject(GL43C.GL_PROGRAM, handle, "sodium-terrain-" + pass.toString().toLowerCase(Locale.ROOT));
@@ -138,11 +151,11 @@ public class IrisChunkProgramOverrides {
 
 				try {
 					long waitStart = ShaderLoadTimings.now();
-					this.programs.put(entry.getKey(), entry.getValue().program().finish(entry.getValue().factory()));
+					this.programs.put(entry.getKey(), entry.getValue().finish());
 					ShaderLoadTimings.record(ShaderLoadTimings.Stage.COMPILE_WAIT, waitStart);
 				} catch (RuntimeException e) {
 					for (int j = i + 1; j < submitted.size(); j++) {
-						submitted.get(j).getValue().program().delete();
+						submitted.get(j).getValue().delete();
 					}
 					throw e;
 				}
