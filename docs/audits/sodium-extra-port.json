@@ -1,0 +1,562 @@
+{
+  "repository": "https://github.com/FlashyReese/sodium-extra",
+  "tag": "mc26.3-0.9.6-beta.4",
+  "commit": "7abb4236d5d6310633084cd2f613b63fdd1ccb5c",
+  "files": [
+    {
+      "source": "me/flashyreese/mods/sodiumextra/client/config/ConfigFileIO.java",
+      "sha256": "3843f4074a3711336d4a4c3638be921cee1761d54fd72059c05feddb27cc0942",
+      "ports": [
+        "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/client/config/ConfigFileIO.java"
+      ]
+    },
+    {
+      "source": "me/flashyreese/mods/sodiumextra/client/config/SodiumExtraConfig.java",
+      "sha256": "7c5d0410a9092168e3af8dcd57159171e314860c965dbd38bc2d841c0575e7aa",
+      "ports": [
+        "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/client/config/SodiumExtraConfig.java"
+      ]
+    },
+    {
+      "source": "me/flashyreese/mods/sodiumextra/client/config/SodiumExtraConfigKeys.java",
+      "sha256": "2bd6004f801c02d16aa00959cfcc90a44074a14fd20264d5bdc3ff161c8987c9",
+      "ports": [
+        "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/client/config/SodiumExtraConfigKeys.java"
+      ]
+    },
+    {
+      "source": "me/flashyreese/mods/sodiumextra/client/config/SodiumExtraGameOptions.java",
+      "sha256": "48024c441141cdd8f7317ab1abc18d1969ed35411d038fc2b4bfb3e9d670fb0d",
+      "ports": [
+        "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/client/config/SodiumExtraGameOptions.java"
+      ]
+    },
+    {
+      "source": "me/flashyreese/mods/sodiumextra/client/fog/FogDistanceHelper.java",
+      "sha256": "d76ab28287dd4cb64fd4665d279267aa5b60c36ce09aede8115e42647ddd0f1a",
+      "ports": [
+        "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/client/fog/FogDistanceHelper.java"
+      ]
+    },
+    {
+      "source": "me/flashyreese/mods/sodiumextra/client/fog/FogShaderTransformer.java",
+      "sha256": "e1316b10531d5372c9b2bc8072bbdfaa3f46291a24d75907ebab43765051eb23",
+      "ports": [
+        "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/client/fog/FogShaderTransformer.java"
+      ]
+    },
+    {
+      "source": "me/flashyreese/mods/sodiumextra/client/FrameCounter.java",
+      "sha256": "6bfdc58468a4be7e6881237e0cb4a542ceaf293f33850d045eb2bf2192e34c07",
+      "ports": [
+        "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/client/FrameCounter.java"
+      ]
+    },
+    {
+      "source": "me/flashyreese/mods/sodiumextra/client/gui/SodiumExtraDebugEntryCategory.java",
+      "sha256": "e701b05c4fd8b75b033bcd233045243583a54f4c1c9bef8e87ec0b55fbb475b8",
+      "ports": [
+        "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/client/gui/SodiumExtraDebugEntryCategory.java"
+      ]
+    },
+    {
+      "source": "me/flashyreese/mods/sodiumextra/client/gui/SodiumExtraDebugEntryCoords.java",
+      "sha256": "5092873a5eb3e0d98057dd493192190c77e84bedb8dda774428512d9e5ce60ce",
+      "ports": [
+        "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/client/gui/SodiumExtraDebugEntryCoords.java"
+      ]
+    },
+    {
+      "source": "me/flashyreese/mods/sodiumextra/client/gui/SodiumExtraDebugEntryFps.java",
+      "sha256": "0c6d8c09421973d363911347111bc5c8e04671959faf57f644432666358ac175",
+      "ports": [
+        "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/client/gui/SodiumExtraDebugEntryFps.java"
+      ]
+    },
+    {
+      "source": "me/flashyreese/mods/sodiumextra/client/gui/SodiumExtraDebugEntryLightUpdates.java",
+      "sha256": "83282cc0a099cbed3e7ac8c343b1c65c2f827c37f22500a02658c110c8c76417",
+      "ports": [
+        "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/client/gui/SodiumExtraDebugEntryLightUpdates.java"
+      ]
+    },
+    {
+      "source": "me/flashyreese/mods/sodiumextra/client/gui/SodiumExtraHud.java",
+      "sha256": "9cf87ddda3650e343d2cdcf9132be3d8bab088867e65658c208757195fddb835",
+      "ports": [
+        "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/client/gui/SodiumExtraHud.java"
+      ]
+    },
+    {
+      "source": "me/flashyreese/mods/sodiumextra/client/render/PaniniProjection.java",
+      "sha256": "7ac8004ef9771837f8f5f06022000d9e602ffc6589aff51e19fda66ed6727973",
+      "ports": [
+        "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/client/render/PaniniProjection.java",
+        "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/client/render/PaniniProgram.java"
+      ]
+    },
+    {
+      "source": "me/flashyreese/mods/sodiumextra/client/render/vertex/formats/TextureColorVertex.java",
+      "sha256": "a0090123f2fa5723d88dcad5419d72d68cf8e726643e423433aa95418c257279",
+      "ports": [],
+      "note": "Unreferenced vertex declarations in beta.4; no callers in the pinned upstream tree."
+    },
+    {
+      "source": "me/flashyreese/mods/sodiumextra/client/render/vertex/formats/TextureVertex.java",
+      "sha256": "3119cdb28e54160c4e63adc423d24857441599e2d62c2ffb6403511620738bc9",
+      "ports": [],
+      "note": "Unreferenced vertex declarations in beta.4; no callers in the pinned upstream tree."
+    },
+    {
+      "source": "me/flashyreese/mods/sodiumextra/client/render/vertex/formats/WeatherVertex.java",
+      "sha256": "4c6c0f30bdbe47f8203bc5921951649a0a8b85ffee65c4d2ebb1846b5c3bd373",
+      "ports": [],
+      "note": "Unreferenced vertex declarations in beta.4; no callers in the pinned upstream tree."
+    },
+    {
+      "source": "me/flashyreese/mods/sodiumextra/client/SodiumExtraClientMod.java",
+      "sha256": "76bf267c543af3085fceebf2f8c027b9ab4e060cabea6aeb33aa749eb46910c3",
+      "ports": [
+        "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/client/SodiumExtraClientMod.java"
+      ]
+    },
+    {
+      "source": "me/flashyreese/mods/sodiumextra/client/util/PaniniProjectionAccess.java",
+      "sha256": "475edfc8a005e55d9b152fb6ca4d5b0f3b2f65a224b1c9695999c02d10f9c161",
+      "ports": [
+        "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/client/render/PaniniProjection.java"
+      ]
+    },
+    {
+      "source": "me/flashyreese/mods/sodiumextra/client/util/ToastFilter.java",
+      "sha256": "5fc27ade566c8c1aeb518f9f664bf3f7a2d7df8dadb321f12b5bc34d60c23833",
+      "ports": [
+        "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/client/util/ToastFilter.java"
+      ]
+    },
+    {
+      "source": "me/flashyreese/mods/sodiumextra/common/util/AnimationStateExtended.java",
+      "sha256": "75e6fc165d0013ca1e0224816e2fc067ce965f8cd28522ae453ab99aa3c1197f",
+      "ports": [
+        "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/common/util/AnimationStateExtended.java"
+      ]
+    },
+    {
+      "source": "me/flashyreese/mods/sodiumextra/common/util/ControlValueFormatterExtended.java",
+      "sha256": "45875195ce13a2b6e28239a2e9c5805e4f14e7d123a567860d4ccadc1c01c975",
+      "ports": [
+        "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/common/util/ControlValueFormatterExtended.java"
+      ]
+    },
+    {
+      "source": "me/flashyreese/mods/sodiumextra/common/util/IdentifierSerializer.java",
+      "sha256": "f8045645fd68bfa19bd7895f9c8fa204461e3e2b20bad1366280f7d7863c4072",
+      "ports": [
+        "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/common/util/IdentifierSerializer.java"
+      ]
+    },
+    {
+      "source": "me/flashyreese/mods/sodiumextra/common/util/Utils.java",
+      "sha256": "cc453592cb740ee7a0ff46e694dfbc885aa49782732b082e5a68d230cbceebf4",
+      "ports": [
+        "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/common/util/Utils.java"
+      ]
+    },
+    {
+      "source": "me/flashyreese/mods/sodiumextra/compat/IrisCompat.java",
+      "sha256": "8c208031f166d24ddf7b946e0bdced8c1300d07d5f4ec13dd37a6385d7a2df97",
+      "ports": [
+        "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/compat/IrisCompat.java"
+      ]
+    },
+    {
+      "source": "me/flashyreese/mods/sodiumextra/mixin/adaptive_sync/MixinGlSurface.java",
+      "sha256": "af556e4095e7b9dc2528b0a8c234e48a96d5ccfd07936286e12cf9110488e8a6",
+      "ports": [
+        "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/adaptive_sync/MixinWindow.java",
+        "modern/src/main/extra_java/org/embeddedt/embeddium/impl/extra/compat/ExtraPlatform.java"
+      ]
+    },
+    {
+      "source": "me/flashyreese/mods/sodiumextra/mixin/animation/MixinSpriteContentsAnimationState.java",
+      "sha256": "69c9547fcea4467968ff48724ad6a48384f58f53a6674f07dd1f232e4ab52d8c",
+      "ports": [
+        "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/animation/MixinSpriteContentsAnimationState.java"
+      ]
+    },
+    {
+      "source": "me/flashyreese/mods/sodiumextra/mixin/animation/MixinTextureAtlas.java",
+      "sha256": "4bdd7c6bed0d5eb70d85efef604cbc3dd1108645e0394c66057d26604bfd543b",
+      "ports": [
+        "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/animation/MixinTextureAtlas.java",
+        "modern/src/main/extra_java/org/embeddedt/embeddium/impl/extra/compat/ExtraAnimations.java"
+      ]
+    },
+    {
+      "source": "me/flashyreese/mods/sodiumextra/mixin/biome_colors/MixinBiomeColors.java",
+      "sha256": "1122cd99078fd3c1950f534bece4197e127dd3e117c796818b5809a1417d9509",
+      "ports": [
+        "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/biome_colors/MixinBiomeColors.java"
+      ]
+    },
+    {
+      "source": "me/flashyreese/mods/sodiumextra/mixin/cloud/MixinLevelRenderer.java",
+      "sha256": "c619925d6c3e3c7e62acc9eca81d2f2c5abbf734f91221bad76eec6546ed6d10",
+      "ports": [
+        "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/cloud/MixinLevelRenderer.java"
+      ]
+    },
+    {
+      "source": "me/flashyreese/mods/sodiumextra/mixin/fog/AccessorIntegratedServer.java",
+      "sha256": "a6d548bab2f859baeaf638be3ca47903412557a9636f81833510b6cd35627765",
+      "ports": [
+        "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/client/fog/FogDistanceHelper.java"
+      ]
+    },
+    {
+      "source": "me/flashyreese/mods/sodiumextra/mixin/fog/AccessorMinecraft.java",
+      "sha256": "db81637855e2f16c24d9ebd0386f36b74bb69ada08df5c9b41b4a7db4dfe89b4",
+      "ports": [
+        "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/client/fog/FogDistanceHelper.java"
+      ]
+    },
+    {
+      "source": "me/flashyreese/mods/sodiumextra/mixin/fog/MixinAtmosphericFogEnvironment.java",
+      "sha256": "701b66579e3077a7d19f0a79aab85c68e3f60ca55babb322a65c62829771c83b",
+      "ports": [
+        "modern/src/main/extra_java/org/embeddedt/embeddium/impl/extra/compat/ExtraFog.java",
+        "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/fog/MixinFogRenderer.java"
+      ]
+    },
+    {
+      "source": "me/flashyreese/mods/sodiumextra/mixin/fog/MixinBlindnessFogEnvironment.java",
+      "sha256": "2560360f6476a1ca035b2097abf3ebc850ad06571d1eaf9eaea1821075009ccf",
+      "ports": [
+        "modern/src/main/extra_java/org/embeddedt/embeddium/impl/extra/compat/ExtraFog.java",
+        "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/fog/MixinFogRenderer.java"
+      ]
+    },
+    {
+      "source": "me/flashyreese/mods/sodiumextra/mixin/fog/MixinDarknessFogEnvironment.java",
+      "sha256": "358829db9279ac79b082e6f23a2ba2bba3454a2510d719cd165d8b5501dfa9e5",
+      "ports": [
+        "modern/src/main/extra_java/org/embeddedt/embeddium/impl/extra/compat/ExtraFog.java",
+        "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/fog/MixinFogRenderer.java"
+      ]
+    },
+    {
+      "source": "me/flashyreese/mods/sodiumextra/mixin/fog/MixinFogRenderer.java",
+      "sha256": "ff3ecaed5a8a108718e6affa851bcd589ed7343ce9510194273ea6da724f8ca8",
+      "ports": [
+        "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/fog/MixinFogRenderer.java"
+      ]
+    },
+    {
+      "source": "me/flashyreese/mods/sodiumextra/mixin/fog/MixinLavaFogEnvironment.java",
+      "sha256": "b6f534d8c35b221a0bcb69d8d7d958fec8a81ff33d286802d115ddd2bca6b0c9",
+      "ports": [
+        "modern/src/main/extra_java/org/embeddedt/embeddium/impl/extra/compat/ExtraFog.java",
+        "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/fog/MixinFogRenderer.java"
+      ]
+    },
+    {
+      "source": "me/flashyreese/mods/sodiumextra/mixin/fog/MixinOcclusionCuller.java",
+      "sha256": "7d6cb0ca55473da4287ca6fa78e125ec9a7dcfe3ee5ed035768a5a254875ace4",
+      "ports": [
+        "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/fog/MixinOcclusionCuller.java"
+      ]
+    },
+    {
+      "source": "me/flashyreese/mods/sodiumextra/mixin/fog/MixinPowderedSnowFogEnvironment.java",
+      "sha256": "9c75f2757663b7079ad454365a20a9b0174091b8f3e6473765a16f7405a3dcc8",
+      "ports": [
+        "modern/src/main/extra_java/org/embeddedt/embeddium/impl/extra/compat/ExtraFog.java",
+        "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/fog/MixinFogRenderer.java"
+      ]
+    },
+    {
+      "source": "me/flashyreese/mods/sodiumextra/mixin/fog/MixinRenderSectionManager.java",
+      "sha256": "ba0667b12970808efc9d498d2dc802d9dbd486d2c0e7711d741f87c11698103e",
+      "ports": [
+        "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/fog/MixinRenderSectionManager.java"
+      ]
+    },
+    {
+      "source": "me/flashyreese/mods/sodiumextra/mixin/fog/MixinShaderManager.java",
+      "sha256": "6726dc153b40cc0ab19164b24635fcd7d10480f74655a13d085770a46391d294",
+      "ports": [
+        "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/fog/MixinShaderLoader.java"
+      ]
+    },
+    {
+      "source": "me/flashyreese/mods/sodiumextra/mixin/fog/MixinSodiumOptions.java",
+      "sha256": "44948f2e3b900c0f26ec049cc07849fa48dfc82a7dc9457256817281c662075e",
+      "ports": [
+        "modern/src/main/extra_java/org/embeddedt/embeddium/impl/extra/compat/ExtraFog.java",
+        "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/client/config/SodiumExtraConfig.java"
+      ]
+    },
+    {
+      "source": "me/flashyreese/mods/sodiumextra/mixin/fog/MixinTraversableTree.java",
+      "sha256": "5b41aef17b891c9395c331c689a46ad9a2ccb44918873c5b773db87b1e8d4653",
+      "ports": [
+        "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/fog/MixinOcclusionCuller.java",
+        "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/fog/MixinRegionCullCache.java"
+      ]
+    },
+    {
+      "source": "me/flashyreese/mods/sodiumextra/mixin/fog/MixinWaterFogEnvironment.java",
+      "sha256": "69cbb8d13a947779a078b563fc34ee6ad423a9bbbe48df437421a627fc43e20a",
+      "ports": [
+        "modern/src/main/extra_java/org/embeddedt/embeddium/impl/extra/compat/ExtraFog.java",
+        "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/fog/MixinFogRenderer.java"
+      ]
+    },
+    {
+      "source": "me/flashyreese/mods/sodiumextra/mixin/fps/MixinGameRenderer.java",
+      "sha256": "915aa0c85162f234321ab7f30e9bce500e0a2ba681737a9e83d297cefe500b0c",
+      "ports": [
+        "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/fps/MixinGameRenderer.java"
+      ]
+    },
+    {
+      "source": "me/flashyreese/mods/sodiumextra/mixin/gui/MixinDebugOptionsScreen.java",
+      "sha256": "460a39078d49258d958215380658df30b76ae30c59be1a3684216686ba5a041f",
+      "ports": [
+        "modern/src/main/extra_java/org/embeddedt/embeddium/impl/extra/compat/ExtraDebugOptionsScreen.java"
+      ]
+    },
+    {
+      "source": "me/flashyreese/mods/sodiumextra/mixin/gui/MixinGui.java",
+      "sha256": "98dfff9944f2561df244ed575253ee3881325c6ff96e540e7b394f0bfd4a527e",
+      "ports": [
+        "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/gui/MixinGui.java"
+      ]
+    },
+    {
+      "source": "me/flashyreese/mods/sodiumextra/mixin/gui/MixinMinecraftClient.java",
+      "sha256": "96fdceeb189827fd35f89468e2df95cea300e4119591e9e223635824f5756f3e",
+      "ports": [
+        "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/gui/MixinMinecraftClient.java"
+      ]
+    },
+    {
+      "source": "me/flashyreese/mods/sodiumextra/mixin/instant_sneak/MixinCamera.java",
+      "sha256": "60c6b61432e96eb5934e07c31c271a5b049a4a91b561cd5c5bf591452758b9f2",
+      "ports": [
+        "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/instant_sneak/MixinCamera.java"
+      ]
+    },
+    {
+      "source": "me/flashyreese/mods/sodiumextra/mixin/light_updates/MixinLevelLightEngine.java",
+      "sha256": "b7ed61e0b6ce59a9868b4ac3a6d3e31790eb253cad289aa4c3a034e241c1e428",
+      "ports": [
+        "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/light_updates/MixinLevelLightEngine.java"
+      ]
+    },
+    {
+      "source": "me/flashyreese/mods/sodiumextra/mixin/panini_projection/AccessorLevelRenderer.java",
+      "sha256": "90daa5a0443cccccbd14dd7c714185fa196dc081c1b16782367e79c7e9fd4fc3",
+      "ports": [
+        "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/panini_projection/AccessorLevelRenderer.java"
+      ]
+    },
+    {
+      "source": "me/flashyreese/mods/sodiumextra/mixin/panini_projection/AccessorPostChain.java",
+      "sha256": "e0adc903b2944ef57cb741813e9002288a63cde466bd37dd8bbee89880e484fa",
+      "ports": [
+        "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/panini_projection/AccessorPostChain.java"
+      ]
+    },
+    {
+      "source": "me/flashyreese/mods/sodiumextra/mixin/panini_projection/AccessorPostPass.java",
+      "sha256": "11f5aef82ed6b038131a433a2c5bd7adf5c44b99d480bc215a8006a33af25686",
+      "ports": [
+        "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/panini_projection/AccessorPostPass.java"
+      ]
+    },
+    {
+      "source": "me/flashyreese/mods/sodiumextra/mixin/panini_projection/MixinGameRenderer.java",
+      "sha256": "78f9cfc84b0f90e43f8a0954c8fd18e3700740bd63fac9bc02070153bb76b25b",
+      "ports": [
+        "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/panini_projection/MixinGameRenderer.java"
+      ]
+    },
+    {
+      "source": "me/flashyreese/mods/sodiumextra/mixin/panini_projection/MixinLevelRenderer.java",
+      "sha256": "534c55b708c20529f37c050d9279caba5a3fe78d09534120b9edb388ccfac4a5",
+      "ports": [
+        "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/panini_projection/MixinLevelRenderer.java"
+      ]
+    },
+    {
+      "source": "me/flashyreese/mods/sodiumextra/mixin/panini_projection/MixinShapeOutlineFeatureRenderer.java",
+      "sha256": "41d94451763ba268022f56a15ff9fd72fecfd392fbd7ad503f0333e70cc53a42",
+      "ports": [
+        "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/panini_projection/MixinVertexBuffer.java"
+      ]
+    },
+    {
+      "source": "me/flashyreese/mods/sodiumextra/mixin/panini_projection/MixinSkyRenderer.java",
+      "sha256": "8f9bea1e0f61d751577d521f5eb90990cd5923f50e2d10910f6d1c6ac897c4cd",
+      "ports": [
+        "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/panini_projection/MixinMinecraft.java"
+      ]
+    },
+    {
+      "source": "me/flashyreese/mods/sodiumextra/mixin/particle/MixinClientLevel.java",
+      "sha256": "5aa7fb2479a11e9466a00ac44b3f131e8a0003787be748815d406e33dc3cd8be",
+      "ports": [
+        "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/particle/MixinBlockParticles.java",
+        "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/particle/MixinLevelRenderer.java"
+      ]
+    },
+    {
+      "source": "me/flashyreese/mods/sodiumextra/mixin/particle/MixinFireworkParticle.java",
+      "sha256": "5ce2480c9a8181c2b4fc5154b5ed282d33abaa458c26253ba54b2aea05a22e64",
+      "ports": [
+        "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/particle/MixinFireworkParticle.java"
+      ]
+    },
+    {
+      "source": "me/flashyreese/mods/sodiumextra/mixin/particle/MixinLevelRenderer.java",
+      "sha256": "61c588f558d8d134717668bbee0b7782ddd68ae47fcd38183991d27693073441",
+      "ports": [
+        "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/particle/MixinLevelRenderer.java"
+      ]
+    },
+    {
+      "source": "me/flashyreese/mods/sodiumextra/mixin/particle/MixinParticleEngine.java",
+      "sha256": "27294f2dd3c872365ac47d39fd1dc806b336069e81065026211a37e60dfc2bc8",
+      "ports": [
+        "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/particle/MixinParticleEngine.java"
+      ]
+    },
+    {
+      "source": "me/flashyreese/mods/sodiumextra/mixin/prevent_shaders/MixinGameRenderer.java",
+      "sha256": "23dec87e4f16d4a1d0a25dc599fa5ed3ddcd17b9f7a4642914b4e8a1a14bbde1",
+      "ports": [
+        "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/prevent_shaders/MixinGameRenderer.java"
+      ]
+    },
+    {
+      "source": "me/flashyreese/mods/sodiumextra/mixin/reduce_resolution_on_mac/MixinWindow.java",
+      "sha256": "51391860f24a30f2d2487e9f7fa3c798b4336ff4f7d04bbbad6cb20410da211b",
+      "ports": [
+        "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/reduce_resolution_on_mac/MixinWindow.java"
+      ]
+    },
+    {
+      "source": "me/flashyreese/mods/sodiumextra/mixin/render/block/entity/MixinBeaconRenderer.java",
+      "sha256": "73bd74944628e46a6691586264afc0f5d10a8a3a717a12fa0fff30160e0e50c8",
+      "ports": [
+        "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/render/block/entity/MixinBeaconRenderer.java"
+      ]
+    },
+    {
+      "source": "me/flashyreese/mods/sodiumextra/mixin/render/block/entity/MixinEnchantingTableBlockEntityRenderer.java",
+      "sha256": "6f4c4e646ec83f9eac4493ae00c3c15fd1cd27c22c554e6a8154695aa0c81174",
+      "ports": [
+        "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/render/block/entity/MixinEnchantingTableBlockEntityRenderer.java"
+      ]
+    },
+    {
+      "source": "me/flashyreese/mods/sodiumextra/mixin/render/block/entity/MixinPistonBlockEntityRenderer.java",
+      "sha256": "a3525f2acddb2be0af6877aacab9a0dced8b73f0cf20eea987fb6f87383a6e93",
+      "ports": [
+        "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/render/block/entity/MixinPistonBlockEntityRenderer.java"
+      ]
+    },
+    {
+      "source": "me/flashyreese/mods/sodiumextra/mixin/render/entity/MixinItemFrameEntityRenderer.java",
+      "sha256": "687409ac02cfba0ffdbcfc723429102c02ab429c5181e17d4df75c6d5cf7a3e7",
+      "ports": [
+        "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/render/entity/MixinItemFrameEntityRenderer.java"
+      ]
+    },
+    {
+      "source": "me/flashyreese/mods/sodiumextra/mixin/render/entity/MixinLivingEntityRenderer.java",
+      "sha256": "ee653840345ffbd10e3bfda25921dad707f6617f639e676125408c06691a2be8",
+      "ports": [
+        "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/render/entity/MixinLivingEntityRenderer.java"
+      ]
+    },
+    {
+      "source": "me/flashyreese/mods/sodiumextra/mixin/render/entity/MixinPaintingEntityRenderer.java",
+      "sha256": "b4bd88352eaffef06290d1b4d5e4b5278d1388a24d6f86d82f7add5728f87951",
+      "ports": [
+        "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/render/entity/MixinPaintingEntityRenderer.java"
+      ]
+    },
+    {
+      "source": "me/flashyreese/mods/sodiumextra/mixin/sky/MixinSkyRenderer.java",
+      "sha256": "ff7e1a4e94fefa3d329ca44199276123036a6505e8396ef521365f86af5e695c",
+      "ports": [
+        "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/sky/MixinLevelRenderer.java"
+      ]
+    },
+    {
+      "source": "me/flashyreese/mods/sodiumextra/mixin/sky_colors/MixinAtmosphericFogEnvironment.java",
+      "sha256": "ee27d8f9e9590a0bd8fd10be3b50db1a7da06dd7854f59ddc7a8c242f1ea14b6",
+      "ports": [
+        "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/sky_colors/MixinFogRenderer.java"
+      ]
+    },
+    {
+      "source": "me/flashyreese/mods/sodiumextra/mixin/SodiumExtraMixinConfigPlugin.java",
+      "sha256": "66d8cfe115b04e4d24328a6fd542c5ec373f3464a5453b426ce3f4326a689c07",
+      "ports": [
+        "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/SodiumExtraMixinConfigPlugin.java"
+      ]
+    },
+    {
+      "source": "me/flashyreese/mods/sodiumextra/mixin/steady_debug_hud/MixinDebugScreenOverlay.java",
+      "sha256": "1520c46140855cce2fc5367ba77119aaf8d044617590c183b0abf0c2e37668ca",
+      "ports": [
+        "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/steady_debug_hud/MixinDebugScreenOverlay.java"
+      ]
+    },
+    {
+      "source": "me/flashyreese/mods/sodiumextra/mixin/toasts/MixinToastInstance.java",
+      "sha256": "815ac471c2a997c8a06b7b791a71eca19e13ad25419a581cb2a54bb33eb7a1e4",
+      "ports": [
+        "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/toasts/MixinToastInstance.java"
+      ]
+    },
+    {
+      "source": "me/flashyreese/mods/sodiumextra/mixin/toasts/MixinToastManager.java",
+      "sha256": "a23a6e6e2dd7a6c7cc576474957857f809ebd22a1b4e723cb8791f7580f20320",
+      "ports": [
+        "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/toasts/MixinToastManager.java"
+      ]
+    },
+    {
+      "source": "net/caffeinemc/caffeineconfig/AbstractCaffeineConfigMixinPlugin.java",
+      "sha256": "60b73e1328b004dff64f1b8b1d2817471d521bc5db627d17ef932b3a35268ee2",
+      "ports": [
+        "modern/src/main/extra_java/org/embeddedt/embeddium/impl/extra/vendor/caffeineconfig/AbstractCaffeineConfigMixinPlugin.java"
+      ]
+    },
+    {
+      "source": "net/caffeinemc/caffeineconfig/CaffeineConfig.java",
+      "sha256": "3215d799ff9b54436885c172933472cfbe0a03271159a3c61fd5b0d6f6082cab",
+      "ports": [
+        "modern/src/main/extra_java/org/embeddedt/embeddium/impl/extra/vendor/caffeineconfig/CaffeineConfig.java"
+      ]
+    },
+    {
+      "source": "net/caffeinemc/caffeineconfig/CaffeineConfigPlatform.java",
+      "sha256": "98460d8d0c4b6b3c711ee5efa4e297fec7f807942f462cbb539d817a6c36d563",
+      "ports": [
+        "modern/src/main/extra_java/org/embeddedt/embeddium/impl/extra/vendor/caffeineconfig/CaffeineConfigPlatform.java"
+      ]
+    },
+    {
+      "source": "net/caffeinemc/caffeineconfig/Option.java",
+      "sha256": "b6f5a33dba928fad82006739fc3ff46ecdf19e3f3f70ba576f3e37e2f703cdd3",
+      "ports": [
+        "modern/src/main/extra_java/org/embeddedt/embeddium/impl/extra/vendor/caffeineconfig/Option.java"
+      ]
+    }
+  ]
+}

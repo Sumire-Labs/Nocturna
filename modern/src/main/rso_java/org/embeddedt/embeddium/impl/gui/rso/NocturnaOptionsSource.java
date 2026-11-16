@@ -73,8 +73,16 @@ public final class NocturnaOptionsSource {
             var pageGroups = new ArrayList<OptionGroup>();
             for (var group : page.getGroups()) {
                 var options = new ArrayList<Option>();
+                Component extraHeading = null;
                 int optionIndex = 0;
-                for (var option : group.getOptions())
+                for (var option : group.getOptions()) {
+                    Component heading =
+                            org.embeddedt.embeddium.impl.extra.compat.config.structure
+                                    .RsoExtraOptions.heading(option);
+                    if (heading != null) {
+                        extraHeading = heading;
+                        continue;
+                    }
                     options.add(
                             adapt(
                                     option,
@@ -87,13 +95,16 @@ public final class NocturnaOptionsSource {
                                             + groupIndex
                                             + "/"
                                             + optionIndex++));
+                }
                 groupIndex++;
                 Component label =
                         LABELED_GROUPS.contains(group.getId().getPath())
                                 ? Component.translatable(
                                         "nocturna.rso.group." + group.getId().getPath())
                                 : Component.empty();
-                pageGroups.add(new OptionGroup(label, List.copyOf(options)));
+                pageGroups.add(
+                        new OptionGroup(
+                                extraHeading != null ? extraHeading : label, List.copyOf(options)));
             }
             groups.computeIfAbsent(mod, id -> new ArrayList<>())
                     .add(new Page(text(page.getName()), pageGroups));
@@ -121,6 +132,11 @@ public final class NocturnaOptionsSource {
             var logo =
                     org.embeddedt.embeddium.impl.loader.common.ModLogoUtil.registerLogo(
                             entry.getKey());
+            if (entry.getKey().equals("sodium-extra")) {
+                name = "Sodium Extra";
+                version = "0.9.6-beta.4";
+                logo = new ResourceLocation("sodium-extra", "textures/icon.png");
+            }
             result.add(
                     new ModOptions(
                             entry.getKey(),
@@ -145,6 +161,10 @@ public final class NocturnaOptionsSource {
                             StorageEventHandler>
                     saves,
             String fallbackId) {
+        var extra =
+                org.embeddedt.embeddium.impl.extra.compat.config.structure.RsoExtraOptions.adapt(
+                        nativeOption, state, saves, pendingFlags);
+        if (extra != null) return extra;
         var nativeId = nativeOption.getId();
         ResourceLocation id =
                 !org.taumc.celeritas.api.options.OptionIdentifier.isPresent(nativeId)

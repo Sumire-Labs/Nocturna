@@ -1,0 +1,19 @@
+Nocturna includes a Forge 1.20.1 port of Sodium Extra 0.9.6-beta.4 by
+FlashyReese and contributors.
+
+Upstream: https://github.com/FlashyReese/sodium-extra
+Commit: 7abb4236d5d6310633084cd2f613b63fdd1ccb5c
+License: LGPL-3.0. See sodium-extra-LGPL-3.0.txt.
+Upstream translations are distributed under CC0, as stated in its README.
+
+The Greenlight API and policy runtime are by FlashyReese and contributors.
+Upstream: https://github.com/FlashyReese/greenlight
+Commit: 1d744b37d639433890521bde3a787bd9ddb2ae90
+License: LGPL-3.0. See greenlight-LGPL-3.0.txt.
+
+The CaffeineConfig sources shipped by Sodium Extra are retained under
+Nocturna's internal vendor namespace to avoid Forge module package conflicts.
+
+Corresponding source and the Forge adapters are in Nocturna's extra_java
+and extra_resources source roots:
+https://github.com/Sumire-Labs/Nocturna

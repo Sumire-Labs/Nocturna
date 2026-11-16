@@ -169,8 +169,18 @@ val validation = sourceSets.create("validation") {
 }
 val validationMod = modDevExtension.mods.create("embeddium_validation") { sourceSet(validation) }
 
+val extraValidation = sourceSets.create("extraValidation") {
+    java.srcDir("src/extraValidation/java")
+    resources.srcDir("src/extraValidation/resources")
+    compileClasspath += sourceSets.main.get().output + sourceSets.main.get().compileClasspath
+    runtimeClasspath += sourceSets.main.get().runtimeClasspath
+}
+val extraValidationMod = modDevExtension.mods.create("nocturna_extra_validation") { sourceSet(extraValidation) }
+
 sourceSets.main {
     java.srcDir("src/main/legacy_api_java")
+    java.srcDir("src/main/extra_java")
+    resources.srcDir("src/main/extra_resources")
     java.srcDir("src/main/rso_java")
     resources.srcDir("src/main/rso_resources")
 }
@@ -192,13 +202,21 @@ tasks.named<CreateMinecraftArtifacts>("createMinecraftArtifacts") {
 
 modDevExtension.accessTransformers.from(generatedATPath)
 
-val modMixinConfigs = project.celeritasMixinConfigs
+val modMixinConfigs = project.celeritasMixinConfigs.also { it.add("nocturna-extra.mixins.json") }
 
 if (stonecutter.constants.get("shaders") ?: false) {
     apply(plugin = "celeritas.shader-conventions")
 }
 
 modDevExtension.runs {
+    create("extraValidationClient") {
+        client()
+        loadedMods.set(listOf(mainMod, extraValidationMod))
+        for (mixinConfig in modMixinConfigs) {
+            programArgument("--mixin.config")
+            programArgument(mixinConfig)
+        }
+    }
     create("rsoValidationClient") {
         client()
         loadedMods.set(listOf(mainMod, validationMod))
