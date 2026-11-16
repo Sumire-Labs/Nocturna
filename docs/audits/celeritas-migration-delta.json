@@ -1,6 +1,6 @@
 {
   "revision": "26f000239eb8ddf7ee191f0ddf369147e3c92ef6",
-  "identical": 1574,
+  "identical": 1570,
   "changes": [
     {
       "path": "buildSrc/build.gradle.kts",
@@ -228,6 +228,11 @@
       "local": "20e26d5b998b066cd46730c238fc3266e2e2c517dcb64ba8de8e7a460fe50f97"
     },
     {
+      "path": "modern/src/main/resources/embeddium.accesswidener",
+      "upstream": "d3e30c2d1fccb6cf60c332be8bf9a97ba43f4310e003f71d8320611fa9833e04",
+      "local": "73dbad45a16bdec485d67f07b5b2c45784af5c1793d7cfb2537bd7bb127d1fc5"
+    },
+    {
       "path": "modern/src/main/shaders_java/net/irisshaders/iris/Iris.java",
       "upstream": "d74f868fd29b5aec24d5171b44776721716edb76ee1222ee683b4a685b253ed5",
       "local": "e6e27059f86c6517aaaaf8207b1bcaf2141bdd7b482b705f6acb2a2a9e0938a2"
@@ -276,6 +281,21 @@
       "path": "modern/src/main/shaders_modern_java/net/irisshaders/iris/gui/screen/ShaderPackScreen.java",
       "upstream": "5d5ac7d63fba4065683f2032f7a39af3a5542193116ea930db2f059657fd1196",
       "local": "8234d8aa1eb4128c4f53fc57d0b41dbee16bd42b44360c732e082c4c7b792f57"
+    },
+    {
+      "path": "modern/src/main/shaders_modern_java/net/irisshaders/iris/mixin/texture/MixinTextureManager.java",
+      "upstream": "5c2886e03a357b544a12b9d8adbba22d5f7a9f1e0d2e8f2db8045eeee69a5ef1",
+      "local": "166ed2677e81df82327c1498ea1b6a1cf99a135af866c970649c324922ac30b8"
+    },
+    {
+      "path": "modern/src/main/shaders_modern_java/net/irisshaders/iris/texture/pbr/loader/AtlasPBRLoader.java",
+      "upstream": "068eb277331c61c0125f77388634165e271e748892b91275db946dcee8320679",
+      "local": "341d679b3e281235cedbf4c6e11f13e81b671a8697749b74dca52ddbe02c6945"
+    },
+    {
+      "path": "modern/src/main/shaders_modern_java/net/irisshaders/iris/texture/pbr/loader/SimplePBRLoader.java",
+      "upstream": "6821a01484e248d37a75d83b8b73d7896da5543d65dd79f73c438024844b4a39",
+      "local": "a36cc58c91a9febfe32dd649801e3f6a1795f70391c986d7d1ae89247f1d89db"
     },
     {
       "path": "modern/src/main/shaders_resources/assets/iris/lang/cs_cz.json",
@@ -782,6 +802,14 @@
       "local": "31e26d59ba82252e59348a8ad83502f10599941a47af2cb6b99f578a87f2da51"
     },
     {
+      "path": "modern/src/main/shaders_modern_java/net/irisshaders/iris/mixin/texture/pbr/MixinMultiPackResourceManager.java",
+      "local": "08f9092fed4f9d905ecadb13e5225629555bd82f49d1e31c2c5b7133c0c5dd63"
+    },
+    {
+      "path": "modern/src/main/shaders_modern_java/net/irisshaders/iris/texture/pbr/PBRResourceIndex.java",
+      "local": "90e6a6f5ad1e051a6ae2f133e9796e035bfb04c837d630895caae13755dfd57d"
+    },
+    {
       "path": "modern/src/test/java/net/irisshaders/iris/cache/ProgramCacheLifecycleTest.java",
       "local": "3e51a43962dade5db1e878767cfd0756e10c40ea9d0d954fecda14c9ad254714"
     },
@@ -796,6 +824,10 @@
     {
       "path": "modern/src/test/java/net/irisshaders/iris/shaderpack/preprocessor/PreprocessedSourceCacheTest.java",
       "local": "062fe8d2ace86915c5bd43093fe42cffdb468b6e2a427286b2b834f117843b24"
+    },
+    {
+      "path": "modern/src/test/java/net/irisshaders/iris/texture/pbr/PBRResourceIndexTest.java",
+      "local": "2753beb7230b92c71932643fd114494f747cd106290a90b615045d8b465aa3f2"
     },
     {
       "path": "modern/src/test/java/org/embeddedt/embeddium/impl/compat/legacy/LegacyGuiBridgeTest.java",
@@ -843,7 +875,11 @@
     },
     {
       "path": "modern/src/validation/java/org/embeddedt/embeddium/validation/MigrationValidation.java",
-      "local": "e3577ee6c48bebd8dbb6eda5d57c41036c94354f10cc066444ccafe2c2e79345"
+      "local": "28917f17efbd447fff78b3d09a9d45e7ae4f4396eb4ee2286194bf017183b675"
+    },
+    {
+      "path": "modern/src/validation/java/org/embeddedt/embeddium/validation/PBRResourceIndexValidation.java",
+      "local": "e661af210be9196baaaa2cbf7b11beb7e6627b8f487808aa0681067991081eaa"
     },
     {
       "path": "modern/src/validation/java/org/embeddedt/embeddium/validation/ShaderCachePackValidation.java",

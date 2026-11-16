@@ -151,3 +151,10 @@ accessible class net/minecraft/world/level/chunk/EmptyLevelChunk$EmptyChunkBiome
 
 # 1.21.8
 accessible field net/minecraft/client/renderer/chunk/ChunkSectionLayer useMipmaps Z
+
+# Forge 1.20.1 PBR resource indexing
+accessible field net/minecraft/server/packs/resources/ReloadableResourceManager resources Lnet/minecraft/server/packs/resources/CloseableResourceManager;
+accessible field net/minecraft/server/packs/resources/MultiPackResourceManager namespacedManagers Ljava/util/Map;
+accessible class net/minecraft/server/packs/resources/FallbackResourceManager$PackEntry
+accessible method net/minecraft/server/packs/FilePackResources getOrCreateZipFile ()Ljava/util/zip/ZipFile;
+accessible field net/minecraft/server/packs/PathPackResources root Ljava/nio/file/Path;

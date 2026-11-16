@@ -26,6 +26,8 @@ Intentional departures from the pinned Celeritas snapshot:
 - Angelica's preprocessing/disk/GL-program caches, from LGPL-3.0 revision
   `996fb54cb05e256ea6039f4e2c8457a221a179b7`, adapted to the existing Celeritas parallel linker.
   See `docs/shader-cache-backport-2026-11-16.md`. Compiled-program saving defaults off as upstream does.
+- Angelica's PBR resource index from the same LGPL-3.0 revision, adapted to Forge 1.20.1 pack filters,
+  resource-manager replacement and pack lifetime. See `docs/pbr-resource-index-backport-2026-11-17.md`.
 
 Terrain sorting V3, vertex layouts/headers, render-pass consolidation, occlusion, raster culling, shader integration,
 batching and the Flywheel shader backend remain Celeritas implementations. Celeritas defaults are retained,

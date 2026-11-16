@@ -11,6 +11,7 @@ import net.irisshaders.iris.texture.mipmap.LinearBlendFunction;
 import net.irisshaders.iris.texture.pbr.PBRAtlasTexture;
 import net.irisshaders.iris.texture.pbr.PBRSpriteHolder;
 import net.irisshaders.iris.texture.pbr.PBRType;
+import net.irisshaders.iris.texture.pbr.PBRResourceIndex;
 import net.irisshaders.iris.texture.pbr.SpriteContentsExtension;
 import net.irisshaders.iris.texture.util.ImageManipulationUtil;
 import net.minecraft.client.renderer.texture.SpriteContents;
@@ -85,6 +86,10 @@ public class AtlasPBRLoader implements PBRTextureLoader<TextureAtlas> {
 	protected PBRTextureAtlasSprite createPBRSprite(TextureAtlasSprite sprite, ResourceManager resourceManager, TextureAtlas atlas, int atlasWidth, int atlasHeight, int mipLevel, PBRType pbrType) {
 		ResourceLocation spriteName = sprite.contents().name();
 		ResourceLocation pbrImageLocation = getPBRImageLocation(spriteName, pbrType);
+
+		if (!PBRResourceIndex.mayExist(resourceManager, pbrImageLocation)) {
+			return null;
+		}
 
 		Optional<Resource> optionalResource = resourceManager.getResource(pbrImageLocation);
 		if (optionalResource.isEmpty()) {

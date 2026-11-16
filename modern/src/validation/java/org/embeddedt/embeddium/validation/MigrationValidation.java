@@ -99,7 +99,7 @@ public class MigrationValidation {
             if (ticks % 100 == 0) System.out.println("Validation stage="+stage+" screen="+(mc.screen==null?"null":mc.screen.getClass().getName()));
             if(stage==0&&(mc.screen instanceof TitleScreen||mc.screen instanceof AccessibilityOnboardingScreen)) {
                 if(net.minecraftforge.fml.ModList.get().isLoaded("codechickenlib")) AddonValidation.install();
-                vertices();MatrixUniformValidation.verify();ShaderCacheValidation.verify();gui(mc);
+                vertices();MatrixUniformValidation.verify();ShaderCacheValidation.verify();PBRResourceIndexValidation.verify();gui(mc);
                 ShaderCachePackValidation.prepare();stage=1;
                 mc.options.renderDistance().set(3);mc.options.simulationDistance().set(3);
                 mc.options.pauseOnLostFocus=false;
