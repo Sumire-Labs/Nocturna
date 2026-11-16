@@ -1,0 +1,7 @@
+{
+  "nocturna.option.cloud_range": "Cloud Render Distance",
+  "nocturna.option.cloud_range.tooltip": "Sets cloud render distance independently of terrain render distance.",
+  "nocturna.debug.profile.default": "Default",
+  "nocturna.debug.profile.performance": "Performance",
+  "nocturna.debug.not_allowed": "The server's reduced debug information setting does not allow this entry."
+}

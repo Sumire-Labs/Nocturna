@@ -7,6 +7,11 @@ import org.spongepowered.asm.mixin.injection.callback.*;
 
 @Mixin(value = net.minecraft.client.renderer.FogRenderer.class, priority = 1300)
 public class MixinFogRenderer {
+    @Inject(method = "setupNoFog", at = @At("HEAD"))
+    private static void nocturna$disable(CallbackInfo ci) {
+        ExtraFog.disable();
+    }
+
     @com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation(
             method = "setupFog",
             at =

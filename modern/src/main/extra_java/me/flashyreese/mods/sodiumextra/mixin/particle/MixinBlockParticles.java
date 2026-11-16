@@ -15,7 +15,10 @@ public class MixinBlockParticles {
         if (!p.particles || !p.blockBreak) ci.cancel();
     }
 
-    @Inject(method = "crack", at = @At("HEAD"), cancellable = true)
+    @Inject(
+            method = {"crack", "addBlockHitEffects"},
+            at = @At("HEAD"),
+            cancellable = true)
     private void sodiumExtra$crack(CallbackInfo ci) {
         var p = SodiumExtraClientMod.options().particleSettings;
         if (!p.particles || !p.blockBreaking) ci.cancel();

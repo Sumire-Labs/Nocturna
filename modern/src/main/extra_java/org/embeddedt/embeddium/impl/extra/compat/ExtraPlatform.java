@@ -1,48 +1,60 @@
 package org.embeddedt.embeddium.impl.extra.compat;
 
-import net.minecraft.client.Minecraft;
+import org.lwjgl.glfw.*;
+import org.lwjgl.opengl.*;
 
-import org.lwjgl.glfw.GLFW;
+import java.util.OptionalInt;
 
 public final class ExtraPlatform {
-    private static long probedContext, knownContext;
-    private static boolean adaptiveSupported;
+    private static final SwapIntervalProbe PROBE = new SwapIntervalProbe();
+    private static long knownContext;
     private static int knownInterval;
+    private static final SwapIntervalProbe.Backend BACKEND =
+            new SwapIntervalProbe.Backend() {
+                public long context() {
+                    return GLFW.glfwGetCurrentContext();
+                }
+
+                public OptionalInt current() {
+                    long context = context();
+                    if (context == 0) return OptionalInt.empty();
+                    var platform = net.minecraft.Util.getPlatform();
+                    if (platform == net.minecraft.Util.OS.WINDOWS
+                            && GLFW.glfwExtensionSupported("WGL_EXT_swap_control"))
+                        return OptionalInt.of(WGLEXTSwapControl.wglGetSwapIntervalEXT());
+                    if (platform == net.minecraft.Util.OS.LINUX
+                            && GLFW.glfwGetWindowAttrib(context, GLFW.GLFW_CONTEXT_CREATION_API)
+                                    == GLFW.GLFW_NATIVE_CONTEXT_API
+                            && GLFW.glfwExtensionSupported("GLX_EXT_swap_control")) {
+                        return OptionalInt.of(
+                                GLX13.glXQueryDrawable(
+                                        GLFWNativeX11.glfwGetX11Display(),
+                                        GLFWNativeGLX.glfwGetGLXWindow(context),
+                                        GLXEXTSwapControl.GLX_SWAP_INTERVAL_EXT));
+                    }
+                    return context == knownContext
+                            ? OptionalInt.of(knownInterval)
+                            : OptionalInt.empty();
+                }
+
+                public boolean set(int interval) {
+                    GLFWErrorCallback previous = GLFW.glfwSetErrorCallback(null);
+                    try {
+                        GLFW.glfwGetError((org.lwjgl.PointerBuffer) null);
+                        GLFW.glfwSwapInterval(interval);
+                        boolean success =
+                                GLFW.glfwGetError((org.lwjgl.PointerBuffer) null)
+                                        == GLFW.GLFW_NO_ERROR;
+                        if (success) recordSwapInterval(interval);
+                        return success;
+                    } finally {
+                        GLFW.glfwSetErrorCallback(previous);
+                    }
+                }
+            };
 
     public static boolean isAdaptiveSyncSupported() {
-        long context = GLFW.glfwGetCurrentContext();
-        if (context == 0) return false;
-        if (context == probedContext) return adaptiveSupported;
-        probedContext = context;
-        adaptiveSupported = false;
-        if (!(GLFW.glfwExtensionSupported("WGL_EXT_swap_control_tear")
-                || GLFW.glfwExtensionSupported("GLX_EXT_swap_control_tear")
-                || GLFW.glfwExtensionSupported("EGL_EXT_swap_control_tear"))) return false;
-        int previous = currentInterval(context);
-        GLFW.glfwGetError((org.lwjgl.PointerBuffer) null);
-        try {
-            GLFW.glfwSwapInterval(-1);
-            adaptiveSupported =
-                    GLFW.glfwGetError((org.lwjgl.PointerBuffer) null) == GLFW.GLFW_NO_ERROR;
-            if (adaptiveSupported && windowsSwapQuery())
-                adaptiveSupported =
-                        org.lwjgl.opengl.WGLEXTSwapControl.wglGetSwapIntervalEXT() == -1;
-        } finally {
-            GLFW.glfwSwapInterval(previous);
-            GLFW.glfwGetError((org.lwjgl.PointerBuffer) null);
-        }
-        return adaptiveSupported;
-    }
-
-    private static boolean windowsSwapQuery() {
-        return net.minecraft.Util.getPlatform() == net.minecraft.Util.OS.WINDOWS
-                && GLFW.glfwExtensionSupported("WGL_EXT_swap_control");
-    }
-
-    private static int currentInterval(long context) {
-        return windowsSwapQuery()
-                ? org.lwjgl.opengl.WGLEXTSwapControl.wglGetSwapIntervalEXT()
-                : knownContext == context ? knownInterval : 0;
+        return PROBE.supported(BACKEND);
     }
 
     public static void recordSwapInterval(int interval) {
@@ -51,7 +63,7 @@ public final class ExtraPlatform {
     }
 
     public static void updateVsync() {
-        Minecraft m = Minecraft.getInstance();
+        var m = net.minecraft.client.Minecraft.getInstance();
         m.getWindow().updateVsync(m.options.enableVsync().get());
     }
 }

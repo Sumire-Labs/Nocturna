@@ -92,7 +92,11 @@
       "sha256": "7ac8004ef9771837f8f5f06022000d9e602ffc6589aff51e19fda66ed6727973",
       "ports": [
         "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/client/render/PaniniProjection.java",
-        "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/client/render/PaniniProgram.java"
+        "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/client/render/PaniniProgram.java",
+        "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/client/render/EffectGpuProgram.java",
+        "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/client/render/EffectShaderSource.java",
+        "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/client/render/ExtraPostChain.java",
+        "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/client/render/TargetFormat.java"
       ]
     },
     {
@@ -174,7 +178,8 @@
       "sha256": "af556e4095e7b9dc2528b0a8c234e48a96d5ccfd07936286e12cf9110488e8a6",
       "ports": [
         "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/adaptive_sync/MixinWindow.java",
-        "modern/src/main/extra_java/org/embeddedt/embeddium/impl/extra/compat/ExtraPlatform.java"
+        "modern/src/main/extra_java/org/embeddedt/embeddium/impl/extra/compat/ExtraPlatform.java",
+        "modern/src/main/extra_java/org/embeddedt/embeddium/impl/extra/compat/SwapIntervalProbe.java"
       ]
     },
     {
@@ -225,7 +230,8 @@
       "sha256": "701b66579e3077a7d19f0a79aab85c68e3f60ca55babb322a65c62829771c83b",
       "ports": [
         "modern/src/main/extra_java/org/embeddedt/embeddium/impl/extra/compat/ExtraFog.java",
-        "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/fog/MixinFogRenderer.java"
+        "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/fog/MixinFogRenderer.java",
+        "modern/src/main/extra_java/org/embeddedt/embeddium/impl/extra/compat/ExtraRendererOptions.java"
       ]
     },
     {
@@ -248,7 +254,12 @@
       "source": "me/flashyreese/mods/sodiumextra/mixin/fog/MixinFogRenderer.java",
       "sha256": "ff3ecaed5a8a108718e6affa851bcd589ed7343ce9510194273ea6da724f8ca8",
       "ports": [
-        "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/fog/MixinFogRenderer.java"
+        "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/fog/MixinFogRenderer.java",
+        "modern/src/main/extra_java/org/embeddedt/embeddium/impl/extra/compat/VanillaFogBridge.java",
+        "modern/src/main/extra_java/org/embeddedt/embeddium/impl/extra/compat/FogUniform2.java",
+        "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/fog/MixinFogImport.java",
+        "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/fog/MixinProgram.java",
+        "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/fog/MixinShaderInstance.java"
       ]
     },
     {
@@ -323,7 +334,10 @@
       "source": "me/flashyreese/mods/sodiumextra/mixin/gui/MixinDebugOptionsScreen.java",
       "sha256": "460a39078d49258d958215380658df30b76ae30c59be1a3684216686ba5a041f",
       "ports": [
-        "modern/src/main/extra_java/org/embeddedt/embeddium/impl/extra/compat/ExtraDebugOptionsScreen.java"
+        "modern/src/main/extra_java/org/embeddedt/embeddium/impl/extra/compat/ExtraDebugOptionsScreen.java",
+        "modern/src/main/extra_java/org/embeddedt/embeddium/impl/extra/compat/DebugOverlayManager.java",
+        "modern/src/main/extra_java/org/embeddedt/embeddium/impl/extra/compat/DebugOverlayState.java",
+        "modern/src/main/extra_java/org/embeddedt/embeddium/impl/extra/compat/DebugVisuals.java"
       ]
     },
     {
@@ -443,7 +457,8 @@
       "source": "me/flashyreese/mods/sodiumextra/mixin/reduce_resolution_on_mac/MixinWindow.java",
       "sha256": "51391860f24a30f2d2487e9f7fa3c798b4336ff4f7d04bbbad6cb20410da211b",
       "ports": [
-        "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/reduce_resolution_on_mac/MixinWindow.java"
+        "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/reduce_resolution_on_mac/MixinWindow.java",
+        "modern/src/main/extra_java/org/embeddedt/embeddium/impl/extra/compat/CocoaPixelDensity.java"
       ]
     },
     {

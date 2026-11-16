@@ -28,6 +28,10 @@ public class MixinWindow {
             org.lwjgl.glfw.GLFW.glfwWindowHint(
                     org.lwjgl.glfw.GLFW.GLFW_COCOA_RETINA_FRAMEBUFFER,
                     org.lwjgl.glfw.GLFW.GLFW_FALSE);
-        return original.call(width, height, title, monitor);
+        long window = original.call(width, height, title, monitor);
+        if (net.minecraft.client.Minecraft.ON_OSX
+                && SodiumExtraClientMod.options().extraSettings.reduceResolutionOnMac)
+            org.embeddedt.embeddium.impl.extra.compat.CocoaPixelDensity.disable(window);
+        return window;
     }
 }

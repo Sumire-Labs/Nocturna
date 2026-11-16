@@ -1,4 +1,4 @@
-// Sodium Extra 0.9.6-beta.4, LGPL-3.0; Celeritas shader anchors and scalar fog ABI adapted.
+// Sodium Extra 0.9.6-beta.4 (LGPL-3.0); host two-channel fog ABI.
 package me.flashyreese.mods.sodiumextra.client.fog;
 
 import me.flashyreese.mods.sodiumextra.client.SodiumExtraClientMod;
@@ -20,13 +20,26 @@ public final class FogShaderTransformer {
             "gl_Position = u_ProjectionMatrix * u_ModelViewMatrix * vec4(position, 1.0);";
 
     private static final String FRAGMENT_DECL_ANCHOR = "in vec2 v_TexCoord;";
-    private static final String FRAGMENT_FOG_CALL_ANCHOR = "fragColor = _linearFog(";
-    private static final String FRAGMENT_FOG_CALL = "fragColor = sodium_extra_linear_fog(";
+    private static final String FRAGMENT_FOG_CALL_ANCHOR =
+            "fragColor = _linearFog(diffuseColor, fragDistance, u_FogColor, u_FogStart, u_FogEnd);";
+    private static final String FRAGMENT_FOG_CALL =
+            "fragColor = sodium_extra_linear_fog(diffuseColor, v_SodiumExtraBaseFog, u_FogColor,"
+                + " nocturna_EnvironmentFog, vec2(u_FogStart, u_FogEnd), 1.0);";
 
     // Keep these offsets in sync with FogDistanceHelper; they are encoded into
     // FogData.renderDistanceStart/End.
     private static final String SHAPE_HELPER =
             """
+            uniform vec2 nocturna_EnvironmentFog;
+            float nocturna_linear_fraction(float distance, vec2 range) {
+                if (distance <= range.x) return 0.0;
+                if (distance >= range.y) return 1.0;
+                return (distance - range.x) / (range.y - range.x);
+            }
+            vec4 _linearFog(vec4 color, vec2 distance, vec4 fogColor, vec2 environment, vec2 render, float fade) {
+                float amount = max(nocturna_linear_fraction(distance.y, environment), nocturna_linear_fraction(distance.x, render));
+                return vec4(mix(color.rgb, fogColor.rgb, amount * fogColor.a), color.a);
+            }
             const float SODIUM_EXTRA_RADIAL_FOG_OFFSET = 1048576.0;
             const float SODIUM_EXTRA_PLANAR_FOG_OFFSET = 2097152.0;
             const float SODIUM_EXTRA_CYLINDRICAL_FOG_OFFSET = 3145728.0;
@@ -39,20 +52,19 @@ public final class FogShaderTransformer {
                     && renderFog.y >= offset && renderFog.y < bandEnd;
             }
 
-            vec4 sodium_extra_linear_fog(vec4 fragColor, float fragDistance, vec4 fogColor, float fogStart, float fogEnd) {
-                vec2 renderFog = vec2(fogStart, fogEnd);
+            vec4 sodium_extra_linear_fog(vec4 fragColor, vec2 fragDistance, vec4 fogColor, vec2 environmentFog, vec2 renderFog, float fadeFactor) {
                 if (sodium_extra_is_shape_encoded(renderFog, SODIUM_EXTRA_CYLINDRICAL_FOG_OFFSET)) {
-                    fragDistance = max(v_SodiumExtraCylindricalDistance.x, v_SodiumExtraCylindricalDistance.y / SODIUM_EXTRA_CYLINDRICAL_VERTICAL_SCALE);
+                    fragDistance = vec2(max(v_SodiumExtraCylindricalDistance.x, v_SodiumExtraCylindricalDistance.y / SODIUM_EXTRA_CYLINDRICAL_VERTICAL_SCALE));
                     renderFog -= SODIUM_EXTRA_CYLINDRICAL_FOG_OFFSET;
                 } else if (sodium_extra_is_shape_encoded(renderFog, SODIUM_EXTRA_PLANAR_FOG_OFFSET)) {
-                    fragDistance = v_PlanarDistance;
+                    fragDistance = vec2(v_PlanarDistance);
                     renderFog -= SODIUM_EXTRA_PLANAR_FOG_OFFSET;
                 } else if (sodium_extra_is_shape_encoded(renderFog, SODIUM_EXTRA_RADIAL_FOG_OFFSET)) {
-                    fragDistance = v_SodiumExtraRadialDistance;
+                    fragDistance = vec2(fragDistance.y);
                     renderFog -= SODIUM_EXTRA_RADIAL_FOG_OFFSET;
                 }
 
-                return _linearFog(fragColor, fragDistance, fogColor, renderFog.x, renderFog.y);
+                return _linearFog(fragColor, fragDistance, fogColor, environmentFog, renderFog, fadeFactor);
             }
 
             """
@@ -62,15 +74,16 @@ public final class FogShaderTransformer {
     private static final String VERTEX_PLANAR_COMPUTE =
             "v_PlanarDistance = abs((u_ModelViewMatrix * vec4(position, 1.0)).z);\n\n    ";
     private static final String VERTEX_CYLINDRICAL_DECL =
-            "\nout vec2 v_SodiumExtraCylindricalDistance;\nout float v_SodiumExtraRadialDistance;";
+            "\nout vec2 v_SodiumExtraCylindricalDistance;\nout vec2 v_SodiumExtraBaseFog;";
     private static final String VERTEX_CYLINDRICAL_COMPUTE =
-            "v_SodiumExtraRadialDistance = length(position);\n"
-                    + "    v_SodiumExtraCylindricalDistance = vec2(length(position.xz),"
-                    + " abs(position.y));\n"
-                    + "    ";
+            "v_SodiumExtraBaseFog = vec2(max(length(position.xz), abs(position.y)),"
+                + " length(position));\n"
+                + "    v_SodiumExtraCylindricalDistance = vec2(length(position.xz),"
+                + " abs(position.y));\n"
+                + "    ";
     private static final String FRAGMENT_PLANAR_DECL = "\nin float v_PlanarDistance;";
     private static final String FRAGMENT_CYLINDRICAL_DECL =
-            "\nin vec2 v_SodiumExtraCylindricalDistance;\nin float v_SodiumExtraRadialDistance;";
+            "\nin vec2 v_SodiumExtraCylindricalDistance;\nin vec2 v_SodiumExtraBaseFog;";
 
     private static final AtomicBoolean WARNED = new AtomicBoolean(false);
 
@@ -127,8 +140,8 @@ public final class FogShaderTransformer {
             SodiumExtraClientMod.logger()
                     .warn(
                             "Sodium's terrain fog shader no longer matches the expected layout;"
-                                    + " custom fog shapes are partly disabled. The fog shader patch"
-                                    + " needs to be re-synced with this version.");
+                                + " custom fog shapes are partly disabled. The fog shader patch"
+                                + " needs to be re-synced with this version.");
         }
     }
 }

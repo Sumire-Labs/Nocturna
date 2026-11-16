@@ -10,6 +10,14 @@ public class MixinShaderLoader {
             method = "getShaderSource",
             at = @At("RETURN"))
     private static String sodiumExtra$shader(String source, String name) {
+        if (name.equals("sodium:clouds/clouds.fsh"))
+            return source.replace(
+                    "fragColor = _linearFog(color, vertexDistance, FogColor, FogStart, FogEnd);",
+                    "color.a *= vertexDistance <= 0.0 ? 1.0 : (vertexDistance >= FogEnd ? 0.0 : 1.0"
+                        + " - vertexDistance / FogEnd);\n"
+                        + "    fragColor = color;");
+        if (name.equals("sodium:clouds/clouds.vsh"))
+            return source.replace("vec4(Position.x, 0.0, Position.z, 1.0)", "vec4(Position, 1.0)");
         if (name.equals("sodium:blocks/block_layer_opaque.vsh")
                 || name.equals("sodium:blocks/block_layer_opaque.fsh"))
             return me.flashyreese.mods.sodiumextra.client.fog.FogShaderTransformer

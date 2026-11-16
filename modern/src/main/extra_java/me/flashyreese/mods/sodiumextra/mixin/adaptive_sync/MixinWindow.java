@@ -35,6 +35,19 @@ public class MixinWindow {
         } else {
             original.call(interval);
             org.embeddedt.embeddium.impl.extra.compat.ExtraPlatform.recordSwapInterval(interval);
+            if (interval == 1
+                    && SodiumExtraClientMod.options().extraSettings.useAdaptiveSync
+                    && org.embeddedt.embeddium.impl.extra.compat.ExtraPlatform
+                            .isAdaptiveSyncSupported()) {
+                org.lwjgl.glfw.GLFW.glfwGetError((org.lwjgl.PointerBuffer) null);
+                original.call(-1);
+                if (org.lwjgl.glfw.GLFW.glfwGetError((org.lwjgl.PointerBuffer) null)
+                        != org.lwjgl.glfw.GLFW.GLFW_NO_ERROR) {
+                    original.call(1);
+                    org.embeddedt.embeddium.impl.extra.compat.ExtraPlatform.recordSwapInterval(1);
+                } else
+                    org.embeddedt.embeddium.impl.extra.compat.ExtraPlatform.recordSwapInterval(-1);
+            }
         }
     }
 }

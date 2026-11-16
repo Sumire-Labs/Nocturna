@@ -1,0 +1,65 @@
+{
+  "recordedAt": "2026-11-16T19:51:32.975Z",
+  "branch": "20.1/forge",
+  "reference": {
+    "tag": "mc26.3-0.9.6-beta.4",
+    "commit": "7abb4236d5d6310633084cd2f613b63fdd1ccb5c"
+  },
+  "nativeApiReference": {
+    "minecraft": "26.3",
+    "clientSha1": "e877b6a07acd633fb3bb475002175cec036e7b87",
+    "use": "Public identifiers, defaults, shader ABI and behavior contracts; no Minecraft implementation classes are bundled."
+  },
+  "environment": {
+    "java": "Temurin 17.0.20.1+1",
+    "forge": "47.3.0",
+    "os": "Windows",
+    "gpu": "AMD Radeon 8060S",
+    "driver": "32.0.32015.7029",
+    "openGL": "4.6"
+  },
+  "sourceComparison": {
+    "upstreamJavaMappings": 78,
+    "retainedAlgorithms": 9,
+    "originalAssets": 38,
+    "optionDslAndDefaults": "unchanged"
+  },
+  "unitTests": {
+    "tests": 170,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "java17ProductClasses": 4503,
+  "mixinTargetAudit": "passed",
+  "checkpoints": [
+    "PASS Panini GPU color/depth/mask oracle at strengths 0/25/100",
+    "PASS terrain shader combines independent environment/render channels with the pinned linear fade",
+    "PASS vanilla shader fog import preserves independent spherical/cylindrical channels",
+    "PASS atlas-only animation clock freeze and independent water/lava controls",
+    "PASS debug screen search, profile buttons, custom selection and permission tooltips",
+    "PASS typed RSO Extra controls, default reset, pending dependencies, group labels and screen construction",
+    "PASS complete 26.3 catalog (46 native + 4 Extra), profiles and custom transitions",
+    "PASS independent fog channels; in-place/scissor color; Forge hit callbacks; HDR formats",
+    "PASS native particles, biome tints, light-update warning, instant sneak and queued-toast filtering",
+    "PASS all text providers against live client/server state",
+    "PASS debug visualizations and actual async visibility traversal",
+    "PASS resource JSON passes/uniforms, replacement vertex, SamplerInfo and whitespace-independent hand depth",
+    "PASS Java17; 171 Extra controls; pending dependency state; original Panini color/mask/depth GPU oracle; 100/150% world targets; planar/cylindrical fog; Fabulous pipeline; resize/disable cleanup"
+  ],
+  "logs": [
+    {
+      "path": ".git/extra-parity-client-final.log",
+      "sha256": "cd69b050db4a5d5e09997dc04b0da56fcf9219d3bb29246c6692a70b19f35e5c"
+    },
+    {
+      "path": ".git/extra-parity-audit-final.log",
+      "sha256": "2c52bb2b52b31b28fe7050a23c9288c41b7c1363f4247b899b3734fb863c99ea"
+    }
+  ],
+  "limitations": [
+    "Linux/GLX/EGL and macOS native behavior has not been run on physical systems.",
+    "The section hierarchy displays actual Celeritas regions; the backend has no vanilla octree.",
+    "Tests cover the listed resource overrides and scenes, rather than every shader pack or every possible scene."
+  ]
+}

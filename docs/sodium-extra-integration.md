@@ -1,3 +1,8 @@
+The [behavior parity re-review](sodium-extra-parity-review.md) found renderer
+and UI differences in `9ca46fdc`. The follow-up replaces those adapters and
+adds regression tests for the reported failures. The reference stays fixed at
+Sodium Extra 0.9.6-beta.4.
+
 Sodium Extra 0.9.6-beta.4 is embedded in Nocturna's Forge 1.20.1 jar. Its
 `me.flashyreese.mods.sodiumextra` package and configuration filename,
 `sodium-extra-options.json`, are retained. Nocturna keeps its `embeddium` mod
@@ -50,8 +55,15 @@ protected gameplay rules, shape sentinels and the expanded cylindrical cull.
 The Celeritas region shortcut and graph traversal use the same horizontal and
 vertical limits as the terrain shader. Radial and planar modes retain the
 upstream full-view cull. Forge fog listeners receive the adjusted distances and
-can override them. Minecraft 1.20.1's cloud fade limit supplies the native cloud
-range used by the percentage control.
+can override the environment channel. Environment and render-distance fog
+remain independent through terrain and vanilla shader uniforms. Both use the
+reference client's linear fade and combine their contributions with `max`.
+Protected-fog changes leave render-distance fog active.
+
+Cloud geometry and fog use a separate cloud range, from 2 to 128 chunks with a
+default of 128, matching the missing newer-Minecraft prerequisite. Its control
+appears next to Clouds and is saved in `nocturna-renderer.json`. Cloud fog fades
+alpha from camera distance zero; its percentage never derives from terrain fog.
 
 Protected gameplay fog honors private-world permissions and Greenlight grants.
 Only selected packs marked as server packs supply policies. Connection identity
@@ -61,23 +73,45 @@ the same pack id. Local resource packs do not grant permission.
 Panini uses the original projection, adaptive 4x4 color filter, outline-mask
 restoration and nearest-surface depth shaders. The backend maps their passes to
 1.20.1 RenderTargets. World and Fabulous targets are reused at the selected
-quality; 100% quality avoids an unnecessary supersampling target. The raw glow
+quality and retain the native color/depth/stencil formats. Quality 100% avoids
+an unnecessary supersampling target. The raw glow
 mask is projected before the native Sobel/blur chain. World depth and hand depth
 remain separate until integration for later post effects. The hand and GUI use
 the native projection. Shader packs, spyglass use, panorama rendering, captured
 frusta, invalid projections and minimized windows preserve the upstream bypass
 conditions. Allocation failures retry after a quality or window-size change.
 
+The original `post_effect/panini.json` drives the color pipeline. Target and pass
+definitions, shader replacements, texture/target inputs, filtering, JSON uniform
+defaults and reflected std140 blocks remain resource driven. `SamplerInfo` and
+`Globals` receive their native values. The host GLSL preprocessor resolves
+relative and namespaced imports, repeated imports and imported GLSL versions.
+Hand-depth integration is a separate pass and does not rewrite shader text.
+Passes own their GL state, including Scissor, masks, samplers and UBO bindings.
+
 HUD statistics retain the original five-second sample window and half-second
 updates. HUD text refreshes at the same frame-loop boundary. Debug entries
 provide Never, With debug overlay and Always modes, including the default
-light-update warning. The steady-debug option caches the resulting text at the
-configured tick interval. Toast filtering handles new, queued and visible toasts.
+light-update warning. More HUD Overlays manages all 46 native debug entries and
+the four Extra entries, with search, descriptions, permission tooltips, Default
+and Performance profiles, and persistent custom selections. Native entries read
+the actual 1.20.1 world, server, sound and renderer state. Section paths capture
+the live Celeritas traversal on its search thread; the spatial hierarchy view
+shows Celeritas regions, since this backend does not use vanilla's octree.
+The steady-debug option caches the completed Forge HUD lists, including lines
+added by other mods, at the configured tick interval. Toast filtering handles
+new, queued and visible toasts.
 
 The remaining native hooks cover particles, rain splashes, block particles,
 sky/sun/moon/stars, biome and fog colors, cloud height, entities and name tags,
 beacons, pistons, enchanting books, light updates, instant sneak, spectator post
-effects, adaptive VSync and the macOS window-density hint.
+effects, adaptive VSync and macOS window density. Spectator-effect ownership
+keeps prevention separate from manually loaded effects and their toggle.
+Adaptive VSync tries the operation and restores the queried interval. On a
+backend without an interval getter, the window's last successful interval is
+used only for that context. macOS applies density to reused Forge windows as
+well as newly created windows. The lower dark-sky disc remains independent of
+Extra's upper sky and End-sky switch.
 
 ## Verification
 
@@ -93,13 +127,23 @@ pending dependencies, animation clocks and OpenGL projection output. Its color,
 mask and depth checks compare GPU output with an independent CPU oracle at
 strengths 0, 25 and 100.
 
-The final workspace passed 157 unit tests, the full build and the mixin target
-audit. The product check verified 4,447 classes at Java 17 bytecode
-level or below. The client exercised 170 Extra controls, both frontends, RSO
+The follow-up passed 170 unit tests, the full build and the mixin target audit.
+The product check verified 4,503 classes for Java 17 bytecode compatibility.
+The client exercised
+171 controls in its test registry, both frontends, RSO
 default reset, real Fabulous targets, post-effect world/hand depth integration,
 spectator-effect prevention and automatic Panini bypass with an active Iris
 shader pack. It also checked native particles, biome tints, instant sneak,
-queued toasts and the light-update warning.
+queued toasts and the light-update warning. New assertions cover protected fog,
+independent terrain/vanilla shader fog channels, Forge extension hit callbacks,
+in-place projection with Scissor, RGBA16F targets, all debug providers and live
+visualizations. A resource-pack fixture changes the Panini graph's uniform
+defaults, replaces its vertex shader, uses `SamplerInfo` and `Globals`, and
+reformats the depth shader before checking GPU output and hand-depth merging.
+It also checks a missing JSON configuration declaration. Search, profile and
+permission behavior is exercised through the actual debug screen controls.
+The [validation record](audits/sodium-extra-parity-validation.json) records all
+13 client checkpoints and the runtime environment.
 
 Reproduce the checks from the repository root:
 
@@ -108,10 +152,11 @@ node scripts/verify-sodium-extra-ports.mjs <pinned-sodium-extra-checkout>
 ./gradlew.bat :common:test :modern:1.20.1-forge:build
 ./gradlew.bat :modern:1.20.1-forge:runAuditClient
 ./gradlew.bat :modern:1.20.1-forge:runExtraValidationClient
+node scripts/verify-sodium-extra-runtime.mjs <validation-log>
 ```
 
 The runtime checks use Java 17 on Windows with an AMD Radeon 8060S and OpenGL
-4.6. Linux/EGL and macOS window-density behavior require testing on those
+4.6. Linux/GLX/EGL and macOS window-density behavior require testing on those
 platforms. The compatibility checks do not establish a performance percentage
 or guarantee every third-party shader pack.
 

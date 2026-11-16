@@ -56,9 +56,14 @@ final class BasicFeatures {
             ExtraValidation.require(
                     client.level.getLightEngine().runLightUpdates() == 0,
                     "disabled light-update return value differs");
+            boolean oldDebug = client.options.renderDebug;
+            client.options.renderDebug = true;
+            org.embeddedt.embeddium.impl.extra.compat.DebugOverlayManager.invalidate();
             var debug =
                     org.embeddedt.embeddium.impl.extra.compat.ExtraDebugOptionsScreen
                             .appendDebugLines(java.util.List.of("native"));
+            client.options.renderDebug = oldDebug;
+            org.embeddedt.embeddium.impl.extra.compat.DebugOverlayManager.invalidate();
             ExtraValidation.require(
                     debug.get(0)
                             .equals(

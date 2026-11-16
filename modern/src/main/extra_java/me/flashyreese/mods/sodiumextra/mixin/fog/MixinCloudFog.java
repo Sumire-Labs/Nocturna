@@ -15,7 +15,7 @@ public class MixinCloudFog {
     @Inject(method = "setupState", at = @At("TAIL"))
     private void sodiumExtra$cloud(CallbackInfo ci) {
         if (ExtraFog.hasTerrain) {
-            uniformFogStart.set(ExtraFog.cloudChanged ? 0.0F : ExtraFog.nativeCloudStart);
+            if (uniformFogStart != null) uniformFogStart.set(0.0F);
             uniformFogEnd.set(ExtraFog.terrain.cloudEnd);
         }
     }

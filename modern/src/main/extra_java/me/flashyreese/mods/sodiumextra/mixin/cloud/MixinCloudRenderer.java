@@ -9,6 +9,11 @@ import org.spongepowered.asm.mixin.injection.callback.*;
 
 @Mixin(value = org.embeddedt.embeddium.impl.render.immediate.CloudRenderer.class, remap = false)
 public class MixinCloudRenderer {
+    @ModifyVariable(method = "render", at = @At("STORE"), name = "renderDistance", remap = false)
+    private int nocturna$cloudRange(int original) {
+        return org.embeddedt.embeddium.impl.extra.compat.ExtraRendererOptions.cloudRange();
+    }
+
     @com.llamalad7.mixinextras.injector.ModifyExpressionValue(
             method = "render",
             at =

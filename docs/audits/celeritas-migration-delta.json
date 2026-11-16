@@ -1,6 +1,6 @@
 {
   "revision": "26f000239eb8ddf7ee191f0ddf369147e3c92ef6",
-  "identical": 1555,
+  "identical": 1554,
   "changes": [
     {
       "path": "buildSrc/build.gradle.kts",
@@ -221,6 +221,11 @@
       "path": "modern/src/main/modern_java/org/embeddedt/embeddium/impl/modern/sorting/VertexSorters.java",
       "upstream": "6baf8d374a27f30dde60fc868f8664b6b855500f9b6f21abc0a9bfce6e2727c7",
       "local": "88619ec8399b698e6c4f6d3bf3c69e669bde752cdb5fb6a60e3ef5d06c065fc8"
+    },
+    {
+      "path": "modern/src/main/modern_java/org/embeddedt/embeddium/impl/render/immediate/CloudShader.java",
+      "upstream": "88dc14509d431fcfd4887d45221df9d17ca1a985dadcb4e098b11382426c10d9",
+      "local": "d060824eb27877a6e3464096b872b35c4073979293adb4e07c0031bd7551d9f7"
     },
     {
       "path": "modern/src/main/modern_java/org/embeddedt/embeddium/impl/render/vertex/serializers/VertexSerializerRegistryImpl.java",
@@ -538,15 +543,35 @@
     },
     {
       "path": "modern/src/extraValidation/java/org/embeddedt/embeddium/extravalidation/BasicFeatures.java",
-      "local": "c01b2026b9d555b7809de0970b2a0890ca16a62cc7008f976ac46a4fbfc7207f"
+      "local": "4655cc77bddd9babd3355a63f1a9e657de22af7ff6e00dbfcaa2b3e4a2c1becd"
+    },
+    {
+      "path": "modern/src/extraValidation/java/org/embeddedt/embeddium/extravalidation/DebugFrameworkParity.java",
+      "local": "c837d1d5491848481bc7ef0629ef8e639411a9b937ffca30e028b80e510a3646"
     },
     {
       "path": "modern/src/extraValidation/java/org/embeddedt/embeddium/extravalidation/ExtraValidation.java",
-      "local": "353f335778f2738aa1b9b11081ad169cc71552790360eb02df1dbb0d6a130384"
+      "local": "e7a3cafc36459335d1b065be42af33f18f08274f5c7fc73d3cb3be05c97c1559"
+    },
+    {
+      "path": "modern/src/extraValidation/java/org/embeddedt/embeddium/extravalidation/FogShaderParity.java",
+      "local": "b49ea5571fe9b7f9dea0104b8c03a7996c6b4df837fde2a2caa585ea5bbe5df7"
     },
     {
       "path": "modern/src/extraValidation/java/org/embeddedt/embeddium/extravalidation/PaniniPixels.java",
       "local": "cbdbdbc50354cc9518a0448ad8a457ff2ba54dfc1dac511189adff7a1c8bc979"
+    },
+    {
+      "path": "modern/src/extraValidation/java/org/embeddedt/embeddium/extravalidation/ParityRegression.java",
+      "local": "7abbd8cb88b989c86f6fb35e4ae8d9cc9b51ad68623f9b0f7e555563c8f85d2d"
+    },
+    {
+      "path": "modern/src/extraValidation/java/org/embeddedt/embeddium/extravalidation/PixelTransferState.java",
+      "local": "d8054aaee4aff14b6b17fb38f0d3645e721a9755186286de189af4bb5c54d0dc"
+    },
+    {
+      "path": "modern/src/extraValidation/java/org/embeddedt/embeddium/extravalidation/ResourceGraphParity.java",
+      "local": "0f991d12ca3734da5199eed227f4a81e5e4e6569c30484ce92ed15a548a4bfd9"
     },
     {
       "path": "modern/src/extraValidation/java/org/embeddedt/embeddium/extravalidation/RsoIntegration.java",
@@ -563,6 +588,10 @@
     {
       "path": "modern/src/extraValidation/resources/pack.mcmeta",
       "local": "74a095b38aad29782270095f2a6c708d9a151499a7fac7fe923d59e43ad8a261"
+    },
+    {
+      "path": "modern/src/extraValidation/resources/parity/debug26-ids.json",
+      "local": "062211808fcb520571e737a799d676c23f06c7c107fc5320f0322f813983a8ec"
     },
     {
       "path": "modern/src/main/extra_java/me/flashyreese/mods/greenlight/feature/ClientFeature.java",
@@ -630,7 +659,7 @@
     },
     {
       "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/client/fog/FogShaderTransformer.java",
-      "local": "a01e42d07b4b2d7cf55d909488a8f5695d5c3c05d93c4afec242545d754a79df"
+      "local": "e8d6c7d61a27fc172970676f8e1f5b42d233de63e7fdb42d641539588cdffc18"
     },
     {
       "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/client/gui/SodiumExtraDebugEntryCategory.java",
@@ -653,12 +682,28 @@
       "local": "48b5c931ce124a27af595db2d0b66a5de53ad39aece19f683c5ff342e1cad9f4"
     },
     {
+      "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/client/render/EffectGpuProgram.java",
+      "local": "31e7aa6152b979a29d56d5bfcdb09d74cff01499954024a24b003e664443d5e9"
+    },
+    {
+      "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/client/render/EffectShaderSource.java",
+      "local": "facd3cc00026ab7f2ad0b7b87cea9908a14528ac18ead8ae31f941810a94e1df"
+    },
+    {
+      "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/client/render/ExtraPostChain.java",
+      "local": "b25ee3c549a5a283f14609cd211005c70da6c8edd69b851afe774d490154e344"
+    },
+    {
       "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/client/render/PaniniProgram.java",
-      "local": "49131d71a14a91947726dd021a082b5543d0dc42ff297b38462b1ba2ef362e36"
+      "local": "644c5a55ef10c4324780127be4591610abf75b18c5efc7a6d819e555275dd4b0"
     },
     {
       "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/client/render/PaniniProjection.java",
-      "local": "70736d3ce9ac6d4b332f5bd689ab1b0c20fee4cbbef482d15dffa748721cdc30"
+      "local": "a16387e4e1cd5878ace9698c8f642471807d7580fe710ae41742b4b31f9a3583"
+    },
+    {
+      "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/client/render/TargetFormat.java",
+      "local": "8a148bd87129cc8127c9fdc9ced1df6c9d3fd69330392be7a3e3a46bfc3e8270"
     },
     {
       "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/client/util/ToastFilter.java",
@@ -690,7 +735,7 @@
     },
     {
       "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/adaptive_sync/MixinWindow.java",
-      "local": "382133f8b2a0c855fc3008a47bb6ca553be9609b887ed0f38a9b063cf6e48ad6"
+      "local": "f990e708773e3b6a8b90b92254c674ed9ba5687e9db5c6f9fc343c82c76c6e89"
     },
     {
       "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/animation/MixinSpriteContentsAnimationState.java",
@@ -706,15 +751,63 @@
     },
     {
       "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/cloud/MixinCloudRenderer.java",
-      "local": "439fa2d78b7386413eb0140e970400ddb2ee130c92227f229e2fc41a7e16fbc0"
+      "local": "1f33ce6b6eb9535ac64df4bd285e900084757670fa7971b2216a600d080cade9"
     },
     {
       "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/cloud/MixinLevelRenderer.java",
       "local": "866425ce72a5d2c2b6d5cbbd1cd20f2e5e6d5fcba176d0e56244bf880fc7e7c8"
     },
     {
+      "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/core/AccessorDebugLattice.java",
+      "local": "5130bd7c883d1d7ddc8cdafc53fa42dc9f8ebe8120f6acdea73f309de3c5ba78"
+    },
+    {
+      "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/core/AccessorDebugSections.java",
+      "local": "f08c37491e9a792f64f020c45b41dba5b918e4e92b6f16b6d464747192ac8e99"
+    },
+    {
+      "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/core/AccessorSoundCache.java",
+      "local": "a186a4c70fb95d242bba1e207e1b587f6c04133555dd76e03d2a3731a896ba06"
+    },
+    {
+      "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/core/AccessorSoundEngine.java",
+      "local": "9db8523549f611e5e1d1b6a2b876bda4608c8972d5be4613c446dbf37ecfb067"
+    },
+    {
+      "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/core/AccessorSoundManager.java",
+      "local": "680ce58ec379cc6a0c32e8c5ce7f99626bb87ed737f6e204be763f4918467159"
+    },
+    {
+      "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/core/MixinDebugAllocation.java",
+      "local": "f2777fc97b7f0062aa42d19787c06aec2fd6cc109c4bdf967f47999dd7ce249c"
+    },
+    {
+      "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/core/MixinDebugCrosshair.java",
+      "local": "045bef80724321bfeddbac5660c1a7203ca0ee96ba2a7f0baad9f4d914e408a1"
+    },
+    {
       "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/core/MixinDebugEntries.java",
-      "local": "ef3a143dc1768a4951791e50f17fab9cf0463e6d02acfeaefa6cce3ecd5612b0"
+      "local": "2b587b6039d1b6e8397835d0a4938b23cdc603d7ad4ddf6127b825fd2fce9ec0"
+    },
+    {
+      "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/core/MixinDebugHitboxes.java",
+      "local": "3568cd47fe8d2d2edb31070eecb618f62684368ed8d0f23ae6c4415f5acf3d71"
+    },
+    {
+      "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/core/MixinDebugKeys.java",
+      "local": "50b071800ae4e11419143dfde3b972d5ca8ac126b4a674673df646833d8536ed"
+    },
+    {
+      "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/core/MixinDebugTraversal.java",
+      "local": "2052c58f2b3fb036ec0a803bce77fc386f09b4af8357058a2021ea2d092a8eec"
+    },
+    {
+      "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/core/MixinDebugVisuals.java",
+      "local": "2a2ebbe9e20de1b066b06f23032c7c4d7cb72e5085ef6b3f0177d90fabb52593"
+    },
+    {
+      "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/core/MixinSoundBytes.java",
+      "local": "2252ceacd05559247eadcafd0f4886a0b411f04818740b3b03f8b599f30fddfd"
     },
     {
       "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/fog/AccessorSliderRange.java",
@@ -722,15 +815,23 @@
     },
     {
       "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/fog/MixinCloudFog.java",
-      "local": "7ca3583e821b4687a62596bc014411854ceb0854fd891a3d3e4b6aa80006cf91"
+      "local": "c08598f4cd96c7a1f182c152448c511fa0fa68670ee6581379e23c0d1959eece"
+    },
+    {
+      "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/fog/MixinFogImport.java",
+      "local": "f0cd77a4099527e6b97d539b12da7912be331bd3d1b026bf103e0c9da65d2ea7"
     },
     {
       "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/fog/MixinFogRenderer.java",
-      "local": "fe4ed5ddf60a7e92bf3da65438ec775eef99f4346f74f856032439ec26d5b15b"
+      "local": "c50c9641e6ec029a3a0caf897c1b96cb0b58fdffc62ec627141b384d2a88bba8"
     },
     {
       "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/fog/MixinOcclusionCuller.java",
       "local": "99cad2150f517cf6aa039817bbdec9b92cc492a0a665d694fafdd6d3c39b4234"
+    },
+    {
+      "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/fog/MixinProgram.java",
+      "local": "cc79a75fd79653073c74eda1119e59144a609e9efa5ca2b10cd65ac955f22ca1"
     },
     {
       "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/fog/MixinRegionCullCache.java",
@@ -741,12 +842,16 @@
       "local": "a376e52c5c31ae05f3f62bcebfb01df61659f9147ed3203b0124fc185a3f18f3"
     },
     {
+      "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/fog/MixinShaderInstance.java",
+      "local": "846f9d75900d225a2c99b47d8120deedec96d1eb7d309c75930de6fcc6aa9c5b"
+    },
+    {
       "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/fog/MixinShaderLoader.java",
-      "local": "d8f1ba6b68bdb3911ee82b7c955bb787159e2fa9deb72654f0a4984d8901e4a5"
+      "local": "36d832a7b2c838d3d3b4d05d4cffefb7d42e35f077792e69864a3d0d6b802616"
     },
     {
       "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/fog/MixinSmoothFog.java",
-      "local": "d2da4bce311780c7e8666282591c1b1c034938cb35f81d96d1c5a5483c189052"
+      "local": "878550882e96533a33d4a6b7a3179892c5bdefacfa864106fefc8447b219596b"
     },
     {
       "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/fps/MixinGameRenderer.java",
@@ -806,7 +911,7 @@
     },
     {
       "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/particle/MixinBlockParticles.java",
-      "local": "26d6077c4b7ad319053d45d76aa15682e5619f00f461836d46f3bb75d23fbaf5"
+      "local": "dc7d4c32e3ea93a84bcc81ac290f9f44fe9dcf772d57b20462494bb465111524"
     },
     {
       "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/particle/MixinFireworkParticle.java",
@@ -822,11 +927,11 @@
     },
     {
       "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/prevent_shaders/MixinGameRenderer.java",
-      "local": "e26272e1d8ac82e1c4d8636b4844dcb18f23ef33c5deccde083d8c87bad6caed"
+      "local": "26667cb316e0da0b48d23c2db5f91d16163c727d0c6216b44c9a0d88fe92f1ca"
     },
     {
       "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/reduce_resolution_on_mac/MixinWindow.java",
-      "local": "a9e8758be749f7c6232b0e8af34ec7fe999a8eab1eb7f832d15f6be88fa235bd"
+      "local": "955177e915443c5da1b02f09e26c73212ac504b2bfac48d51862d15303fdd8a3"
     },
     {
       "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/render/block/entity/MixinBeaconRenderer.java",
@@ -854,7 +959,7 @@
     },
     {
       "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/sky/MixinLevelRenderer.java",
-      "local": "4f007a92ad4fd9a23f02dcbbca440d3a3e3e815bde788d780b4a6516fc3dc4ae"
+      "local": "b19c23bd485483c6edbdbb81b98795d8df7a5e2c0faeb8bb8bf6c519f0518093"
     },
     {
       "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/sky_colors/MixinFogRenderer.java",
@@ -862,7 +967,7 @@
     },
     {
       "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/steady_debug_hud/MixinDebugScreenOverlay.java",
-      "local": "932e5cc8e970bf1cd4cb5e4c56f813df25a6abd9f5ee15e2086123609c0b1636"
+      "local": "6e92f046c15ad95fd50dcc10eba920d79bc8de7112b1342784aaaeb3e8efb05d"
     },
     {
       "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/toasts/MixinToastInstance.java",
@@ -873,8 +978,20 @@
       "local": "12d6ce046ce136f84174ead5a537b0d42c9f644f1641b5bb60f9d8269bf28b70"
     },
     {
+      "path": "modern/src/main/extra_java/org/embeddedt/embeddium/impl/extra/compat/CocoaPixelDensity.java",
+      "local": "822117d8adb17fc09af610f0f64af83a59de3316c4f19b81e4eb1fc3eb65b4cf"
+    },
+    {
       "path": "modern/src/main/extra_java/org/embeddedt/embeddium/impl/extra/compat/DebugEntryCategory.java",
       "local": "064480ec3c91cbcc6c0de98bbb838bfb385ce5e9e980eb2b0e4a35aa4d6ccc39"
+    },
+    {
+      "path": "modern/src/main/extra_java/org/embeddedt/embeddium/impl/extra/compat/DebugOverlayManager.java",
+      "local": "4d95c9b31613aae3e049e3fb27ecb711329730c4d11e1659bef59907831ae406"
+    },
+    {
+      "path": "modern/src/main/extra_java/org/embeddedt/embeddium/impl/extra/compat/DebugOverlayState.java",
+      "local": "84d646e3b46f84d642798f7a3f8bf7770ae0cbd7f797889f77ff8a8ed7217e11"
     },
     {
       "path": "modern/src/main/extra_java/org/embeddedt/embeddium/impl/extra/compat/DebugScreenDisplayer.java",
@@ -883,6 +1000,10 @@
     {
       "path": "modern/src/main/extra_java/org/embeddedt/embeddium/impl/extra/compat/DebugScreenEntry.java",
       "local": "8b9285ed8b4c19fe940e315169887cfe9af562fa4362dce281ade47af23c8a73"
+    },
+    {
+      "path": "modern/src/main/extra_java/org/embeddedt/embeddium/impl/extra/compat/DebugVisuals.java",
+      "local": "3528e1d82d35acf6ce045c10ad04f1b2bd05c0095f5a6f3c7f01bd403b428684"
     },
     {
       "path": "modern/src/main/extra_java/org/embeddedt/embeddium/impl/extra/compat/ExtraAnimationTicker.java",
@@ -898,11 +1019,11 @@
     },
     {
       "path": "modern/src/main/extra_java/org/embeddedt/embeddium/impl/extra/compat/ExtraDebugOptionsScreen.java",
-      "local": "de9bc7c3d8324192c9c31e2a36d98ccccf785ac63ff5f83d2b54993d9b0987f8"
+      "local": "d64f72beb97dc8b5e65a7f66d64b0ef66fdb9edb6510e5c648cded52f2f3b24f"
     },
     {
       "path": "modern/src/main/extra_java/org/embeddedt/embeddium/impl/extra/compat/ExtraFog.java",
-      "local": "091004fb9d8222c2306015543d92ae7007c8d4030cdfb2756f09a89958fe8682"
+      "local": "5f1d6a66063710f3067212ae1b37e4c3b25dbe6a0be3fe05e20c40b59ea6d5e9"
     },
     {
       "path": "modern/src/main/extra_java/org/embeddedt/embeddium/impl/extra/compat/ExtraMath.java",
@@ -910,19 +1031,39 @@
     },
     {
       "path": "modern/src/main/extra_java/org/embeddedt/embeddium/impl/extra/compat/ExtraPlatform.java",
-      "local": "0b24751ee709ded077e365698d21a4406535e29c2ebfea43b5bb530c6e7a9483"
+      "local": "e74fde5cc32d4ef6cd49c9feaf8a1d4c02fd32785b0ebcc3cc2887917db92b3c"
+    },
+    {
+      "path": "modern/src/main/extra_java/org/embeddedt/embeddium/impl/extra/compat/ExtraRendererOptions.java",
+      "local": "d59572e4ea084bdfb96abc2b0b12fd31dbcb837726e4468e98e737188861fa5f"
     },
     {
       "path": "modern/src/main/extra_java/org/embeddedt/embeddium/impl/extra/compat/FogData.java",
       "local": "cdc44dd67a84d0b41f4d1b891ffe240a0733ace2c761cfdbf78777a23c33e51d"
     },
     {
+      "path": "modern/src/main/extra_java/org/embeddedt/embeddium/impl/extra/compat/FogUniform2.java",
+      "local": "7dcd40b801f72ac93391f191a5c52ffe04ecaa4c78caa418217ec780701ab304"
+    },
+    {
       "path": "modern/src/main/extra_java/org/embeddedt/embeddium/impl/extra/compat/PlatformRuntimeInformation.java",
       "local": "8e4b4dc6ca0768659399b3c1ef4d60b53c0189fcfb1fadf006db5291a0b010b6"
     },
     {
+      "path": "modern/src/main/extra_java/org/embeddedt/embeddium/impl/extra/compat/SoundBytes.java",
+      "local": "6c78f838825379725402873920927d5a12adda3d3c528d3b8e227aed1f703d82"
+    },
+    {
       "path": "modern/src/main/extra_java/org/embeddedt/embeddium/impl/extra/compat/StorageEventHandler.java",
       "local": "ac53e5f6b96696f64e534972a53ff8a41bcb5e907432a2715dbca2531d22ba0a"
+    },
+    {
+      "path": "modern/src/main/extra_java/org/embeddedt/embeddium/impl/extra/compat/SwapIntervalProbe.java",
+      "local": "82763d6490634fff3719bbd663c4c463366320e34cc3dd5940ba0560c66db229"
+    },
+    {
+      "path": "modern/src/main/extra_java/org/embeddedt/embeddium/impl/extra/compat/VanillaFogBridge.java",
+      "local": "4f73afabe99a092e944e3fad62afb20589a655b56288ec51405b89011de20176"
     },
     {
       "path": "modern/src/main/extra_java/org/embeddedt/embeddium/impl/extra/compat/config/ConfigEntryPoint.java",
@@ -958,7 +1099,7 @@
     },
     {
       "path": "modern/src/main/extra_java/org/embeddedt/embeddium/impl/extra/compat/config/structure/ConfigBuilder.java",
-      "local": "0384fe755169952f7a99198802b41a414ebac1bb0afbf65ce9b901a7660d4557"
+      "local": "2151658163174d5ffc214b47338a3959f753cbad4eed607981eaef74eacd6c04"
     },
     {
       "path": "modern/src/main/extra_java/org/embeddedt/embeddium/impl/extra/compat/config/structure/EnumOptionBuilder.java",
@@ -1031,6 +1172,14 @@
     {
       "path": "modern/src/main/extra_resources/META-INF/services/org.embeddedt.embeddium.impl.extra.vendor.caffeineconfig.CaffeineConfigPlatform",
       "local": "0c17a09bb2d3f6d257c594aeb9546946fc281047978b20eabca9158466a6513e"
+    },
+    {
+      "path": "modern/src/main/extra_resources/assets/nocturna/lang/en_us.json",
+      "local": "15ef52c6f55e0ac74b6b72f0f677384c1638b5e61a1bb68d166c46a73456c38d"
+    },
+    {
+      "path": "modern/src/main/extra_resources/assets/nocturna/lang/ja_jp.json",
+      "local": "6d057e9cbec0a8ccec80fc8dfefedd42240e0bc47dc198be78fe03d1fce78bb5"
     },
     {
       "path": "modern/src/main/extra_resources/assets/sodium-extra/lang/cs_cz.json",
@@ -1198,7 +1347,7 @@
     },
     {
       "path": "modern/src/main/extra_resources/nocturna-extra.mixins.json",
-      "local": "5a329016a9fc067744e7b73ad0c940df5aa4f1ef02d0364657b72bc37043b17f"
+      "local": "13ea1f4ec9a31d8d99047664fb9deebd4a1b1a3abc311665f7a55177e7296b5f"
     },
     {
       "path": "modern/src/main/java/org/embeddedt/embeddium/api/weather/WeatherColumnProvider.java",
@@ -2359,6 +2508,10 @@
     {
       "path": "modern/src/test/java/me/flashyreese/mods/sodiumextra/client/config/ExtraOptionsTest.java",
       "local": "ff42a99d7589bc70d6b098807df1422dd604e57c1fae418608701de7b31f1090"
+    },
+    {
+      "path": "modern/src/test/java/me/flashyreese/mods/sodiumextra/client/config/ParityPrerequisitesTest.java",
+      "local": "e1a1aa8bbf4618da33e6b097d9f1b9788cf7e6767351b031b1173ea6229c2b7a"
     },
     {
       "path": "modern/src/test/java/net/irisshaders/iris/cache/ProgramCacheLifecycleTest.java",

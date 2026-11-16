@@ -32,10 +32,13 @@ public class ExtraValidation {
                     .resolve("sodium-extra-options.json");
     private byte[] originalConfig;
     private boolean hadConfig;
+    private byte[] originalDebugProfile;
+    private final Path debugProfile = Path.of("debug-profile.json");
     private final List<ExtraOption<?>> options = new ArrayList<>();
     private int projectedFrames;
 
     public ExtraValidation() {
+        ParityRegression.register();
         MinecraftForge.EVENT_BUS.register(this);
     }
 
@@ -105,6 +108,7 @@ public class ExtraValidation {
                         instanceof
                         org.embeddedt.embeddium.impl.extra.compat.ExtraDebugOptionsScreen,
                 "wrong debug settings screen");
+        DebugFrameworkParity.screen(mc);
         mc.setScreen(null);
     }
 
@@ -142,11 +146,15 @@ public class ExtraValidation {
                             || mc.screen instanceof AccessibilityOnboardingScreen)) {
                 hadConfig = Files.exists(config);
                 if (hadConfig) originalConfig = Files.readAllBytes(config);
+                if (Files.exists(debugProfile))
+                    originalDebugProfile = Files.readAllBytes(debugProfile);
                 ShaderPackFixture.prepare();
                 PaniniPixels.verify();
+                FogShaderParity.verify();
                 AnimationValidation.verify(mc);
                 gui(mc);
                 RsoIntegration.verify(mc);
+                DebugFrameworkParity.catalog();
                 mc.options.renderDistance().set(3);
                 mc.options.simulationDistance().set(5);
                 mc.options.pauseOnLostFocus = false;
@@ -177,7 +185,14 @@ public class ExtraValidation {
                 if (++settled < 60) return;
                 var settings = SodiumExtraClientMod.options();
                 if (stage == 1) {
+                    ParityRegression.verify(mc);
                     BasicFeatures.verify(mc);
+                    DebugFrameworkParity.providers(mc);
+                    DebugFrameworkParity.beginVisuals(mc);
+                    stage = 10;
+                    settled = 0;
+                } else if (stage == 10) {
+                    DebugFrameworkParity.endVisuals(mc);
                     settings.extraSettings.paniniProjection = true;
                     settings.extraSettings.paniniProjectionQuality = 150;
                     settings.renderSettings.fogSettings.atmospheric.shapeMode =
@@ -284,12 +299,37 @@ public class ExtraValidation {
                     require(
                             mc.gameRenderer.currentEffect() != null,
                             "spectator prevention blocked an independent manual post effect");
+                    var effectState =
+                            (me.flashyreese.mods.sodiumextra.mixin.panini_projection
+                                            .AccessorGameRenderer)
+                                    mc.gameRenderer;
+                    require(
+                            effectState.sodiumExtra$isEffectActive(),
+                            "manual effect was not active");
+                    mc.gameRenderer.togglePostEffect();
+                    require(
+                            !effectState.sodiumExtra$isEffectActive(),
+                            "spectator prevention blocked an independent manual toggle");
                     mc.gameRenderer.shutdownEffect();
                     settings.extraSettings.preventShaders = false;
                     ShaderPackFixture.enable();
                     stage = 7;
                     settled = 0;
+                } else if (stage == 7) {
+                    require(
+                            !PaniniProjection.isEnabled(),
+                            "Panini stayed enabled with an Iris shader pack");
+                    ResourceGraphParity.begin(mc);
+                    stage = 8;
+                    settled = 0;
+                } else if (stage == 8) {
+                    if (!ResourceGraphParity.ready()) return;
+                    ResourceGraphParity.verify();
+                    ResourceGraphParity.restore(mc);
+                    stage = 9;
+                    settled = 0;
                 } else {
+                    if (!ResourceGraphParity.ready()) return;
                     require(
                             !PaniniProjection.isEnabled(),
                             "Panini stayed enabled with an Iris shader pack");
@@ -310,7 +350,7 @@ public class ExtraValidation {
                     System.out.println(report);
                     restore();
                     mc.stop();
-                    stage = 6;
+                    stage = 11;
                 }
             }
         } catch (Throwable failure) {
@@ -326,6 +366,8 @@ public class ExtraValidation {
 
     private void restore() throws Exception {
         ShaderPackFixture.restore();
+        if (originalDebugProfile != null) Files.write(debugProfile, originalDebugProfile);
+        else Files.deleteIfExists(debugProfile);
         if (hadConfig) Files.write(config, originalConfig);
         else Files.deleteIfExists(config);
     }

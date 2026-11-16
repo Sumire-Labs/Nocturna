@@ -1,44 +1,64 @@
-// Forge 1.20.1 hooks for Sodium Extra 0.9.6-beta.4 (LGPL-3.0).
 package me.flashyreese.mods.sodiumextra.mixin.steady_debug_hud;
+
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 
 import me.flashyreese.mods.sodiumextra.client.SodiumExtraClientMod;
 
-import org.spongepowered.asm.mixin.*;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.*;
-import org.spongepowered.asm.mixin.injection.callback.*;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(net.minecraft.client.gui.components.DebugScreenOverlay.class)
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * Forge draws HUD lists directly, without calling DebugScreenOverlay.render. Cache after other mods
+ * append their lines.
+ */
+@Mixin(value = net.minecraftforge.client.gui.overlay.ForgeGui.class, remap = false)
 public class MixinDebugScreenOverlay {
     @Unique private long sodiumExtra$nextTime;
-    @Unique private boolean sodiumExtra$rebuild = true;
-    @Unique
-    private java.util.List<String> sodiumExtra$left = java.util.List.of(),
-            sodiumExtra$right = java.util.List.of();
+    @Unique private boolean sodiumExtra$rebuild;
+    @Unique private List<String> sodiumExtra$left = List.of(), sodiumExtra$right = List.of();
 
-    @Inject(method = "render", at = @At("HEAD"))
+    @Inject(method = "renderHUDText", at = @At("HEAD"))
     private void sodiumExtra$refresh(CallbackInfo ci) {
-        var e = SodiumExtraClientMod.options().extraSettings;
+        var settings = SodiumExtraClientMod.options().extraSettings;
         long now = net.minecraft.Util.getMillis();
-        if (!e.steadyDebugHud) sodiumExtra$rebuild = true;
-        else if (now > sodiumExtra$nextTime) {
-            sodiumExtra$rebuild = true;
-            sodiumExtra$nextTime = now + e.steadyDebugHudRefreshInterval * 50L;
-        } else sodiumExtra$rebuild = false;
+        sodiumExtra$rebuild = !settings.steadyDebugHud || now > sodiumExtra$nextTime;
+        if (sodiumExtra$rebuild)
+            sodiumExtra$nextTime = now + settings.steadyDebugHudRefreshInterval * 50L;
     }
 
-    @com.llamalad7.mixinextras.injector.ModifyReturnValue(
-            method = "getGameInformation",
-            at = @At("RETURN"))
-    private java.util.List<String> sodiumExtra$left(java.util.List<String> original) {
-        if (sodiumExtra$rebuild) sodiumExtra$left = new java.util.ArrayList<>(original);
-        return sodiumExtra$left;
+    @WrapOperation(
+            method = "renderHUDText",
+            at =
+                    @At(
+                            value = "INVOKE",
+                            target =
+                                    "Lnet/minecraftforge/client/gui/overlay/ForgeGui$ForgeDebugScreenOverlay;getLeft()Ljava/util/List;"))
+    private List<String> sodiumExtra$left(
+            @Coerce Object overlay, Operation<List<String>> original) {
+        var lines = original.call(overlay);
+        if (sodiumExtra$rebuild || sodiumExtra$left.isEmpty())
+            sodiumExtra$left = new ArrayList<>(lines);
+        return new ArrayList<>(sodiumExtra$left);
     }
 
-    @com.llamalad7.mixinextras.injector.ModifyReturnValue(
-            method = "getSystemInformation",
-            at = @At("RETURN"))
-    private java.util.List<String> sodiumExtra$right(java.util.List<String> original) {
-        if (sodiumExtra$rebuild) sodiumExtra$right = new java.util.ArrayList<>(original);
-        return sodiumExtra$right;
+    @WrapOperation(
+            method = "renderHUDText",
+            at =
+                    @At(
+                            value = "INVOKE",
+                            target =
+                                    "Lnet/minecraftforge/client/gui/overlay/ForgeGui$ForgeDebugScreenOverlay;getRight()Ljava/util/List;"))
+    private List<String> sodiumExtra$right(
+            @Coerce Object overlay, Operation<List<String>> original) {
+        var lines = original.call(overlay);
+        if (sodiumExtra$rebuild || sodiumExtra$right.isEmpty())
+            sodiumExtra$right = new ArrayList<>(lines);
+        return new ArrayList<>(sodiumExtra$right);
     }
 }

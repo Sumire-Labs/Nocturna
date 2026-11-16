@@ -61,18 +61,18 @@ public class CloudShader implements AutoCloseable {
         public CloudShaderInterface(ShaderBindingContext context) {
             this.uniformModelViewMatrix = context.bindUniform("ModelViewMat", GlUniformMatrix4f::new);
             this.uniformProjectionMatrix = context.bindUniform("ProjMat", GlUniformMatrix4f::new);
-            this.uniformFogStart = context.bindUniform("FogStart", GlUniformFloat::new);
+            this.uniformFogStart = context.bindUniformIfPresent("FogStart", GlUniformFloat::new);
             this.uniformFogEnd = context.bindUniform("FogEnd", GlUniformFloat::new);
-            this.uniformFogColor = context.bindUniform("FogColor", GlUniformFloat4v::new);
+            this.uniformFogColor = context.bindUniformIfPresent("FogColor", GlUniformFloat4v::new);
             this.uniformMainColor = context.bindUniform("ColorModulator", GlUniformFloat4v::new);
         }
 
         public void setupState(Matrix4f modelViewMatrix, Matrix4f projectionMatrix, float r, float g, float b, float a) {
             this.uniformModelViewMatrix.set(modelViewMatrix);
             this.uniformProjectionMatrix.set(projectionMatrix);
-            this.uniformFogStart.set(FogHelper.INSTANCE.getFogStart());
+            if (this.uniformFogStart != null) this.uniformFogStart.set(FogHelper.INSTANCE.getFogStart());
             this.uniformFogEnd.set(FogHelper.INSTANCE.getFogEnd());
-            this.uniformFogColor.set(FogHelper.INSTANCE.getFogColor());
+            if (this.uniformFogColor != null) this.uniformFogColor.set(FogHelper.INSTANCE.getFogColor());
             this.uniformMainColor.set(new float[] { r, g, b, a });
         }
     }

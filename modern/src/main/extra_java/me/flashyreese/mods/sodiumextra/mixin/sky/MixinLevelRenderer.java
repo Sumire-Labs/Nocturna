@@ -62,24 +62,6 @@ public class MixinLevelRenderer {
                     @At(
                             value = "INVOKE",
                             target =
-                                    "Lcom/mojang/blaze3d/vertex/VertexBuffer;drawWithShader(Lorg/joml/Matrix4f;Lorg/joml/Matrix4f;Lnet/minecraft/client/renderer/ShaderInstance;)V",
-                            ordinal = 2))
-    private void sodiumExtra$lowerSky(
-            VertexBuffer buffer,
-            Matrix4f model,
-            Matrix4f projection,
-            ShaderInstance shader,
-            Operation<Void> original) {
-        if (SodiumExtraClientMod.options().detailSettings.sky)
-            original.call(buffer, model, projection, shader);
-    }
-
-    @WrapOperation(
-            method = "renderSky",
-            at =
-                    @At(
-                            value = "INVOKE",
-                            target =
                                     "Lcom/mojang/blaze3d/vertex/BufferUploader;drawWithShader(Lcom/mojang/blaze3d/vertex/BufferBuilder$RenderedBuffer;)V",
                             ordinal = 0))
     private void sodiumExtra$quad0(BufferBuilder.RenderedBuffer buffer, Operation<Void> original) {

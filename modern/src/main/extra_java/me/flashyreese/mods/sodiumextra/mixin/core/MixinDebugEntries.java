@@ -15,4 +15,9 @@ public class MixinDebugEntries {
     private List<String> sodiumExtra$entries(List<String> original) {
         return ExtraDebugOptionsScreen.appendDebugLines(original);
     }
+
+    @ModifyReturnValue(method = "getSystemInformation", at = @At("RETURN"))
+    private List<String> nocturna$system(List<String> original) {
+        return org.embeddedt.embeddium.impl.extra.compat.DebugOverlayManager.right();
+    }
 }

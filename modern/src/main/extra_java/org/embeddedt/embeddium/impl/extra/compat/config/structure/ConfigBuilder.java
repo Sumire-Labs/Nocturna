@@ -127,6 +127,34 @@ public final class ConfigBuilder implements ConfigState {
                                                 new ResourceLocation("sodium:general.vsync"))));
                         changed = true;
                     } else next.add(option);
+                    if (option.getId() != null
+                            && option.getId()
+                                    .matches(new ResourceLocation("minecraft", "clouds"))) {
+                        var range =
+                                createIntegerOption(
+                                                new ResourceLocation("minecraft", "cloud_range"))
+                                        .setName(
+                                                net.minecraft.network.chat.Component.translatable(
+                                                        "nocturna.option.cloud_range"))
+                                        .setTooltip(
+                                                net.minecraft.network.chat.Component.translatable(
+                                                        "nocturna.option.cloud_range.tooltip"))
+                                        .setRange(2, 128, 1)
+                                        .setDefaultValue(128)
+                                        .setBinding(
+                                                org.embeddedt.embeddium.impl.extra.compat
+                                                                .ExtraRendererOptions
+                                                        ::setCloudRange,
+                                                org.embeddedt.embeddium.impl.extra.compat
+                                                                .ExtraRendererOptions
+                                                        ::cloudRange)
+                                        .setStorageHandler(
+                                                org.embeddedt.embeddium.impl.extra.compat
+                                                                .ExtraRendererOptions
+                                                        ::save);
+                        next.add(build(range));
+                        changed = true;
+                    }
                 }
                 groups.add(OptionGroup.fromCompatibility(group.getId(), next.build()));
             }

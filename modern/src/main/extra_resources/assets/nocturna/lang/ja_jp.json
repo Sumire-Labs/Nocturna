@@ -1,0 +1,7 @@
+{
+  "nocturna.option.cloud_range": "雲の描画距離",
+  "nocturna.option.cloud_range.tooltip": "地形とは独立して雲の描画距離を設定します。",
+  "nocturna.debug.profile.default": "標準",
+  "nocturna.debug.profile.performance": "パフォーマンス",
+  "nocturna.debug.not_allowed": "サーバーでデバッグ情報が制限されているため、この項目は表示できません。"
+}

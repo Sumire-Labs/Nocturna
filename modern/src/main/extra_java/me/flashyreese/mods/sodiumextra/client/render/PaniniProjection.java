@@ -30,9 +30,13 @@ import java.util.function.IntSupplier;
  */
 public final class PaniniProjection implements AutoCloseable {
     public static final PaniniProjection INSTANCE = new PaniniProjection();
-    private RenderTarget worldTarget, worldOutlineTarget, handTarget, swapTarget, nativeMain;
+    private RenderTarget worldTarget,
+            worldOutlineTarget,
+            handTarget,
+            projectedDepthTarget,
+            nativeMain;
     private PaniniProgram program;
-    private boolean renderingWorld, pending, handRendering, preserveWorldDepth, shaderFailed;
+    private boolean renderingWorld, pending, handRendering, preserveWorldDepth;
     private boolean warnedShader;
     private int failedQuality, windowWidth, windowHeight, limitedWidth, limitedHeight;
     private float strength, horizontalExtent, verticalExtent, frameScale = 1;
@@ -48,7 +52,7 @@ public final class PaniniProjection implements AutoCloseable {
         if (windowWidth != main.width || windowHeight != main.height) resize();
         windowWidth = main.width;
         windowHeight = main.height;
-        if (failedQuality == quality || shaderFailed) return;
+        if (failedQuality == quality) return;
         if (!isEnabled()) {
             releaseTargets();
             return;
@@ -73,7 +77,7 @@ public final class PaniniProjection implements AutoCloseable {
             try {
                 program = new PaniniProgram();
             } catch (IOException | RuntimeException ex) {
-                shaderFailed = true;
+
                 if (!warnedShader)
                     SodiumExtraClientMod.logger()
                             .warn("Unable to load Panini projection shaders", ex);
@@ -106,6 +110,17 @@ public final class PaniniProjection implements AutoCloseable {
                 minecraft.gameRenderer.currentEffect() != null
                         && ((AccessorGameRenderer) minecraft.gameRenderer)
                                 .sodiumExtra$isEffectActive();
+        if (preserveWorldDepth)
+            try {
+                program.prepareDepth();
+            } catch (IOException | RuntimeException failure) {
+                if (!warnedShader)
+                    SodiumExtraClientMod.logger()
+                            .warn("Unable to load Panini depth projection shader", failure);
+                warnedShader = true;
+                releaseTargets();
+                return;
+            }
         try {
             prepareTargets(renderer.sodiumExtra$getEntityOutlineTarget(), width, height);
             PostChain transparency = renderer.sodiumExtra$getTransparencyChain();
@@ -177,16 +192,18 @@ public final class PaniniProjection implements AutoCloseable {
         renderingWorld = false;
         try {
             projectColor(worldTarget != null ? worldTarget : nativeMain, nativeMain, false);
-            if (preserveWorldDepth)
+            if (preserveWorldDepth) {
                 program.draw(
                         worldTarget,
-                        nativeMain,
+                        projectedDepthTarget,
                         strength,
                         horizontalExtent,
                         verticalExtent,
                         false,
                         true,
                         -1);
+                copyDepth(projectedDepthTarget, nativeMain);
+            }
             var renderer = (AccessorLevelRenderer) minecraft.levelRenderer;
             if (renderer.sodiumExtra$hasEntityOutline()) {
                 RenderTarget nativeOutline = renderer.sodiumExtra$getEntityOutlineTarget();
@@ -225,7 +242,7 @@ public final class PaniniProjection implements AutoCloseable {
         nativeMain.bindWrite(true);
         attachDepth(nativeMain);
         program.draw(
-                worldTarget,
+                projectedDepthTarget,
                 nativeMain,
                 strength,
                 horizontalExtent,
@@ -276,7 +293,6 @@ public final class PaniniProjection implements AutoCloseable {
         resize();
         if (program != null) program.close();
         program = null;
-        shaderFailed = false;
     }
 
     private void prepareTargets(RenderTarget outline, int width, int height) {
@@ -284,28 +300,35 @@ public final class PaniniProjection implements AutoCloseable {
             releaseWorldTargets();
             return;
         }
-        if (matches(worldTarget, width, height, nativeMain)
+        if ((!preserveWorldDepth
+                        || matches(
+                                projectedDepthTarget,
+                                nativeMain.width,
+                                nativeMain.height,
+                                nativeMain))
+                && matches(worldTarget, width, height, nativeMain)
                 && (outline == null
                         ? worldOutlineTarget == null
                         : matches(worldOutlineTarget, width, height, outline))) return;
         releaseWorldTargets();
         worldTarget = createTarget(width, height, nativeMain);
         if (outline != null) worldOutlineTarget = createTarget(width, height, outline);
+        if (preserveWorldDepth) {
+            handTarget = createTarget(nativeMain.width, nativeMain.height, nativeMain);
+            projectedDepthTarget = createTarget(nativeMain.width, nativeMain.height, nativeMain);
+        }
     }
 
     private static boolean matches(RenderTarget target, int width, int height, RenderTarget model) {
         return target != null
                 && target.width == width
                 && target.height == height
-                && target.useDepth == model.useDepth
-                && target.isStencilEnabled() == model.isStencilEnabled();
+                && TargetFormat.of(target).equals(TargetFormat.of(model));
     }
 
     private static RenderTarget createTarget(int width, int height, RenderTarget model) {
-        RenderTarget target = new RenderTarget(model.useDepth) {};
+        RenderTarget target = TargetFormat.of(model).create(width, height);
         try {
-            target.createBuffers(width, height, Minecraft.ON_OSX);
-            if (model.isStencilEnabled()) target.enableStencil();
             float[] clear = ((AccessorRenderTarget) model).sodiumExtra$getClearColor();
             target.setClearColor(clear[0], clear[1], clear[2], clear[3]);
             target.setFilterMode(GL33C.GL_LINEAR);
@@ -318,59 +341,44 @@ public final class PaniniProjection implements AutoCloseable {
 
     private void releaseTargets() {
         releaseWorldTargets();
-        if (swapTarget != null) swapTarget.destroyBuffers();
-        swapTarget = null;
     }
 
     private void releaseWorldTargets() {
         if (worldTarget != null) worldTarget.destroyBuffers();
         if (worldOutlineTarget != null) worldOutlineTarget.destroyBuffers();
         if (handTarget != null) handTarget.destroyBuffers();
-        worldTarget = worldOutlineTarget = handTarget = null;
+        if (projectedDepthTarget != null) projectedDepthTarget.destroyBuffers();
+        worldTarget = worldOutlineTarget = handTarget = projectedDepthTarget = null;
         worldAuxTargets.values().forEach(RenderTarget::destroyBuffers);
         worldAuxTargets.clear();
         auxiliaryChain = null;
     }
 
     private void projectColor(RenderTarget source, RenderTarget output, boolean mask) {
-        if (source != output) {
-            program.draw(
-                    source, output, strength, horizontalExtent, verticalExtent, mask, false, -1);
-            return;
-        }
-        if (swapTarget == null
-                || swapTarget.width != output.width
-                || swapTarget.height != output.height) {
-            if (swapTarget != null) swapTarget.destroyBuffers();
-            swapTarget = new RenderTarget(false) {};
-            try {
-                swapTarget.createBuffers(output.width, output.height, Minecraft.ON_OSX);
-                swapTarget.setFilterMode(GL33C.GL_LINEAR);
-            } catch (RuntimeException failure) {
-                swapTarget.destroyBuffers();
-                swapTarget = null;
-                throw failure;
-            }
-        }
-        program.draw(
-                source, swapTarget, strength, horizontalExtent, verticalExtent, mask, false, -1);
+        program.draw(source, output, strength, horizontalExtent, verticalExtent, mask, false, -1);
+    }
+
+    private static void copyDepth(RenderTarget source, RenderTarget output) {
         int read = GL33C.glGetInteger(GL33C.GL_READ_FRAMEBUFFER_BINDING),
                 draw = GL33C.glGetInteger(GL33C.GL_DRAW_FRAMEBUFFER_BINDING);
+        boolean scissor = GL33C.glIsEnabled(GL33C.GL_SCISSOR_TEST);
         try {
-            GL33C.glBindFramebuffer(GL33C.GL_READ_FRAMEBUFFER, swapTarget.frameBufferId);
+            GL33C.glDisable(GL33C.GL_SCISSOR_TEST);
+            GL33C.glBindFramebuffer(GL33C.GL_READ_FRAMEBUFFER, source.frameBufferId);
             GL33C.glBindFramebuffer(GL33C.GL_DRAW_FRAMEBUFFER, output.frameBufferId);
             GL33C.glBlitFramebuffer(
                     0,
                     0,
-                    output.width,
-                    output.height,
+                    source.width,
+                    source.height,
                     0,
                     0,
                     output.width,
                     output.height,
-                    GL33C.GL_COLOR_BUFFER_BIT,
+                    GL33C.GL_DEPTH_BUFFER_BIT,
                     GL33C.GL_NEAREST);
         } finally {
+            if (scissor) GL33C.glEnable(GL33C.GL_SCISSOR_TEST);
             GL33C.glBindFramebuffer(GL33C.GL_READ_FRAMEBUFFER, read);
             GL33C.glBindFramebuffer(GL33C.GL_DRAW_FRAMEBUFFER, draw);
         }

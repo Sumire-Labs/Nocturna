@@ -1,0 +1,34 @@
+[
+  {
+    "portRenderEnd": 64.0,
+    "case": "protected-water-256",
+    "actualGlFogEnd": 64.0,
+    "originalRenderEnd": 64.0
+  },
+  {
+    "portRenderEnd": 64.0,
+    "case": "protected-water--1",
+    "actualGlFogEnd": 64.0,
+    "originalRenderEnd": 64.0
+  },
+  {
+    "referenceRed": 43,
+    "equal": true,
+    "inplaceRed": 43,
+    "case": "panini-inplace-scissor",
+    "glError": 0
+  },
+  {
+    "callbackCalls": 0,
+    "expectedCallbackCalls": 0,
+    "case": "block-breaking-custom-extension",
+    "setting": false,
+    "spawned": false
+  },
+  {
+    "modelInternalFormat": 34842,
+    "case": "panini-target-format",
+    "copiedInternalFormat": 34842,
+    "equal": true
+  }
+]
