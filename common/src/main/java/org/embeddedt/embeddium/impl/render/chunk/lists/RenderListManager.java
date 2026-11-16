@@ -32,6 +32,7 @@ public class RenderListManager {
 
     private final SectionGraph graph;
     private final SectionLattice lattice;
+    private final RenderListPool renderListPool = new RenderListPool();
     // Whether this manager produces the shadow pass's lists. The shadow search is orthographic and receiver-driven;
     // the terrain search is the camera-rooted one with the angular frustum clamp.
     private final boolean shadow;
@@ -136,6 +137,7 @@ public class RenderListManager {
         }
 
         var visitor = new VisibleChunkCollector(this.lattice, frame, regionIdsLength, targetQueueSize, viewport.getBlockCoord());
+        visitor.setRecycled(this.renderListPool.beginSearch(regionIdsLength));
 
         Supplier<VisibleChunkCollector> occlusionTask = () -> {
             this.pendingVisibilitySnapshot = search.apply(visitor);

@@ -23,6 +23,7 @@ public class VisibleChunkCollector implements OcclusionCuller.Visitor {
     private final EnumMap<ChunkUpdateType, ArrayDeque<RenderSection>> sortedRebuildLists;
     private final int[] rebuildQueueOverflowCounts;
     private final ChunkRenderList[] renderListsByRegion;
+    private ChunkRenderList[] recycled;
 
     private final LongArrayList[] rebuildCandidates;
 
@@ -58,10 +59,15 @@ public class VisibleChunkCollector implements OcclusionCuller.Visitor {
     }
 
     private ChunkRenderList createRenderList(RenderRegion region) {
-        ChunkRenderList renderList = new ChunkRenderList(region);
+        ChunkRenderList renderList = this.recycled == null ? new ChunkRenderList(region)
+                : RenderListPool.acquire(this.recycled, region);
         this.sortedRenderLists.add(renderList);
         this.renderListsByRegion[region.getId()] = renderList;
         return renderList;
+    }
+
+    void setRecycled(ChunkRenderList[] recycled) {
+        this.recycled = recycled;
     }
 
     @Override

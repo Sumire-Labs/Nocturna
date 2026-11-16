@@ -1,6 +1,6 @@
 {
   "revision": "26f000239eb8ddf7ee191f0ddf369147e3c92ef6",
-  "identical": 1623,
+  "identical": 1618,
   "changes": [
     {
       "path": "buildSrc/build.gradle.kts",
@@ -23,9 +23,34 @@
       "local": "b056106175ea44de66578ce48cad978b15fb98b8cc46df862c3327a3e95f3d57"
     },
     {
+      "path": "common/src/main/java/org/embeddedt/embeddium/impl/gl/shader/uniform/GlUniformMatrix3f.java",
+      "upstream": "c9aa8f671e2dc7451e175473fed6826a05388f8eb3c622a1587c5898d95d4892",
+      "local": "7e7770339bf2a99bdc1b6da7697e598b18a9c89cb33ca005c787603ef4a74d75"
+    },
+    {
+      "path": "common/src/main/java/org/embeddedt/embeddium/impl/gl/shader/uniform/GlUniformMatrix4f.java",
+      "upstream": "8ffe9b5a2dee4a67c59b2fc8eb817fa0fc7aee904195d283f906bf8a007b744f",
+      "local": "4bdee90531e7e2d8c12176acf7b9be5ff78bcb4630b9b83bdeb195663b6fb3df"
+    },
+    {
       "path": "common/src/main/java/org/embeddedt/embeddium/impl/gui/framework/TextComponent.java",
       "upstream": "50459c8ce62c910fc0a70495ce05c9564ff2a497bf0bc8287ecf95b21d333529",
       "local": "76ed0b56971c2890df8fa04c9d810b8a0e61587f28ef97b637ee1413f549fcda"
+    },
+    {
+      "path": "common/src/main/java/org/embeddedt/embeddium/impl/render/chunk/lists/ChunkRenderList.java",
+      "upstream": "063f483b82219183f771aae883b8a36bb40dc5e008941548ad579d9b847c7382",
+      "local": "350fcebce98dccbdf5ec57156a466b34ec3910d341e98a3b72cacecfa2d646e2"
+    },
+    {
+      "path": "common/src/main/java/org/embeddedt/embeddium/impl/render/chunk/lists/RenderListManager.java",
+      "upstream": "4fbf0dbe56ab46b7ba9ba77594d3732680b838bd806eb4b7482239ea5aa28777",
+      "local": "69f7c031af63e9a5fadf672eae3a3bf0ce802d13efff0180099fa4c8fdfb859f"
+    },
+    {
+      "path": "common/src/main/java/org/embeddedt/embeddium/impl/render/chunk/lists/VisibleChunkCollector.java",
+      "upstream": "f6f1a62c8b362027d76d5e9b32233a9553ed34ec2b38b9449e368db146ed50e1",
+      "local": "4558f9b7c74b8d8bbad5ac66182281a79ff454930cd9f588be73e90758d5b5db"
     },
     {
       "path": "common/src/main/java/org/embeddedt/embeddium/impl/render/chunk/region/RenderRegionManager.java",
@@ -169,12 +194,28 @@
       "local": "f90eb17fcb958ce08903238a6937dee4b58439d4b2cde185d6721215d0f91ec3"
     },
     {
+      "path": "common/src/main/java/org/embeddedt/embeddium/impl/render/chunk/lists/RenderListPool.java",
+      "local": "0c93f3b9ce60a50080914a321529c080c96d6e8a575f194379f484a2d3726d8f"
+    },
+    {
       "path": "common/src/main/java/org/embeddedt/embeddium/impl/util/sorting/RadixSort.java",
       "local": "91994231f6b44dbc1403db6f15f0a5ada497a9aa7480ddfa2dc90c489070f6b5"
     },
     {
+      "path": "common/src/test/java/org/embeddedt/embeddium/impl/gl/shader/uniform/MatrixUniformBufferTest.java",
+      "local": "aba773f1f53153edd408d4ce571e5e53226d80f7c1f0d1d294231d9db0ca503e"
+    },
+    {
+      "path": "common/src/test/java/org/embeddedt/embeddium/impl/render/chunk/lists/RenderListPoolTest.java",
+      "local": "e3bc8256b5a457f34101457359f7bf0b9c2c6a279c8a6511865fec6c16f83263"
+    },
+    {
       "path": "common/src/test/java/org/embeddedt/embeddium/impl/render/frame/RenderAheadManagerTest.java",
       "local": "0b938334fd38a61ad16463595ce4db56e4e8fceed0c2b2c1f7de4bbac5eb5228"
+    },
+    {
+      "path": "common/src/test/java/org/embeddedt/embeddium/testutil/GlServiceHarness.java",
+      "local": "e178843990bd031f2dc38503a8f1c2ee5591f5ad72c2e30698fb6159c3fd30a4"
     },
     {
       "path": "modern/src/main/java/org/embeddedt/embeddium/impl/compat/legacy/LegacyGuiBridge.java",
@@ -533,8 +574,12 @@
       "local": "02bf21eb933a46e00276b5340f47ddeb3aa8b7fbde792aa8f2937878a7b75511"
     },
     {
+      "path": "modern/src/validation/java/org/embeddedt/embeddium/validation/MatrixUniformValidation.java",
+      "local": "41688c2449129b1e3112c51c4165579829ae999d1f0db7f39771804a5bf94a62"
+    },
+    {
       "path": "modern/src/validation/java/org/embeddedt/embeddium/validation/MigrationValidation.java",
-      "local": "5b31eb75e68167b545f1449fdf3f3bcc2caabb89df5feb4b70c9add2c79a4150"
+      "local": "c58316fdac781a344a90dfdaa3ce2ecc2256a5ee6d3d97977c15c1ea155cd0c6"
     },
     {
       "path": "modern/src/validation/resources/META-INF/mods.toml",

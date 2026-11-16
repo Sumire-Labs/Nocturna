@@ -28,6 +28,15 @@ public class ChunkRenderList {
         this.region = region;
     }
 
+    // Angelica's reset: the backing arrays are retained; their live prefixes are defined by these five counters.
+    void reset() {
+        this.sectionsWithGeometryCount = 0;
+        this.sectionsWithSpritesCount = 0;
+        this.sectionsWithEntitiesCount = 0;
+        this.sectionsNeedingDynamicSortCount = 0;
+        this.size = 0;
+    }
+
     public void add(int index, int flags) {
         if (this.size >= RenderRegion.REGION_SIZE) {
             throw new ArrayIndexOutOfBoundsException("Render list is full");

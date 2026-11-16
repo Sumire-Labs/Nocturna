@@ -1,5 +1,8 @@
 # Celeritas base migration — Forge 1.20.1
 
+This records the initial migration at `19ddfceb`. The source manifest is updated by later reviewed changes;
+see [the subsequent Angelica reuse ports](angelica-reuse-backports-2026-11-16.md) for the next performance changes.
+
 ## Scope and provenance
 
 The sole configured target is `:modern:1.20.1-forge`. The runtime and all product compilation use Java 17.
