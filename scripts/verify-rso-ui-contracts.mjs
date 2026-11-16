@@ -15,6 +15,7 @@ for(const fixture of ['RsoThemeTrace','RsoPromptTrace','RsoNarrationTrace']){
         const raw=execFileSync(exe(jdk,'java'),['-cp',classes+delimiter+classpath,fixture,mode],{encoding:'utf8'}).replaceAll('\r\n','\n');
         const text=raw.split('\n').filter(line=>line.startsWith('TRACE ')).map(line=>line.slice(6)).join('\n')+'\n';
         if(text==='\n')throw Error('The fixture emitted no trace: '+raw);
+        if(fixture==='RsoPromptTrace'&&text.trim().split('\n').length!==7)throw Error('Prompt trace must include both bounds and all five key responses');
         writeFileSync(join(output,fixture+'-'+mode+'.txt'),text);results.push(text);
     }
     if(results[0]!==results[1])throw Error(fixture+' differs from the reference runtime');

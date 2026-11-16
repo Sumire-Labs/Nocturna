@@ -44,7 +44,7 @@ public class RsoPromptTrace {
         for(int i=0;i<keys.length;i++){
             type.getMethod("setFocused",boolean.class).invoke(prompt,true);
             boolean handled=(boolean)press.invoke(prompt,constructor.newInstance(keys[i][0],keys[i][1],0));
-            System.out.println(names[i]+":"+handled+":"+(current[0]==prompt));
+            System.out.println("TRACE "+names[i]+":"+handled+":"+(current[0]==prompt));
         }
     }
 }
