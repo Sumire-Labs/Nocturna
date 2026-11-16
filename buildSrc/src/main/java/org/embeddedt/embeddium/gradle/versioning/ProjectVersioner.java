@@ -22,8 +22,14 @@ public class ProjectVersioner {
             boolean isDirty;
             int betaVersion;
             try {
+                if (new File(projectDir, ".git").isFile()) {
+                    // JGit 6 does not resolve a linked worktree's shared object and ref directories.
+                    String base = projectProperties.get("base_mc_version_commit").toString();
+                    betaVersion = Integer.parseInt(gitOutput(projectDir, "rev-list", "--count", base + "..HEAD").trim());
+                    isDirty = !gitOutput(projectDir, "status", "--porcelain").isBlank();
+                } else {
                 FileRepositoryBuilder builder = new FileRepositoryBuilder();
-                try(Repository repository = builder.setGitDir(new File(projectDir,".git")).readEnvironment().findGitDir().build()) {
+                try(Repository repository = builder.readEnvironment().findGitDir(projectDir).build()) {
                     try(RevWalk walk = new RevWalk(repository)) {
                         var baseCommit = walk.parseCommit(ObjectId.fromString(projectProperties.get("base_mc_version_commit").toString()));
                         var git = new Git(repository);
@@ -37,6 +43,7 @@ public class ProjectVersioner {
                         }
                         betaVersion = count;
                     }
+                }
                 }
             } catch(IOException | GitAPIException e) {
                 e.printStackTrace();
@@ -57,5 +64,20 @@ public class ProjectVersioner {
 
             return "%s-beta.%s%s+mc%s".formatted(modVersion, betaVersion, isDirty ? "-dirty" : "", minecraftVersion);
         }
+    }
+
+    private static String gitOutput(File directory, String... arguments) throws IOException {
+        var command = new java.util.ArrayList<String>();
+        command.add("git");
+        command.addAll(java.util.List.of(arguments));
+        var process = new ProcessBuilder(command).directory(directory).redirectErrorStream(true).start();
+        String output = new String(process.getInputStream().readAllBytes(), java.nio.charset.StandardCharsets.UTF_8);
+        try {
+            if (process.waitFor() != 0) throw new IOException("Git version query failed: " + output);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            throw new IOException("Git version query interrupted", e);
+        }
+        return output;
     }
 }
