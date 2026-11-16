@@ -1,0 +1,4 @@
+{
+  "nocturna.options.instanced_weather": "雨・雪のインスタンシング",
+  "nocturna.options.instanced_weather.tooltip": "天候の列データを再利用し、雨・雪をまとめて描画します。独自の天候レンダラーが対応しない場合は通常の描画を使います。"
+}

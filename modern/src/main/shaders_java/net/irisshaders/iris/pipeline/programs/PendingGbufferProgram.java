@@ -44,6 +44,12 @@ public final class PendingGbufferProgram {
 		sources.whenComplete((result, throwable) -> action.run());
 	}
 
+    public PendingGbufferProgram instancedWeather() {
+        return new PendingGbufferProgram(name + "_instanced_weather",
+                net.irisshaders.iris.pipeline.foss_transform.WeatherVertices.ATTRIBUTES, reservedTextureUnits,
+                sources.thenApply(net.irisshaders.iris.pipeline.foss_transform.WeatherVertices::patch), builder);
+    }
+
 	/**
 	 * Starts compiling the program once its sources are transformed. If transforming failed, {@link #finish()} throws
 	 * the failure instead.

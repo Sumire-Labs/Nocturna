@@ -62,6 +62,7 @@ public class MixinConfig {
         this.addMixinRule("features.render.model.item", true);
 
         this.addMixinRule("features.render.particle", true);
+        this.addMixinRule("features.render.weather", true);
 
         this.addMixinRule("features.render.world", true);
         this.addMixinRule("features.render.world.clouds", true);

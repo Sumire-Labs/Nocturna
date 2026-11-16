@@ -1,6 +1,6 @@
 {
   "revision": "26f000239eb8ddf7ee191f0ddf369147e3c92ef6",
-  "identical": 1570,
+  "identical": 1564,
   "changes": [
     {
       "path": "buildSrc/build.gradle.kts",
@@ -38,9 +38,19 @@
       "local": "4bdee90531e7e2d8c12176acf7b9be5ff78bcb4630b9b83bdeb195663b6fb3df"
     },
     {
+      "path": "common/src/main/java/org/embeddedt/embeddium/impl/gui/SodiumGameOptions.java",
+      "upstream": "510567396b2f1a67c1a56381a319ee76f44ea64e697df0a47e2b849502f246d2",
+      "local": "a41120ea8c5c0d68c5867965455dc4abc505b590f4f1d36190974204c56a99f0"
+    },
+    {
       "path": "common/src/main/java/org/embeddedt/embeddium/impl/gui/framework/TextComponent.java",
       "upstream": "50459c8ce62c910fc0a70495ce05c9564ff2a497bf0bc8287ecf95b21d333529",
       "local": "76ed0b56971c2890df8fa04c9d810b8a0e61587f28ef97b637ee1413f549fcda"
+    },
+    {
+      "path": "common/src/main/java/org/embeddedt/embeddium/impl/gui/options/CommonOptionPages.java",
+      "upstream": "9904136b8e0bb6dbf40feb189a81ea53e6ba984845dc6caefffb3f8ccc3b5643",
+      "local": "3eff499287c038f3644625c042db367c60e64e67b3bd5a07ebbc8d5b19a83fb6"
     },
     {
       "path": "common/src/main/java/org/embeddedt/embeddium/impl/render/chunk/lists/ChunkRenderList.java",
@@ -133,6 +143,11 @@
       "local": null
     },
     {
+      "path": "modern/src/main/java/org/embeddedt/embeddium/impl/mixin/MixinConfig.java",
+      "upstream": "67c2ee93afff1a3fb0e553e370531f97d26cbe43aa67909431d71af07d22ab22",
+      "local": "b29da68180cbb8abd721efa89d4d0bb696dd0f8786c7cc6e02da6f712bf98386"
+    },
+    {
       "path": "modern/src/main/java/org/embeddedt/embeddium/impl/mixin/core/MinecraftClientMixin.java",
       "upstream": "4ed877d273f6e3be209b4045ac1484940e0b83d7cd155f3396d7e5a79f059c86",
       "local": "3a1d86eae6933c4a12235377ac62eb9ef70b42b9d71f5f2b7a047240b597494a"
@@ -200,7 +215,7 @@
     {
       "path": "modern/src/main/resources/assets/embeddium/lang/en_us.json",
       "upstream": "54efb46012cbbf04862b919ec739c2cfd5a460cb4ccaeb6966220988bafd10a0",
-      "local": "4f95ea31cfe45c9a89418af257daddd7480da7a69ec3ab12f2df3cb997e9bffb"
+      "local": "251d7099c67a54ea993f74023649c7e5b08de35fe4cc0800749a4154e751826f"
     },
     {
       "path": "modern/src/main/resources/assets/embeddium/lang/es_es.json",
@@ -256,6 +271,21 @@
       "path": "modern/src/main/shaders_java/net/irisshaders/iris/gl/shader/ProgramCreator.java",
       "upstream": "a6f6a247a2f8c46356f16da8cd0301cbbb6f0715594d008eada7a1a3d6c71e2b",
       "local": "09954d9dfd23deb6ec01d3cdc756190c2171eb626895b7c79e02bc69318f39fa"
+    },
+    {
+      "path": "modern/src/main/shaders_java/net/irisshaders/iris/pipeline/IrisRenderingPipeline.java",
+      "upstream": "89f1a72f1dfd2f394aae84a7873e7f7fbd609a690d1eb7633fd6cf68a737c7db",
+      "local": "07e1a8e77788880da1c52ee93fedc97c534c65b11b7a8e8776e20223faa7740b"
+    },
+    {
+      "path": "modern/src/main/shaders_java/net/irisshaders/iris/pipeline/programs/GbufferProgram.java",
+      "upstream": "b5e4c548e9df86c0a204a3ec6df7f3acd848a9f1ddaaa77a8eef710f0a5dc7e6",
+      "local": "da6111c7551876df14d0b824f2f83533dfe270a7a4d4ad716af66aa19c52df27"
+    },
+    {
+      "path": "modern/src/main/shaders_java/net/irisshaders/iris/pipeline/programs/PendingGbufferProgram.java",
+      "upstream": "a2319e84e28f469a1fcd86b49961c5f93d34872942156f48064a54c2d4064a92",
+      "local": "5a5e4174fa2ab45c529b438f8ee1b58b7a8ab6f6cff0a6860252bfb45c650559"
     },
     {
       "path": "modern/src/main/shaders_java/net/irisshaders/iris/shaderpack/ShaderPack.java",
@@ -458,6 +488,14 @@
       "local": "e178843990bd031f2dc38503a8f1c2ee5591f5ad72c2e30698fb6159c3fd30a4"
     },
     {
+      "path": "modern/src/main/java/org/embeddedt/embeddium/api/weather/WeatherColumnProvider.java",
+      "local": "041c81798567f99108482d5ddeb36ea61fe5337419563296aafcbd03e3c27112"
+    },
+    {
+      "path": "modern/src/main/java/org/embeddedt/embeddium/api/weather/WeatherColumnSink.java",
+      "local": "0da2592939a0a0942cb5a905affd7861fd65a8c3c37acad286008e519cd86ccb"
+    },
+    {
       "path": "modern/src/main/java/org/embeddedt/embeddium/impl/compat/legacy/LegacyGuiBridge.java",
       "local": "bf6365671a27101719d01145a5eb29b749e68d3cd511bd36e9849f7c3ab82642"
     },
@@ -468,6 +506,46 @@
     {
       "path": "modern/src/main/java/org/embeddedt/embeddium/impl/compat/legacy/LegacyVertexApi.java",
       "local": "82c6b09a41d171b7e93d18f2082eb54a6edc3e88ad9871d41432fcb4759f242a"
+    },
+    {
+      "path": "modern/src/main/java/org/embeddedt/embeddium/impl/render/weather/NativeWeatherWorld.java",
+      "local": "1f294b28b00005a8edb30de93cf51802105d574f3f037b83c80e028de8df6784"
+    },
+    {
+      "path": "modern/src/main/java/org/embeddedt/embeddium/impl/render/weather/WeatherBatch.java",
+      "local": "0c5826426f249edad66ba0e8243087465e3db23e7d29c8077fee96e83a751892"
+    },
+    {
+      "path": "modern/src/main/java/org/embeddedt/embeddium/impl/render/weather/WeatherColumns.java",
+      "local": "75001d8555857193227d718357895743f7aec50e8ef1690520e2558cb2e8c909"
+    },
+    {
+      "path": "modern/src/main/java/org/embeddedt/embeddium/impl/render/weather/WeatherGlsl.java",
+      "local": "08f6e81cca9c403c6839de201bfd635580675ceac2f6d0d12f04164fe1b85d10"
+    },
+    {
+      "path": "modern/src/main/java/org/embeddedt/embeddium/impl/render/weather/WeatherInstancedAttribs.java",
+      "local": "98a23b1fd0947e3b1819a03cdefda0e2e5d988d327815c3525feeb4f36c30a71"
+    },
+    {
+      "path": "modern/src/main/java/org/embeddedt/embeddium/impl/render/weather/WeatherParams.java",
+      "local": "385045f489e7d804faa1497fca0cc73bd458470ce9aa2d684a78b9c04dc7eea9"
+    },
+    {
+      "path": "modern/src/main/java/org/embeddedt/embeddium/impl/render/weather/WeatherQuadMesh.java",
+      "local": "f608abda8bbca5632a388796afda2219e1d5bcd16d38411982740e76a888055c"
+    },
+    {
+      "path": "modern/src/main/java/org/embeddedt/embeddium/impl/render/weather/WeatherRenderer.java",
+      "local": "65c844f2d07d051290f991ed91c5c240bf2ea2af6c18384f1190b95e30ee94a4"
+    },
+    {
+      "path": "modern/src/main/java/org/embeddedt/embeddium/impl/render/weather/WeatherShader.java",
+      "local": "82c73e7f02100b3882336c4ddef07d9c1808f5b0f482295db857ced505536fe3"
+    },
+    {
+      "path": "modern/src/main/java/org/embeddedt/embeddium/impl/render/weather/WeatherWorld.java",
+      "local": "ebfae00a9fc2c88c1cc0c4a1aaefa2eff0a32b596ff2a35e588b8d734495b6e9"
     },
     {
       "path": "modern/src/main/legacy_api_java/me/jellysquid/mods/sodium/client/RubidiumStub.java",
@@ -754,6 +832,22 @@
       "local": "c1794cae2f950f9c227268524aba09c0ff59483a1ad9555a616cd1d2b7467491"
     },
     {
+      "path": "modern/src/main/modern_java/org/embeddedt/embeddium/impl/mixin/features/render/weather/BiomeTemperatureAccessor.java",
+      "local": "44d9f357dbb95ae68dbfcf9184d7189c277d89d522bcd5ee2e55fc85e4f832cd"
+    },
+    {
+      "path": "modern/src/main/modern_java/org/embeddedt/embeddium/impl/mixin/features/render/weather/GameRendererMixin.java",
+      "local": "1b0977b108aacda0d046b48573edab69304c8f7877fa1a353e90bbf87be57482"
+    },
+    {
+      "path": "modern/src/main/modern_java/org/embeddedt/embeddium/impl/mixin/features/render/weather/LevelRendererMixin.java",
+      "local": "1bc0101beecff08c85d7ece0d97eabb6e6f411ddfbee5fac04b0b9b9413fc7b5"
+    },
+    {
+      "path": "modern/src/main/resources/assets/embeddium/lang/ja_jp.json",
+      "local": "6796a57606ffc88f71c3f385012adead202fa105a5f90be870c868135a65b458"
+    },
+    {
       "path": "modern/src/main/resources/assets/embeddium/lang/ko_kr.json",
       "local": "ed4e6c321fd824bb6ef7e6f0154ac13c6bccff918128ff623d23a8b0ca450058"
     },
@@ -796,6 +890,10 @@
     {
       "path": "modern/src/main/shaders_java/net/irisshaders/iris/cache/ShaderDiskCache.java",
       "local": "812c556db87cd6347dc050c8abab372c3a78619111982547071de396827c7bc7"
+    },
+    {
+      "path": "modern/src/main/shaders_java/net/irisshaders/iris/pipeline/foss_transform/WeatherVertices.java",
+      "local": "14951f9c978b7c82a0727b110eb0c09c42e6c987f47494e95539dfc4e8211953"
     },
     {
       "path": "modern/src/main/shaders_java/net/irisshaders/iris/shaderpack/preprocessor/PreprocessedSourceCache.java",
@@ -858,6 +956,18 @@
       "local": "99192605ec41a343d7bc7b7e853d1d022d51d653d3fcce539d388118e2d6c34d"
     },
     {
+      "path": "modern/src/test/java/org/embeddedt/embeddium/impl/render/weather/AngelicaWeatherColumnsReference.java",
+      "local": "56ebc7fa80ff230087382ba5e7e256ef96954bfed0ea669a94c96f079e37e11d"
+    },
+    {
+      "path": "modern/src/test/java/org/embeddedt/embeddium/impl/render/weather/WeatherBatchTest.java",
+      "local": "dc3b05612868f11125f2b062ac65b447daff0ae83b262fcf4d7bb39ee1980b84"
+    },
+    {
+      "path": "modern/src/test/java/org/embeddedt/embeddium/impl/render/weather/WeatherColumnsTest.java",
+      "local": "8b0ddeffe6f4b98478f9502649386049bb63b1da4c85bb02a8b705de9e97f634"
+    },
+    {
       "path": "modern/src/test/java/org/embeddedt/embeddium/impl/util/sorting/VertexSortersTest.java",
       "local": "21e6ef115419389b1f5e25f9303a169e2578fdebc9e5b80cf4980525e0b85ac1"
     },
@@ -875,7 +985,7 @@
     },
     {
       "path": "modern/src/validation/java/org/embeddedt/embeddium/validation/MigrationValidation.java",
-      "local": "28917f17efbd447fff78b3d09a9d45e7ae4f4396eb4ee2286194bf017183b675"
+      "local": "046dcc68bcccdf349bd84adfa22a97c2dc669a359990c60061f04f0fcb584454"
     },
     {
       "path": "modern/src/validation/java/org/embeddedt/embeddium/validation/PBRResourceIndexValidation.java",
@@ -894,12 +1004,28 @@
       "local": "ecdda22097001864302ebfddea565f4be655d7733dff1a5b9d10f8a8674bd727"
     },
     {
+      "path": "modern/src/validation/java/org/embeddedt/embeddium/validation/mixin/WeatherBiomeOverrideMixin.java",
+      "local": "17257987cee11defa8ca56fd5f5ad88be61101f6da34584b6fcb65967240ebc7"
+    },
+    {
+      "path": "modern/src/validation/java/org/embeddedt/embeddium/validation/mixin/WeatherEffectsOverrideMixin.java",
+      "local": "53a2cd58679abb88cf0e10093b030bcee014234e009ab845710dd443e73339ec"
+    },
+    {
+      "path": "modern/src/validation/java/org/embeddedt/embeddium/validation/weather/WeatherGeometryValidation.java",
+      "local": "a10a9f1a2b46170fc09e30f08694e4bd8106d4fc5faafd1a67816e0c187530fc"
+    },
+    {
+      "path": "modern/src/validation/java/org/embeddedt/embeddium/validation/weather/WeatherValidation.java",
+      "local": "ddfe73a69a20fc7e133e1f1c6620a29c3f80c8a7575db7dad94f57aa0313ab8b"
+    },
+    {
       "path": "modern/src/validation/resources/META-INF/mods.toml",
       "local": "a077b04085c760311afb576cd6717ff45456fa274b4fc8cbfe242761b3b8eece"
     },
     {
       "path": "modern/src/validation/resources/embeddium-validation.mixins.json",
-      "local": "05773a7fb973301e6b102cce362cc5390c816ebb3b805a63867baa8b8254ecb6"
+      "local": "1d0afe37344f7c4664997fa02387e602a83fd712319e583a05decfd4724d568a"
     },
     {
       "path": "modern/src/validation/resources/pack.mcmeta",

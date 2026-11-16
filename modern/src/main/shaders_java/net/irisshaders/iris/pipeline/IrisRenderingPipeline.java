@@ -690,6 +690,25 @@ public class IrisRenderingPipeline implements WorldRenderingPipeline, ShaderRend
 		return programs;
 	}
 
+    private GbufferProgram instancedWeather;
+    private boolean triedInstancedWeather;
+
+    public GbufferProgram getInstancedWeather() {
+        if (!triedInstancedWeather) {
+            triedInstancedWeather = true;
+            PendingGbufferProgram pending = null;
+            try {
+                pending = createShader("weather", resolver.resolve(ProgramId.Weather), ShaderKey.WEATHER).instancedWeather();
+                pending.submit();
+                instancedWeather = pending.finish();
+            } catch (Exception e) {
+                if (pending != null) pending.delete();
+                org.taumc.celeritas.shaders.CeleritasShaders.logger().warn("Instanced weather unavailable; using ordinary weather", e);
+            }
+        }
+        return instancedWeather;
+    }
+
 	private PendingGbufferProgram createShader(String name, Optional<ProgramSource> source, ShaderKey key) {
 		if (source.isEmpty()) {
 			//? if >=26.1 {
@@ -1299,6 +1318,8 @@ public class IrisRenderingPipeline implements WorldRenderingPipeline, ShaderRend
 	@Override
 	public void destroy() {
 		destroyed = true;
+        org.embeddedt.embeddium.impl.render.weather.WeatherRenderer.releaseShaderPack();
+        if (instancedWeather != null) instancedWeather.destroy();
 
 		shaderMap.destroy();
 

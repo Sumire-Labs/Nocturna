@@ -21,5 +21,7 @@
   "celeritas.options.rgss_texture_filtering.tooltip": "Smooths block textures in the distance by supersampling them, which reduces shimmering and jagged texel edges. Requires mipmaps, and has no effect while a shader pack is active.",
   "celeritas.options.chunk_fade_in_duration.tooltip": "Controls how long it takes for newly loaded chunks to fully appear. Longer durations create a smoother transition between unloaded and loaded chunks, reducing visual popping, but may make distant terrain appear to 'fade in' more slowly.",
   "celeritas.options.raster_occlusion_culling.name": "Rasterized Occlusion Culling",
-  "celeritas.options.raster_occlusion_culling.tooltip": "Rasterizes nearby terrain into a small software coverage buffer and uses it to skip chunks hidden behind solid terrain, such as a valley behind a hill. This can substantially reduce the amount of terrain drawn. This helps most when the GPU is the bottleneck.\n\nChanging this rebuilds all chunks."
+  "celeritas.options.raster_occlusion_culling.tooltip": "Rasterizes nearby terrain into a small software coverage buffer and uses it to skip chunks hidden behind solid terrain, such as a valley behind a hill. This can substantially reduce the amount of terrain drawn. This helps most when the GPU is the bottleneck.\n\nChanging this rebuilds all chunks.",
+  "nocturna.options.instanced_weather": "Instanced Rain and Snow",
+  "nocturna.options.instanced_weather.tooltip": "Reuses cached weather columns and draws rain and snow in batches. Unsupported custom weather renderers keep their normal rendering path."
 }

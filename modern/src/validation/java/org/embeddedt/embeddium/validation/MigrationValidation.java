@@ -99,7 +99,8 @@ public class MigrationValidation {
             if (ticks % 100 == 0) System.out.println("Validation stage="+stage+" screen="+(mc.screen==null?"null":mc.screen.getClass().getName()));
             if(stage==0&&(mc.screen instanceof TitleScreen||mc.screen instanceof AccessibilityOnboardingScreen)) {
                 if(net.minecraftforge.fml.ModList.get().isLoaded("codechickenlib")) AddonValidation.install();
-                vertices();MatrixUniformValidation.verify();ShaderCacheValidation.verify();PBRResourceIndexValidation.verify();gui(mc);
+                vertices();MatrixUniformValidation.verify();ShaderCacheValidation.verify();PBRResourceIndexValidation.verify();
+                org.embeddedt.embeddium.validation.weather.WeatherGeometryValidation.verify();gui(mc);
                 ShaderCachePackValidation.prepare();stage=1;
                 mc.options.renderDistance().set(3);mc.options.simulationDistance().set(3);
                 mc.options.pauseOnLostFocus=false;
@@ -108,6 +109,7 @@ public class MigrationValidation {
                 mc.forceSetScreen(new GenericDirtMessageScreen(Component.literal("Validating Celeritas migration")));
                 mc.createWorldOpenFlows().createFreshLevel(name,settings,new WorldOptions(1024,false,false),registry->registry.registryOrThrow(Registries.WORLD_PRESET).getHolderOrThrow(WorldPresets.FLAT).value().createWorldDimensions());
             } else if(stage>=1&&mc.level!=null&&mc.player!=null&&mc.screen==null) {
+                org.embeddedt.embeddium.validation.weather.WeatherValidation.tick(mc);
                 if(++settled<120)return;
                 require(blocks.get()>0&&meshes.get()>0,"meshing callbacks not invoked");
                 var ground=mc.player.blockPosition().below();

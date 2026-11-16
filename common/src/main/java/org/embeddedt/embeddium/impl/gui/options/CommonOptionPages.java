@@ -158,6 +158,15 @@ public class CommonOptionPages {
                         .build())
                 //?}
                 .add(OptionImpl.createBuilder(boolean.class, sodiumOpts)
+                        .setId(org.taumc.celeritas.api.options.OptionIdentifier.create("embeddium", "instanced_weather", boolean.class))
+                        .setName(TextComponent.translatable("nocturna.options.instanced_weather"))
+                        .setTooltip(TextComponent.translatable("nocturna.options.instanced_weather.tooltip"))
+                        .setControl(TickBoxControl::new)
+                        .setImpact(OptionImpact.VARIES)
+                        .setBinding((opts, value) -> opts.performance.useInstancedWeather = value,
+                                opts -> opts.performance.useInstancedWeather)
+                        .build())
+                .add(OptionImpl.createBuilder(boolean.class, sodiumOpts)
                         .setId(StandardOptions.Option.RASTER_OCCLUSION_CULLING.cast())
                         .setName(TextComponent.translatable("celeritas.options.raster_occlusion_culling.name"))
                         .setTooltip(TextComponent.translatable("celeritas.options.raster_occlusion_culling.tooltip"))

@@ -192,6 +192,9 @@ public final class GbufferProgram {
 		}
 	}
 
+    public int getProgramId() { return this.program.handle(); }
+    public boolean usesTessellation() { return this.usesTessellation; }
+
 	//? if <26.1 {
 	private void uploadVanillaUniforms(VanillaDrawState state) {
 		uploadMatrix(modelViewLocation, state.modelView);
