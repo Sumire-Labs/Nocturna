@@ -3,6 +3,6 @@
   "minVersion": "0.8",
   "package": "org.embeddedt.embeddium.validation.mixin",
   "compatibilityLevel": "JAVA_17",
-  "client": ["ShaderCompileCounterMixin", "WeatherEffectsOverrideMixin", "WeatherBiomeOverrideMixin", "HorizonDrawCounterMixin"],
+  "client": ["ShaderCompileCounterMixin", "WeatherEffectsOverrideMixin", "WeatherBiomeOverrideMixin", "HorizonDrawCounterMixin", "FismShadowPassMixin"],
   "injectors": {"defaultRequire": 1}
 }

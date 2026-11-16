@@ -70,6 +70,7 @@ public class MixinConfig {
 
         this.addMixinRule("features.shader", true);
         this.addMixinRule("features.shader.uniform", true);
+        this.addMixinRule("features.shader.shadow_pass", true);
 
         this.addMixinRule("features.textures", true);
         this.addMixinRule("features.textures.animations", true);

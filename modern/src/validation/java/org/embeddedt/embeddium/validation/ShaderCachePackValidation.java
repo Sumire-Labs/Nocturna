@@ -64,6 +64,7 @@ public final class ShaderCachePackValidation {
                 varying vec2 texcoord;
                 void main(){gl_FragColor=texture2D(colortex0,texcoord);}
                 """);
+        FismValidation.shaderFixture(root);
         var config = Iris.getIrisConfig();
         config.setShaderPackName(NAME); config.setShadersEnabled(true); config.setSaveCompiledShaders(true);
         compilations.set(0);

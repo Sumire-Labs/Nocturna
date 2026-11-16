@@ -34,6 +34,7 @@ public class MigrationValidation {
     private static me.jellysquid.mods.sodium.client.gui.options.Option<Boolean> custom;
 
     public MigrationValidation() {
+        FismValidation.register(net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext.get().getModEventBus());
         if (Boolean.getBoolean("nocturna.validateRso")) { RsoValidation.install(); return; }
         MinecraftForge.EVENT_BUS.register(this);
         MinecraftForge.EVENT_BUS.addListener((OptionGUIConstructionEvent e)->forgeGuis++);
@@ -102,6 +103,7 @@ public class MigrationValidation {
                 if(net.minecraftforge.fml.ModList.get().isLoaded("codechickenlib")) AddonValidation.install();
                 vertices();MatrixUniformValidation.verify();ShaderCacheValidation.verify();PBRResourceIndexValidation.verify();
                 HorizonValidation.verify();
+                FismValidation.verify();
                 org.embeddedt.embeddium.validation.weather.WeatherGeometryValidation.verify();gui(mc);
                 ShaderCachePackValidation.prepare();stage=1;
                 mc.options.renderDistance().set(3);mc.options.simulationDistance().set(3);
@@ -128,6 +130,7 @@ public class MigrationValidation {
                 } else {
                     if(net.minecraftforge.fml.ModList.get().isLoaded("codechickenlib")) AddonValidation.verify();
                     HorizonValidation.verifyInWorld();
+                    FismValidation.finish();
                     require(System.getProperty("java.specification.version").equals("17"),"wrong Java runtime");
                     var report="PASS Java17; matrix uniform GPU readback; legacy vertex bytes; styled GUI/control/events; vanilla+compact/async terrain; old block/mesh callbacks. blocks="+blocks+" meshes="+meshes;
                     Files.writeString(Path.of("migration-validation.txt"),report);System.out.println(report);

@@ -145,7 +145,7 @@
     {
       "path": "modern/src/main/java/org/embeddedt/embeddium/impl/mixin/MixinConfig.java",
       "upstream": "67c2ee93afff1a3fb0e553e370531f97d26cbe43aa67909431d71af07d22ab22",
-      "local": "b29da68180cbb8abd721efa89d4d0bb696dd0f8786c7cc6e02da6f712bf98386"
+      "local": "3959a2c0d6d41edcd132712b3a4e63b4257d0e12d9fef856bf80c37428f08180"
     },
     {
       "path": "modern/src/main/java/org/embeddedt/embeddium/impl/mixin/core/MinecraftClientMixin.java",
@@ -1522,6 +1522,22 @@
       "local": "31e26d59ba82252e59348a8ad83502f10599941a47af2cb6b99f578a87f2da51"
     },
     {
+      "path": "modern/src/main/shaders_modern_java/net/irisshaders/iris/mixin/features/shader/shadow_pass/FismBannerRendererMixin.java",
+      "local": "74dd9bddfaaafaf3b97e5c77a77f3eab122882134a74e23d236a6c771de248a2"
+    },
+    {
+      "path": "modern/src/main/shaders_modern_java/net/irisshaders/iris/mixin/features/shader/shadow_pass/FismItemStackMixin.java",
+      "local": "cda2a86c3bdfe9453d4c56f8194b9ae751339f914cd5f6542c510d0f1f67219a"
+    },
+    {
+      "path": "modern/src/main/shaders_modern_java/net/irisshaders/iris/mixin/features/shader/shadow_pass/FismMapRendererMixin.java",
+      "local": "a909d2e415735854bc01ae850bb34188a82819ddf9a45d2aa44f1c4b801b6d42"
+    },
+    {
+      "path": "modern/src/main/shaders_modern_java/net/irisshaders/iris/mixin/features/shader/shadow_pass/FismSignRendererMixin.java",
+      "local": "565eace661ad06ace65914be50581679d9931f66f92215551ca8a110b101dd91"
+    },
+    {
       "path": "modern/src/main/shaders_modern_java/net/irisshaders/iris/mixin/texture/pbr/MixinMultiPackResourceManager.java",
       "local": "08f9092fed4f9d905ecadb13e5225629555bd82f49d1e31c2c5b7133c0c5dd63"
     },
@@ -1634,6 +1650,10 @@
       "local": "02bf21eb933a46e00276b5340f47ddeb3aa8b7fbde792aa8f2937878a7b75511"
     },
     {
+      "path": "modern/src/validation/java/org/embeddedt/embeddium/validation/FismValidation.java",
+      "local": "1eac008fc809865e51a0430199445154da109c0b4bb7f5449f11a64733c0d406"
+    },
+    {
       "path": "modern/src/validation/java/org/embeddedt/embeddium/validation/HorizonValidation.java",
       "local": "ab23893b906c7eda3a83e09f0fc6a1172f2bb2312201d6fb0e4157378fbbdba3"
     },
@@ -1643,7 +1663,7 @@
     },
     {
       "path": "modern/src/validation/java/org/embeddedt/embeddium/validation/MigrationValidation.java",
-      "local": "bae81caba355bab4aa17f60d249ab5e05534f1a773af2b967330db2b3eb6a8e3"
+      "local": "19594f720110ebc3fbb0cf2b12c2d1711f290bbb25b6b3b50b6ad075ee3c3248"
     },
     {
       "path": "modern/src/validation/java/org/embeddedt/embeddium/validation/PBRResourceIndexValidation.java",
@@ -1659,11 +1679,15 @@
     },
     {
       "path": "modern/src/validation/java/org/embeddedt/embeddium/validation/ShaderCachePackValidation.java",
-      "local": "86265080f34c274488735d652df642b7a196e9f50c59bd168ec26475821d9b08"
+      "local": "e32851bc469b9f470a2d13d61c8debb720f5f20e0598ed4090f5520fc7d6a062"
     },
     {
       "path": "modern/src/validation/java/org/embeddedt/embeddium/validation/ShaderCacheValidation.java",
       "local": "27a403ff483af5cdb461e728ac5fb548976ae587ac5892e454c8a0bc7e2923cc"
+    },
+    {
+      "path": "modern/src/validation/java/org/embeddedt/embeddium/validation/mixin/FismShadowPassMixin.java",
+      "local": "e4734a908324c0af53c61292a44a6d58c6f1c8b3641cda57cd0baab89c80afa7"
     },
     {
       "path": "modern/src/validation/java/org/embeddedt/embeddium/validation/mixin/HorizonDrawCounterMixin.java",
@@ -1694,8 +1718,12 @@
       "local": "a077b04085c760311afb576cd6717ff45456fa274b4fc8cbfe242761b3b8eece"
     },
     {
+      "path": "modern/src/validation/resources/assets/embeddium_validation/models/item/fism_foil.json",
+      "local": "553e8695a1881deb6d51a235bd96c2b09c86b2e2d1dd7b1d746f5fa36f110756"
+    },
+    {
       "path": "modern/src/validation/resources/embeddium-validation.mixins.json",
-      "local": "60074456c133190d928c95dad0cfcc07387be1b87ccfbf55c17cf52f98d336fd"
+      "local": "751cb89681b0c3429bed81f006f95be3fdc4a24d66cdb53377733481a4f47a3d"
     },
     {
       "path": "modern/src/validation/resources/pack.mcmeta",

@@ -38,6 +38,8 @@ Intentional departures from the pinned Celeritas snapshot:
   with native Forge biomes, dimension hooks and the bundled shader pipeline. See `docs/angelica-weather-instancing.md`.
 - Iris's horizon cone from LGPL-3.0 revision `bff1e69cb6c5519d8745784aa9c8b92984de67e7` (PR #2941),
   using the native Forge 1.20.1 vertex-buffer and shader path. See `docs/iris-horizon-backport-2026-11-17.md`.
+- Iris's FISM shadow-pass optimizations from LGPL-3.0 commit `82e39b0252a9576190502001ccbadb038c6b5e78`,
+  adapted to the 1.20.1 sign, banner/shield, item and map renderers. See `docs/iris-fism-backport-2026-11-17.md`.
 
 Terrain sorting V3, vertex layouts/headers, render-pass consolidation, occlusion, raster culling, shader integration,
 batching and the Flywheel shader backend remain Celeritas implementations. Celeritas defaults are retained,
