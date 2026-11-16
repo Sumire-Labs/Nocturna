@@ -1,0 +1,79 @@
+{
+  "reference": {
+    "repository": "https://github.com/IrisShaders/Iris",
+    "branch": "1.20.1",
+    "revision": "f8d7bea2ab82d21737e7aa8e4b2fb3a429078106"
+  },
+  "limitations": [
+    "Literal Java declaration inventory only; conditional branches, dynamic names, values, types and update timing need separate review.",
+    "Includes internal uniforms. Counts are not a conformance percentage.",
+    "Directives inventory covers handle*Directive calls only; prefix handlers and nested directives are not exhaustive.",
+    "Does not execute reference Iris, validate every program, or certify image equivalence."
+  ],
+  "featureFlags": {
+    "referenceCount": 11,
+    "localCount": 11,
+    "missingLocally": [],
+    "additionalLocally": []
+  },
+  "literalMacros": {
+    "referenceCount": 30,
+    "localCount": 33,
+    "missingLocally": [
+      "IRIS_HAS_CONNECTED_TEXTURES",
+      "IRIS_VERSION"
+    ],
+    "additionalLocally": [
+      "BIOME_",
+      "CLRWL_RENDER_STAGE_",
+      "COLORWHEEL_VERSION",
+      "HAS_COLORWHEEL",
+      "IRIS_HAS_TRANSLUCENCY_SORTING"
+    ]
+  },
+  "literalUniformRegistrations": {
+    "referenceCount": 149,
+    "localCount": 154,
+    "missingLocally": [
+      "constantMood:1f",
+      "currentSelectedBlockId:1i",
+      "currentSelectedBlockPos:3f"
+    ],
+    "additionalLocally": [
+      "easuCon0:4ui",
+      "easuCon1:4ui",
+      "easuCon2:4ui",
+      "easuCon3:4ui",
+      "iris_AlphaTestValue:1f",
+      "iris_FogIsExp2:1i",
+      "rcasMaxCoord:2i",
+      "rcasSharpness:1f"
+    ]
+  },
+  "literalPropertyHandlers": {
+    "referenceCount": 36,
+    "localCount": 36,
+    "missingLocally": [
+      "skipAllRendering"
+    ],
+    "additionalLocally": [
+      "fallbackTex"
+    ]
+  },
+  "fingerprints": {
+    "reference": {
+      "features/FeatureFlags.java": "d91f3f4d1bed5084a2199e071d843ce178678f4da46fdcf9f6c9ab6afa8c5b9d",
+      "gl/shader/StandardMacros.java": "042a48dd5cb7395e7b465e2fcaf2c391d206fe60976e5f5a1ab85a1219472bf1",
+      "shaderpack/properties/ShaderProperties.java": "741070fcd112d6a9bdacbcdeb7b084dc6a7fdf248c498b029b92cbe86a5efae9",
+      "uniforms/CommonUniforms.java": "3000ad34b78c04d5abb05536998c973a2fd0594af8913373d1e5ba66aa2d932a",
+      "uniforms/IrisExclusiveUniforms.java": "06326c90192aa8ca1039f490570baa599353d72c4a7f43079a0bbb94ae74e2a4"
+    },
+    "local": {
+      "features/FeatureFlags.java": "7879701d73f140469bdc30ef020aa6d16bf758d04d77bc7ec7130c0a35b3a586",
+      "gl/shader/StandardMacros.java": "a6dbd3c700ace80ae89d4b40ba794bcea201639700948a3ff8c823f8ac69f00f",
+      "shaderpack/properties/ShaderProperties.java": "e982a175bfedcc6b7a9d6fd759b1be484c55a0f24dcb77bfbb89d2507fe2bdcf",
+      "uniforms/CommonUniforms.java": "d63ab3884706c338f8aa0b6be851a0ee490832e84134ec9946fada8ad4fdca70",
+      "uniforms/IrisExclusiveUniforms.java": "4e1bb660fdc1d633d81746845ed41ea979be9e74308882ff0501785e115f8370"
+    }
+  }
+}

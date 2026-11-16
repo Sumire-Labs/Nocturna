@@ -45,8 +45,9 @@ OpenGL program・VAO・buffer・framebuffer・active texture・patch state を�
 - CCL・Immersive Engineering・BrandonsCore を含む既存の audit client も通過。
 
 初回の単独検証は common 55 件＋modern 41 件、計 96 件を通過。
-並行作業の未確定ソースを混ぜない検証 checkout を用いた。最終コミット時の追加検証と
-実シェーダーパックの結果は shader compatibility audit に記録する。
+PBR index と統合した commit `ecb65fbc` では計 116 件と addon 付き validation client を通過。
+Java 17 製品 class 2,443 個も確認した。並行作業の未確定ソースを混ぜない検証 checkout を用いた。
+実シェーダーパックの結果と未解決の問題は `docs/iris-shader-compatibility-audit.md` に記録する。
 
 全 shader、全設定、全 GPU での画像一致を保証する検査ではない。
 shader pack の vertex input 契約との整合は、元の数式の一致とは別に確認する必要がある。

@@ -1,0 +1,7 @@
+modLoader="javafml"
+loaderVersion="[47,)"
+license="LGPL-3.0-only"
+[[mods]]
+modId="nocturna_shader_probe"
+version="1"
+displayName="Nocturna isolated shader probe"

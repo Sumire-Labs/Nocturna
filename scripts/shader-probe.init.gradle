@@ -1,0 +1,33 @@
+// Opt-in isolated shader-pack probe. No shader packs or probe classes are included in product jars.
+gradle.beforeProject { p ->
+    if (p.path != ':modern:1.20.1-forge' || !p.hasProperty('shaderProbePack')) return
+    p.afterEvaluate {
+    def sources = p.property('shaderProbeSources')
+    def probe = p.sourceSets.create('shaderProbe') {
+        java.srcDir("$sources/java")
+        resources.srcDir("$sources/resources")
+        compileClasspath += p.sourceSets.main.output + p.sourceSets.main.compileClasspath
+        runtimeClasspath += p.sourceSets.main.runtimeClasspath
+    }
+    def platform = p.extensions.getByName('legacyForge')
+    def mod = platform.mods.create('nocturna_shader_probe') { sourceSet(probe) }
+    platform.runs.create('shaderProbeClient') {
+        client()
+        loadedMods.set([platform.mods.getByName('embeddium'), mod])
+        gameDirectory.set(p.layout.buildDirectory.dir('shader-probe-run'))
+        programArguments.addAll(platform.runs.getByName('client').programArguments)
+        programArgument('--mixin.config'); programArgument('nocturna-shader-probe.mixins.json')
+        systemProperty('nocturna.probe.pack', p.property('shaderProbePack').toString())
+        systemProperty('nocturna.probe.label', p.findProperty('shaderProbeLabel')?.toString() ?: 'candidate')
+        systemProperty('nocturna.probe.result', p.property('shaderProbeResult').toString())
+        systemProperty('nocturna.probe.cache', p.findProperty('shaderProbeCache')?.toString() ?: 'true')
+        systemProperty('nocturna.probe.quick', p.findProperty('shaderProbeQuick')?.toString() ?: 'false')
+        systemProperty('nocturna.probe.elevated', p.findProperty('shaderProbeElevated')?.toString() ?: 'false')
+        systemProperty('nocturna.probe.debug', p.findProperty('shaderProbeDebug')?.toString() ?: 'false')
+        def temp = new File(p.property('shaderProbeResult').toString()).parentFile.toPath().resolve('probe-tmp')
+        temp.toFile().mkdirs()
+        systemProperty('java.io.tmpdir', temp.toAbsolutePath().toString())
+    }
+    p.tasks.withType(JavaExec).configureEach { if (name == 'runShaderProbeClient') maxHeapSize = '8G' }
+    }
+}

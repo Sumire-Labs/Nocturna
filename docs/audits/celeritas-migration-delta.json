@@ -913,6 +913,26 @@
       "local": "90e6a6f5ad1e051a6ae2f133e9796e035bfb04c837d630895caae13755dfd57d"
     },
     {
+      "path": "modern/src/shaderProbe/java/org/embeddedt/embeddium/shaderprobe/ShaderPackSmoke.java",
+      "local": "de9d1b2ca2b379622d662d3ae3225e272c5063f9c1d013fc701800bb382027c2"
+    },
+    {
+      "path": "modern/src/shaderProbe/java/org/embeddedt/embeddium/shaderprobe/mixin/CompileCounterMixin.java",
+      "local": "a92b2710b38fcab5edb0787f3d9e4c2bc69e0b137626bb0f4362aa8b8a357729"
+    },
+    {
+      "path": "modern/src/shaderProbe/resources/META-INF/mods.toml",
+      "local": "5998e163d288d45a3a5b14a809e093b3a02e0dc728922b6f07fa5dc4252322b2"
+    },
+    {
+      "path": "modern/src/shaderProbe/resources/nocturna-shader-probe.mixins.json",
+      "local": "53fb8bd022175060edde5ae4ff439376b9ea3e6c45d11fd855909ba09fc80038"
+    },
+    {
+      "path": "modern/src/shaderProbe/resources/pack.mcmeta",
+      "local": "bbbccfa387c47c3e6be4c30fd4e4fe798f69daa86924f5a153bddd8d00c23494"
+    },
+    {
       "path": "modern/src/test/java/net/irisshaders/iris/cache/ProgramCacheLifecycleTest.java",
       "local": "3e51a43962dade5db1e878767cfd0756e10c40ea9d0d954fecda14c9ad254714"
     },
