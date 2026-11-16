@@ -1,11 +1,11 @@
 {
   "revision": "26f000239eb8ddf7ee191f0ddf369147e3c92ef6",
-  "identical": 1561,
+  "identical": 1559,
   "changes": [
     {
       "path": "buildSrc/build.gradle.kts",
       "upstream": "4f1e92f8e7c782ec6fcc75fbbf5ba86e7f06b7e7c9667e85ae463e247c1413e5",
-      "local": "e8cab9aa119fb2e4380ef2551ca5029de19d6ddf25f3d09297b2ca943644d305"
+      "local": "98c6653f04578f3ce94fff21eb2595bb425d7208df6cd81a48e8d005c8f19edb"
     },
     {
       "path": "buildSrc/src/main/kotlin/celeritas.platform-conventions.gradle.kts",
@@ -15,7 +15,7 @@
     {
       "path": "common/build.gradle",
       "upstream": "53e0f6c66135f57839fdc122fb3e51cf06aaff307208381e5120ad57c927ca6e",
-      "local": "ad29fcd6bbfeeddbe58e25b25e1bd04769cc238a718240fc6f56315b80c56445"
+      "local": "b6bf354da892f4ca64971389b20d8cdc5439c94af318e2a47528f615747050b9"
     },
     {
       "path": "common/src/main/java/org/embeddedt/embeddium/impl/gl/arena/GlBufferArena.java",
@@ -41,6 +41,11 @@
       "path": "common/src/main/java/org/embeddedt/embeddium/impl/gui/SodiumGameOptions.java",
       "upstream": "510567396b2f1a67c1a56381a319ee76f44ea64e697df0a47e2b849502f246d2",
       "local": "a41120ea8c5c0d68c5867965455dc4abc505b590f4f1d36190974204c56a99f0"
+    },
+    {
+      "path": "common/src/main/java/org/embeddedt/embeddium/impl/gui/frame/tab/Tab.java",
+      "upstream": "ce6f8bef3479129bd6dd826d4c88122646f9dba7338e11798519ff1f15512d0b",
+      "local": "2746d1426cccfae4249f74360465776c946a864690a4c079882b7d9c690eadb2"
     },
     {
       "path": "common/src/main/java/org/embeddedt/embeddium/impl/gui/framework/TextComponent.java",
@@ -90,7 +95,7 @@
     {
       "path": "modern/build.mdg.gradle.kts",
       "upstream": "fc793feb77018a5496e0e45940650592266ea42d23bdb56aae9dd625ba47eee7",
-      "local": "4ac56512ac10eac785e84597e4f0bc882e616b708c29cfd279f5f96a3797b909"
+      "local": "6db4677f64c5956ee782925e4b2be8bfe7e90b7e77e03ade8f87a2cf492ff017"
     },
     {
       "path": "modern/src/main/gui_java/org/embeddedt/embeddium/impl/gui/modern/EmbeddiumVideoOptionsScreen.java",
@@ -471,6 +476,11 @@
       "path": "modern/src/main/shaders_resources/assets/iris/lang/zh_tw.json",
       "upstream": "124a255e37054d0662c6db61586363406739510f7f626a0257b428d7f71773ac",
       "local": "2831a3c6b169f15ebb0dcb8b32f3f120377658ec15f29e93d63a5711d2faef4e"
+    },
+    {
+      "path": "plugins/celeritas-mdg-plugin/build.gradle.kts",
+      "upstream": "7a82be859ea55cc5871cdd704e68f5ae669007c6a48fbfcc24f59a50dcf359cc",
+      "local": "e733f28db59d16f4bc805324e30475fecc1e8a410cfe037c7292123874d2b9fd"
     }
   ],
   "additions": [
@@ -501,6 +511,674 @@
     {
       "path": "common/src/test/java/org/embeddedt/embeddium/testutil/GlServiceHarness.java",
       "local": "e178843990bd031f2dc38503a8f1c2ee5591f5ad72c2e30698fb6159c3fd30a4"
+    },
+    {
+      "path": "modern/src/extraValidation/java/org/embeddedt/embeddium/extravalidation/AnimationValidation.java",
+      "local": "a2daa5bb56a1bfa9c75ea7b3f7555f7b947e4aa3516a374b09c9a35858b05bc5"
+    },
+    {
+      "path": "modern/src/extraValidation/java/org/embeddedt/embeddium/extravalidation/BasicFeatures.java",
+      "local": "c01b2026b9d555b7809de0970b2a0890ca16a62cc7008f976ac46a4fbfc7207f"
+    },
+    {
+      "path": "modern/src/extraValidation/java/org/embeddedt/embeddium/extravalidation/ExtraValidation.java",
+      "local": "353f335778f2738aa1b9b11081ad169cc71552790360eb02df1dbb0d6a130384"
+    },
+    {
+      "path": "modern/src/extraValidation/java/org/embeddedt/embeddium/extravalidation/PaniniPixels.java",
+      "local": "cbdbdbc50354cc9518a0448ad8a457ff2ba54dfc1dac511189adff7a1c8bc979"
+    },
+    {
+      "path": "modern/src/extraValidation/java/org/embeddedt/embeddium/extravalidation/RsoIntegration.java",
+      "local": "576375e0277d54cfa11db183ee65e0736c66b2cf0c767408f9321f9a5b649f1b"
+    },
+    {
+      "path": "modern/src/extraValidation/java/org/embeddedt/embeddium/extravalidation/ShaderPackFixture.java",
+      "local": "09901eb910222440132a886b68c77c5022e9b110d13159632590eba6a7236fa8"
+    },
+    {
+      "path": "modern/src/extraValidation/resources/META-INF/mods.toml",
+      "local": "875de2b74c015054b816efcd5108a46e9a062e0ea834c1b601e9a00ff6ec926a"
+    },
+    {
+      "path": "modern/src/extraValidation/resources/pack.mcmeta",
+      "local": "74a095b38aad29782270095f2a6c708d9a151499a7fac7fe923d59e43ad8a261"
+    },
+    {
+      "path": "modern/src/main/extra_java/me/flashyreese/mods/greenlight/feature/ClientFeature.java",
+      "local": "2120c09110fc1d18efba009d4c58430e5f091f8aa480230fc6917e7eb39202eb"
+    },
+    {
+      "path": "modern/src/main/extra_java/me/flashyreese/mods/greenlight/feature/ClientFeaturePolicyManager.java",
+      "local": "25b9312af36cece062c98a4f7483d96bc1b2d3e28a1b51bd600433ad157eb313"
+    },
+    {
+      "path": "modern/src/main/extra_java/me/flashyreese/mods/greenlight/feature/FeaturePolicy.java",
+      "local": "3bbe0598681104eaa8fff1046c7d66e8cd2148c2a06b7c684cdf5c371614557e"
+    },
+    {
+      "path": "modern/src/main/extra_java/me/flashyreese/mods/greenlight/feature/FeaturePolicySource.java",
+      "local": "4d6f603f6912d9bf9b88e2648a0da68852a510d199b608baaf5849088e0a8f94"
+    },
+    {
+      "path": "modern/src/main/extra_java/me/flashyreese/mods/greenlight/feature/Greenlight.java",
+      "local": "8b93949c5f2c26209f97b2e24d52a016d78f706adb1225508651462cb6c78208"
+    },
+    {
+      "path": "modern/src/main/extra_java/me/flashyreese/mods/greenlight/feature/GreenlightRuntimeProvider.java",
+      "local": "84dba6fa6d0eb45dcab56ecf23132b81b3d157cfa17eb5130b5e877a857d67eb"
+    },
+    {
+      "path": "modern/src/main/extra_java/me/flashyreese/mods/greenlight/feature/PolicyDecoder.java",
+      "local": "532086e78e74df078085ec02f10e0d5f9b89f2f8c00de401b085812dac6c53f3"
+    },
+    {
+      "path": "modern/src/main/extra_java/me/flashyreese/mods/greenlight/feature/ResourcePackPolicySource.java",
+      "local": "dbbfec1f32edb036bd99ad95d62cda7791d32c5e3352b42c329c3d958f238b6d"
+    },
+    {
+      "path": "modern/src/main/extra_java/me/flashyreese/mods/greenlight/feature/spi/GreenlightProvider.java",
+      "local": "290a610ddcb937bfc9c9a5ebeca287a041e77688ea164338715288f3fa098b27"
+    },
+    {
+      "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/client/FrameCounter.java",
+      "local": "4984a0f4bea58f1d30cef21098d2902914706126a856aeca542467c0bc9ce737"
+    },
+    {
+      "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/client/SodiumExtraClientMod.java",
+      "local": "b03bee62892b48f07294f99fc3b3ccfec505f030cdaf8537f25d7618eb3fe55a"
+    },
+    {
+      "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/client/config/ConfigFileIO.java",
+      "local": "680070f0721636d5633721bb2db7430adb22726c18290821fbf5023c3cf28ceb"
+    },
+    {
+      "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/client/config/SodiumExtraConfig.java",
+      "local": "12932ee142065ccd2566c75c435a9159a268cc03626b70e7de1fafcd56023959"
+    },
+    {
+      "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/client/config/SodiumExtraConfigKeys.java",
+      "local": "cc4ddd65b2041964b2313ff36d74f3363c06c34aa356c81d6c11155bb43e59a2"
+    },
+    {
+      "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/client/config/SodiumExtraGameOptions.java",
+      "local": "472e6d06349d86dab38277476d91b4a0a2dc0db06c09aab1c2bcdfd8847a1af1"
+    },
+    {
+      "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/client/fog/FogDistanceHelper.java",
+      "local": "08304e078dc4ee7462475d13a8c17de39356bb0ab491cd4c66d8e09618246af7"
+    },
+    {
+      "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/client/fog/FogShaderTransformer.java",
+      "local": "a01e42d07b4b2d7cf55d909488a8f5695d5c3c05d93c4afec242545d754a79df"
+    },
+    {
+      "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/client/gui/SodiumExtraDebugEntryCategory.java",
+      "local": "9d3c7bfe4d59e25f9329921b6882a034fc4f3975737b873345a15eea83318f55"
+    },
+    {
+      "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/client/gui/SodiumExtraDebugEntryCoords.java",
+      "local": "ac349d7c24625ed40cc1f874fcab55671d742a5f4eaa514a80f5d9621a7b8119"
+    },
+    {
+      "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/client/gui/SodiumExtraDebugEntryFps.java",
+      "local": "b0e0dc667ea6a2c72e93512ba9944a5fe6c306c5beef87eea88c3a629fc24665"
+    },
+    {
+      "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/client/gui/SodiumExtraDebugEntryLightUpdates.java",
+      "local": "584790d65d8564d49093586d8346721c8b84f988dfbed3b44a86cc9a01a8cbd0"
+    },
+    {
+      "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/client/gui/SodiumExtraHud.java",
+      "local": "48b5c931ce124a27af595db2d0b66a5de53ad39aece19f683c5ff342e1cad9f4"
+    },
+    {
+      "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/client/render/PaniniProgram.java",
+      "local": "49131d71a14a91947726dd021a082b5543d0dc42ff297b38462b1ba2ef362e36"
+    },
+    {
+      "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/client/render/PaniniProjection.java",
+      "local": "70736d3ce9ac6d4b332f5bd689ab1b0c20fee4cbbef482d15dffa748721cdc30"
+    },
+    {
+      "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/client/util/ToastFilter.java",
+      "local": "4c209158e958164c86f2a9ca7e5ee390c7c766ed95b5e66c21d1a84e3584709c"
+    },
+    {
+      "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/common/util/AnimationStateExtended.java",
+      "local": "c97bd8a44b7c44daa1a02790ed7efebbba8c9b2fd20e441f98d761bcd5960acf"
+    },
+    {
+      "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/common/util/ControlValueFormatterExtended.java",
+      "local": "1d693c06ce726d823db075bef5469a9e26f62734a6fc7e62bc408787f1a462a5"
+    },
+    {
+      "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/common/util/IdentifierSerializer.java",
+      "local": "7720e1fa7f1c2d793414abca9c4e13625ed2269ec68877bc3d38f51cff5d338a"
+    },
+    {
+      "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/common/util/Utils.java",
+      "local": "5e51232ab8707edd12acca282d2cae96d30cabe655945df1e866076c856fbfcd"
+    },
+    {
+      "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/compat/IrisCompat.java",
+      "local": "ae437c18adff7547cf7593a85468e8c3224410f00a92a87d085979c5b9dfea7f"
+    },
+    {
+      "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/SodiumExtraMixinConfigPlugin.java",
+      "local": "ea7ddc173c5d91adf3da34cccada0231dc7f0b01e2979d2a638ba6b24871bbc7"
+    },
+    {
+      "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/adaptive_sync/MixinWindow.java",
+      "local": "382133f8b2a0c855fc3008a47bb6ca553be9609b887ed0f38a9b063cf6e48ad6"
+    },
+    {
+      "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/animation/MixinSpriteContentsAnimationState.java",
+      "local": "88b1e98c5422d3a4ca42cd2f58c61606f7284d9c06e8bfe1f5dcdeab06e00c0e"
+    },
+    {
+      "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/animation/MixinTextureAtlas.java",
+      "local": "b1068f56b7e2ae0d4485b5df36e88fdf5f0914d2683c8c2484fbe201ce75470a"
+    },
+    {
+      "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/biome_colors/MixinBiomeColors.java",
+      "local": "6bd571db314264878290f94f38966c913fa6faa19b2e3c9311fb057975bf66ba"
+    },
+    {
+      "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/cloud/MixinCloudRenderer.java",
+      "local": "439fa2d78b7386413eb0140e970400ddb2ee130c92227f229e2fc41a7e16fbc0"
+    },
+    {
+      "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/cloud/MixinLevelRenderer.java",
+      "local": "866425ce72a5d2c2b6d5cbbd1cd20f2e5e6d5fcba176d0e56244bf880fc7e7c8"
+    },
+    {
+      "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/core/MixinDebugEntries.java",
+      "local": "ef3a143dc1768a4951791e50f17fab9cf0463e6d02acfeaefa6cce3ecd5612b0"
+    },
+    {
+      "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/fog/AccessorSliderRange.java",
+      "local": "08ba791f0710045bbce7df2aca40c4568476540f6dd46226e220418ae6fa0526"
+    },
+    {
+      "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/fog/MixinCloudFog.java",
+      "local": "7ca3583e821b4687a62596bc014411854ceb0854fd891a3d3e4b6aa80006cf91"
+    },
+    {
+      "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/fog/MixinFogRenderer.java",
+      "local": "fe4ed5ddf60a7e92bf3da65438ec775eef99f4346f74f856032439ec26d5b15b"
+    },
+    {
+      "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/fog/MixinOcclusionCuller.java",
+      "local": "99cad2150f517cf6aa039817bbdec9b92cc492a0a665d694fafdd6d3c39b4234"
+    },
+    {
+      "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/fog/MixinRegionCullCache.java",
+      "local": "80ac6f0d95f7ebbb48a39ecef08ddf0f3cf1a9c206b3e005706bc8b09d2bc47c"
+    },
+    {
+      "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/fog/MixinRenderSectionManager.java",
+      "local": "a376e52c5c31ae05f3f62bcebfb01df61659f9147ed3203b0124fc185a3f18f3"
+    },
+    {
+      "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/fog/MixinShaderLoader.java",
+      "local": "d8f1ba6b68bdb3911ee82b7c955bb787159e2fa9deb72654f0a4984d8901e4a5"
+    },
+    {
+      "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/fog/MixinSmoothFog.java",
+      "local": "d2da4bce311780c7e8666282591c1b1c034938cb35f81d96d1c5a5483c189052"
+    },
+    {
+      "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/fps/MixinGameRenderer.java",
+      "local": "e57af1206fee2c212bcf197a0887f0b0067c21363d54021b7f3cd554066609ea"
+    },
+    {
+      "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/gui/MixinGui.java",
+      "local": "ccb99f8fe171ef6eab6ea8f375a7e47896769212f081e475fa53cd6d19dd833a"
+    },
+    {
+      "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/gui/MixinMinecraftClient.java",
+      "local": "a481a612fd7de80aece8c474d9353f0c763e37f94c172470a160d6e6dd130883"
+    },
+    {
+      "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/instant_sneak/MixinCamera.java",
+      "local": "ab5af55aee7e714525631e5ee0c4feaf289dbf9af7b077be657392538fcbc5f2"
+    },
+    {
+      "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/light_updates/MixinLevelLightEngine.java",
+      "local": "dbedf80b8c86e5763e84a3ebff3dad012fb1ab54b00f95a91a07e9b433fb259c"
+    },
+    {
+      "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/panini_projection/AccessorGameRenderer.java",
+      "local": "ea7f4dc4c33f24a02e11bc2cdcb3f503d4c789c64d1b3b3bbec5eba1116d0a9f"
+    },
+    {
+      "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/panini_projection/AccessorLevelRenderer.java",
+      "local": "e070174abb2143731e2cc405a7c9a0cdc3f7b0b27809c33c77f82c53b110092f"
+    },
+    {
+      "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/panini_projection/AccessorPostChain.java",
+      "local": "1d0edb5a343a1096163a368c62c0af2f87a177a16069962ec390e3fe463cfeb0"
+    },
+    {
+      "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/panini_projection/AccessorPostPass.java",
+      "local": "a1721069060930a2061bb3fe3431e3e98ed0579b44fe8d4c16e5c19df20169b0"
+    },
+    {
+      "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/panini_projection/AccessorRenderTarget.java",
+      "local": "32005018a70b2b86bf2f19e14a7777cb069104e02e4a0530a491101162540be3"
+    },
+    {
+      "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/panini_projection/MixinGameRenderer.java",
+      "local": "723693d5ebd05b25b3fc07fe59151ebfe1716173201ac7462b2281801f907191"
+    },
+    {
+      "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/panini_projection/MixinLevelRenderer.java",
+      "local": "f587b81ab5475c20df29f575734f04309675f319ab7ea330d33b6a0148dba4e9"
+    },
+    {
+      "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/panini_projection/MixinMinecraft.java",
+      "local": "7ad0b7ec9408be8ff397205a6241ed2c3cc6b2cac96ff10ffa9444aeba9be07d"
+    },
+    {
+      "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/panini_projection/MixinVertexBuffer.java",
+      "local": "e338b82f8d808045eb9d44afe0fd9514cffc7fa4c21483f3bca76ed24169117d"
+    },
+    {
+      "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/particle/MixinBlockParticles.java",
+      "local": "26d6077c4b7ad319053d45d76aa15682e5619f00f461836d46f3bb75d23fbaf5"
+    },
+    {
+      "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/particle/MixinFireworkParticle.java",
+      "local": "58bc4fed985488ce524475085fc45385c440149e17c0729777e603c7d646a13a"
+    },
+    {
+      "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/particle/MixinLevelRenderer.java",
+      "local": "2290f74ff63964feaa68abbefd6df921c925b7b4fefa74b1b3c918be9134cc12"
+    },
+    {
+      "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/particle/MixinParticleEngine.java",
+      "local": "8c2edc12dc0dfe21f557e3f951e863b32b896db1ad3bd9c80d1a3b446757c012"
+    },
+    {
+      "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/prevent_shaders/MixinGameRenderer.java",
+      "local": "e26272e1d8ac82e1c4d8636b4844dcb18f23ef33c5deccde083d8c87bad6caed"
+    },
+    {
+      "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/reduce_resolution_on_mac/MixinWindow.java",
+      "local": "a9e8758be749f7c6232b0e8af34ec7fe999a8eab1eb7f832d15f6be88fa235bd"
+    },
+    {
+      "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/render/block/entity/MixinBeaconRenderer.java",
+      "local": "b1f00d72f257d27f3c9cd701cb363465e6de2f8f104e499f9a4650b8236ef730"
+    },
+    {
+      "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/render/block/entity/MixinEnchantingTableBlockEntityRenderer.java",
+      "local": "83dd9df167822f4803579ae50bcb93c947c87869c50e617a372a110975f1e350"
+    },
+    {
+      "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/render/block/entity/MixinPistonBlockEntityRenderer.java",
+      "local": "b7a33a9d5b422cf3b88abfcff1059612bac4904fea65074ad4de499dd4c02b88"
+    },
+    {
+      "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/render/entity/MixinItemFrameEntityRenderer.java",
+      "local": "de690d4ead60ac7865af13a78fd2b22c3381852107f84df05fa0d8e5394e1298"
+    },
+    {
+      "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/render/entity/MixinLivingEntityRenderer.java",
+      "local": "9be772892452d85c89fb53e3648e289c14bfbcd99c75c874c0a6bee995e9a080"
+    },
+    {
+      "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/render/entity/MixinPaintingEntityRenderer.java",
+      "local": "d1b29ca00ac36e719ad266c3e8a7b0f98dfdd47915cfdf60360dbd14318936f6"
+    },
+    {
+      "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/sky/MixinLevelRenderer.java",
+      "local": "4f007a92ad4fd9a23f02dcbbca440d3a3e3e815bde788d780b4a6516fc3dc4ae"
+    },
+    {
+      "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/sky_colors/MixinFogRenderer.java",
+      "local": "c3acfd416a82e5bd81facdf5bfe957ca115a6977a5ccb8dffdd158c7075b24df"
+    },
+    {
+      "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/steady_debug_hud/MixinDebugScreenOverlay.java",
+      "local": "932e5cc8e970bf1cd4cb5e4c56f813df25a6abd9f5ee15e2086123609c0b1636"
+    },
+    {
+      "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/toasts/MixinToastInstance.java",
+      "local": "86f78b25dd85c1a740ce1757f0899facae191aac47af14076676941aa118dddb"
+    },
+    {
+      "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/toasts/MixinToastManager.java",
+      "local": "12d6ce046ce136f84174ead5a537b0d42c9f644f1641b5bb60f9d8269bf28b70"
+    },
+    {
+      "path": "modern/src/main/extra_java/org/embeddedt/embeddium/impl/extra/compat/DebugEntryCategory.java",
+      "local": "064480ec3c91cbcc6c0de98bbb838bfb385ce5e9e980eb2b0e4a35aa4d6ccc39"
+    },
+    {
+      "path": "modern/src/main/extra_java/org/embeddedt/embeddium/impl/extra/compat/DebugScreenDisplayer.java",
+      "local": "d037dee87ac5a69abfd77d2de32d194571c68831719a39122211e9a5e59ff2b3"
+    },
+    {
+      "path": "modern/src/main/extra_java/org/embeddedt/embeddium/impl/extra/compat/DebugScreenEntry.java",
+      "local": "8b9285ed8b4c19fe940e315169887cfe9af562fa4362dce281ade47af23c8a73"
+    },
+    {
+      "path": "modern/src/main/extra_java/org/embeddedt/embeddium/impl/extra/compat/ExtraAnimationTicker.java",
+      "local": "8a0990485ac91ecae947c8b80927fc3468227483880a146d7828f449d96f68ff"
+    },
+    {
+      "path": "modern/src/main/extra_java/org/embeddedt/embeddium/impl/extra/compat/ExtraAnimations.java",
+      "local": "f0c48aea5fed77396a77132d3132178789e4bf8627d3c6a4f1eacda64e15a62f"
+    },
+    {
+      "path": "modern/src/main/extra_java/org/embeddedt/embeddium/impl/extra/compat/ExtraClientEvents.java",
+      "local": "6545453048ac058a798f8b805c57fb58591d6d266fa45236cfd38892baa3b9fb"
+    },
+    {
+      "path": "modern/src/main/extra_java/org/embeddedt/embeddium/impl/extra/compat/ExtraDebugOptionsScreen.java",
+      "local": "de9bc7c3d8324192c9c31e2a36d98ccccf785ac63ff5f83d2b54993d9b0987f8"
+    },
+    {
+      "path": "modern/src/main/extra_java/org/embeddedt/embeddium/impl/extra/compat/ExtraFog.java",
+      "local": "091004fb9d8222c2306015543d92ae7007c8d4030cdfb2756f09a89958fe8682"
+    },
+    {
+      "path": "modern/src/main/extra_java/org/embeddedt/embeddium/impl/extra/compat/ExtraMath.java",
+      "local": "0049f0f3d379835d306f87d3f63c3ce8e079753d669686ac7cdc466b5cda32a7"
+    },
+    {
+      "path": "modern/src/main/extra_java/org/embeddedt/embeddium/impl/extra/compat/ExtraPlatform.java",
+      "local": "0b24751ee709ded077e365698d21a4406535e29c2ebfea43b5bb530c6e7a9483"
+    },
+    {
+      "path": "modern/src/main/extra_java/org/embeddedt/embeddium/impl/extra/compat/FogData.java",
+      "local": "cdc44dd67a84d0b41f4d1b891ffe240a0733ace2c761cfdbf78777a23c33e51d"
+    },
+    {
+      "path": "modern/src/main/extra_java/org/embeddedt/embeddium/impl/extra/compat/PlatformRuntimeInformation.java",
+      "local": "8e4b4dc6ca0768659399b3c1ef4d60b53c0189fcfb1fadf006db5291a0b010b6"
+    },
+    {
+      "path": "modern/src/main/extra_java/org/embeddedt/embeddium/impl/extra/compat/StorageEventHandler.java",
+      "local": "ac53e5f6b96696f64e534972a53ff8a41bcb5e907432a2715dbca2531d22ba0a"
+    },
+    {
+      "path": "modern/src/main/extra_java/org/embeddedt/embeddium/impl/extra/compat/config/ConfigEntryPoint.java",
+      "local": "05ec50025abc45cb2daa515e99ded24845369f5853f0540fdbd1d3fd21135e5e"
+    },
+    {
+      "path": "modern/src/main/extra_java/org/embeddedt/embeddium/impl/extra/compat/config/ConfigState.java",
+      "local": "d04f50014ff959793db2d8635ec062d4dc1e5a0f70039c1539a56bb0269ab1db"
+    },
+    {
+      "path": "modern/src/main/extra_java/org/embeddedt/embeddium/impl/extra/compat/config/ControlValueFormatterImpls.java",
+      "local": "1e695b1ea1f5da3edef33c60d813ce8765ee6eff928360210b57aaee81bdbe38"
+    },
+    {
+      "path": "modern/src/main/extra_java/org/embeddedt/embeddium/impl/extra/compat/config/option/ControlValueFormatter.java",
+      "local": "1ec1bc8c4e4e2e8b1d38a1926cb8dcdab0e8881dd0435285849b7d524015a5d6"
+    },
+    {
+      "path": "modern/src/main/extra_java/org/embeddedt/embeddium/impl/extra/compat/config/option/OptionFlag.java",
+      "local": "8890d8cf843488e1b356a8e181920fd2acf59dd3f68d6c25225377d3d94d221a"
+    },
+    {
+      "path": "modern/src/main/extra_java/org/embeddedt/embeddium/impl/extra/compat/config/option/OptionImpact.java",
+      "local": "cc2c53ea9f0c106bd5c826e97c68abdc67d840afe0ed1b68eb5f193dd0b904cf"
+    },
+    {
+      "path": "modern/src/main/extra_java/org/embeddedt/embeddium/impl/extra/compat/config/option/Range.java",
+      "local": "814ce35ccd67e1609836cdfd37a8df18d0e961c0e66c254bc7a77d122c8b9031"
+    },
+    {
+      "path": "modern/src/main/extra_java/org/embeddedt/embeddium/impl/extra/compat/config/structure/BooleanOptionBuilder.java",
+      "local": "ca604b5ee21d9f9c85aa1e3ca7fad8b68e71001e24173796058ae16597a88fdc"
+    },
+    {
+      "path": "modern/src/main/extra_java/org/embeddedt/embeddium/impl/extra/compat/config/structure/ConfigBuilder.java",
+      "local": "0384fe755169952f7a99198802b41a414ebac1bb0afbf65ce9b901a7660d4557"
+    },
+    {
+      "path": "modern/src/main/extra_java/org/embeddedt/embeddium/impl/extra/compat/config/structure/EnumOptionBuilder.java",
+      "local": "4eae4738bcf6b55776bdf1098eba18a38893f4041f2eb49a892dd601619cfdd5"
+    },
+    {
+      "path": "modern/src/main/extra_java/org/embeddedt/embeddium/impl/extra/compat/config/structure/ExternalButtonOptionBuilder.java",
+      "local": "9bda0923b51c163206e46d39dccb9574041660af33f80e8d016cafd77971c51b"
+    },
+    {
+      "path": "modern/src/main/extra_java/org/embeddedt/embeddium/impl/extra/compat/config/structure/ExtraOption.java",
+      "local": "9674b33604437eb02349ba37a35b1bd9497033c24a3530b2f73a0851f33488f2"
+    },
+    {
+      "path": "modern/src/main/extra_java/org/embeddedt/embeddium/impl/extra/compat/config/structure/GroupHeading.java",
+      "local": "b80b8971434cd4aebd5eabfb3f3737f6598e7ab08e387808899dcfff741d9d99"
+    },
+    {
+      "path": "modern/src/main/extra_java/org/embeddedt/embeddium/impl/extra/compat/config/structure/HiddenControl.java",
+      "local": "a2b3b711a46803a5193104b96af7f98cd69a120155d4e58b7058dc6f636a6e77"
+    },
+    {
+      "path": "modern/src/main/extra_java/org/embeddedt/embeddium/impl/extra/compat/config/structure/IntegerOptionBuilder.java",
+      "local": "ab2f30d1178b1fb39fe0837a83d6851ac676885273d64ec55ba097d3e1bbba4e"
+    },
+    {
+      "path": "modern/src/main/extra_java/org/embeddedt/embeddium/impl/extra/compat/config/structure/ModOptionsBuilder.java",
+      "local": "90eca099178ee205573a070dad8a2e68d21f1851786b1a75fa06d23aa9523d2a"
+    },
+    {
+      "path": "modern/src/main/extra_java/org/embeddedt/embeddium/impl/extra/compat/config/structure/OptionGroupBuilder.java",
+      "local": "88f5daafb5d831e3d149ca6acaf50c256cdf31ee85e775f282978deb5f28b867"
+    },
+    {
+      "path": "modern/src/main/extra_java/org/embeddedt/embeddium/impl/extra/compat/config/structure/OptionPageBuilder.java",
+      "local": "0940059f10ca8eb3d6fc61764fb3777cfdbad545b24cde1ca233364c2dd6031f"
+    },
+    {
+      "path": "modern/src/main/extra_java/org/embeddedt/embeddium/impl/extra/compat/config/structure/RsoExtraOptions.java",
+      "local": "2a25d840598fe1f7051c55779ab9503ecfe80bb77bb58ca67e975dd05554e131"
+    },
+    {
+      "path": "modern/src/main/extra_java/org/embeddedt/embeddium/impl/extra/compat/config/structure/StatefulOptionBuilder.java",
+      "local": "4fdce26e168e069248b53dcb049ab3d9755041d4cece2a6525470aa2131474be"
+    },
+    {
+      "path": "modern/src/main/extra_java/org/embeddedt/embeddium/impl/extra/vendor/caffeineconfig/AbstractCaffeineConfigMixinPlugin.java",
+      "local": "b21521909f8c835264a42e130d6673f4e4e4e5daf78a941e05452a9e3d53c5b4"
+    },
+    {
+      "path": "modern/src/main/extra_java/org/embeddedt/embeddium/impl/extra/vendor/caffeineconfig/CaffeineConfig.java",
+      "local": "a15f985a0c3a9b9a1250ddbbc39ac2b5264d4f576eded446dfab79fff2eb89c2"
+    },
+    {
+      "path": "modern/src/main/extra_java/org/embeddedt/embeddium/impl/extra/vendor/caffeineconfig/CaffeineConfigForge.java",
+      "local": "55ac0d8941c7fa0b1340b92a56447a71b81401a597fc5ed72dce33aabd8d1533"
+    },
+    {
+      "path": "modern/src/main/extra_java/org/embeddedt/embeddium/impl/extra/vendor/caffeineconfig/CaffeineConfigPlatform.java",
+      "local": "72fc1f15dff78690d6940a706dffdbe8a9f2b612a7ed2314b3ba92b6e81210fd"
+    },
+    {
+      "path": "modern/src/main/extra_java/org/embeddedt/embeddium/impl/extra/vendor/caffeineconfig/Option.java",
+      "local": "eb1b3013f1a6ed67ce619d5ebfa742ccdfcef0f3d3f0954d720c180ae0cbf27a"
+    },
+    {
+      "path": "modern/src/main/extra_resources/META-INF/services/me.flashyreese.mods.greenlight.feature.spi.GreenlightProvider",
+      "local": "c76b2cf0cfe36ee04a0e9af87a0fbacbad1c0fb88d46460d5117643f8c631e23"
+    },
+    {
+      "path": "modern/src/main/extra_resources/META-INF/services/org.embeddedt.embeddium.impl.extra.vendor.caffeineconfig.CaffeineConfigPlatform",
+      "local": "0c17a09bb2d3f6d257c594aeb9546946fc281047978b20eabca9158466a6513e"
+    },
+    {
+      "path": "modern/src/main/extra_resources/assets/sodium-extra/lang/cs_cz.json",
+      "local": "16d9b959df320f6dd2073dd4300ed5779a59becb9a275acad83430e2fc5a1afb"
+    },
+    {
+      "path": "modern/src/main/extra_resources/assets/sodium-extra/lang/de_at.json",
+      "local": "0be81be144fd71d47981874b29ea7da9f43d1262e9c98a72604ac5e672cba9be"
+    },
+    {
+      "path": "modern/src/main/extra_resources/assets/sodium-extra/lang/de_ch.json",
+      "local": "0be81be144fd71d47981874b29ea7da9f43d1262e9c98a72604ac5e672cba9be"
+    },
+    {
+      "path": "modern/src/main/extra_resources/assets/sodium-extra/lang/de_de.json",
+      "local": "0be81be144fd71d47981874b29ea7da9f43d1262e9c98a72604ac5e672cba9be"
+    },
+    {
+      "path": "modern/src/main/extra_resources/assets/sodium-extra/lang/el_gr.json",
+      "local": "74b8411a878c7427741531ea299b0a55d6c67e291acded4776b42a1cd97db8d5"
+    },
+    {
+      "path": "modern/src/main/extra_resources/assets/sodium-extra/lang/en_us.json",
+      "local": "e53a2b18ff10fe2e70dc71221fe969548b7fa84af7cfbae33614b1e0b9d62ffd"
+    },
+    {
+      "path": "modern/src/main/extra_resources/assets/sodium-extra/lang/es_ar.json",
+      "local": "f7676b0074db67ef646cf4efbddc097ed9bd8e54021ec55be51997d979795ffd"
+    },
+    {
+      "path": "modern/src/main/extra_resources/assets/sodium-extra/lang/es_cl.json",
+      "local": "c98e6e4f5b1ea5e26103837d4485f903e00f25652e3e5d6fd19403ee33118b21"
+    },
+    {
+      "path": "modern/src/main/extra_resources/assets/sodium-extra/lang/es_ec.json",
+      "local": "c98e6e4f5b1ea5e26103837d4485f903e00f25652e3e5d6fd19403ee33118b21"
+    },
+    {
+      "path": "modern/src/main/extra_resources/assets/sodium-extra/lang/es_es.json",
+      "local": "c98e6e4f5b1ea5e26103837d4485f903e00f25652e3e5d6fd19403ee33118b21"
+    },
+    {
+      "path": "modern/src/main/extra_resources/assets/sodium-extra/lang/es_mx.json",
+      "local": "fbfd003acd104ac01ed822ee1a49a8fa23cedd8ceba8ca355cb762235e6e1803"
+    },
+    {
+      "path": "modern/src/main/extra_resources/assets/sodium-extra/lang/es_uy.json",
+      "local": "c98e6e4f5b1ea5e26103837d4485f903e00f25652e3e5d6fd19403ee33118b21"
+    },
+    {
+      "path": "modern/src/main/extra_resources/assets/sodium-extra/lang/es_ve.json",
+      "local": "c98e6e4f5b1ea5e26103837d4485f903e00f25652e3e5d6fd19403ee33118b21"
+    },
+    {
+      "path": "modern/src/main/extra_resources/assets/sodium-extra/lang/et_ee.json",
+      "local": "0a06cedbb7cadfc7f5e7e09fe1571c81462ff4bf093155c347820c250825bb95"
+    },
+    {
+      "path": "modern/src/main/extra_resources/assets/sodium-extra/lang/fi_fi.json",
+      "local": "467dc5ae4788c5730e32b58090dbe75306183df27a366612db8047a8ff453dba"
+    },
+    {
+      "path": "modern/src/main/extra_resources/assets/sodium-extra/lang/fr_ca.json",
+      "local": "32a041d0b2292d063e5b0c1edaf42a23cc3c2cdaec4acfea1f56381fe3209d52"
+    },
+    {
+      "path": "modern/src/main/extra_resources/assets/sodium-extra/lang/fr_fr.json",
+      "local": "32a041d0b2292d063e5b0c1edaf42a23cc3c2cdaec4acfea1f56381fe3209d52"
+    },
+    {
+      "path": "modern/src/main/extra_resources/assets/sodium-extra/lang/hu_hu.json",
+      "local": "35d1c72625f10f020bab807ee26a37d4f24fcf013adfc58289d1d33ad437d644"
+    },
+    {
+      "path": "modern/src/main/extra_resources/assets/sodium-extra/lang/it_it.json",
+      "local": "9f79c37f8211d20afdcf1bdb268ed5586fab59929e2449b25c8a2d51a758d123"
+    },
+    {
+      "path": "modern/src/main/extra_resources/assets/sodium-extra/lang/ja_jp.json",
+      "local": "6fabfbb47b2ec7e533998b4377b486fa8911290e9f5de4dd35217218bea13136"
+    },
+    {
+      "path": "modern/src/main/extra_resources/assets/sodium-extra/lang/ko_kr.json",
+      "local": "ad7272494b0cf3d79fa70297c05d301ce79a64c6fa63e39653e287afde1aaa95"
+    },
+    {
+      "path": "modern/src/main/extra_resources/assets/sodium-extra/lang/ms_my.json",
+      "local": "c96f4237019560cd1253fa9771253de9aa93405643b7009962c47e842c8cbef4"
+    },
+    {
+      "path": "modern/src/main/extra_resources/assets/sodium-extra/lang/pl_pl.json",
+      "local": "1e3d1fcf7198e41801c623f3dc6b1eeb39683f2b893f4449bd4bbd69f4b2d5c0"
+    },
+    {
+      "path": "modern/src/main/extra_resources/assets/sodium-extra/lang/pt_br.json",
+      "local": "7ba271f10a1c0ed495c8b43e039c2f6d712aabb9a16d312f6f4d6b950fd978cd"
+    },
+    {
+      "path": "modern/src/main/extra_resources/assets/sodium-extra/lang/pt_pt.json",
+      "local": "7ba271f10a1c0ed495c8b43e039c2f6d712aabb9a16d312f6f4d6b950fd978cd"
+    },
+    {
+      "path": "modern/src/main/extra_resources/assets/sodium-extra/lang/ru_ru.json",
+      "local": "97a6f796945953d47a34e8c54df668fc4918bb683e6a734048ca248da64abcbf"
+    },
+    {
+      "path": "modern/src/main/extra_resources/assets/sodium-extra/lang/th_th.json",
+      "local": "40e8843f25f86a76435f412dc3fef0f6ac4c0f1629c56af45682fca74a29522a"
+    },
+    {
+      "path": "modern/src/main/extra_resources/assets/sodium-extra/lang/tr_tr.json",
+      "local": "d6da7a2ff27d0c8e4ec1b1f2d78f78087aafcb181608f13c32ce6519032e453d"
+    },
+    {
+      "path": "modern/src/main/extra_resources/assets/sodium-extra/lang/uk_ua.json",
+      "local": "680d0d4aa1bae62898164a660550f3b95054c2663eb6c92bd5a644fd0c978298"
+    },
+    {
+      "path": "modern/src/main/extra_resources/assets/sodium-extra/lang/vi_vn.json",
+      "local": "8e6d9a2d88625361c02c5c80ec607fbcf51273f9426fcdcfd4b98604c2195f78"
+    },
+    {
+      "path": "modern/src/main/extra_resources/assets/sodium-extra/lang/zh_cn.json",
+      "local": "baa49cf46b45d37a0981b2f158c80da82b815c224c3b25fc85c9ed9559b5f74c"
+    },
+    {
+      "path": "modern/src/main/extra_resources/assets/sodium-extra/lang/zh_hk.json",
+      "local": "baa49cf46b45d37a0981b2f158c80da82b815c224c3b25fc85c9ed9559b5f74c"
+    },
+    {
+      "path": "modern/src/main/extra_resources/assets/sodium-extra/lang/zh_tw.json",
+      "local": "423f4c402e94a81035957da344582d8df015aab53bdbdc5c6bea7779b1c8f2aa"
+    },
+    {
+      "path": "modern/src/main/extra_resources/assets/sodium-extra/post_effect/panini.json",
+      "local": "931c503ec8aa69051b32da88252afb9444184f8cd860e71aabfba625e16a6b6a"
+    },
+    {
+      "path": "modern/src/main/extra_resources/assets/sodium-extra/shaders/include/panini.glsl",
+      "local": "b3cb04e6ef83d395cab1ebd20b509235385f5f339d04043ba755388eb0b8e14f"
+    },
+    {
+      "path": "modern/src/main/extra_resources/assets/sodium-extra/shaders/post/panini.fsh",
+      "local": "c8aa3599e0343a0976fc290a9ebfa92089f82db6551e5cda0d2cf2c14cb36715"
+    },
+    {
+      "path": "modern/src/main/extra_resources/assets/sodium-extra/shaders/post/panini_depth.fsh",
+      "local": "fcd992fbc528f51b9c88b566d1454d19e877a2cfd5dd6a089eeaa66c5d510051"
+    },
+    {
+      "path": "modern/src/main/extra_resources/assets/sodium-extra/textures/icon.png",
+      "local": "00333920f005075c9eb61b213c5bff3d7c3c06994d3d1af5009b7f2de00ff9e6"
+    },
+    {
+      "path": "modern/src/main/extra_resources/licenses/Nocturna-extra-NOTICE.txt",
+      "local": "40a8583bc68dc88f641ac6b8930ca862ae43e2f9075bcc7af6011eca7eb6bca7"
+    },
+    {
+      "path": "modern/src/main/extra_resources/licenses/greenlight-LGPL-3.0.txt",
+      "local": "a5681bf9b05db14d86776930017c647ad9e6e56ff6bbcfdf21e5848288dfaf1b"
+    },
+    {
+      "path": "modern/src/main/extra_resources/licenses/sodium-extra-LGPL-3.0.txt",
+      "local": "a5681bf9b05db14d86776930017c647ad9e6e56ff6bbcfdf21e5848288dfaf1b"
+    },
+    {
+      "path": "modern/src/main/extra_resources/nocturna-extra.mixins.json",
+      "local": "5a329016a9fc067744e7b73ad0c940df5aa4f1ef02d0364657b72bc37043b17f"
     },
     {
       "path": "modern/src/main/java/org/embeddedt/embeddium/api/weather/WeatherColumnProvider.java",
@@ -1160,7 +1838,7 @@
     },
     {
       "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/NocturnaOptionsSource.java",
-      "local": "3f00c452aa6424e57964124978a87894ec48f3b251d0dbfe4ae598af48471088"
+      "local": "19ccfbc3785e62e225e78a99f84590d369a49f89cb88e51ec641f5c712931451"
     },
     {
       "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/OptionDefaults.java",
@@ -1569,6 +2247,38 @@
     {
       "path": "modern/src/shaderProbe/resources/pack.mcmeta",
       "local": "bbbccfa387c47c3e6be4c30fd4e4fe798f69daa86924f5a153bddd8d00c23494"
+    },
+    {
+      "path": "modern/src/test/java/me/flashyreese/mods/greenlight/feature/ClientFeatureTest.java",
+      "local": "6b88d5ebc5285b890663d9c0ff0e326cb8a2cdd8a6dd427a7dacbf495e6fe9d3"
+    },
+    {
+      "path": "modern/src/test/java/me/flashyreese/mods/greenlight/feature/FakePolicySource.java",
+      "local": "ea86c3eceb8b9370a6f9114158feba9905aa49c90e036026269aed4d3175339e"
+    },
+    {
+      "path": "modern/src/test/java/me/flashyreese/mods/greenlight/feature/FeaturePolicyTest.java",
+      "local": "20669f0a6219c17e0ca7ce4fe00f817bc548810665ccf56af67b4f45d770a77b"
+    },
+    {
+      "path": "modern/src/test/java/me/flashyreese/mods/greenlight/feature/PolicyDecoderTest.java",
+      "local": "9b79a00285fe7ea8c2431ba585aba6917d0504406d54cbb76848d541b04e43a8"
+    },
+    {
+      "path": "modern/src/test/java/me/flashyreese/mods/greenlight/feature/PolicyEnvelopeTest.java",
+      "local": "8dc632417cd0c4e382099ea2a7e94462aef668a1607ddaf41e6887fbf6d2800d"
+    },
+    {
+      "path": "modern/src/test/java/me/flashyreese/mods/greenlight/feature/PolicyStoreTest.java",
+      "local": "71c567c4252cfea4c3aeabc012827ce31c6ff8a19942967dfc4dfc407552b32d"
+    },
+    {
+      "path": "modern/src/test/java/me/flashyreese/mods/greenlight/feature/TestSupport.java",
+      "local": "f19d9400e3d3049319d0ffde70cf230fe472431c12e2128ffa01530c0c8850f3"
+    },
+    {
+      "path": "modern/src/test/java/me/flashyreese/mods/sodiumextra/client/config/ExtraOptionsTest.java",
+      "local": "ff42a99d7589bc70d6b098807df1422dd604e57c1fae418608701de7b31f1090"
     },
     {
       "path": "modern/src/test/java/net/irisshaders/iris/cache/ProgramCacheLifecycleTest.java",

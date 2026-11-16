@@ -97,8 +97,8 @@ dependencies {
     implementation "it.unimi.dsi:fastutil:7.1.0"
     implementation "org.apache.logging.log4j:log4j-api:2.0-beta9"
     compileOnly "org.jetbrains:annotations:24.1.0"
-    compileOnly("org.projectlombok:lombok:1.18.30")
-    annotationProcessor("org.projectlombok:lombok:1.18.30")
+    compileOnly("org.projectlombok:lombok:${lombok_version}")
+    annotationProcessor("org.projectlombok:lombok:${lombok_version}")
     implementation("org.ow2.asm:asm:9.6")
     implementation("org.ow2.asm:asm-tree:9.6")
     implementation("org.ow2.asm:asm-util:9.6")
@@ -118,7 +118,8 @@ dependencies {
     jmhAnnotationProcessor "org.openjdk.jmh:jmh-generator-annprocess:${jmh_version}"
     jmhCompileOnly "org.jetbrains:annotations:24.1.0"
 
-    testImplementation 'org.junit.jupiter:junit-jupiter:5.13.0'
+    testImplementation platform("org.junit:junit-bom:${junit_version}")
+    testImplementation "org.junit.jupiter:junit-jupiter"
     testImplementation 'org.ow2.asm:asm-commons:9.6'
     testImplementation sourceSets.lwjglCommon.output
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'

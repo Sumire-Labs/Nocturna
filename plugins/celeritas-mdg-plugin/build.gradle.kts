@@ -1,10 +1,16 @@
+import java.util.Properties
+
 plugins {
     `java-library`
     id("java-gradle-plugin") // so we can assign and ID to our plugin
 }
 
+val dependencyVersions = Properties().apply {
+    file("../../gradle.properties").inputStream().use { load(it) }
+}
+
 dependencies {
-    implementation("com.google.code.gson:gson:2.10.1")
+    implementation("com.google.code.gson:gson:${dependencyVersions.getProperty("build_gson_version")}")
     implementation("net.fabricmc:access-widener:2.1.0")
     implementation("net.fabricmc:tiny-remapper:0.11.0")
     implementation("net.fabricmc:mapping-io:0.7.1")

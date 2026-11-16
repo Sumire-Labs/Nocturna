@@ -1,19 +1,25 @@
+import java.util.Properties
+
 plugins {
     `kotlin-dsl`
     `java-library`
     id("java-gradle-plugin") // so we can assign and ID to our plugin
 }
 
+val dependencyVersions = Properties().apply {
+    file("../gradle.properties").inputStream().use { load(it) }
+}
+
 dependencies {
-    implementation("org.eclipse.jgit:org.eclipse.jgit:6.10.0.202406032230-r")
-    implementation("com.google.guava:guava:33.1.0-jre")
-    implementation("org.ow2.asm:asm:9.10.1")
-    implementation("org.ow2.asm:asm-tree:9.10.1")
-    implementation("org.ow2.asm:asm-commons:9.10.1")
-    implementation("com.google.code.gson:gson:2.10.1")
-    implementation("org.apache.commons:commons-compress:1.26.0")
+    implementation("org.eclipse.jgit:org.eclipse.jgit:${dependencyVersions.getProperty("build_jgit_version")}")
+    implementation("com.google.guava:guava:${dependencyVersions.getProperty("build_guava_version")}")
+    implementation("org.ow2.asm:asm:${dependencyVersions.getProperty("build_asm_version")}")
+    implementation("org.ow2.asm:asm-tree:${dependencyVersions.getProperty("build_asm_version")}")
+    implementation("org.ow2.asm:asm-commons:${dependencyVersions.getProperty("build_asm_version")}")
+    implementation("com.google.code.gson:gson:${dependencyVersions.getProperty("build_gson_version")}")
+    implementation("org.apache.commons:commons-compress:${dependencyVersions.getProperty("build_commons_compress_version")}")
     implementation("com.gradleup.shadow:shadow-gradle-plugin:9.6.1")
-    implementation("dev.kikugie:stonecutter:0.10-alpha.9")
+    implementation("dev.kikugie:stonecutter:${dependencyVersions.getProperty("stonecutter_version")}")
 }
 
 repositories {
@@ -37,11 +43,6 @@ repositories {
 
 gradlePlugin {
     plugins {
-        register("embeddium-fabric-remapper") {
-            id = "embeddium-fabric-remapper"
-            implementationClass = "org.embeddedt.embeddium.gradle.fabric.remapper.RemapperPlugin"
-        }
-        // here we register our plugin with an ID
         register("embeddium-fabric-module-finder") {
             id = "embeddium-fabric-module-finder"
             implementationClass = "org.embeddedt.embeddium.gradle.fabric.remapper.ModuleFinderPlugin"

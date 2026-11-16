@@ -16,6 +16,8 @@ No additional code was imported directly from newer Sodium releases.
 Intentional departures from the pinned Celeritas snapshot:
 
 - A single Forge 1.20.1 target, Java 17 compiler/runtime, `List.get(0)` in place of guarded `List.getFirst()`.
+- Build/test dependency refresh: Stonecutter 0.10, MixinExtras 0.5.5, Lombok 1.18.48, JUnit 6.1.3 and updated
+  build-only libraries. Compile-only Forgified Fabric API compatibility is retained; unused platform settings are removed.
 - Public Embeddium version/mod identity and functional adapters for the previous public vertex, option and geometry APIs.
 - The local Forge biome getter fix, serializer cache snapshot, collection-based uploads, generic stable radix sort,
   backing-buffer eligibility guard, adaptive CPU/GPU waiting and removal of the old Intel Gen7 startup block.

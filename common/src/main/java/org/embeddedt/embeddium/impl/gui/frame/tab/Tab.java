@@ -1,6 +1,5 @@
 package org.embeddedt.embeddium.impl.gui.frame.tab;
 
-import lombok.Builder;
 import org.taumc.celeritas.api.options.structure.Option;
 import org.taumc.celeritas.api.options.structure.OptionPage;
 import org.embeddedt.embeddium.impl.gui.framework.TextComponent;
@@ -16,7 +15,7 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 
-@Builder(builderClassName = "Builder", setterPrefix = "set")
+@lombok.Builder(builderClassName = "Builder", setterPrefix = "set")
 public record Tab<T extends AbstractFrame>(OptionIdentifier<Void> id, TextComponent title, Supplier<Boolean> onSelectFunction, Function<Dim2i, T> frameFunction) {
     public static Tab.Builder<?> createBuilder() {
         return new Tab.Builder<>();
