@@ -21,6 +21,10 @@ const original='me.flashyreese.mods.reeses_sodium_options',reference='org.embedd
 for(const entry of entries){
     const file=join(output,entry.path.split('/reeses_sodium_options/')[1]);
     let text=readFileSync(file,'utf8').replaceAll(original,reference);
+    if(file.endsWith('SodiumVideoOptionsScreen.java'))text=text
+        .replace('import org.embeddedt.embeddium.impl.gui.rso.compat.GuiEventListener;','import net.minecraft.client.gui.components.events.GuiEventListener;')
+        .replace('import org.embeddedt.embeddium.impl.gui.rso.compat.ContainerEventHandler;','import net.minecraft.client.gui.components.events.ContainerEventHandler;')
+        .replaceAll('focused.keyPressed(event)','org.embeddedt.embeddium.impl.gui.rso.compat.NativeGuiEvents.keyPressed(focused,event)');
     for(const shared of ['client.gui.option.OptionExtended','client.gui.option.OptionStateProvider','client.gui.SodiumWidgetDimensions','client.config.ReeseSodiumOptionsConfig'])
         text=text.replaceAll(reference+'.'+shared,original+'.'+shared);
     writeFileSync(file,text);

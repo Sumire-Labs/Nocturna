@@ -85,8 +85,8 @@ Verified on Windows 11 with Forge 47.3.0 and Java 17:
 
 | Check | Result |
 | --- | --- |
-| Common and Forge unit tests | 160 passed |
-| Java 17 product class audit | 4,459 classes; no class version above 61; validation/reference classes excluded |
+| Common and Forge unit tests | 174 passed |
+| Java 17 product class audit | 4,505 classes; no class version above 61; validation/reference classes excluded |
 | RSO client | 240 options with the metadata fixture; live defaults, legacy transactions, horizontal input, Tab wrap and SDL/Forge dispatch passed |
 | Renderer and addon integration client | Passed, including compact vertices, asynchronous terrain, legacy geometry hooks and weather |
 | Full shader-pack warm reload | Zero stage compiles, including terrain programs |
@@ -113,6 +113,26 @@ new RsoOptionMetadata<Boolean>()
 
 `RsoOptionMetadata.pendingValue(id, type)` lets suppliers depend on unapplied edits without writing storage.
 The bridge remains a Nocturna API for Minecraft 1.20.1; newer Sodium mods still require their own version port.
+
+## Gameplay review follow-up
+
+An additional real-client pass adds ordinary Minecraft buttons and text fields to the RSO screen, as GUI addons
+do. This reproduced a `ClassCastException` when a vanilla button received focus. Screen-level focus paths now
+retain the native listener type; event dispatch supports both native and ported widgets. Native edit boxes
+also activate the text-input session and supply their current caret position, so committed SDL text reaches
+them through Minecraft/Forge rather than only through a direct test call.
+
+The same repeated-open/disable sequence exposed a `minecraft:cloud_range` identifier collision between an
+untyped native token and a typed legacy Extra option. The bridge reuses canonical identifiers when one side
+is untyped; incompatible concrete types still fail. Tests cover both bridge directions and a genuine conflict.
+
+Native input startup errors now leave GLFW keyboard input available for that settings session. A real-client
+fault-injection check verifies that an unavailable SDL library does not make the settings screen unusable.
+The validation profile snapshots/restores its RSO JSON so a failed disable/re-enable test cannot contaminate
+the next run.
+
+The broader review also reproduced an empty fence-queue read when a manually edited CPU render-ahead limit
+was negative. That limit is treated as zero while retaining live limit reevaluation and normal fence waits.
 
 To run the native-window input harness with a Java 17 JDK after preparing the SDL resources:
 

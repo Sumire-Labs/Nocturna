@@ -29,6 +29,9 @@ public final class RsoValidation {
     private static double initialGamma;
     private static int initialWidth, initialHeight;
     private static String clipboard;
+    private static byte[] savedRsoConfig;
+    private static boolean hadRsoConfig, wasRsoEnabled;
+    private static Path rsoConfigPath;
 
     private static List<Option> options() {
         return ConfigManager.CONFIG.getModOptions().stream()
@@ -50,6 +53,18 @@ public final class RsoValidation {
     }
 
     public static void install() {
+        rsoConfigPath =
+                net.minecraftforge.fml.loading.FMLPaths.CONFIGDIR
+                        .get()
+                        .resolve("reeses_sodium_options.json");
+        try {
+            hadRsoConfig = Files.exists(rsoConfigPath);
+            if (hadRsoConfig) savedRsoConfig = Files.readAllBytes(rsoConfigPath);
+        } catch (java.io.IOException failure) {
+            throw new IllegalStateException("Cannot snapshot validation configuration", failure);
+        }
+        wasRsoEnabled = ReeseSodiumOptionsConfig.config().isEnabled();
+        ReeseSodiumOptionsConfig.config().setEnabled(true);
         RsoParityValidation.install();
         org.embeddedt.embeddium.api.OptionGroupConstructionEvent.BUS.addListener(e -> groups++);
         org.embeddedt.embeddium.api.OptionPageConstructionEvent.BUS.addListener(e -> pages++);
@@ -90,6 +105,7 @@ public final class RsoValidation {
                 RsoRowValidation.verify(screen);
                 RsoParityValidation.verify(mc, screen);
                 RsoSdlValidation.verify(mc, screen);
+                RsoAddonWidgetValidation.verify(mc, screen);
                 screen.resize(mc, 360, 240);
                 stage = 2;
                 ticks = 0;
@@ -191,11 +207,17 @@ public final class RsoValidation {
                                 + options().size();
                 Files.writeString(Path.of("rso-validation.txt"), report);
                 System.out.println(report);
+                restoreRsoConfig();
                 mc.stop();
                 stage = 6;
             }
         } catch (Throwable failure) {
             failure.printStackTrace();
+            try {
+                restoreRsoConfig();
+            } catch (Exception cleanup) {
+                failure.addSuppressed(cleanup);
+            }
             try {
                 Minecraft.getInstance().options.gamma().set(initialGamma);
                 Files.writeString(Path.of("rso-validation.txt"), "FAIL " + failure);
@@ -203,6 +225,12 @@ public final class RsoValidation {
             }
             Runtime.getRuntime().halt(1);
         }
+    }
+
+    private static void restoreRsoConfig() throws java.io.IOException {
+        ReeseSodiumOptionsConfig.config().setEnabled(wasRsoEnabled);
+        if (hadRsoConfig) Files.write(rsoConfigPath, savedRsoConfig);
+        else Files.deleteIfExists(rsoConfigPath);
     }
 
     private static void verifyBindings(Minecraft mc) {

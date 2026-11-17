@@ -6,45 +6,58 @@ import org.embeddedt.embeddium.impl.mixin.core.gui.RsoKeyboardInvoker;
 
 /** A scoped SDL input session; GLFW retains the window, mouse and rendering context. */
 public final class TextInputBridge {
+    private static final org.slf4j.Logger LOGGER =
+            org.slf4j.LoggerFactory.getLogger("Nocturna-Input");
+    private static java.util.function.Supplier<SdlTextInput> backendFactory =
+            TextInputBridge::createBackend;
+    private static boolean unavailable;
     private static SdlTextInput backend;
-    private static GuiEventListener owner;
+    private static net.minecraft.client.gui.components.events.GuiEventListener owner;
     private static boolean dispatching;
     private static Integer logicalKey;
 
     private TextInputBridge() {}
 
     public static void beginSession() {
-        if (backend == null)
-            backend =
-                    new SdlTextInput(
-                            new SdlTextInput.Host() {
-                                public long glfwWindow() {
-                                    return Minecraft.getInstance().getWindow().getWindow();
-                                }
+        if (backend != null || unavailable) return;
+        try {
+            backend = java.util.Objects.requireNonNull(backendFactory.get());
+        } catch (RuntimeException | LinkageError failure) {
+            unavailable = true;
+            LOGGER.warn(
+                    "SDL text input is unavailable; keeping GLFW keyboard input for this settings"
+                        + " session",
+                    failure);
+        }
+    }
 
-                                public double coordinateScale() {
-                                    var w = Minecraft.getInstance().getWindow();
-                                    return w.getGuiScale()
-                                            * w.getScreenWidth()
-                                            / (double) w.getWidth();
-                                }
+    private static SdlTextInput createBackend() {
+        return new SdlTextInput(
+                new SdlTextInput.Host() {
+                    public long glfwWindow() {
+                        return Minecraft.getInstance().getWindow().getWindow();
+                    }
 
-                                public java.nio.file.Path cacheDirectory() {
-                                    return net.minecraftforge.fml.loading.FMLPaths.GAMEDIR
-                                            .get()
-                                            .resolve(".nocturna/native/sdl3");
-                                }
+                    public double coordinateScale() {
+                        var w = Minecraft.getInstance().getWindow();
+                        return w.getGuiScale() * w.getScreenWidth() / (double) w.getWidth();
+                    }
 
-                                public void acceptText(String text) {
-                                    TextInputBridge.acceptText(text);
-                                }
+                    public java.nio.file.Path cacheDirectory() {
+                        return net.minecraftforge.fml.loading.FMLPaths.GAMEDIR
+                                .get()
+                                .resolve(".nocturna/native/sdl3");
+                    }
 
-                                public void acceptKey(
-                                        int scan, int raw, int action, int modifiers, int keycode) {
-                                    TextInputBridge.acceptKey(
-                                            scan, raw, action, modifiers, keycode);
-                                }
-                            });
+                    public void acceptText(String text) {
+                        TextInputBridge.acceptText(text);
+                    }
+
+                    public void acceptKey(
+                            int scan, int raw, int action, int modifiers, int keycode) {
+                        TextInputBridge.acceptKey(scan, raw, action, modifiers, keycode);
+                    }
+                });
     }
 
     public static void clearFocus() {
@@ -54,11 +67,14 @@ public final class TextInputBridge {
             backend = null;
             previous.close();
         }
+        unavailable = false;
     }
 
-    public static void onFocusChange(GuiEventListener widget, boolean active) {
+    public static void onFocusChange(
+            net.minecraft.client.gui.components.events.GuiEventListener widget, boolean active) {
         if (active) {
             beginSession();
+            if (backend == null) return;
             if (owner == widget) return;
             if (owner != null) backend.stop();
             owner = widget;
@@ -78,7 +94,39 @@ public final class TextInputBridge {
     }
 
     public static void prepareEvents() {
+        if (backend == null) return;
+        var minecraft = Minecraft.getInstance();
+        if (minecraft != null && minecraft.screen instanceof RsoScreen screen) syncFocus(screen);
         if (backend != null) backend.prepare();
+    }
+
+    public static void syncFocus(RsoScreen screen) {
+        if (backend == null || Minecraft.getInstance().screen != screen) return;
+        net.minecraft.client.gui.components.events.GuiEventListener leaf = screen.getFocused();
+        while (leaf
+                instanceof
+                net.minecraft.client.gui.components.events.ContainerEventHandler container) {
+            var next = container.getFocused();
+            if (next == null || next == leaf) break;
+            leaf = next;
+        }
+        boolean captures =
+                leaf instanceof GuiEventListener compatible && compatible.capturesInput()
+                        || leaf instanceof net.minecraft.client.gui.components.EditBox field
+                                && field.canConsumeInput();
+        if (!captures) {
+            if (owner != null) onFocusChange(owner, false);
+            return;
+        }
+        onFocusChange(leaf, true);
+        if (leaf instanceof net.minecraft.client.gui.components.EditBox field) {
+            var accessor = (org.embeddedt.embeddium.impl.mixin.core.gui.RsoEditBoxAccessor) field;
+            int x = field.getScreenX(field.getCursorPosition());
+            int y =
+                    field.getY()
+                            + (accessor.nocturna$isBordered() ? (field.getHeight() - 8) / 2 : 0);
+            setTextInputArea(x, y, x + 1, y + accessor.nocturna$getFont().lineHeight + 1);
+        }
     }
 
     public static boolean ownsKeyboard() {

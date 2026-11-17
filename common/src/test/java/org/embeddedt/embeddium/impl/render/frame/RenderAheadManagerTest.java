@@ -62,6 +62,13 @@ public class RenderAheadManagerTest {
     private static void invoke(Object h,String method,Class<?>[] types,Object... args) throws Throwable {
         try{HARNESS.getMethod(method,types).invoke(h,args);}catch(java.lang.reflect.InvocationTargetException e){throw e.getCause();}
     }
+    @Test void invalidNegativeConfiguredLimitDrainsExistingFencesWithoutReadingAnEmptyQueue() throws Throwable {
+        var e=new Execution();current.set(e);var h=HARNESS.getConstructor().newInstance();
+        assertDoesNotThrow(()->invoke(h,"startFrame",new Class[]{int.class},-1));
+        invoke(h,"endFrame",new Class[0]);e.statuses.add(37146);
+        assertDoesNotThrow(()->invoke(h,"startFrame",new Class[]{IntSupplier.class},(IntSupplier)()->-3));
+        assertEquals(List.of("fence:37143:0","wait:1:1:1000","delete:1"),e.calls);
+    }
     @Test void preservesFastWaitStatusFlagsAndDeletion() throws Throwable {
         for(int status:new int[]{37146,37148}) {
             var e=new Execution();current.set(e);var h=HARNESS.getConstructor().newInstance();

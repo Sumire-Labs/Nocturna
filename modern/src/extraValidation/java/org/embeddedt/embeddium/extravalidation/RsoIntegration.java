@@ -53,15 +53,24 @@ final class RsoIntegration {
                         .flatMap(page -> page.groups().stream())
                         .anyMatch(group -> !group.name().getString().isEmpty()),
                 "RSO group titles missing");
-        var screen = NocturnaOptionsSource.screen(client.screen);
-        client.setScreen(screen);
-        ExtraValidation.require(
-                screen
-                        instanceof
-                        me.flashyreese.mods.reeses_sodium_options.client.gui
-                                .SodiumVideoOptionsScreen,
-                "RSO screen did not open");
-        client.setScreen(null);
+        var preferences =
+                me.flashyreese.mods.reeses_sodium_options.client.config.ReeseSodiumOptionsConfig
+                        .config();
+        boolean wasEnabled = preferences.isEnabled();
+        preferences.setEnabled(true);
+        try {
+            var screen = NocturnaOptionsSource.screen(client.screen);
+            client.setScreen(screen);
+            ExtraValidation.require(
+                    screen
+                            instanceof
+                            me.flashyreese.mods.reeses_sodium_options.client.gui
+                                    .SodiumVideoOptionsScreen,
+                    "RSO screen did not open");
+            client.setScreen(null);
+        } finally {
+            preferences.setEnabled(wasEnabled);
+        }
         System.out.println(
                 "PASS typed RSO Extra controls, default reset, pending dependencies, group labels"
                         + " and screen construction");

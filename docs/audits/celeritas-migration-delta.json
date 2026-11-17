@@ -1,6 +1,6 @@
 {
   "revision": "26f000239eb8ddf7ee191f0ddf369147e3c92ef6",
-  "identical": 1554,
+  "identical": 1553,
   "changes": [
     {
       "path": "buildSrc/build.gradle.kts",
@@ -80,7 +80,12 @@
     {
       "path": "common/src/main/java/org/embeddedt/embeddium/impl/render/frame/RenderAheadManager.java",
       "upstream": "e90f9383d6a138fb695438674a29f11f1507261887b1e7489325228ca5de929c",
-      "local": "eb51cf8a7afb998c53bd22004f6ba7615447836ba8e247d72623b212ff219903"
+      "local": "c9acc712d32a1ff860a4eeaad4d0f3915d7211808e635f814c074cb87b7efad1"
+    },
+    {
+      "path": "common/src/main/java/org/taumc/celeritas/api/options/OptionIdentifier.java",
+      "upstream": "b0511c4f7db49bc9d0b3088706be172d501248e3cbb0cc62c97c8f7edb202ee1",
+      "local": "4acfb256aca0326282902bb703b0a90bb057af273860b882168c9dbb27fbc436"
     },
     {
       "path": "common/src/main/java/org/taumc/celeritas/api/options/control/ControlElement.java",
@@ -531,7 +536,7 @@
     },
     {
       "path": "common/src/test/java/org/embeddedt/embeddium/impl/render/frame/RenderAheadManagerTest.java",
-      "local": "0b938334fd38a61ad16463595ce4db56e4e8fceed0c2b2c1f7de4bbac5eb5228"
+      "local": "57dc35072fd303351e68ecd5c25cf94e52593f638db1f9bea8525d9553396930"
     },
     {
       "path": "common/src/test/java/org/embeddedt/embeddium/testutil/GlServiceHarness.java",
@@ -575,7 +580,7 @@
     },
     {
       "path": "modern/src/extraValidation/java/org/embeddedt/embeddium/extravalidation/RsoIntegration.java",
-      "local": "576375e0277d54cfa11db183ee65e0736c66b2cf0c767408f9321f9a5b649f1b"
+      "local": "91c8f8a8d49f341c330cc467667bcf8db0280f95b18334a26d118aa3ee8574e4"
     },
     {
       "path": "modern/src/extraValidation/java/org/embeddedt/embeddium/extravalidation/ShaderPackFixture.java",
@@ -1359,7 +1364,7 @@
     },
     {
       "path": "modern/src/main/java/org/embeddedt/embeddium/impl/compat/legacy/LegacyGuiBridge.java",
-      "local": "8d99872e324babfd33730a7a7f59c80a460187557cacf2d9635e0df7c88b5640"
+      "local": "8469bb048b78dcfe4fc28ad2268bd1620d680de14b2ccc2a3ee04a0d6b8fbca9"
     },
     {
       "path": "modern/src/main/java/org/embeddedt/embeddium/impl/compat/legacy/LegacyOptions.java",
@@ -1683,7 +1688,7 @@
     },
     {
       "path": "modern/src/main/legacy_api_java/org/embeddedt/embeddium/client/gui/options/OptionIdentifier.java",
-      "local": "508750801cc08d81cf3bcf92fcc308d3167758e243bdadcc3b1691f76f33fb52"
+      "local": "44bee65ac9c9d2fbfc6f4d31ff5458e0a2448164a301ec934e59557ef4b6d510"
     },
     {
       "path": "modern/src/main/legacy_api_java/org/embeddedt/embeddium/client/gui/options/StandardOptions.java",
@@ -1704,6 +1709,10 @@
     {
       "path": "modern/src/main/modern_java/org/embeddedt/embeddium/impl/mixin/core/gui/OptionInstanceAccessor.java",
       "local": "085f256e9dd65294a2dcd73d39903576350d006e544f88cb6d0517a12ce3c1ad"
+    },
+    {
+      "path": "modern/src/main/modern_java/org/embeddedt/embeddium/impl/mixin/core/gui/RsoEditBoxAccessor.java",
+      "local": "0bd1dde1cc4c60623f0eec66dd8144aa1dfc4c3637eafbd1d247661992c5e9b2"
     },
     {
       "path": "modern/src/main/modern_java/org/embeddedt/embeddium/impl/mixin/core/gui/RsoEventPumpMixin.java",
@@ -1783,7 +1792,7 @@
     },
     {
       "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/SodiumVideoOptionsScreen.java",
-      "local": "8467fad3c8278717af939c114b3c587be232d464f9ccedc6062b66cd8b8dd5dc"
+      "local": "91c5f17eda81e46c358a5b87c11012e9308576b18fe0f76822e83de978ad11a3"
     },
     {
       "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/SodiumWidgetDimensions.java",
@@ -2051,7 +2060,7 @@
     },
     {
       "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/compat/FocusPaths.java",
-      "local": "b5a09d331cc4ca397b505c22289d3eab63a53a6c953a15d042aa8d04a7aac274"
+      "local": "42d42d619276f47791c75941e86fd527e422622a210072fb62735d35ecf0307d"
     },
     {
       "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/compat/GuiEventListener.java",
@@ -2082,6 +2091,10 @@
       "local": "5ec720cc895d5c9655b3c681228396a714a5a905955a240dd1ae6aa681e53e61"
     },
     {
+      "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/compat/NativeGuiEvents.java",
+      "local": "7f3f5da3b5e02785bd3391b587609d135867890ffec9d80aa6f82155ded97c6b"
+    },
+    {
       "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/compat/RenderPipelines.java",
       "local": "5998e47c06f33a9d04894fcfa50526bf062104ab8b14fbd29da6cb041b00f275"
     },
@@ -2091,7 +2104,7 @@
     },
     {
       "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/compat/RsoScreen.java",
-      "local": "88ccba7f91648dbcb3b0b62547af08cb7777445519439f06c0bd444225319025"
+      "local": "d2ecf9b585524b70d277663a40f1c721a05581cd9d2f27ff066d381e22c0e45a"
     },
     {
       "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/compat/SDLKeycode.java",
@@ -2115,7 +2128,7 @@
     },
     {
       "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/compat/TextInputBridge.java",
-      "local": "435701483facfa214d8e60db47ebfdaffffb30b543b0e6540f2676998135fa40"
+      "local": "c89f0bfbceaa800c6d44a13dae0995cd70fa55a9c4c90fa358c9e3b6f89bdfe5"
     },
     {
       "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/compat/TextureDimensions.java",
@@ -2551,7 +2564,7 @@
     },
     {
       "path": "modern/src/test/java/org/embeddedt/embeddium/impl/compat/legacy/LegacyGuiBridgeTest.java",
-      "local": "87fe68b74b95b600c5479ae98002404f5d300fad9338ff26db62d68af818873e"
+      "local": "08ad1cbb38a569d3bfd958907b28e476468ef58da54b4b6c27a2fa25b843e1da"
     },
     {
       "path": "modern/src/test/java/org/embeddedt/embeddium/impl/compat/legacy/LegacyOptionsTest.java",
@@ -2642,6 +2655,10 @@
       "local": "e661af210be9196baaaa2cbf7b11beb7e6627b8f487808aa0681067991081eaa"
     },
     {
+      "path": "modern/src/validation/java/org/embeddedt/embeddium/validation/RsoAddonWidgetValidation.java",
+      "local": "711d4c05859b75585ed5de62e577ef4206db64d5d786a5d867136f48a449c301"
+    },
+    {
       "path": "modern/src/validation/java/org/embeddedt/embeddium/validation/RsoParityValidation.java",
       "local": "52d6b63afc791204c2c833c5eac31903dde0dc849fbc5b683bfeb3d9a2296e3e"
     },
@@ -2651,11 +2668,11 @@
     },
     {
       "path": "modern/src/validation/java/org/embeddedt/embeddium/validation/RsoSdlValidation.java",
-      "local": "36b2dd304b7fd126b3e4d822d55a6d517afd728115b0cfed30d04c4548bd1517"
+      "local": "e612b9d1f2b9976be649b6302604e256f8a63d84fa7bcc2527104710cf87e2a2"
     },
     {
       "path": "modern/src/validation/java/org/embeddedt/embeddium/validation/RsoValidation.java",
-      "local": "ba1db9722a48c50b23ab812308a04c43eedc4009ab7ad85e0670fadb73996dfc"
+      "local": "021ecaf64537891f261437050279d40f60334d925c0e6a0680e4c08fe19e8f17"
     },
     {
       "path": "modern/src/validation/java/org/embeddedt/embeddium/validation/RsoVisualValidation.java",

@@ -13,7 +13,7 @@ public class RenderAheadManager {
     }
 
     public void startFrame(java.util.function.IntSupplier renderAheadLimit) {
-        outer: while (this.fences.size() > renderAheadLimit.getAsInt()) {
+        outer: while (this.fences.size() > Math.max(0, renderAheadLimit.getAsInt())) {
             var fence = this.fences.dequeueLong();
             // We do a ClientWaitSync here instead of a WaitSync to not allow the CPU to get too far ahead of the GPU.
             // This is also needed to make sure that our persistently-mapped staging buffers function correctly, rather

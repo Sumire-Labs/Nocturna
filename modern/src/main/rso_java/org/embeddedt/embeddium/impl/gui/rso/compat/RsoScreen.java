@@ -25,6 +25,7 @@ public abstract class RsoScreen extends net.minecraft.client.gui.screens.Screen 
     public final void render(GuiGraphics graphics, int x, int y, float delta) {
         CursorTypes.reset();
         extractRenderState(new GuiGraphicsExtractor(graphics), x, y, delta);
+        TextInputBridge.syncFocus(this);
     }
 
     @Override
@@ -57,7 +58,7 @@ public abstract class RsoScreen extends net.minecraft.client.gui.screens.Screen 
 
     public boolean keyPressed(KeyEvent event) {
         if (event.key() == org.lwjgl.glfw.GLFW.GLFW_KEY_TAB) {
-            if (getFocused() != null && getFocused().keyPressed(event)) return true;
+            if (NativeGuiEvents.keyPressed(getFocused(), event)) return true;
             var navigation =
                     new net.minecraft.client.gui.navigation.FocusNavigationEvent.TabNavigation(
                             !event.hasShiftDown());
@@ -91,21 +92,22 @@ public abstract class RsoScreen extends net.minecraft.client.gui.screens.Screen 
     }
 
     public boolean charTyped(CharacterEvent event) {
-        return getFocused() != null && getFocused().charTyped(event);
+        return NativeGuiEvents.charTyped(getFocused(), event);
     }
 
     public boolean mouseScrolled(double x, double y, double dx, double dy) {
         return getChildAt(x, y)
-                .filter(
-                        child ->
-                                child instanceof GuiEventListener input
-                                        && input.mouseScrolled(x, y, dx, dy))
+                .filter(child -> NativeGuiEvents.mouseScrolled(child, x, y, dx, dy))
                 .isPresent();
     }
 
     @Override
     public boolean keyPressed(int key, int scan, int mods) {
-        return keyPressed(new KeyEvent(key, scan, mods));
+        try {
+            return keyPressed(new KeyEvent(key, scan, mods));
+        } finally {
+            TextInputBridge.syncFocus(this);
+        }
     }
 
     @Override
@@ -115,7 +117,11 @@ public abstract class RsoScreen extends net.minecraft.client.gui.screens.Screen 
 
     @Override
     public boolean mouseClicked(double x, double y, int button) {
-        return mouseClicked(new MouseButtonEvent(x, y, button, InputState.modifiers()), false);
+        try {
+            return mouseClicked(new MouseButtonEvent(x, y, button, InputState.modifiers()), false);
+        } finally {
+            TextInputBridge.syncFocus(this);
+        }
     }
 
     @Override
@@ -144,10 +150,5 @@ public abstract class RsoScreen extends net.minecraft.client.gui.screens.Screen 
             cp = Character.toCodePoint(pendingHighSurrogate, c);
         pendingHighSurrogate = 0;
         return charTyped(new CharacterEvent(cp, mods));
-    }
-
-    @Override
-    public GuiEventListener getFocused() {
-        return (GuiEventListener) super.getFocused();
     }
 }

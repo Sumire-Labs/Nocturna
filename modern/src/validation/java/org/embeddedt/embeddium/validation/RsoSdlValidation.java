@@ -57,7 +57,21 @@ public final class RsoSdlValidation {
         }
         System.out.println(
                 "PASS SDL-to-Minecraft/Forge dispatch: duplicate suppression, complete Unicode,"
-                    + " logical editing shortcuts");
+                        + " logical editing shortcuts");
+    }
+
+    static void commitToFocusedNativeWidget(Minecraft mc, String text) throws Exception {
+        var field = TextInputBridge.class.getDeclaredField("backend");
+        field.setAccessible(true);
+        Object backend = field.get(null);
+        var library = (NativeLibrary) NocturnaOptionsSource.field(backend, "library");
+        Pointer window = (Pointer) NocturnaOptionsSource.field(backend, "window");
+        RsoValidation.require(
+                (library.getFunction("SDL_TextInputActive").invokeInt(new Object[] {window}) & 255)
+                        != 0,
+                "Native text field did not activate SDL/IME input");
+        int id = library.getFunction("SDL_GetWindowID").invokeInt(new Object[] {window});
+        commit(library, id, text);
     }
 
     private static void commit(NativeLibrary library, int id, String text) {

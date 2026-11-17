@@ -64,7 +64,7 @@
       "targets": [
         {
           "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/SodiumVideoOptionsScreen.java",
-          "sha256": "8467fad3c8278717af939c114b3c587be232d464f9ccedc6062b66cd8b8dd5dc"
+          "sha256": "91c5f17eda81e46c358a5b87c11012e9308576b18fe0f76822e83de978ad11a3"
         }
       ]
     },

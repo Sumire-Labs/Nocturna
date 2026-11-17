@@ -77,16 +77,22 @@ public final class LegacyGuiBridge {
     }
     private static org.embeddedt.embeddium.client.gui.options.OptionIdentifier oldId(org.taumc.celeritas.api.options.OptionIdentifier id) {
         if(id == null) return null;
+        String modId=id.getModId().equals("celeritas")?"embeddium":id.getModId();
+        var known=org.embeddedt.embeddium.client.gui.options.OptionIdentifier.find(modId,id.getPath());
+        if(known!=null&&(untyped(known.getType())||untyped(id.getType())))return known;
         return org.embeddedt.embeddium.client.gui.options.OptionIdentifier.create(
-                id.getModId().equals("celeritas") ? "embeddium" : id.getModId(),id.getPath(),oldType(id.getType()));
+                modId,id.getPath(),oldType(id.getType()));
     }
     private static org.taumc.celeritas.api.options.OptionIdentifier newId(org.embeddedt.embeddium.client.gui.options.OptionIdentifier id) {
         if(id == null) return null;
         Class<?> type=id.getType();
         if(type==me.jellysquid.mods.sodium.client.gui.SodiumGameOptions.GraphicsQuality.class)
             type=org.embeddedt.embeddium.impl.gui.SodiumGameOptions.GraphicsQuality.class;
+        var known=org.taumc.celeritas.api.options.OptionIdentifier.find(id.getModId(),id.getPath());
+        if(known!=null&&(untyped(known.getType())||untyped(type)))return known;
         return org.taumc.celeritas.api.options.OptionIdentifier.create(id.getModId(),id.getPath(),type);
     }
+    private static boolean untyped(Class<?> type){return type==void.class||type==Void.class;}
     private static Object dereference(java.lang.ref.WeakReference<Object> ref) { return ref == null ? null : ref.get(); }
     private static void remember(Object old, Object current) { oldToNew.put(old,new java.lang.ref.WeakReference<>(current)); newToOld.put(current,new java.lang.ref.WeakReference<>(old)); }
 

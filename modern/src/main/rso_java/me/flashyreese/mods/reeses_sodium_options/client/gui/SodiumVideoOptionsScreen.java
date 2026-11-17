@@ -27,8 +27,8 @@ import org.embeddedt.embeddium.impl.gui.rso.compat.sodium.client.services.Platfo
 import org.embeddedt.embeddium.impl.gui.rso.compat.sodium.client.util.Dim2i;
 import net.minecraft.client.gui.ComponentPath;
 import org.embeddedt.embeddium.impl.gui.rso.compat.GuiGraphicsExtractor;
-import org.embeddedt.embeddium.impl.gui.rso.compat.ContainerEventHandler;
-import org.embeddedt.embeddium.impl.gui.rso.compat.GuiEventListener;
+import net.minecraft.client.gui.components.events.ContainerEventHandler;
+import net.minecraft.client.gui.components.events.GuiEventListener;
 import net.minecraft.client.gui.navigation.FocusNavigationEvent;
 import net.minecraft.client.gui.navigation.ScreenDirection;
 import net.minecraft.client.gui.screens.Screen;
@@ -453,7 +453,7 @@ public class SodiumVideoOptionsScreen extends org.embeddedt.embeddium.impl.gui.r
 
             if (this.isApplyShortcut(event)) {
                 GuiEventListener focused = this.getFocused();
-                if (focused != null && focused.keyPressed(event)) {
+                if (focused != null && org.embeddedt.embeddium.impl.gui.rso.compat.NativeGuiEvents.keyPressed(focused,event)) {
                     this.clearArrowNavigationMemory();
                     this.afterInput(previousTabKey);
 
@@ -739,7 +739,7 @@ public class SodiumVideoOptionsScreen extends org.embeddedt.embeddium.impl.gui.r
 
     private boolean keyPressedArrow(KeyEvent event, ScreenDirection direction) {
         GuiEventListener focused = this.getFocused();
-        if (focused != null && focused.keyPressed(event)) {
+        if (focused != null && org.embeddedt.embeddium.impl.gui.rso.compat.NativeGuiEvents.keyPressed(focused,event)) {
             this.clearArrowNavigationMemory();
             this.rememberCurrentOptionFocus();
             return true;

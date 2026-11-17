@@ -61,6 +61,10 @@ public final class OptionIdentifier<T> {
     public static boolean isPresent(@Nullable OptionIdentifier<?> id) {
         return id != null && id != EMPTY;
     }
+
+    public static synchronized @Nullable OptionIdentifier<?> find(String modId,String path) {
+        return IDENTIFIERS.get(new OptionIdentifier<>(modId,path,void.class));
+    }
     
     public boolean matches(OptionIdentifier<?> other) {
         return this == other;
