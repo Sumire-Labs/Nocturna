@@ -1,5 +1,5 @@
 {
-  "modmenu.descriptionTranslation.sodium-extra": "Sodium Extra bertujuan untuk membawa kebanyakan pilihan OptiFine yang menarik untuk dilihat kepada Sodium; selain menyediakan beberapa ciri seperti pembetulan pepijat visual dan pilihan prestasi lain yang belum tersedia pada Sodium.",
+  "modmenu.descriptionTranslation.sodium-extra": "Nocturna Extra bertujuan untuk membawa kebanyakan pilihan OptiFine yang menarik untuk dilihat kepada Sodium; selain menyediakan beberapa ciri seperti pembetulan pepijat visual dan pilihan prestasi lain yang belum tersedia pada Sodium.",
   "modmenu.summaryTranslation.sodium-extra": "Ciri-ciri yang tidak sepatutnya berada dalam Sodium.",
   "options.dimensions.minecraft.overworld": "Permukaan",
   "options.dimensions.minecraft.the_end": "End",
@@ -377,6 +377,6 @@
   "sodium-extra.overlay.fps_extended": "(purata %s / 1%% rendah %s / 0.1%% rendah %s)",
   "sodium-extra.overlay.light_updates": "Kemas kini cahaya dinyahdayakan",
   "sodium-extra.suggestRSO.header": "Suggestion: Install Reese’s Sodium Options",
-  "sodium-extra.suggestRSO.message": "Memasang Reese’s Sodium Options bersama-sama Sodium Extra amat disyorkan. Dengan peningkatan bilangan ciri, skrin pilihan video Sodium boleh menjadi sukar untuk dinavigasi tanpanya.",
+  "sodium-extra.suggestRSO.message": "Memasang Reese’s Sodium Options bersama-sama Nocturna Extra amat disyorkan. Dengan peningkatan bilangan ciri, skrin pilihan video Sodium boleh menjadi sukar untuk dinavigasi tanpanya.",
   "sodium-extra.units.ticks": "%s detik"
 }

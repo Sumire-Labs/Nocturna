@@ -1,5 +1,5 @@
 {
-  "modmenu.descriptionTranslation.sodium-extra": "Sodium ExtraはOptifineのほとんどの目玉機能をSodiumに追加するだけでなく、視覚的なバグの修正やSodiumにまだないパフォーマンス機能を提供しています。",
+  "modmenu.descriptionTranslation.sodium-extra": "Nocturna ExtraはOptifineのほとんどの目玉機能をSodiumに追加するだけでなく、視覚的なバグの修正やSodiumにまだないパフォーマンス機能を提供しています。",
   "modmenu.summaryTranslation.sodium-extra": "Sodiumにはない機能を追加。",
   "options.dimensions.minecraft.overworld": "オーバーワールド",
   "options.dimensions.minecraft.the_end": "ジ・エンド",
@@ -377,7 +377,7 @@
   "sodium-extra.overlay.fps_extended": "(avg. %s / 1%% low %s / 0.1%% low %s)",
   "sodium-extra.overlay.light_updates": "光の状態更新が無効",
   "sodium-extra.suggestRSO.header": "Suggestion: Install Reese’s Sodium Options",
-  "sodium-extra.suggestRSO.message": "Installing Reese’s Sodium Options alongside Sodium Extra is strongly recommended. With the growing number of features, Sodium’s video options screen can become difficult to navigate without it.",
+  "sodium-extra.suggestRSO.message": "Installing Reese’s Sodium Options alongside Nocturna Extra is strongly recommended. With the growing number of features, Sodium’s video options screen can become difficult to navigate without it.",
   "sodium-extra.units.ticks": "%s ティック",
   "sodium-extra.debug.visibility.never": "表示しない",
   "sodium-extra.debug.visibility.overlay": "デバッグ表示時",

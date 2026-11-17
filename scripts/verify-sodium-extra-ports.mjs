@@ -81,14 +81,22 @@ const portAnimations = fs.readFileSync(java + 'org/embeddedt/embeddium/impl/extr
 assert.deepEqual(animationGroups(portAnimations), animationGroups(originalAnimations), 'Animation category ids changed');
 
 let assets = 0;
+const brandDisplayText = value => typeof value === 'string'
+    ? value.replaceAll('Sodium Extra', 'Nocturna Extra')
+        .replaceAll('Disabled while Iris shader packs or Prevent Shaders are active.',
+            'Disabled while a shader pack is active in Nocturna Shaders or Prevent Shaders is enabled.')
+    : value;
 for (const file of walk(path.join(sourceRoot, 'resources/assets/sodium-extra'))) {
     const relative = path.relative(path.join(sourceRoot, 'resources'), file);
     const target = path.join('modern/src/main/extra_resources', relative);
     assert.ok(fs.existsSync(target), `Missing asset: ${relative}`);
     if (/lang[\\/](en_us|ja_jp)\.json$/.test(relative)) {
         const original = JSON.parse(fs.readFileSync(file, 'utf8')), port = JSON.parse(fs.readFileSync(target, 'utf8'));
-        for (const [key, value] of Object.entries(original)) assert.equal(port[key], value, `Translation changed: ${key}`);
+        for (const [key, value] of Object.entries(original)) assert.equal(port[key], brandDisplayText(value), `Translation changed: ${key}`);
         for (const key of Object.keys(port).filter(key => !(key in original))) assert.match(key, /^sodium-extra\.debug\.visibility\./);
+    } else if (/lang[\\/].*\.json$/.test(relative)) {
+        const original = JSON.parse(fs.readFileSync(file, 'utf8')), port = JSON.parse(fs.readFileSync(target, 'utf8'));
+        assert.deepEqual(port, Object.fromEntries(Object.entries(original).map(([key, value]) => [key, brandDisplayText(value)])), `Translation changed: ${relative}`);
     } else if (file.endsWith('.png')) assert.deepEqual(fs.readFileSync(target), fs.readFileSync(file), `Image changed: ${relative}`);
     else assert.equal(lf(fs.readFileSync(target, 'utf8')), lf(fs.readFileSync(file, 'utf8')), `Asset changed: ${relative}`);
     assets++;

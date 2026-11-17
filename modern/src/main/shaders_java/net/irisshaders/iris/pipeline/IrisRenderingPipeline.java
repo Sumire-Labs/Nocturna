@@ -1144,7 +1144,7 @@ public class IrisRenderingPipeline implements WorldRenderingPipeline, ShaderRend
 			shadowRenderer.addDebugText(messages);
 		} else {
 			messages.add("");
-			messages.add("[Iris] Shadow Maps: not used by shader pack");
+			messages.add("[" + Iris.MODNAME + "] Shadow Maps: not used by shader pack");
 		}
 	}
 

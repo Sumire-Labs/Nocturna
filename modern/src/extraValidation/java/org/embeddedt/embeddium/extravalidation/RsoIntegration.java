@@ -16,7 +16,7 @@ final class RsoIntegration {
                         .findFirst()
                         .orElseThrow();
         ExtraValidation.require(
-                extra.name().equals("Sodium Extra") && extra.pages().size() == 5,
+                extra.name().equals("Nocturna Extra") && extra.pages().size() == 5,
                 "Extra RSO section metadata differs");
         var options = new ArrayList<Option>();
         extra.pages()

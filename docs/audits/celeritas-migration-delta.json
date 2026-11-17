@@ -1,6 +1,6 @@
 {
   "revision": "26f000239eb8ddf7ee191f0ddf369147e3c92ef6",
-  "identical": 1521,
+  "identical": 1518,
   "changes": [
     {
       "path": "buildSrc/build.gradle.kts",
@@ -148,6 +148,11 @@
       "local": "130fddea231458836e0df05f319b024668d9dfae52943cabb50166bdcf07e6e9"
     },
     {
+      "path": "common/src/main/java/org/taumc/celeritas/shaders/CeleritasShaders.java",
+      "upstream": "a139123dbc35b34404b4963c7a31d1c1dd52b3a7bef1ad2b746d8f29885f0768",
+      "local": "22a2db0693f3eaa150fcad4b9e83ac53b8c718fc1348dd3f0b2ecbe24a6f225e"
+    },
+    {
       "path": "modern/build.mdg.gradle.kts",
       "upstream": "fc793feb77018a5496e0e45940650592266ea42d23bdb56aae9dd625ba47eee7",
       "local": "c1ac4b9ceed3f0e76e9ddc6f10321493a980693996180ba49632f22c373ce270"
@@ -180,7 +185,7 @@
     {
       "path": "modern/src/main/java/org/embeddedt/embeddium/api/EmbeddiumConstants.java",
       "upstream": "f4ae1656d2b448cfa763990f8ad463e599cd0c6acad566fc6f44cb02be86b877",
-      "local": "4b39830d39f11300607533214ff52e82e4e93c72cd142c8be4dc27dd342a914e"
+      "local": "5c8ba7ba4bcc43da39ceb2ac76d2a51639033f161a6c35a429a79791d097960f"
     },
     {
       "path": "modern/src/main/java/org/embeddedt/embeddium/api/MeshAppender.java",
@@ -340,7 +345,12 @@
     {
       "path": "modern/src/main/shaders_java/net/irisshaders/iris/Iris.java",
       "upstream": "d74f868fd29b5aec24d5171b44776721716edb76ee1222ee683b4a685b253ed5",
-      "local": "9442aaa5cd6d97220044a9604253d374d58b1e3e23792abcbaaeb378b024972f"
+      "local": "4d0115351ade5ec55f7b502f71efa5091eed5ad0033718e7fed7649581514a3f"
+    },
+    {
+      "path": "modern/src/main/shaders_java/net/irisshaders/iris/compat/sodium/impl/options/IrisSodiumOptions.java",
+      "upstream": "f759f3dd1fd32c7b664be8b58b9ac0e7025dbefc31f43ccd72ba989ca51b6d8c",
+      "local": "c73d7fbb0486873340227f85740896bcb2cb4dbb4a752b260f3d56cb1c1abe30"
     },
     {
       "path": "modern/src/main/shaders_java/net/irisshaders/iris/compat/sodium/impl/shader_overrides/IrisChunkProgramOverrides.java",
@@ -455,7 +465,7 @@
     {
       "path": "modern/src/main/shaders_java/net/irisshaders/iris/pipeline/IrisRenderingPipeline.java",
       "upstream": "89f1a72f1dfd2f394aae84a7873e7f7fbd609a690d1eb7633fd6cf68a737c7db",
-      "local": "07e1a8e77788880da1c52ee93fedc97c534c65b11b7a8e8776e20223faa7740b"
+      "local": "e15f840d049acc8fcde52693a47c18f168e8ae02121cfefb5875f0db8c6bb3c0"
     },
     {
       "path": "modern/src/main/shaders_java/net/irisshaders/iris/pipeline/foss_transform/CompTransformer.java",
@@ -466,6 +476,11 @@
       "path": "modern/src/main/shaders_java/net/irisshaders/iris/pipeline/foss_transform/ShaderTransformer.java",
       "upstream": "5d7a041071521b4dab142c7f7f7743408fb936db5f4172c3f3327ab9fc404abd",
       "local": "e7340796700583c253b969b88494083e6d27be4ecb61485a2f86c84c26b13e77"
+    },
+    {
+      "path": "modern/src/main/shaders_java/net/irisshaders/iris/pipeline/foss_transform/TransformPatcherBridge.java",
+      "upstream": "a3c37cc51f559a0ad98ad9c0049d1ef49386708725586fe9be6801c1724b44d3",
+      "local": "ef615080989fcf6559cea8dadfb0913d264879b38ab1924b78ca7962574561ce"
     },
     {
       "path": "modern/src/main/shaders_java/net/irisshaders/iris/pipeline/programs/GbufferProgram.java",
@@ -540,132 +555,132 @@
     {
       "path": "modern/src/main/shaders_resources/assets/iris/lang/cs_cz.json",
       "upstream": "ca026ef1ce9dbf4d358103182987e7d0a3a9e35534d5d1f1682039d9dbaced0c",
-      "local": "599d248884dbf423bc14b4ab3957426393f535ad1fe3ecf26c400b6b2262ec5c"
+      "local": "578a6686471b85710f875bfad10d24309b84b7cef064e87bd203241c6baeeea3"
     },
     {
       "path": "modern/src/main/shaders_resources/assets/iris/lang/de_ch.json",
       "upstream": "7cc5ead9a4383c6c6aa54d45e27492d9eaaa6f05df3e5d4d6c3a12ae272e83dd",
-      "local": "6b0b5c59cc8e38c52d791db9a7c269cf216cb8040c3758cc498c9099a8e3e2e6"
+      "local": "c606cf5e8e1d4989b0f9137abd91cee913391b98d527da6438a9244e98a8644b"
     },
     {
       "path": "modern/src/main/shaders_resources/assets/iris/lang/de_de.json",
       "upstream": "118734cafef9d3f0b20feaaaf0633e55a8a4075ae110842de397eee00f8fc291",
-      "local": "756e505d8cd2db2f158d5e44da948202d09e1998246cbfcc57b67f12be4b5112"
+      "local": "4a16c8bdeb09a1c70c53533ad4466c7072ed346a4152d9e40470592cc00006f5"
     },
     {
       "path": "modern/src/main/shaders_resources/assets/iris/lang/en_pt.json",
       "upstream": "cfb4c8c4d98acaed9c0a454565c3fb9f84e6f40a4fbceb6ebf54974d79e6d119",
-      "local": "06177cef1bf6679b32f9ec4b1a5ff6692329cb9b5486c5ab6ba2f83d3882d889"
+      "local": "4994df5e08e4a54c20d558b343adbda4bea941d9cfbc3ea9c36ea2f0893d75b0"
     },
     {
       "path": "modern/src/main/shaders_resources/assets/iris/lang/en_us.json",
       "upstream": "12d238687a9f400285e1687862507f5ac8b42ccab43dee56b9610ae6fe3d5d73",
-      "local": "6f35d8d0fc3653974bf4924e55c46b1247269aa272dee3556e0e55ccfb4c6881"
+      "local": "feac0e2c9770fd7b3c5e2adb64c2380bc7a286418e77c79c483892108014a500"
     },
     {
       "path": "modern/src/main/shaders_resources/assets/iris/lang/es_ar.json",
       "upstream": "206e58060d6c59fb9cb6bdedfdf76a246d6097201973c1afb01bfb10fce69e94",
-      "local": "ad2a6f461db69b04bfdb6ecf00745c03413a66c7826c8157112bf3067f55c9ce"
+      "local": "6e4dfda9bfb63a5a8eef861a98e0e5e110d02e9650f94e648d8c1515bca9e56d"
     },
     {
       "path": "modern/src/main/shaders_resources/assets/iris/lang/es_es.json",
       "upstream": "1c33d4be114353a658ad2cec0aeb8c424fec41a48fb9339be4f1329a09437ef2",
-      "local": "98087caa1e2b4181632271b8d66848ac169de2896b826a6099619b873fc03887"
+      "local": "e006d4e98592fc4e2aec6cc2a10040ccad93e62a52be57fc3aba83a55c721ebc"
     },
     {
       "path": "modern/src/main/shaders_resources/assets/iris/lang/et_ee.json",
       "upstream": "852188873be0a98df4cda83b87dfe4d98070a9bd7a85d99e5f03019ec5abfb28",
-      "local": "ebecaecdbf42d33657fe72d01b44622c065dab52e4df76cb4d2a0a85fcaa4eda"
+      "local": "6111161da7ba80a4905d047785ecce60b517bf46e0468b80e331fde882748621"
     },
     {
       "path": "modern/src/main/shaders_resources/assets/iris/lang/fa_ir.json",
       "upstream": "9f395e67f7d1507443a7a7d5c8f0f1021ebd429ef417dfbc8330fef092a6b2d5",
-      "local": "b1777c33bc9f2a5572fa05aaf3ef8b925d3cf7e5cc263a4e013083bdc08ed362"
+      "local": "b787c9c333a6e9eead264e89f35935c44aeec08d11e565cd701cd36b0805c6ef"
     },
     {
       "path": "modern/src/main/shaders_resources/assets/iris/lang/fi_fi.json",
       "upstream": "02ade6df47408c7b9c47cc58727bc1046c37b6d7b0cb2098e62517c54bd16acf",
-      "local": "215c617614d0d735dc7076064d2a85682cccea78a728416a45d29efb4b80bd38"
+      "local": "0e0603829da17bfc1e890979d795a36fb43774d6492502b7b895871fa86b14df"
     },
     {
       "path": "modern/src/main/shaders_resources/assets/iris/lang/fr_fr.json",
       "upstream": "fbdaa5706c1c55d30bd605fe2b90a2b7207128f8ae94668e40d539366d1604f8",
-      "local": "99c386ee9a9a7f0cdcc116e45c8d9b256e73ffe4189d87cded3ca4005a039d09"
+      "local": "4db13015bb3854cac17d2076cb68c37b9305e54edfdcc1ae0f4fd1ed16efc20e"
     },
     {
       "path": "modern/src/main/shaders_resources/assets/iris/lang/hu_hu.json",
       "upstream": "0aa7f1ce26ff6344b5d6363768a44a825352424eb766c52044766deb399c4fdb",
-      "local": "0fabbae247a92f378034c28bc98b9a075c28d2efaf347a6d97eef3069012590a"
+      "local": "94f01cef2e26baae19996078f29fb489cd2118a1bfb957f509ddfdba9dd1fc3a"
     },
     {
       "path": "modern/src/main/shaders_resources/assets/iris/lang/it_it.json",
       "upstream": "8d6ae68386408112f0c0dcbcc5016aa8a2784dd048eae2a4079f5a2611b83325",
-      "local": "a22f800088b9c0a938f8635f10c197cb2cb0217c270bcbbba621ad550b0d7d87"
+      "local": "cd7f8781b063e407a5fa5c8eef093e9493c2f712c5f524de0e1a6ce639dcbc31"
     },
     {
       "path": "modern/src/main/shaders_resources/assets/iris/lang/ja_jp.json",
       "upstream": "0f65d5d2a55e46adc2deb8f1cba62305da36285c480f8fa50e26481243754226",
-      "local": "e55c4f97699050e47ec36f146a37ea0e23fab5a36ac428e4747bc1b8c8354c58"
+      "local": "70d4f3072e96654974c55535dbf80cb48169c6d48fdde3185f080070c3fdf182"
     },
     {
       "path": "modern/src/main/shaders_resources/assets/iris/lang/ko_kr.json",
       "upstream": "3125a7eb21ae046815c0ade529c8692146659d9ae0ba4e5dd9aec696bfb3a165",
-      "local": "9f382b92d8b26b27f4569ccca7f7e4fdb2f7897436f5367323422e3f4119daa2"
+      "local": "bb1a17fda4c5ae1b89b2498f97ea1187b905ce48c5967f474004e11e7eb59b65"
     },
     {
       "path": "modern/src/main/shaders_resources/assets/iris/lang/lzh.json",
       "upstream": "1420d13cd7c65148120f5a73cdfb05a9c63a436fc8c25381dc86c9fac3bf7287",
-      "local": "e1825ae0b5d527d26ac38d6b7b9c85522cc3d2664b299cfc2050422646d58289"
+      "local": "6af4d1d7aa589aeab1e7c63a577900317461780fc56ad3950a6d69a580cb8035"
     },
     {
       "path": "modern/src/main/shaders_resources/assets/iris/lang/nl_nl.json",
       "upstream": "1e6ceb69ff7d0f0adb022c034a00d97d901621f68d5af3be12bf817eb44564a3",
-      "local": "e3becc752ee3d56271ae05996d0bef65b05a78ea3826eb3a261bcf04ba0323d5"
+      "local": "eca01078b75de25347a943922db39566acb03bf018c83383370e5e85acb9f113"
     },
     {
       "path": "modern/src/main/shaders_resources/assets/iris/lang/pl_pl.json",
       "upstream": "67e7bda201b430e222dc83680d9f5746edd47a1a4323b701ca1d9c47fec32c1f",
-      "local": "677112263b5cb8352aa1bee241f64bbdbd952e6397be10d7b87b8fe3ca037077"
+      "local": "cfa81d1b0c6038df40d7404dcadab8bc3d616748cd3315ed426cf41a1277a2af"
     },
     {
       "path": "modern/src/main/shaders_resources/assets/iris/lang/pt_br.json",
       "upstream": "4206b05374720db8335b1fc236089187294c3dcf9b6c0c31a13264d6d429d7d1",
-      "local": "56257e334a66300344473332dbc5cf6eb11c358116a3a6858496202306b95dfc"
+      "local": "75d21a457d056348d19502969ee3f0f15ca5a86212734da482b80d72d171a04b"
     },
     {
       "path": "modern/src/main/shaders_resources/assets/iris/lang/ru_ru.json",
       "upstream": "66785645c38efc2be6a2a057edacdb7dd9eaedb759f70f9220763e826f61a951",
-      "local": "af087b03b86748a5f99c3dd13f656b39285e38f6c2e5e6d4d0f46ecb8c6addfa"
+      "local": "00d915bceb7d7146a066e52154a43cc00b39c9c08dbaa30eadb917b97f69b20a"
     },
     {
       "path": "modern/src/main/shaders_resources/assets/iris/lang/sk_sk.json",
       "upstream": "388773618efda178d20262a9acb5a80d395db205d49ba22d72b1c798c907cd9f",
-      "local": "9aba1cc73c02fd7c675034c266a77fc39abdfad13838faf4924bc7d53f49cdb8"
+      "local": "606311c14846e354827e41ca3b0ade07f5576e8f10e68308ad9bacca095aeef0"
     },
     {
       "path": "modern/src/main/shaders_resources/assets/iris/lang/th_th.json",
       "upstream": "0528704a859bf66ca143dcb2c04122080e1426fa7e50eb97f26e7cefa2babfd6",
-      "local": "400a2ce5c5924b29efd961cceab0c8caf1911f370bd05fdf811d615617a51ae1"
+      "local": "0705e4dbe662884a23334434d4e4ab18998c407843d6bc53003fbef18b8ffce7"
     },
     {
       "path": "modern/src/main/shaders_resources/assets/iris/lang/tr_tr.json",
       "upstream": "29956cf85f06d0f1d228160d1bfc014e01fa9217a292a80ef93dcd655655ff76",
-      "local": "dfbb26fdf7b70568030575a78b2813255d1a30e6485f77e43839981d94060605"
+      "local": "df0416d9bccfa512044a98d4e02e06c2d871413c9f31083304e457bb4abc543b"
     },
     {
       "path": "modern/src/main/shaders_resources/assets/iris/lang/uk_ua.json",
       "upstream": "655f24c114afd93061cf61793fdd63753dd1d58bbc82685bac2e1e8c27b16885",
-      "local": "ab808e5d91e0675911054295da4675fd0269b310be95dfba629141aa35b4cc53"
+      "local": "da6e6b8b976060a1e132fc052c3ac93bea6fe2652ad2864bc43dfee46d9f07be"
     },
     {
       "path": "modern/src/main/shaders_resources/assets/iris/lang/zh_cn.json",
       "upstream": "269e72399640812a92582bfb92afc6bb8dcd301b9f536cfd872e01f2c89de001",
-      "local": "5972e3616316c90cc15f7894972e4ebcfdeb015eb422f316067e1d134bfcefb6"
+      "local": "f6adb7164dc1ea6060f44a63af916e5591919787f852e2ffcea5085fc867b367"
     },
     {
       "path": "modern/src/main/shaders_resources/assets/iris/lang/zh_tw.json",
       "upstream": "124a255e37054d0662c6db61586363406739510f7f626a0257b428d7f71773ac",
-      "local": "2831a3c6b169f15ebb0dcb8b32f3f120377658ec15f29e93d63a5711d2faef4e"
+      "local": "a270e89eb9a700529e759515e23251cfb1e822a1bb984817b1ecd811faf21374"
     },
     {
       "path": "plugins/celeritas-mdg-plugin/build.gradle.kts",
@@ -712,7 +727,7 @@
     },
     {
       "path": "modern/src/extraValidation/java/org/embeddedt/embeddium/extravalidation/ExtraValidation.java",
-      "local": "97239acd6214e8ef95cf851a65d18f7a43bb72c8922df604e7cb76bdd10f8285"
+      "local": "c841125c19989cc18e343cf50123352868895b5f3ac4fed4659e79431cd42d6d"
     },
     {
       "path": "modern/src/extraValidation/java/org/embeddedt/embeddium/extravalidation/FogShaderParity.java",
@@ -740,7 +755,7 @@
     },
     {
       "path": "modern/src/extraValidation/java/org/embeddedt/embeddium/extravalidation/RsoIntegration.java",
-      "local": "91c8f8a8d49f341c330cc467667bcf8db0280f95b18334a26d118aa3ee8574e4"
+      "local": "20f48248fd4d4dcf9d6b5c4397509db57ab1bd1efdd7d88ae671f9d3b0c24608"
     },
     {
       "path": "modern/src/extraValidation/java/org/embeddedt/embeddium/extravalidation/ShaderPackFixture.java",
@@ -804,7 +819,7 @@
     },
     {
       "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/client/SodiumExtraClientMod.java",
-      "local": "b03bee62892b48f07294f99fc3b3ccfec505f030cdaf8537f25d7618eb3fe55a"
+      "local": "728f46c5c490dde0de1f56e65e1c679c7e338b0af0f1c88868d81c560bba92d7"
     },
     {
       "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/client/config/ConfigFileIO.java",
@@ -832,7 +847,7 @@
     },
     {
       "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/client/gui/SodiumExtraDebugEntryCategory.java",
-      "local": "9d3c7bfe4d59e25f9329921b6882a034fc4f3975737b873345a15eea83318f55"
+      "local": "404062eaa19d137d6eb29e1c44a022302dc1994e6bd9a96e04d73ace2de56846"
     },
     {
       "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/client/gui/SodiumExtraDebugEntryCoords.java",
@@ -1160,7 +1175,7 @@
     },
     {
       "path": "modern/src/main/extra_java/org/embeddedt/embeddium/impl/extra/compat/DebugOverlayManager.java",
-      "local": "115fed3a8660c0eb5ec6f8a0d56b3766dce062d4cee93c6470e945aee138b161"
+      "local": "7b990dbbb40711b3bbbda91b4283a0ef3e9b1f2f46c9764824448cf52fc0c3ef"
     },
     {
       "path": "modern/src/main/extra_java/org/embeddedt/embeddium/impl/extra/compat/DebugOverlayState.java",
@@ -1356,135 +1371,135 @@
     },
     {
       "path": "modern/src/main/extra_resources/assets/sodium-extra/lang/cs_cz.json",
-      "local": "16d9b959df320f6dd2073dd4300ed5779a59becb9a275acad83430e2fc5a1afb"
+      "local": "475060f436d9e761d6fb3622d3f03fb2c7312e22af494cf92645b0738b709b7e"
     },
     {
       "path": "modern/src/main/extra_resources/assets/sodium-extra/lang/de_at.json",
-      "local": "0be81be144fd71d47981874b29ea7da9f43d1262e9c98a72604ac5e672cba9be"
+      "local": "83ecc7026426aec92eb982717635b1645323aeb367f0e5a89bdd1fa234c48083"
     },
     {
       "path": "modern/src/main/extra_resources/assets/sodium-extra/lang/de_ch.json",
-      "local": "0be81be144fd71d47981874b29ea7da9f43d1262e9c98a72604ac5e672cba9be"
+      "local": "83ecc7026426aec92eb982717635b1645323aeb367f0e5a89bdd1fa234c48083"
     },
     {
       "path": "modern/src/main/extra_resources/assets/sodium-extra/lang/de_de.json",
-      "local": "0be81be144fd71d47981874b29ea7da9f43d1262e9c98a72604ac5e672cba9be"
+      "local": "83ecc7026426aec92eb982717635b1645323aeb367f0e5a89bdd1fa234c48083"
     },
     {
       "path": "modern/src/main/extra_resources/assets/sodium-extra/lang/el_gr.json",
-      "local": "74b8411a878c7427741531ea299b0a55d6c67e291acded4776b42a1cd97db8d5"
+      "local": "9945183f120dae971d0df1fc53a5e42b36aad90489b797b36de545aa64dc1218"
     },
     {
       "path": "modern/src/main/extra_resources/assets/sodium-extra/lang/en_us.json",
-      "local": "e53a2b18ff10fe2e70dc71221fe969548b7fa84af7cfbae33614b1e0b9d62ffd"
+      "local": "a995290c495795d0ece8f3064ebb1271b15b7b3726433842bb2e4b2dffcd6d0f"
     },
     {
       "path": "modern/src/main/extra_resources/assets/sodium-extra/lang/es_ar.json",
-      "local": "f7676b0074db67ef646cf4efbddc097ed9bd8e54021ec55be51997d979795ffd"
+      "local": "cdcdc7a41e7ac89493eadd96af2bc17bfffb7646969b6160ce9e63caf7278599"
     },
     {
       "path": "modern/src/main/extra_resources/assets/sodium-extra/lang/es_cl.json",
-      "local": "c98e6e4f5b1ea5e26103837d4485f903e00f25652e3e5d6fd19403ee33118b21"
+      "local": "2ee94f8400bde2c99d91beabde3b989ed670a5c7eac9b2da50130ce6cf14c9f0"
     },
     {
       "path": "modern/src/main/extra_resources/assets/sodium-extra/lang/es_ec.json",
-      "local": "c98e6e4f5b1ea5e26103837d4485f903e00f25652e3e5d6fd19403ee33118b21"
+      "local": "2ee94f8400bde2c99d91beabde3b989ed670a5c7eac9b2da50130ce6cf14c9f0"
     },
     {
       "path": "modern/src/main/extra_resources/assets/sodium-extra/lang/es_es.json",
-      "local": "c98e6e4f5b1ea5e26103837d4485f903e00f25652e3e5d6fd19403ee33118b21"
+      "local": "2ee94f8400bde2c99d91beabde3b989ed670a5c7eac9b2da50130ce6cf14c9f0"
     },
     {
       "path": "modern/src/main/extra_resources/assets/sodium-extra/lang/es_mx.json",
-      "local": "fbfd003acd104ac01ed822ee1a49a8fa23cedd8ceba8ca355cb762235e6e1803"
+      "local": "49939858bf88bfaf853ff15f13b28f1ceebb35952c5e72541ce1d0e2fd970c3d"
     },
     {
       "path": "modern/src/main/extra_resources/assets/sodium-extra/lang/es_uy.json",
-      "local": "c98e6e4f5b1ea5e26103837d4485f903e00f25652e3e5d6fd19403ee33118b21"
+      "local": "2ee94f8400bde2c99d91beabde3b989ed670a5c7eac9b2da50130ce6cf14c9f0"
     },
     {
       "path": "modern/src/main/extra_resources/assets/sodium-extra/lang/es_ve.json",
-      "local": "c98e6e4f5b1ea5e26103837d4485f903e00f25652e3e5d6fd19403ee33118b21"
+      "local": "2ee94f8400bde2c99d91beabde3b989ed670a5c7eac9b2da50130ce6cf14c9f0"
     },
     {
       "path": "modern/src/main/extra_resources/assets/sodium-extra/lang/et_ee.json",
-      "local": "0a06cedbb7cadfc7f5e7e09fe1571c81462ff4bf093155c347820c250825bb95"
+      "local": "feca9d821da7b65f2fb6bff00791667b6f5d3e52f57f2520e230e841fc6ca7b8"
     },
     {
       "path": "modern/src/main/extra_resources/assets/sodium-extra/lang/fi_fi.json",
-      "local": "467dc5ae4788c5730e32b58090dbe75306183df27a366612db8047a8ff453dba"
+      "local": "ff1dc2170442a13a2a42a725bc535337800024762e083a6f9253d8bad0e5142a"
     },
     {
       "path": "modern/src/main/extra_resources/assets/sodium-extra/lang/fr_ca.json",
-      "local": "32a041d0b2292d063e5b0c1edaf42a23cc3c2cdaec4acfea1f56381fe3209d52"
+      "local": "3017d05b94fe09d0ab68ba8d3fd72af3707db418e5750dcf6dbd9e3ecc169a13"
     },
     {
       "path": "modern/src/main/extra_resources/assets/sodium-extra/lang/fr_fr.json",
-      "local": "32a041d0b2292d063e5b0c1edaf42a23cc3c2cdaec4acfea1f56381fe3209d52"
+      "local": "3017d05b94fe09d0ab68ba8d3fd72af3707db418e5750dcf6dbd9e3ecc169a13"
     },
     {
       "path": "modern/src/main/extra_resources/assets/sodium-extra/lang/hu_hu.json",
-      "local": "35d1c72625f10f020bab807ee26a37d4f24fcf013adfc58289d1d33ad437d644"
+      "local": "1df197322dec8850d44a41f897cfbdd4b8ac030a667fa0b5c399d6bc040e2327"
     },
     {
       "path": "modern/src/main/extra_resources/assets/sodium-extra/lang/it_it.json",
-      "local": "9f79c37f8211d20afdcf1bdb268ed5586fab59929e2449b25c8a2d51a758d123"
+      "local": "a16c5a936ff927ae9f1bfeee152dd3b1f46e01e4203b85fdaa01dcb24852fcf6"
     },
     {
       "path": "modern/src/main/extra_resources/assets/sodium-extra/lang/ja_jp.json",
-      "local": "6fabfbb47b2ec7e533998b4377b486fa8911290e9f5de4dd35217218bea13136"
+      "local": "2393ab2e63e7b065f512e24ccfe07705c0150347b7892ef707a50619704040f4"
     },
     {
       "path": "modern/src/main/extra_resources/assets/sodium-extra/lang/ko_kr.json",
-      "local": "ad7272494b0cf3d79fa70297c05d301ce79a64c6fa63e39653e287afde1aaa95"
+      "local": "96410bf07d724b733942f53e57bf9cdea680afbb41bfc414f5aaf58f30a10597"
     },
     {
       "path": "modern/src/main/extra_resources/assets/sodium-extra/lang/ms_my.json",
-      "local": "c96f4237019560cd1253fa9771253de9aa93405643b7009962c47e842c8cbef4"
+      "local": "01770acae314ee8e266cfb9347a3cd880586e4281265fe303e7a63b795b9f84f"
     },
     {
       "path": "modern/src/main/extra_resources/assets/sodium-extra/lang/pl_pl.json",
-      "local": "1e3d1fcf7198e41801c623f3dc6b1eeb39683f2b893f4449bd4bbd69f4b2d5c0"
+      "local": "4be3448fce2d86b779b6921ae92bb06bcb2e1ac25f80d69bca8b81096f1beb99"
     },
     {
       "path": "modern/src/main/extra_resources/assets/sodium-extra/lang/pt_br.json",
-      "local": "7ba271f10a1c0ed495c8b43e039c2f6d712aabb9a16d312f6f4d6b950fd978cd"
+      "local": "1f0fc3802951cbb397b64f279f54edaad187a0f9e14a814a4e1aab3cf27d12b8"
     },
     {
       "path": "modern/src/main/extra_resources/assets/sodium-extra/lang/pt_pt.json",
-      "local": "7ba271f10a1c0ed495c8b43e039c2f6d712aabb9a16d312f6f4d6b950fd978cd"
+      "local": "1f0fc3802951cbb397b64f279f54edaad187a0f9e14a814a4e1aab3cf27d12b8"
     },
     {
       "path": "modern/src/main/extra_resources/assets/sodium-extra/lang/ru_ru.json",
-      "local": "97a6f796945953d47a34e8c54df668fc4918bb683e6a734048ca248da64abcbf"
+      "local": "26496421131ad17794e8be57a5f34b4cf6b069a65c059709bd384be40c4f7ddf"
     },
     {
       "path": "modern/src/main/extra_resources/assets/sodium-extra/lang/th_th.json",
-      "local": "40e8843f25f86a76435f412dc3fef0f6ac4c0f1629c56af45682fca74a29522a"
+      "local": "bcf953c0798f0b9bf7ba4b9465293fafeb810d9df8bca4ece445a6f5c889dcd4"
     },
     {
       "path": "modern/src/main/extra_resources/assets/sodium-extra/lang/tr_tr.json",
-      "local": "d6da7a2ff27d0c8e4ec1b1f2d78f78087aafcb181608f13c32ce6519032e453d"
+      "local": "3149dfd4a44af0a7d59bc5c803b505e96d4148fc6b257f9d4024785fa92a14dd"
     },
     {
       "path": "modern/src/main/extra_resources/assets/sodium-extra/lang/uk_ua.json",
-      "local": "680d0d4aa1bae62898164a660550f3b95054c2663eb6c92bd5a644fd0c978298"
+      "local": "3c700a6af02350763f4881f1d5dcaa111125e9d1968ec220c06dec6a99a26d53"
     },
     {
       "path": "modern/src/main/extra_resources/assets/sodium-extra/lang/vi_vn.json",
-      "local": "8e6d9a2d88625361c02c5c80ec607fbcf51273f9426fcdcfd4b98604c2195f78"
+      "local": "174f213f95370e93040fc715c57f4c4874f50f0778940a5cb941fa9331cd39e9"
     },
     {
       "path": "modern/src/main/extra_resources/assets/sodium-extra/lang/zh_cn.json",
-      "local": "baa49cf46b45d37a0981b2f158c80da82b815c224c3b25fc85c9ed9559b5f74c"
+      "local": "6546a04ce5d329042e053317b5bddb28c7d80fe940d61e1bca4c67bd4f89254d"
     },
     {
       "path": "modern/src/main/extra_resources/assets/sodium-extra/lang/zh_hk.json",
-      "local": "baa49cf46b45d37a0981b2f158c80da82b815c224c3b25fc85c9ed9559b5f74c"
+      "local": "6546a04ce5d329042e053317b5bddb28c7d80fe940d61e1bca4c67bd4f89254d"
     },
     {
       "path": "modern/src/main/extra_resources/assets/sodium-extra/lang/zh_tw.json",
-      "local": "423f4c402e94a81035957da344582d8df015aab53bdbdc5c6bea7779b1c8f2aa"
+      "local": "edc2949cc4b5587ba98347ca052910b86e3b4042a385404d800557e3a934c8df"
     },
     {
       "path": "modern/src/main/extra_resources/assets/sodium-extra/post_effect/panini.json",
@@ -2208,7 +2223,7 @@
     },
     {
       "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/NocturnaOptionsSource.java",
-      "local": "1b96711b04d26b532087ea169d1c566862c59ffa1a7843cafb92c72231735ed3"
+      "local": "22a8785d08cb0d4970dbb1308dfab5daa69092697fd27716426327a5ce41704f"
     },
     {
       "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/OptionDefaults.java",

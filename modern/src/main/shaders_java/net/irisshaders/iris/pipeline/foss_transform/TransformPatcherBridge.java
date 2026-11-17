@@ -35,7 +35,7 @@ public class TransformPatcherBridge {
         AtomicInteger threadCounter = new AtomicInteger();
         // Core and maximum size must match: with an unbounded queue, the pool never grows past its core size.
         ThreadPoolExecutor executor = new ThreadPoolExecutor(threads, threads, 30, TimeUnit.SECONDS, new LinkedBlockingQueue<>(), runnable -> {
-            Thread thread = new Thread(runnable, "Iris Shader Transform #" + threadCounter.incrementAndGet());
+            Thread thread = new Thread(runnable, "Nocturna Shader Transform #" + threadCounter.incrementAndGet());
             thread.setDaemon(true);
             return thread;
         });

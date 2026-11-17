@@ -28,7 +28,9 @@ public class SodiumExtraClientMod {
 
     public static Logger logger() {
         if (LOGGER == null) {
-            LOGGER = LoggerFactory.getLogger("Sodium Extra");
+            LOGGER =
+                    LoggerFactory.getLogger(
+                            org.embeddedt.embeddium.api.EmbeddiumConstants.EXTRA_NAME);
         }
 
         return LOGGER;
@@ -45,7 +47,8 @@ public class SodiumExtraClientMod {
     public static CaffeineConfig mixinConfig() {
         if (MIXIN_CONFIG == null) {
             MIXIN_CONFIG =
-                    CaffeineConfig.builder("Sodium Extra")
+                    CaffeineConfig.builder(
+                                    org.embeddedt.embeddium.api.EmbeddiumConstants.EXTRA_NAME)
                             .withSettingsKey("sodium-extra:options")
                             .addMixinOption("core", true, false)
                             .addMixinOption("adaptive_sync", true)

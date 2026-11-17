@@ -1,5 +1,5 @@
 {
-  "modmenu.descriptionTranslation.sodium-extra": "Sodium Extra zielt darauf ab, die meisten Optionen zur visuellen Verbesserung von OptiFine in Sodium zu integrieren. Darüber hinaus bietet es einige Funktionen wie visuelle Fehlerbehebungen und andere Leistungsoptionen, die in Sodium noch nicht verfügbar sind.",
+  "modmenu.descriptionTranslation.sodium-extra": "Nocturna Extra zielt darauf ab, die meisten Optionen zur visuellen Verbesserung von OptiFine in Sodium zu integrieren. Darüber hinaus bietet es einige Funktionen wie visuelle Fehlerbehebungen und andere Leistungsoptionen, die in Sodium noch nicht verfügbar sind.",
   "modmenu.summaryTranslation.sodium-extra": "Funktionen, die nicht in Sodium sein sollten.",
   "options.dimensions.minecraft.overworld": "Oberwelt",
   "options.dimensions.minecraft.the_end": "Ende",
@@ -377,6 +377,6 @@
   "sodium-extra.overlay.fps_extended": "(Durchschnitt %s / 1%% niedrigste %s / 0,1%% niedrigste %s)",
   "sodium-extra.overlay.light_updates": "Licht-Aktualisierung deaktiviert",
   "sodium-extra.suggestRSO.header": "Suggestion: Install Reese’s Sodium Options",
-  "sodium-extra.suggestRSO.message": "Installing Reese’s Sodium Options alongside Sodium Extra is strongly recommended. With the growing number of features, Sodium’s video options screen can become difficult to navigate without it.",
+  "sodium-extra.suggestRSO.message": "Installing Reese’s Sodium Options alongside Nocturna Extra is strongly recommended. With the growing number of features, Sodium’s video options screen can become difficult to navigate without it.",
   "sodium-extra.units.ticks": "%s Tick(s)"
 }

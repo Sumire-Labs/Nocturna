@@ -62,7 +62,7 @@ public class IrisSodiumOptions {
                     OptionGroup.createBuilder()
                             .add(OptionImpl.createBuilder(boolean.class, irisOpts)
                                     .setName(TextComponent.literal("Block Modded Core Shaders"))
-                                    .setTooltip(TextComponent.literal("Prevents modded core shaders from being active with the Iris pipeline."))
+                                    .setTooltip(TextComponent.literal("Prevents modded core shaders from being active with the " + Iris.MODNAME + " pipeline."))
                                     .setControl(TickBoxControl::new)
                                     .setBinding(IrisConfig::setBlockUnknownShaders, IrisConfig::isBlockUnknownShaders)
                                     .setFlags(OptionFlag.REQUIRES_SHADER_PIPELINE_RELOAD)

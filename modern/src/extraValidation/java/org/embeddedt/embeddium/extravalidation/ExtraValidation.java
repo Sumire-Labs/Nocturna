@@ -173,7 +173,7 @@ public class ExtraValidation {
                                 new GameRules(),
                                 WorldDataConfiguration.DEFAULT);
                 mc.forceSetScreen(
-                        new GenericDirtMessageScreen(Component.literal("Validating Sodium Extra")));
+                        new GenericDirtMessageScreen(Component.literal("Validating Nocturna Extra")));
                 stage = 1;
                 mc.createWorldOpenFlows()
                         .createFreshLevel(

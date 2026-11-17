@@ -1,5 +1,5 @@
 {
-  "modmenu.descriptionTranslation.sodium-extra": "A Sodium Extra célja, hogy az OptiFine szemet gyönyörködtető opcióinak nagy részét a Sodiumra vigye; emellett néhány olyan funkciót is biztosít, mint a vizuális hibajavítások és más teljesítményopciók, amelyek még nem állnak rendelkezésre a Sodiumon.",
+  "modmenu.descriptionTranslation.sodium-extra": "A Nocturna Extra célja, hogy az OptiFine szemet gyönyörködtető opcióinak nagy részét a Sodiumra vigye; emellett néhány olyan funkciót is biztosít, mint a vizuális hibajavítások és más teljesítményopciók, amelyek még nem állnak rendelkezésre a Sodiumon.",
   "modmenu.summaryTranslation.sodium-extra": "Jellemzők, amelyeknek nem kellene a Sodiumban lenniük.",
   "options.dimensions.minecraft.overworld": "Felvilág",
   "options.dimensions.minecraft.the_end": "Vég",
@@ -377,6 +377,6 @@
   "sodium-extra.overlay.fps_extended": "(avg. %s / 1%% low %s / 0.1%% low %s)",
   "sodium-extra.overlay.light_updates": "A Világítás Frissülése ki van kapcsolva.",
   "sodium-extra.suggestRSO.header": "Suggestion: Install Reese’s Sodium Options",
-  "sodium-extra.suggestRSO.message": "Installing Reese’s Sodium Options alongside Sodium Extra is strongly recommended. With the growing number of features, Sodium’s video options screen can become difficult to navigate without it.",
+  "sodium-extra.suggestRSO.message": "Installing Reese’s Sodium Options alongside Nocturna Extra is strongly recommended. With the growing number of features, Sodium’s video options screen can become difficult to navigate without it.",
   "sodium-extra.units.ticks": "%s tick"
 }

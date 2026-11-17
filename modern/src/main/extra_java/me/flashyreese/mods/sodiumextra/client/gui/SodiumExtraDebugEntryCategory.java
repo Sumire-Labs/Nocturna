@@ -7,5 +7,7 @@ import org.embeddedt.embeddium.impl.extra.compat.DebugEntryCategory;
 
 public class SodiumExtraDebugEntryCategory {
     public static final DebugEntryCategory SODIUM_EXTRA_DEBUG_CATEGORY =
-            new DebugEntryCategory(Component.literal("Sodium Extra"), 0F);
+            new DebugEntryCategory(
+                    Component.literal(org.embeddedt.embeddium.api.EmbeddiumConstants.EXTRA_NAME),
+                    0F);
 }

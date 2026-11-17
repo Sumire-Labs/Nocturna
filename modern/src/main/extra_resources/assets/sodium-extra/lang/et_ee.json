@@ -1,5 +1,5 @@
 {
-  "modmenu.descriptionTranslation.sodium-extra": "Sodium Extra toob enamiku OptiFine'i silmailuvõimalustest Sodiumile; lisaks pakub mõningaid täiendavaid funktsioone, nagu visuaalsed veaparandused ja muud jõudlusvõimalused, mida Sodiumil veel ei ole.",
+  "modmenu.descriptionTranslation.sodium-extra": "Nocturna Extra toob enamiku OptiFine'i silmailuvõimalustest Sodiumile; lisaks pakub mõningaid täiendavaid funktsioone, nagu visuaalsed veaparandused ja muud jõudlusvõimalused, mida Sodiumil veel ei ole.",
   "modmenu.summaryTranslation.sodium-extra": "Funktsioonid, mis ei peaks Sodiumis olema.",
   "options.dimensions.minecraft.overworld": "Pealmaailm",
   "options.dimensions.minecraft.the_end": "End",
@@ -377,6 +377,6 @@
   "sodium-extra.overlay.fps_extended": "(avg. %s / 1%% low %s / 0.1%% low %s)",
   "sodium-extra.overlay.light_updates": "Valguse uuendused keelatud",
   "sodium-extra.suggestRSO.header": "Suggestion: Install Reese’s Sodium Options",
-  "sodium-extra.suggestRSO.message": "Installing Reese’s Sodium Options alongside Sodium Extra is strongly recommended. With the growing number of features, Sodium’s video options screen can become difficult to navigate without it.",
+  "sodium-extra.suggestRSO.message": "Installing Reese’s Sodium Options alongside Nocturna Extra is strongly recommended. With the growing number of features, Sodium’s video options screen can become difficult to navigate without it.",
   "sodium-extra.units.ticks": "%s tiksu"
 }

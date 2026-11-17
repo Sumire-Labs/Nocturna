@@ -134,7 +134,7 @@ public final class NocturnaOptionsSource {
                     org.embeddedt.embeddium.impl.loader.common.ModLogoUtil.registerLogo(
                             entry.getKey());
             if (entry.getKey().equals("sodium-extra")) {
-                name = "Sodium Extra";
+                name = org.embeddedt.embeddium.api.EmbeddiumConstants.EXTRA_NAME;
                 version = "0.9.6-beta.4";
                 logo = new ResourceLocation("sodium-extra", "textures/icon.png");
             }

@@ -1,5 +1,5 @@
 {
-  "modmenu.descriptionTranslation.sodium-extra": "Sodium Extra прагне заповнити брак налаштувань графіки з OptiFine, доповнюючи їх виправленнями графічних помилок та іншими налаштуваннями продуктивності, яких поки немає в Sodium",
+  "modmenu.descriptionTranslation.sodium-extra": "Nocturna Extra прагне заповнити брак налаштувань графіки з OptiFine, доповнюючи їх виправленнями графічних помилок та іншими налаштуваннями продуктивності, яких поки немає в Sodium",
   "modmenu.summaryTranslation.sodium-extra": "Нові та покращенні функції Sodium",
   "options.dimensions.minecraft.overworld": "Верхній світ",
   "options.dimensions.minecraft.the_end": "Енд",
@@ -377,6 +377,6 @@
   "sodium-extra.overlay.fps_extended": "(avg. %s / 1%% low %s / 0.1%% low %s)",
   "sodium-extra.overlay.light_updates": "Оновлення світла вимкнено",
   "sodium-extra.suggestRSO.header": "Suggestion: Install Reese’s Sodium Options",
-  "sodium-extra.suggestRSO.message": "Installing Reese’s Sodium Options alongside Sodium Extra is strongly recommended. With the growing number of features, Sodium’s video options screen can become difficult to navigate without it.",
+  "sodium-extra.suggestRSO.message": "Installing Reese’s Sodium Options alongside Nocturna Extra is strongly recommended. With the growing number of features, Sodium’s video options screen can become difficult to navigate without it.",
   "sodium-extra.units.ticks": "Тактів: %s"
 }

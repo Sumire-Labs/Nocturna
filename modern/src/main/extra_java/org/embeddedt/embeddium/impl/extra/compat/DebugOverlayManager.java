@@ -536,7 +536,7 @@ public final class DebugOverlayManager {
                                         id,
                                         Component.translatable(id.getPath()),
                                         Component.translatable(id.getPath() + ".tooltip"),
-                                        "Sodium Extra",
+                                        org.embeddedt.embeddium.api.EmbeddiumConstants.EXTRA_NAME,
                                         entry.isAllowed(true),
                                         false,
                                         () -> {

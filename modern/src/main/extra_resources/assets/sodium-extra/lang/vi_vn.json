@@ -1,5 +1,5 @@
 {
-  "modmenu.descriptionTranslation.sodium-extra": "Mục tiêu của Sodium Extra là mang hầu hết các tùy chọn của OptiFine vào Sodium; cũng như bổ sung một số tính năng, chẳng hạn như sửa các lỗi trực quan cùng các tinh chỉnh hiệu năng khác chưa có trong Sodium.",
+  "modmenu.descriptionTranslation.sodium-extra": "Mục tiêu của Nocturna Extra là mang hầu hết các tùy chọn của OptiFine vào Sodium; cũng như bổ sung một số tính năng, chẳng hạn như sửa các lỗi trực quan cùng các tinh chỉnh hiệu năng khác chưa có trong Sodium.",
   "modmenu.summaryTranslation.sodium-extra": "Các tính năng không sẵn có trong Sodium.",
   "options.dimensions.minecraft.overworld": "Thế giới thực",
   "options.dimensions.minecraft.the_end": "The End",
@@ -377,6 +377,6 @@
   "sodium-extra.overlay.fps_extended": "(tr.bình %s / 1%% low %s / 0.1%% low %s)",
   "sodium-extra.overlay.light_updates": "Cập nhật chiếu sáng bị tắt",
   "sodium-extra.suggestRSO.header": "Đề xuất: Cài đặt Reese’s Sodium Options",
-  "sodium-extra.suggestRSO.message": "Bạn nên cài đặt Reese’s Sodium Options cùng Sodium Extra. Vì số lượng các tính năng ngày một nhiều lên, màn hình tùy chọn đồ họa gốc của Sodium có thể gây khó khăn khi thao tác.",
+  "sodium-extra.suggestRSO.message": "Bạn nên cài đặt Reese’s Sodium Options cùng Nocturna Extra. Vì số lượng các tính năng ngày một nhiều lên, màn hình tùy chọn đồ họa gốc của Sodium có thể gây khó khăn khi thao tác.",
   "sodium-extra.units.ticks": "%s nhịp"
 }

@@ -1,5 +1,5 @@
 {
-  "modmenu.descriptionTranslation.sodium-extra": "Sodium Extra 的目標是將 OptiFine 大部分的華麗視覺效果選項帶到 Sodium；此外還提供一些功能，如視覺錯誤修復和其他在 Sodium 上尚未可用的效能選項。",
+  "modmenu.descriptionTranslation.sodium-extra": "Nocturna Extra 的目標是將 OptiFine 大部分的華麗視覺效果選項帶到 Sodium；此外還提供一些功能，如視覺錯誤修復和其他在 Sodium 上尚未可用的效能選項。",
   "modmenu.summaryTranslation.sodium-extra": "不應該出現在 Sodium 的功能。",
   "options.dimensions.minecraft.overworld": "主世界",
   "options.dimensions.minecraft.the_end": "終界",
@@ -377,6 +377,6 @@
   "sodium-extra.overlay.fps_extended": "（平均 %s / 1%% 最低 %s / 0.1%% 最低 %s）",
   "sodium-extra.overlay.light_updates": "照明更新已停用",
   "sodium-extra.suggestRSO.header": "Suggestion: Install Reese’s Sodium Options",
-  "sodium-extra.suggestRSO.message": "Installing Reese’s Sodium Options alongside Sodium Extra is strongly recommended. With the growing number of features, Sodium’s video options screen can become difficult to navigate without it.",
+  "sodium-extra.suggestRSO.message": "Installing Reese’s Sodium Options alongside Nocturna Extra is strongly recommended. With the growing number of features, Sodium’s video options screen can become difficult to navigate without it.",
   "sodium-extra.units.ticks": "%s 刻"
 }
