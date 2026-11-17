@@ -10,6 +10,18 @@ import java.util.regex.*;
 public final class VanillaFogBridge {
     public static final ThreadLocal<Program.Type> STAGE = new ThreadLocal<>();
 
+    public static String vertexDeclarations() {
+        return "\nout vec2 nocturna_Dist;\nuniform mat3 nocturna_InverseView;\n";
+    }
+
+    public static String vertexDistances(String eye) {
+        return "\nvec3 nocturnaWorld = nocturna_InverseView * ("
+                + eye
+                + ");\nnocturna_Dist = vec2(length("
+                + eye
+                + "), max(length(nocturnaWorld.xz), abs(nocturnaWorld.y)));\n";
+    }
+
     public static String transform(String source) {
         var stage = STAGE.get();
         if (source == null
@@ -17,7 +29,7 @@ public final class VanillaFogBridge {
                 || !source.contains("linear_fog")
                 || !source.contains("fog_distance")) return source;
         if (stage == Program.Type.VERTEX) {
-            String declarations = "\nout vec2 nocturna_Dist;\nuniform mat3 nocturna_InverseView;\n";
+            String declarations = vertexDeclarations();
             Matcher m =
                     Pattern.compile(
                                     "float\\s+fog_distance\\s*\\(\\s*mat4\\s+(\\w+)\\s*,\\s*vec3\\s+(\\w+)\\s*,\\s*int\\s+\\w+\\s*\\)\\s*\\{")
@@ -29,9 +41,7 @@ public final class VanillaFogBridge {
                             + " * vec4("
                             + m.group(2)
                             + ", 1.0)).xyz;\n"
-                            + "vec3 nocturnaWorld = nocturna_InverseView * nocturnaEye;\n"
-                            + "nocturna_Dist = vec2(length(nocturnaEye),"
-                            + " max(length(nocturnaWorld.xz), abs(nocturnaWorld.y)));\n";
+                            + vertexDistances("nocturnaEye");
             return declarations + source.substring(0, m.end()) + body + source.substring(m.end());
         }
         String declarations =

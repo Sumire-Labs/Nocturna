@@ -86,6 +86,7 @@ public final class VanillaEnvironment {
 	 */
 	public static float fogStart() {
 		//? if <26.1 {
+		if (usesIndependentFog()) return org.embeddedt.embeddium.impl.extra.compat.ExtraFog.terrain.environmentalStart;
 		return FogHelper.INSTANCE.getFogStart();
 		//?} else
 		//return fogData().environmentalStart;
@@ -93,9 +94,15 @@ public final class VanillaEnvironment {
 
 	public static float fogEnd() {
 		//? if <26.1 {
+		if (usesIndependentFog()) return org.embeddedt.embeddium.impl.extra.compat.ExtraFog.terrain.environmentalEnd;
 		return FogHelper.INSTANCE.getFogEnd();
 		//?} else
 		//return fogData().environmentalEnd;
+	}
+
+	public static boolean usesIndependentFog() {
+		return org.embeddedt.embeddium.impl.extra.compat.ExtraFog.hasTerrain
+				&& org.embeddedt.embeddium.impl.extra.compat.ExtraFog.activeMode == net.minecraft.client.renderer.FogRenderer.FogMode.FOG_TERRAIN;
 	}
 
 	//? if >=26.1 {

@@ -38,6 +38,9 @@ public final class DebugOverlayManager {
     private static final LinkedHashMap<ResourceLocation, Entry> ENTRIES = new LinkedHashMap<>();
     private static DebugOverlayState state;
     private static long nextRefresh;
+    private static long revision;
+    private static net.minecraft.client.multiplayer.ClientLevel hudLevel;
+    private static boolean hudDebug, hudReduced;
     private static List<String> left = List.of(), right = List.of();
     private static net.minecraft.server.level.ServerLevel chunkLevel;
     private static net.minecraft.world.level.ChunkPos chunkPosition;
@@ -700,6 +703,7 @@ public final class DebugOverlayManager {
 
     private static void refresh() {
         state();
+        cacheRevision();
         if (mc().level == null) return;
         var settings = SodiumExtraClientMod.options().extraSettings;
         boolean steady =
@@ -730,6 +734,30 @@ public final class DebugOverlayManager {
 
     public static void invalidate() {
         nextRefresh = 0;
+        revision++;
+    }
+
+    /** Permission and F3 transitions must take effect even while text values are frozen. */
+    public static long cacheRevision() {
+        var client = mc();
+        boolean debug = client.options.renderDebug, reduced = client.showOnlyReducedInfo();
+        if (hudLevel != client.level || hudDebug != debug || hudReduced != reduced) {
+            hudLevel = client.level;
+            hudDebug = debug;
+            hudReduced = reduced;
+            invalidate();
+        }
+        return revision;
+    }
+
+    public static void clearWorld() {
+        chunkLevel = null;
+        chunkPosition = null;
+        serverChunk = null;
+        hudLevel = null;
+        left = right = List.of();
+        invalidate();
+        DebugVisuals.clearWorld();
     }
 
     public static List<String> left() {

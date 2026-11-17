@@ -24,6 +24,7 @@
     "core.MixinDebugTraversal",
     "core.MixinDebugVisuals",
     "core.MixinSoundBytes",
+    "core.MixinWorldLifecycle",
     "fog.AccessorSliderRange",
     "fog.MixinCloudFog",
     "fog.MixinFogImport",

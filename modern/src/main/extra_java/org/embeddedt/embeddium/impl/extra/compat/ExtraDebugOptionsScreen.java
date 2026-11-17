@@ -16,6 +16,8 @@ public final class ExtraDebugOptionsScreen extends Screen {
     private List<DebugOverlayManager.Entry> filtered = List.of();
     private String query = "";
     private int scroll;
+    private double scrollRemainder;
+    private long revision = -1;
     private Button defaultProfile, performanceProfile;
 
     public ExtraDebugOptionsScreen() {
@@ -49,6 +51,7 @@ public final class ExtraDebugOptionsScreen extends Screen {
                 value -> {
                     query = value;
                     scroll = 0;
+                    scrollRemainder = 0;
                     rebuild();
                 });
         addRenderableWidget(search);
@@ -63,7 +66,7 @@ public final class ExtraDebugOptionsScreen extends Screen {
     private void profile(DebugOverlayState.Profile profile) {
         DebugOverlayManager.state().loadProfile(profile);
         DebugOverlayManager.invalidate();
-        rebuild();
+        refreshSelections();
     }
 
     private void rebuild() {
@@ -105,7 +108,7 @@ public final class ExtraDebugOptionsScreen extends Screen {
                                             DebugOverlayManager.state()
                                                     .set(entry.id().toString(), status);
                                             DebugOverlayManager.invalidate();
-                                            rebuild();
+                                            refreshSelections();
                                         })
                                 .bounds(
                                         right - (3 - status.ordinal()) * buttonWidth,
@@ -126,6 +129,32 @@ public final class ExtraDebugOptionsScreen extends Screen {
                 rows.add(addRenderableWidget(button));
             }
         }
+        refreshSelections();
+    }
+
+    private void refreshSelections() {
+        for (int i = 0; i < rows.size(); i++) {
+            var entry = filtered.get(scroll + i / 3);
+            var status = DebugOverlayState.Visibility.values()[i % 3];
+            var button = rows.get(i);
+            boolean allowed = entry.reducedAllowed() || !minecraft.showOnlyReducedInfo();
+            if (button.active != allowed)
+                button.setTooltip(
+                        Tooltip.create(
+                                allowed
+                                        ? entry.tooltip()
+                                        : Component.translatable("nocturna.debug.not_allowed")));
+            button.active = allowed;
+            Component message =
+                    Component.translatable(
+                            "sodium-extra.debug.visibility."
+                                    + status.name().toLowerCase(Locale.ROOT));
+            button.setMessage(
+                    DebugOverlayManager.state().get(entry.id().toString()) == status
+                            ? Component.literal("[ ").append(message).append(" ]")
+                            : message);
+        }
+        revision = DebugOverlayManager.cacheRevision();
         defaultProfile.active =
                 !DebugOverlayManager.state()
                         .profile()
@@ -139,10 +168,21 @@ public final class ExtraDebugOptionsScreen extends Screen {
     }
 
     @Override
+    public void tick() {
+        super.tick();
+        if (revision != DebugOverlayManager.cacheRevision()) refreshSelections();
+    }
+
+    @Override
     public boolean mouseScrolled(double x, double y, double amount) {
         if (y >= 84 && y < height - 32) {
-            scroll -= Integer.signum((int) amount);
-            rebuild();
+            scrollRemainder -= amount;
+            int steps = (int) scrollRemainder;
+            scrollRemainder -= steps;
+            if (steps != 0) {
+                scroll += steps;
+                rebuild();
+            }
             return true;
         }
         return super.mouseScrolled(x, y, amount);

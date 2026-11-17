@@ -36,7 +36,27 @@ final class ResourcePackPolicySource implements FeaturePolicySource {
         resourceGeneration++;
     }
 
-    private record NativeFingerprint(Object connection, long generation, List<String> packs) {}
+    private record NativeFingerprint(long connection, long generation, List<String> packs) {}
+
+    /** A lazily refreshed fingerprint must not keep its previous connection and world alive. */
+    static final class ConnectionEpoch {
+        private java.lang.ref.WeakReference<Object> previous =
+                new java.lang.ref.WeakReference<>(null);
+        private boolean connected;
+        private long generation;
+
+        long at(Object connection) {
+            boolean present = connection != null;
+            if (connection != previous.get() || connected != present) {
+                previous = new java.lang.ref.WeakReference<>(connection);
+                connected = present;
+                generation++;
+            }
+            return generation;
+        }
+    }
+
+    private final ConnectionEpoch connectionEpoch = new ConnectionEpoch();
 
     private static final ResourceLocation ID =
             new ResourceLocation("greenlight", "server_resource_pack");
@@ -62,7 +82,7 @@ final class ResourcePackPolicySource implements FeaturePolicySource {
         // here.
         return minecraft != null
                 ? new NativeFingerprint(
-                        minecraft.getConnection(),
+                        connectionEpoch.at(minecraft.getConnection()),
                         resourceGeneration,
                         collectTrustedServerPackIds(minecraft.getResourcePackRepository()))
                 : List.of();

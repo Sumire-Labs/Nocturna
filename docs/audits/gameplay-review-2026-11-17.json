@@ -1,0 +1,74 @@
+{
+  "recordedAt": "2026-11-17T05:35:32.598Z",
+  "reviewBase": "d68c0d27",
+  "checkedHead": "361331c28890e19717668f68045c719657f416d6",
+  "branch": "20.1/forge",
+  "java": "Temurin 17.0.20.1+1",
+  "forge": "47.3.0",
+  "platform": "Windows 11 / AMD Radeon 8060S / OpenGL 4.6",
+  "addonFiles": {
+    "codechickenlib": "5753868",
+    "immersiveEngineering": "4782978",
+    "brandonsCore": "5422013"
+  },
+  "tests": 178,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "java17Classes": 4507,
+  "workflow": {
+    "failed": [],
+    "passed": [
+      "instanced weather receives protected fog",
+      "Greenlight fingerprints do not retain the connection",
+      "shader pack fog uniforms retain environment distances",
+      "HUD accepts fractional wheel input",
+      "HUD visibility changes preserve keyboard focus",
+      "HUD updates permissions while the screen stays open",
+      "F3 off immediately removes overlay-only text",
+      "reduced-debug permissions invalidate cached coordinates",
+      "dimension transfer releases previous server chunk",
+      "disconnect releases world and visibility state",
+      "second world renders terrain and native weather",
+      "invalid Panini graph safely bypasses rendering",
+      "valid resource reload recovers Panini"
+    ]
+  },
+  "weatherCoveredFragments": [
+    2026,
+    2028
+  ],
+  "baselineFailures": [
+    "instanced weather receives protected fog: java.lang.AssertionError: native weather shader ignores the independent environment fog channel",
+    "F3 off immediately removes overlay-only text: java.lang.AssertionError: overlay-only text leaked outside F3",
+    "reduced-debug permissions invalidate cached coordinates: java.lang.AssertionError: cached coordinates bypassed reduced-debug permissions",
+    "dimension transfer releases previous server chunk: java.lang.AssertionError: old dimension remains strongly referenced",
+    "disconnect releases world and visibility state: java.lang.AssertionError: disconnected world remains in debug caches",
+    "second world renders terrain and native weather: java.lang.AssertionError: native weather shader ignores the independent environment fog channel",
+    "invalid Panini graph safely bypasses rendering: java.lang.IllegalStateException: Unknown post-effect target nocturna:missing-target",
+    "shader pack fog uniforms retain environment distances: java.lang.AssertionError: shader packs receive render fog instead of protected environment fog",
+    "HUD accepts fractional wheel input: java.lang.AssertionError: fractional scrolling was discarded",
+    "HUD visibility changes preserve keyboard focus: java.lang.AssertionError: focused control was removed while activating it"
+  ],
+  "regressionScopes": [
+    "native/compact/async terrain and old APIs",
+    "shader cache cold/hit/rejection/compute/warm pack",
+    "horizon and FISM GPU oracles",
+    "rain/snow and provider draws",
+    "RSO input and frontend transitions",
+    "Extra config/resources/Panini/Fabulous",
+    "world lifecycle and HUD state",
+    "all loaded mixin targets"
+  ],
+  "logs": [
+    {
+      "path": ".git/gameplay-review-current-head.log",
+      "sha256": "99f4497cda458698dceabcf7f890f31a0e1107ad44c7b6d5cea683bcc3699602"
+    }
+  ],
+  "limits": [
+    "Physical Linux/macOS execution is not covered.",
+    "Addon coverage includes CCL callbacks, IE wire geometry and loaded BrandonsCore targets, not every addon item.",
+    "The workflows do not establish correctness for every possible mod pack or scene."
+  ]
+}

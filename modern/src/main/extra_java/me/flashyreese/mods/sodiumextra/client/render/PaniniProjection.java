@@ -38,6 +38,7 @@ public final class PaniniProjection implements AutoCloseable {
     private PaniniProgram program;
     private boolean renderingWorld, pending, handRendering, preserveWorldDepth;
     private boolean warnedShader;
+    private boolean shaderUnavailable, depthUnavailable;
     private int failedQuality, windowWidth, windowHeight, limitedWidth, limitedHeight;
     private float strength, horizontalExtent, verticalExtent, frameScale = 1;
     private final List<Runnable> restoreChains = new ArrayList<>();
@@ -55,8 +56,10 @@ public final class PaniniProjection implements AutoCloseable {
         if (failedQuality == quality) return;
         if (!isEnabled()) {
             releaseTargets();
+            shaderUnavailable = depthUnavailable = false;
             return;
         }
+        if (shaderUnavailable) return;
         // Temporary bypasses retain reusable targets, matching the upstream lifecycle.
         var renderer = (AccessorLevelRenderer) minecraft.levelRenderer;
         if (minecraft.player == null
@@ -82,6 +85,7 @@ public final class PaniniProjection implements AutoCloseable {
                     SodiumExtraClientMod.logger()
                             .warn("Unable to load Panini projection shaders", ex);
                 warnedShader = true;
+                shaderUnavailable = true;
                 releaseTargets();
                 return;
             }
@@ -110,6 +114,7 @@ public final class PaniniProjection implements AutoCloseable {
                 minecraft.gameRenderer.currentEffect() != null
                         && ((AccessorGameRenderer) minecraft.gameRenderer)
                                 .sodiumExtra$isEffectActive();
+        if (preserveWorldDepth && depthUnavailable) return;
         if (preserveWorldDepth)
             try {
                 program.prepareDepth();
@@ -118,6 +123,7 @@ public final class PaniniProjection implements AutoCloseable {
                     SodiumExtraClientMod.logger()
                             .warn("Unable to load Panini depth projection shader", failure);
                 warnedShader = true;
+                depthUnavailable = true;
                 releaseTargets();
                 return;
             }
@@ -293,6 +299,7 @@ public final class PaniniProjection implements AutoCloseable {
         resize();
         if (program != null) program.close();
         program = null;
+        shaderUnavailable = depthUnavailable = warnedShader = false;
     }
 
     private void prepareTargets(RenderTarget outline, int width, int height) {

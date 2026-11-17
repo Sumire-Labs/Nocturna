@@ -88,6 +88,10 @@ public final class IrisShaderInstance extends ShaderInstance {
 		drawState.glintAlpha = GLINT_ALPHA.getFloatBuffer().get(0);
 		drawState.fogStart = FOG_START.getFloatBuffer().get(0);
 		drawState.fogEnd = FOG_END.getFloatBuffer().get(0);
+		if (net.irisshaders.iris.uniforms.VanillaEnvironment.usesIndependentFog()) {
+			drawState.fogStart = net.irisshaders.iris.uniforms.VanillaEnvironment.fogStart();
+			drawState.fogEnd = net.irisshaders.iris.uniforms.VanillaEnvironment.fogEnd();
+		}
 		drawState.albedoTexture = RenderSystem.getShaderTexture(0);
 		drawState.overlayTexture = RenderSystem.getShaderTexture(1);
 		drawState.lightmapTexture = RenderSystem.getShaderTexture(2);

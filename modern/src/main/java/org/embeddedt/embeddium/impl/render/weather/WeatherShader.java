@@ -11,6 +11,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
 import org.embeddedt.embeddium.impl.gl.shader.ShaderType;
 import org.embeddedt.embeddium.impl.gl.shader.GlShader;
+import org.embeddedt.embeddium.impl.extra.compat.VanillaFogBridge;
 import org.lwjgl.opengl.*;
 
 
@@ -56,7 +57,7 @@ final class WeatherShader {
             this.state.textureMatrix.set(RenderSystem.getTextureMatrix());
             this.state.colorModulator.set(1);
             float[] fog = RenderSystem.getShaderFogColor(); this.state.fogColor.set(fog[0], fog[1], fog[2]);
-            this.state.fogStart = RenderSystem.getShaderFogStart(); this.state.fogEnd = RenderSystem.getShaderFogEnd();
+            this.state.fogStart = net.irisshaders.iris.uniforms.VanillaEnvironment.fogStart(); this.state.fogEnd = net.irisshaders.iris.uniforms.VanillaEnvironment.fogEnd();
             this.state.albedoTexture = Minecraft.getInstance().getTextureManager().getTexture(texture).getId();
             this.state.lightmapTexture = RenderSystem.getShaderTexture(2);
             this.pack.bind(this.state);
@@ -77,6 +78,8 @@ final class WeatherShader {
             GL20C.glUniform1f(GL20C.glGetUniformLocation(id, "FogEnd"), RenderSystem.getShaderFogEnd());
             float[] fog = RenderSystem.getShaderFogColor();
             GL20C.glUniform4f(GL20C.glGetUniformLocation(id, "FogColor"), fog[0], fog[1], fog[2], fog[3]);
+            VanillaFogBridge.upload(GL20C.glGetUniformLocation(id,"nocturna_FogEnabled"),
+                    GL20C.glGetUniformLocation(id,"nocturna_FogRanges"),GL20C.glGetUniformLocation(id,"nocturna_InverseView"));
         }
         GL20C.glUniform4f(GL20C.glGetUniformLocation(id, "iris_WeatherParams0"), WeatherParams.translateX,
                 WeatherParams.translateY, WeatherParams.translateZ, WeatherParams.invRadius);
@@ -94,12 +97,13 @@ final class WeatherShader {
     static void clear() { releasePack(); vanillaUnavailable = false; if (vanilla != 0) {GlStateManager.glDeleteProgram(vanilla);vanilla = 0;} }
 
     private static int createVanilla() {
-        String vertex = "#version 150\n" + WeatherVertices.declarations()
+        String vertex = "#version 150\n" + VanillaFogBridge.vertexDeclarations() + WeatherVertices.declarations()
                 + "vec3 iris_weatherPosition;vec4 iris_weatherColor;vec2 iris_weatherUV;ivec2 iris_weatherLight;"
                 + "uniform mat4 ModelViewMat;uniform mat4 ProjMat;uniform int FogShape;uniform sampler2D Sampler2;"
                 + "out vec2 texCoord0;out vec4 vertexColor;out float vertexDistance;"
                 + WeatherVertices.generator()
                 + "void main(){iris_generateWeatherVertex();vec4 eye=ModelViewMat*vec4(iris_weatherPosition,1);"
+                + VanillaFogBridge.vertexDistances("eye.xyz")
                 + "gl_Position=ProjMat*eye;texCoord0=iris_weatherUV;"
                 + "vertexColor=iris_weatherColor*texelFetch(Sampler2,iris_weatherLight/16,0);"
                 + "vertexDistance=FogShape==0?length(eye.xyz):max(length((ModelViewMat*vec4(iris_weatherPosition.x,0,iris_weatherPosition.z,1)).xyz),"

@@ -29,6 +29,11 @@ public final class DebugVisuals {
         return traversal;
     }
 
+    public static void clearWorld() {
+        captureRequested = false;
+        traversal = List.of();
+    }
+
     private static boolean enabled(String id) {
         return DebugOverlayManager.enabled(id);
     }

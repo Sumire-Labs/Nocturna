@@ -22,11 +22,11 @@ public class IrisShaderFogComponent {
 		}
 
 		if (this.uFogStart != null) {
-			this.uFogStart.setFloat(FogHelper.INSTANCE.getFogStart());
+			this.uFogStart.setFloat(net.irisshaders.iris.uniforms.VanillaEnvironment.fogStart());
 		}
 
 		if (this.uFogEnd != null) {
-			this.uFogEnd.setFloat(FogHelper.INSTANCE.getFogEnd());
+			this.uFogEnd.setFloat(net.irisshaders.iris.uniforms.VanillaEnvironment.fogEnd());
 		}
 	}
 }

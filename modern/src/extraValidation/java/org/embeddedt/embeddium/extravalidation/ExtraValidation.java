@@ -39,6 +39,10 @@ public class ExtraValidation {
 
     public ExtraValidation() {
         ParityRegression.register();
+        if (Boolean.getBoolean("nocturna.reviewGameplay")) {
+            new GameplayWorkflow();
+            return;
+        }
         MinecraftForge.EVENT_BUS.register(this);
     }
 

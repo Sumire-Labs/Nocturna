@@ -1,6 +1,6 @@
 {
   "revision": "26f000239eb8ddf7ee191f0ddf369147e3c92ef6",
-  "identical": 1542,
+  "identical": 1539,
   "changes": [
     {
       "path": "buildSrc/build.gradle.kts",
@@ -145,7 +145,7 @@
     {
       "path": "modern/build.mdg.gradle.kts",
       "upstream": "fc793feb77018a5496e0e45940650592266ea42d23bdb56aae9dd625ba47eee7",
-      "local": "548e3b22ccfcf1cc78344d80164c543ba24080b891e319068442d6b493d61def"
+      "local": "c1ac4b9ceed3f0e76e9ddc6f10321493a980693996180ba49632f22c373ce270"
     },
     {
       "path": "modern/src/main/flywheel_java/net/irisshaders/iris/compat/flywheel/Colorwheel.java",
@@ -343,6 +343,11 @@
       "local": "7217b64010657bd43ad0b968ca46d077eea7dfee6c3957cd89319ed4276d31f6"
     },
     {
+      "path": "modern/src/main/shaders_java/net/irisshaders/iris/compat/sodium/impl/shader_overrides/IrisShaderFogComponent.java",
+      "upstream": "8393dc4f9e1039e6da8db8763877f1427406ea69f01411a1367c52ebb1d4ec6d",
+      "local": "eb343704d60c443befd20376435897d2d1e3b9cfd372558a3c5589120bd9074d"
+    },
+    {
       "path": "modern/src/main/shaders_java/net/irisshaders/iris/config/IrisConfig.java",
       "upstream": "8f267921c9acea53ff05e6bfd1a87ac63177a02f967d79ac15c63d24b97d110a",
       "local": "94c2ddae753e2225a2e4ebeb6b7d71533d4e96eacf6aa200777bbf0c538ff327"
@@ -403,6 +408,11 @@
       "local": "4d9cc41390efebd3449054a9758e9572d0e6855e6a3b83bf10b6978c54d9eb39"
     },
     {
+      "path": "modern/src/main/shaders_java/net/irisshaders/iris/uniforms/VanillaEnvironment.java",
+      "upstream": "5f0b672888b1f67ddf06a2f6e72ff34f172127047783cfdfaa5a626a614e0532",
+      "local": "e503ae353dfad1a397f9f9d0c4cd461602530069dccf5422205195b5397a405c"
+    },
+    {
       "path": "modern/src/main/shaders_modern_java/net/irisshaders/iris/gui/screen/ShaderPackScreen.java",
       "upstream": "5d5ac7d63fba4065683f2032f7a39af3a5542193116ea930db2f059657fd1196",
       "local": "8234d8aa1eb4128c4f53fc57d0b41dbee16bd42b44360c732e082c4c7b792f57"
@@ -421,6 +431,11 @@
       "path": "modern/src/main/shaders_modern_java/net/irisshaders/iris/pathways/HorizonRenderer.java",
       "upstream": "be0216b7cfb8837010259ab8cbdc6ccebd8e9efb3041775ba2f3c5dc39ff95ea",
       "local": "3b610ed0b8c25cccf32d44bd4ef364df9afbc8055452c403054d963caff7e413"
+    },
+    {
+      "path": "modern/src/main/shaders_modern_java/net/irisshaders/iris/pipeline/programs/IrisShaderInstance.java",
+      "upstream": "356e588c06af79a292f709eb1ee2fd6e74eee160c694f714adaae6fb2c25a61e",
+      "local": "e4d82dc3ed90f7c957e31bb129264c5fb9d79e64087214f16cb57b55f331f93c"
     },
     {
       "path": "modern/src/main/shaders_modern_java/net/irisshaders/iris/texture/pbr/loader/AtlasPBRLoader.java",
@@ -607,11 +622,15 @@
     },
     {
       "path": "modern/src/extraValidation/java/org/embeddedt/embeddium/extravalidation/ExtraValidation.java",
-      "local": "e7a3cafc36459335d1b065be42af33f18f08274f5c7fc73d3cb3be05c97c1559"
+      "local": "97239acd6214e8ef95cf851a65d18f7a43bb72c8922df604e7cb76bdd10f8285"
     },
     {
       "path": "modern/src/extraValidation/java/org/embeddedt/embeddium/extravalidation/FogShaderParity.java",
       "local": "b49ea5571fe9b7f9dea0104b8c03a7996c6b4df837fde2a2caa585ea5bbe5df7"
+    },
+    {
+      "path": "modern/src/extraValidation/java/org/embeddedt/embeddium/extravalidation/GameplayWorkflow.java",
+      "local": "20e4edb3e2a9a6b257bd1c30f07782d06e14bece79ab5f942f499e0e76e61c3c"
     },
     {
       "path": "modern/src/extraValidation/java/org/embeddedt/embeddium/extravalidation/PaniniPixels.java",
@@ -636,6 +655,10 @@
     {
       "path": "modern/src/extraValidation/java/org/embeddedt/embeddium/extravalidation/ShaderPackFixture.java",
       "local": "09901eb910222440132a886b68c77c5022e9b110d13159632590eba6a7236fa8"
+    },
+    {
+      "path": "modern/src/extraValidation/java/org/embeddedt/embeddium/extravalidation/WeatherFogParity.java",
+      "local": "48f9ea8cd87319cd05828845cd1673c60ed4891a418b29f9cdbb829739097321"
     },
     {
       "path": "modern/src/extraValidation/resources/META-INF/mods.toml",
@@ -679,7 +702,7 @@
     },
     {
       "path": "modern/src/main/extra_java/me/flashyreese/mods/greenlight/feature/ResourcePackPolicySource.java",
-      "local": "dbbfec1f32edb036bd99ad95d62cda7791d32c5e3352b42c329c3d958f238b6d"
+      "local": "b50e18cf3e9234494d43b7ce00adbbccabd300fc60b0348707791336cad813e8"
     },
     {
       "path": "modern/src/main/extra_java/me/flashyreese/mods/greenlight/feature/spi/GreenlightProvider.java",
@@ -747,7 +770,7 @@
     },
     {
       "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/client/render/ExtraPostChain.java",
-      "local": "b25ee3c549a5a283f14609cd211005c70da6c8edd69b851afe774d490154e344"
+      "local": "c047eea9e998496168de5e1e285869cff96e7fac1edbb0a46d5484810b90dc40"
     },
     {
       "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/client/render/PaniniProgram.java",
@@ -755,7 +778,7 @@
     },
     {
       "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/client/render/PaniniProjection.java",
-      "local": "a16387e4e1cd5878ace9698c8f642471807d7580fe710ae41742b4b31f9a3583"
+      "local": "605508bf6634cf4217d49e29a7b9d5f5a3a2d8a0d942f5c02442530dca8baa23"
     },
     {
       "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/client/render/TargetFormat.java",
@@ -864,6 +887,10 @@
     {
       "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/core/MixinSoundBytes.java",
       "local": "2252ceacd05559247eadcafd0f4886a0b411f04818740b3b03f8b599f30fddfd"
+    },
+    {
+      "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/core/MixinWorldLifecycle.java",
+      "local": "bc58d99b4cb5822e3910b29e29be0e95c2b923c34c528b21e5eef0e179efd74b"
     },
     {
       "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/fog/AccessorSliderRange.java",
@@ -1023,7 +1050,7 @@
     },
     {
       "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/steady_debug_hud/MixinDebugScreenOverlay.java",
-      "local": "6e92f046c15ad95fd50dcc10eba920d79bc8de7112b1342784aaaeb3e8efb05d"
+      "local": "024f976b7c869d4c85c1d73bd5177763944ba2fc530bb12da76a4c5b5e16f130"
     },
     {
       "path": "modern/src/main/extra_java/me/flashyreese/mods/sodiumextra/mixin/toasts/MixinToastInstance.java",
@@ -1043,7 +1070,7 @@
     },
     {
       "path": "modern/src/main/extra_java/org/embeddedt/embeddium/impl/extra/compat/DebugOverlayManager.java",
-      "local": "4d95c9b31613aae3e049e3fb27ecb711329730c4d11e1659bef59907831ae406"
+      "local": "115fed3a8660c0eb5ec6f8a0d56b3766dce062d4cee93c6470e945aee138b161"
     },
     {
       "path": "modern/src/main/extra_java/org/embeddedt/embeddium/impl/extra/compat/DebugOverlayState.java",
@@ -1059,7 +1086,7 @@
     },
     {
       "path": "modern/src/main/extra_java/org/embeddedt/embeddium/impl/extra/compat/DebugVisuals.java",
-      "local": "3528e1d82d35acf6ce045c10ad04f1b2bd05c0095f5a6f3c7f01bd403b428684"
+      "local": "c944fafb70c709bb6855af88a78c9a8d0d46838d8dfc10b036de6f236fd24aba"
     },
     {
       "path": "modern/src/main/extra_java/org/embeddedt/embeddium/impl/extra/compat/ExtraAnimationTicker.java",
@@ -1075,7 +1102,7 @@
     },
     {
       "path": "modern/src/main/extra_java/org/embeddedt/embeddium/impl/extra/compat/ExtraDebugOptionsScreen.java",
-      "local": "d64f72beb97dc8b5e65a7f66d64b0ef66fdb9edb6510e5c648cded52f2f3b24f"
+      "local": "8d4eb918ed78532d0b108985eaedaf3e71393d2c5ee026f708da5478b7de1353"
     },
     {
       "path": "modern/src/main/extra_java/org/embeddedt/embeddium/impl/extra/compat/ExtraFog.java",
@@ -1119,7 +1146,7 @@
     },
     {
       "path": "modern/src/main/extra_java/org/embeddedt/embeddium/impl/extra/compat/VanillaFogBridge.java",
-      "local": "4f73afabe99a092e944e3fad62afb20589a655b56288ec51405b89011de20176"
+      "local": "8aa6cb7e3b07ae61280538be7a627bd29b561ce95fdbcf7c5233ca6b0fb85951"
     },
     {
       "path": "modern/src/main/extra_java/org/embeddedt/embeddium/impl/extra/compat/config/ConfigEntryPoint.java",
@@ -1403,7 +1430,7 @@
     },
     {
       "path": "modern/src/main/extra_resources/nocturna-extra.mixins.json",
-      "local": "13ea1f4ec9a31d8d99047664fb9deebd4a1b1a3abc311665f7a55177e7296b5f"
+      "local": "0169103dada49c65de4f0b923e4f5a1a8cb2920d626da5b968fba3023016769b"
     },
     {
       "path": "modern/src/main/java/org/embeddedt/embeddium/api/weather/WeatherColumnProvider.java",
@@ -1459,7 +1486,7 @@
     },
     {
       "path": "modern/src/main/java/org/embeddedt/embeddium/impl/render/weather/WeatherShader.java",
-      "local": "82c73e7f02100b3882336c4ddef07d9c1808f5b0f482295db857ced505536fe3"
+      "local": "24fd3939d12c96dc269a837eb4280bda31fda686a3ff00ee3885320f5b828bdf"
     },
     {
       "path": "modern/src/main/java/org/embeddedt/embeddium/impl/render/weather/WeatherWorld.java",
@@ -2546,6 +2573,10 @@
       "local": "6b88d5ebc5285b890663d9c0ff0e326cb8a2cdd8a6dd427a7dacbf495e6fe9d3"
     },
     {
+      "path": "modern/src/test/java/me/flashyreese/mods/greenlight/feature/ConnectionEpochTest.java",
+      "local": "1481af55e766febcda57f2475b1c7fe0556c39bfbd414f3bf6ed989614510052"
+    },
+    {
       "path": "modern/src/test/java/me/flashyreese/mods/greenlight/feature/FakePolicySource.java",
       "local": "ea86c3eceb8b9370a6f9114158feba9905aa49c90e036026269aed4d3175339e"
     },
@@ -2634,6 +2665,10 @@
       "local": "a812610d627a16a227707980316a2e208977f117396233902945e91a3d230169"
     },
     {
+      "path": "modern/src/test/java/org/embeddedt/embeddium/impl/extra/compat/config/structure/CloudRangeOptionTest.java",
+      "local": "d91121111d05073bc3905b2b9e8ba8b529f62268db5cfc8f1d257b9e598eddb0"
+    },
+    {
       "path": "modern/src/test/java/org/embeddedt/embeddium/impl/gui/rso/RsoThemeTest.java",
       "local": "4a4322fdcc99830bf3f2c5ff574daa7f35e93ecff62b8a3d0c7f5a7b926201dc"
     },
@@ -2703,7 +2738,7 @@
     },
     {
       "path": "modern/src/validation/java/org/embeddedt/embeddium/validation/MigrationValidation.java",
-      "local": "a656af1de901ab6cf0c31b299513d9fb240b69387371e3af5e3592d21b759cd7"
+      "local": "76632427676063f73cb1e7f1b500690f8c980e7a6ea2bf520386b164540f36a6"
     },
     {
       "path": "modern/src/validation/java/org/embeddedt/embeddium/validation/PBRResourceIndexValidation.java",

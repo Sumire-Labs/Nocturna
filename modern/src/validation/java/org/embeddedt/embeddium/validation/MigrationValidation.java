@@ -106,7 +106,7 @@ public class MigrationValidation {
                 FismValidation.verify();
                 org.embeddedt.embeddium.validation.weather.WeatherGeometryValidation.verify();gui(mc);
                 ShaderCachePackValidation.prepare();stage=1;
-                mc.options.renderDistance().set(3);mc.options.simulationDistance().set(3);
+                mc.options.renderDistance().set(3);mc.options.simulationDistance().set(5);
                 mc.options.pauseOnLostFocus=false;
                 var name="migration-validation-"+UUID.randomUUID();
                 var settings=new LevelSettings(name,GameType.CREATIVE,false,Difficulty.PEACEFUL,true,new GameRules(),WorldDataConfiguration.DEFAULT);

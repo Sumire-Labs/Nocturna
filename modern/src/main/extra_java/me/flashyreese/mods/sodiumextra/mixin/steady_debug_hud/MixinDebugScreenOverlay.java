@@ -21,13 +21,20 @@ import java.util.List;
 public class MixinDebugScreenOverlay {
     @Unique private long sodiumExtra$nextTime;
     @Unique private boolean sodiumExtra$rebuild;
+    @Unique private long nocturna$revision = -1;
     @Unique private List<String> sodiumExtra$left = List.of(), sodiumExtra$right = List.of();
 
     @Inject(method = "renderHUDText", at = @At("HEAD"))
     private void sodiumExtra$refresh(CallbackInfo ci) {
         var settings = SodiumExtraClientMod.options().extraSettings;
         long now = net.minecraft.Util.getMillis();
-        sodiumExtra$rebuild = !settings.steadyDebugHud || now > sodiumExtra$nextTime;
+        long revision =
+                org.embeddedt.embeddium.impl.extra.compat.DebugOverlayManager.cacheRevision();
+        sodiumExtra$rebuild =
+                !settings.steadyDebugHud
+                        || now > sodiumExtra$nextTime
+                        || revision != nocturna$revision;
+        nocturna$revision = revision;
         if (sodiumExtra$rebuild)
             sodiumExtra$nextTime = now + settings.steadyDebugHudRefreshInterval * 50L;
     }

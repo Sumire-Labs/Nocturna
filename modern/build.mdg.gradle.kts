@@ -220,6 +220,15 @@ if (stonecutter.constants.get("shaders") ?: false) {
 }
 
 modDevExtension.runs {
+    create("gameplayValidationClient") {
+        client()
+        loadedMods.set(listOf(mainMod, extraValidationMod))
+        systemProperty("nocturna.reviewGameplay", "true")
+        for (mixinConfig in modMixinConfigs) {
+            programArgument("--mixin.config")
+            programArgument(mixinConfig)
+        }
+    }
     create("extraValidationClient") {
         client()
         loadedMods.set(listOf(mainMod, extraValidationMod))

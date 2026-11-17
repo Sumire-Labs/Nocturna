@@ -116,9 +116,38 @@ final class ExtraPostChain implements AutoCloseable {
                     throw failure;
                 }
             }
+            validateTargets();
         } catch (IOException | RuntimeException failure) {
             close();
             throw failure;
+        }
+    }
+
+    private void validateTargets() throws IOException {
+        var external =
+                Set.of(
+                        new ResourceLocation("sodium-extra", "panini_source"),
+                        new ResourceLocation("minecraft", "main"));
+        var known = new HashSet<>(external);
+        for (var id : specs.keySet())
+            if (!known.add(id)) throw new IOException("Reserved post-effect target " + id);
+        for (var pass : passes) {
+            if (!known.contains(pass.output))
+                throw new IOException("Unknown post-effect output " + pass.output);
+            for (var input : pass.inputs) {
+                if (input.target == null) {
+                    if (input.texture == null)
+                        throw new IOException("Post-effect input needs target or texture");
+                    continue;
+                }
+                if (!known.contains(input.target))
+                    throw new IOException("Unknown post-effect input " + input.target);
+                if (input.target.equals(pass.output))
+                    throw new IOException("Post-effect read/write feedback: " + input.target);
+                if (input.depth && specs.containsKey(input.target))
+                    throw new IOException(
+                            "Internal post-effect target has no depth: " + input.target);
+            }
         }
     }
 
