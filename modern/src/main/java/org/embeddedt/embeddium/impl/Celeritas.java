@@ -114,7 +114,7 @@ public class Celeritas /*? if fabric {*/ /*implements ClientModInitializer *//*?
             var rendererInfo = ResourceLocationUtil.make(MODID, "renderer_info");
             event.register(rendererInfo, (displayer, level, clientChunk, serverChunk) -> {
                 ArrayList<String> strings = new ArrayList<>();
-                strings.add("%s%s Renderer (%s)".formatted(net.minecraft.ChatFormatting.AQUA, MODNAME, getVersion()));
+                strings.add("%s%s (%s)".formatted(net.minecraft.ChatFormatting.AQUA, EmbeddiumConstants.RENDERER_NAME, getVersion()));
                 var renderer = CeleritasWorldRenderer.instanceNullable();
                 if (renderer != null) {
                     strings.addAll(renderer.getDebugStrings());

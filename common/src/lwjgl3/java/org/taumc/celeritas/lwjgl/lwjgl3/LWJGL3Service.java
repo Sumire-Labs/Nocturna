@@ -26,7 +26,7 @@ public record LWJGL3Service(
         DebugMode debugMode,
         VertexAttribIMode vertexAttribIMode,
         VertexAttribDivisorMode vertexAttribDivisorMode) implements LWJGLService {
-    private static final Logger LOGGER = LogManager.getLogger("Celeritas/LWJGL3Service");
+    private static final Logger LOGGER = LogManager.getLogger("Nocturna/LWJGL3Service");
     private static final LWJGL3DebugSupport debugSupport = new LWJGL3DebugSupport();
 
     // ===================== CAPABILITIES =====================

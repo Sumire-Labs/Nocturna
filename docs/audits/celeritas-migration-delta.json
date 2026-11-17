@@ -1,6 +1,6 @@
 {
   "revision": "26f000239eb8ddf7ee191f0ddf369147e3c92ef6",
-  "identical": 1553,
+  "identical": 1544,
   "changes": [
     {
       "path": "buildSrc/build.gradle.kts",
@@ -18,9 +18,34 @@
       "local": "b6bf354da892f4ca64971389b20d8cdc5439c94af318e2a47528f615747050b9"
     },
     {
+      "path": "common/src/lwjgl2/java/org/taumc/celeritas/lwjgl/lwjgl2/LWJGL2DebugSupport.java",
+      "upstream": "b2dc822342a140e86b39129e56514894718befb1f630121b3d4dbceddad6447e",
+      "local": "20199e16923cd277b86097e0ced5991b3504e3eab1ba64636cefaaa381eee366"
+    },
+    {
+      "path": "common/src/lwjgl2/java/org/taumc/celeritas/lwjgl/lwjgl2/LWJGL2Service.java",
+      "upstream": "9798f9e6e33b7dc471233476932521ce595dc72d89c1ec1293be2db7bf216919",
+      "local": "a654d23e35a11a0aed0398ca22489dbe6559d049c6d829680ce86e8f47879b31"
+    },
+    {
+      "path": "common/src/lwjgl3/java/org/taumc/celeritas/lwjgl/lwjgl3/LWJGL3DebugSupport.java",
+      "upstream": "47e8ca84e9cc760ccb7ec7fc8686bb857089307f70409d591b9425e04e3d507f",
+      "local": "f2c5f22460fcd3bff295e037dc4ae45133950f7f16547b9cf39677bf7f2a132f"
+    },
+    {
+      "path": "common/src/lwjgl3/java/org/taumc/celeritas/lwjgl/lwjgl3/LWJGL3Service.java",
+      "upstream": "609eab92b206699dd43717ec06eabcd981e86f20b3ccac20efcecc0f2b14a1c2",
+      "local": "e0f338e1c41679f5fb1b3ef640e1ea1fa9dd5293e4e0307c62d98158eb731f6a"
+    },
+    {
       "path": "common/src/main/java/org/embeddedt/embeddium/impl/gl/arena/GlBufferArena.java",
       "upstream": "ed6855ac3235b84c6ce149bae5a4656f09c8cc725fe86de7d66ef10643a9a35c",
       "local": "b056106175ea44de66578ce48cad978b15fb98b8cc46df862c3327a3e95f3d57"
+    },
+    {
+      "path": "common/src/main/java/org/embeddedt/embeddium/impl/gl/debug/GLDebug.java",
+      "upstream": "b2cd5f8c3b101328c5d0a4b1d8d66d3fd1dd9435e04d304e3f5f2a7bb45cd267",
+      "local": "d03c6264e559edcdc5498ed9ca905586682303b6e497c9091cdd7abb5a27f0d2"
     },
     {
       "path": "common/src/main/java/org/embeddedt/embeddium/impl/gl/shader/GlProgram.java",
@@ -66,6 +91,11 @@
       "path": "common/src/main/java/org/embeddedt/embeddium/impl/render/chunk/lists/RenderListManager.java",
       "upstream": "4fbf0dbe56ab46b7ba9ba77594d3732680b838bd806eb4b7482239ea5aa28777",
       "local": "69f7c031af63e9a5fadf672eae3a3bf0ce802d13efff0180099fa4c8fdfb859f"
+    },
+    {
+      "path": "common/src/main/java/org/embeddedt/embeddium/impl/render/chunk/lists/SectionGraph.java",
+      "upstream": "0a528f9bee9937b9938bb93b7953ce68f00eba559f3e940d5452bae20c5a3adf",
+      "local": "beab446251b9d49c5dc488f02fe2963ebc08eacb91bd859477082ca5322c9c41"
     },
     {
       "path": "common/src/main/java/org/embeddedt/embeddium/impl/render/chunk/lists/VisibleChunkCollector.java",
@@ -118,6 +148,11 @@
       "local": "548e3b22ccfcf1cc78344d80164c543ba24080b891e319068442d6b493d61def"
     },
     {
+      "path": "modern/src/main/flywheel_java/net/irisshaders/iris/compat/flywheel/Colorwheel.java",
+      "upstream": "dc835f67b7cc27494e80c934522bed55ebba8edc4fd26e46d3f80ffda9159bdb",
+      "local": "6db49e51a50c6993608130d872045a3c1a9342b92b4af8b339856569eea00d52"
+    },
+    {
       "path": "modern/src/main/gui_java/org/embeddedt/embeddium/impl/gui/modern/EmbeddiumVideoOptionsScreen.java",
       "upstream": "8214a33736886c1eae3687ace0d2b9247b9bb3346ef9bd9c2a8bca423b998435",
       "local": "e50dad2045d9e9d84db66e735425d29e832dc0cc902a46ec7557e3cebeb60479"
@@ -140,7 +175,7 @@
     {
       "path": "modern/src/main/java/org/embeddedt/embeddium/api/EmbeddiumConstants.java",
       "upstream": "f4ae1656d2b448cfa763990f8ad463e599cd0c6acad566fc6f44cb02be86b877",
-      "local": "79d79fbd3cdb9b73df6e12eeb8c25949227c06d10534e3efe1a45f3349798eb2"
+      "local": "4b39830d39f11300607533214ff52e82e4e93c72cd142c8be4dc27dd342a914e"
     },
     {
       "path": "modern/src/main/java/org/embeddedt/embeddium/api/MeshAppender.java",
@@ -150,7 +185,7 @@
     {
       "path": "modern/src/main/java/org/embeddedt/embeddium/impl/Celeritas.java",
       "upstream": "c402c5a2b59cd976c27c73d84b3b7031771ed098e469207d236a0555a9279d60",
-      "local": "008dac96455cd2967eaef3fa0f2823e36fdad6a9f678e1128a0f86255adffaf6"
+      "local": "bc6aeba956fd215e706461cbfd0b43dd5b6fab6917e8bc60cbe09ada73c59c42"
     },
     {
       "path": "modern/src/main/java/org/embeddedt/embeddium/impl/SodiumPreLaunch.java",
@@ -211,6 +246,11 @@
       "path": "modern/src/main/modern_java/org/embeddedt/embeddium/impl/mixin/core/render/immediate/consumer/BufferBuilderMixin.java",
       "upstream": "926cdcf374ad58aaeff7f7619aa8031be1e87f11d2b91c4e4ee16fe503bf9184",
       "local": "3a5bcb5c032004612907b828c3f48cad90453a4a6edad5de0df169c115e5b125"
+    },
+    {
+      "path": "modern/src/main/modern_java/org/embeddedt/embeddium/impl/mixin/features/gui/hooks/debug/DebugHudMixin.java",
+      "upstream": "dd67babbabc6d8980513392a1640401e36e1ddbbd325fdb8d9a37a920b7ab210",
+      "local": "d2a0b74c2cdaaae5a237ea9303987ede904456afe269aefef742c13991df105b"
     },
     {
       "path": "modern/src/main/modern_java/org/embeddedt/embeddium/impl/mixin/features/world/biome/BiomeMixin.java",
@@ -356,6 +396,11 @@
       "path": "modern/src/main/shaders_modern_java/net/irisshaders/iris/gui/screen/ShaderPackScreen.java",
       "upstream": "5d5ac7d63fba4065683f2032f7a39af3a5542193116ea930db2f059657fd1196",
       "local": "8234d8aa1eb4128c4f53fc57d0b41dbee16bd42b44360c732e082c4c7b792f57"
+    },
+    {
+      "path": "modern/src/main/shaders_modern_java/net/irisshaders/iris/mixin/MixinDebugScreenOverlay.java",
+      "upstream": "893e52a3de7255ca336c642886525b56d392a1ece2ab3442d5fddbd5a7be62dd",
+      "local": "dfce0a9ea614ad11d2437833d7927dc8cba2d0b10dc910dc00e0116ec502c13d"
     },
     {
       "path": "modern/src/main/shaders_modern_java/net/irisshaders/iris/mixin/texture/MixinTextureManager.java",
@@ -2648,7 +2693,7 @@
     },
     {
       "path": "modern/src/validation/java/org/embeddedt/embeddium/validation/MigrationValidation.java",
-      "local": "19594f720110ebc3fbb0cf2b12c2d1711f290bbb25b6b3b50b6ad075ee3c3248"
+      "local": "a656af1de901ab6cf0c31b299513d9fb240b69387371e3af5e3592d21b759cd7"
     },
     {
       "path": "modern/src/validation/java/org/embeddedt/embeddium/validation/PBRResourceIndexValidation.java",

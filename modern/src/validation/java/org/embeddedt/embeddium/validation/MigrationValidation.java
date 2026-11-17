@@ -110,7 +110,7 @@ public class MigrationValidation {
                 mc.options.pauseOnLostFocus=false;
                 var name="migration-validation-"+UUID.randomUUID();
                 var settings=new LevelSettings(name,GameType.CREATIVE,false,Difficulty.PEACEFUL,true,new GameRules(),WorldDataConfiguration.DEFAULT);
-                mc.forceSetScreen(new GenericDirtMessageScreen(Component.literal("Validating Celeritas migration")));
+                mc.forceSetScreen(new GenericDirtMessageScreen(Component.literal("Validating Nocturna renderer")));
                 mc.createWorldOpenFlows().createFreshLevel(name,settings,new WorldOptions(1024,false,false),registry->registry.registryOrThrow(Registries.WORLD_PRESET).getHolderOrThrow(WorldPresets.FLAT).value().createWorldDimensions());
             } else if(stage>=1&&mc.level!=null&&mc.player!=null&&mc.screen==null) {
                 org.embeddedt.embeddium.validation.weather.WeatherValidation.tick(mc);
@@ -118,6 +118,20 @@ public class MigrationValidation {
                 require(blocks.get()>0&&meshes.get()>0,"meshing callbacks not invoked");
                 var ground=mc.player.blockPosition().below();
                 require(mc.levelRenderer.isChunkCompiled(ground),"terrain section not compiled");
+                if(stage==1) {
+                    var lines=new net.minecraft.client.gui.components.DebugScreenOverlay(mc) {
+                        List<String> rendererLines() {
+                            this.block=mc.player.pick(20,0,false);
+                            this.liquid=mc.player.pick(20,0,true);
+                            return getSystemInformation();
+                        }
+                    }.rendererLines();
+                    require(lines.stream().anyMatch(line->line.toString().contains("Nocturna Renderer (")),"Nocturna renderer name missing from F3");
+                    require(lines.stream().noneMatch(line->line.toString().contains("Celeritas Renderer")),"old renderer name in F3");
+                    require(lines.stream().anyMatch(line->line.toString().startsWith("Shaderpack: ")),"shader pack missing from F3");
+                    require(lines.stream().anyMatch(line->line.toString().startsWith("Direct Buffers: ")),"native buffer memory missing from F3");
+                    System.out.println("PASS Nocturna Renderer F3 branding");
+                }
                 if(net.minecraftforge.fml.ModList.get().isLoaded("immersiveengineering")) AddonValidation.verifyWireGeometry();
                 if(stage==1) {
                     ShaderCachePackValidation.reloadWarm();stage=2;settled=0;

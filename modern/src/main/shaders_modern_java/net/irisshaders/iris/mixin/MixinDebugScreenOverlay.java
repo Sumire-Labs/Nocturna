@@ -1,6 +1,6 @@
 package net.irisshaders.iris.mixin;
 
-import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
+import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import net.irisshaders.iris.Iris;
 import net.irisshaders.iris.gui.option.IrisVideoSettings;
 import net.minecraft.client.gui.components.DebugScreenOverlay;
@@ -14,12 +14,11 @@ import java.lang.management.BufferPoolMXBean;
 import java.lang.management.ManagementFactory;
 import java.text.CharacterIterator;
 import java.text.StringCharacterIterator;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-// Lower priority than the primary mixin
-@Mixin(value = DebugScreenOverlay.class, priority = 900)
+// Run after the configurable native debug entries.
+@Mixin(value = DebugScreenOverlay.class, priority = 1150)
 public abstract class MixinDebugScreenOverlay {
 	@Unique
 	private static final List<BufferPoolMXBean> iris$pools = ManagementFactory.getPlatformMXBeans(BufferPoolMXBean.class);
@@ -57,8 +56,9 @@ public abstract class MixinDebugScreenOverlay {
 		return String.format("%.3f %ciB", value / 1024.0, ci.current());
 	}
 
-    @ModifyExpressionValue(method = "getSystemInformation", at = @At(value = "INVOKE", target = "Lcom/google/common/collect/Lists;newArrayList([Ljava/lang/Object;)Ljava/util/ArrayList;"))
-    private ArrayList<String> redirectRightTextEarly(ArrayList<String> messages) {
+    // Keep shader diagnostics after Sodium Extra rebuilds the selectable vanilla entries.
+    @ModifyReturnValue(method = "getSystemInformation", at = @At("RETURN"))
+    private List<String> redirectRightText(List<String> messages) {
 		if (Iris.getIrisConfig().areShadersEnabled()) {
 			messages.add("Shaderpack: " + Iris.getCurrentPackName() + (Iris.isFallback() ? " (fallback)" : ""));
 			Iris.getCurrentPack().ifPresent(pack -> {
@@ -67,7 +67,7 @@ public abstract class MixinDebugScreenOverlay {
 			messages.add("Color space: " + IrisVideoSettings.colorSpace.name());
 		}
 
-		messages.add(3, "Direct Buffers: +" + iris$humanReadableByteCountBin(iris$directPool.getMemoryUsed()));
+		messages.add(Math.min(3, messages.size()), "Direct Buffers: +" + iris$humanReadableByteCountBin(iris$directPool.getMemoryUsed()));
 
         return messages;
 	}

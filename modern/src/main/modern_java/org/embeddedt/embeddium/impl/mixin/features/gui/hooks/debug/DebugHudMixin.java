@@ -1,6 +1,6 @@
 package org.embeddedt.embeddium.impl.mixin.features.gui.hooks.debug;
 
-import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
+import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import org.embeddedt.embeddium.impl.Celeritas;
 import org.embeddedt.embeddium.impl.render.CeleritasWorldRenderer;
 import org.embeddedt.embeddium.impl.common.util.MathUtil;
@@ -11,24 +11,23 @@ import net.minecraft.client.gui.components.DebugScreenOverlay;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.ModifyArg;
 
 import java.lang.management.ManagementFactory;
-import java.util.ArrayList;
 import java.util.List;
 
-import static org.embeddedt.embeddium.impl.Celeritas.MODNAME;
+import static org.embeddedt.embeddium.api.EmbeddiumConstants.RENDERER_NAME;
 
-@Mixin(DebugScreenOverlay.class)
+@Mixin(value = DebugScreenOverlay.class, priority = 1200)
 public abstract class DebugHudMixin {
-    @ModifyExpressionValue(method = "getSystemInformation", at = @At(value = "INVOKE", target = "Lcom/google/common/collect/Lists;newArrayList([Ljava/lang/Object;)Ljava/util/ArrayList;", remap = false))
-    private ArrayList<String> redirectRightTextEarly(ArrayList<String> strings) {
+    // Append after Sodium Extra rebuilds the selectable vanilla entries.
+    @ModifyReturnValue(method = "getSystemInformation", at = @At("RETURN"))
+    private List<String> redirectRightText(List<String> strings) {
         return injectRightF3Text(strings);
     }
 
     private <T extends List<String>> T injectRightF3Text(T strings) {
         strings.add("");
-        strings.add("%s%s Renderer (%s)".formatted(ChatFormatting.AQUA, MODNAME, Celeritas.getVersion()));
+        strings.add("%s%s (%s)".formatted(ChatFormatting.AQUA, RENDERER_NAME, Celeritas.getVersion()));
 
         // Embeddium: Show a lot less with reduced debug info
         if(Minecraft.getInstance().showOnlyReducedInfo()) {

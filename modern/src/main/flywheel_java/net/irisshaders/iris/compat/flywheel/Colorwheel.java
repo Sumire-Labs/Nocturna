@@ -12,7 +12,7 @@ import org.slf4j.LoggerFactory;
  */
 public final class Colorwheel
 {
-    public static final Logger LOGGER = LoggerFactory.getLogger("Celeritas/Flywheel");
+    public static final Logger LOGGER = LoggerFactory.getLogger("Nocturna/Flywheel");
 
     // The Colorwheel release whose shader pack contract (programs, properties, macros) this backend implements.
     public static final String FORMATTED_VERSION = "10300";

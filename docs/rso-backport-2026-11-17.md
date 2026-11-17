@@ -134,6 +134,10 @@ the next run.
 The broader review also reproduced an empty fence-queue read when a manually edited CPU render-ahead limit
 was negative. That limit is treated as zero while retaining live limit reevaluation and normal fence waits.
 
+The F3 pass also caught Sodium Extra replacing the renderer and shader diagnostics when rebuilding native
+debug entries. Those diagnostics now append after the rebuild. The real-client check requires the
+`Nocturna Renderer` heading, active shader-pack name and direct-buffer memory line.
+
 To run the native-window input harness with a Java 17 JDK after preparing the SDL resources:
 
 ```text

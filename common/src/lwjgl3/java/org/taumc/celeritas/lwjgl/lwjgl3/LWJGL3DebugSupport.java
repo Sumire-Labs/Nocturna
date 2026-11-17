@@ -10,7 +10,7 @@ import org.taumc.celeritas.lwjgl.DebugMessageHandler;
  * LWJGL3 debug callback setup helper.
  */
 final class LWJGL3DebugSupport {
-    private static final Logger LOGGER = LogManager.getLogger("Celeritas/LWJGL3Debug");
+    private static final Logger LOGGER = LogManager.getLogger("Nocturna/LWJGL3Debug");
 
     private GLDebugMessageCallback debugCallback;
     private GLDebugMessageARBCallback debugCallbackARB;
