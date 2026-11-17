@@ -907,7 +907,7 @@
       "targets": [
         {
           "path": "modern/src/main/resources/embeddium.mixins.json",
-          "sha256": "f3bb102d426971ef37a636b2ac0707d7c05d5aec379a5bd10dee81c083e51e19"
+          "sha256": "54252ae9e331374cb44ce56f90a8fb7ae396b65f06176aafc57a953278058305"
         }
       ]
     }
