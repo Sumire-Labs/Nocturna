@@ -10,6 +10,7 @@ import java.nio.file.StandardCopyOption
 plugins {
     id("com.gradleup.shadow")
     id("java-library")
+    id("com.cleanroommc.tokenenvoy")
 }
 
 evaluationDependsOn(":common")
@@ -162,43 +163,32 @@ if (generateSequence(project) { it.parent }.any { it.name == "modern" }) {
     }
 }
 
+val mixinCompatLevel = stonecutterExt?.let {
+    when {
+        it.eval(minecraftVersion, "<1.17") -> "JAVA_8"
+        it.eval(minecraftVersion, "<1.18") -> "JAVA_16"
+        else -> "JAVA_17"
+    }
+} ?: "JAVA_17"
+
+tokenEnvoy {
+    set("MOD_VERSION", rootProject.version.toString())
+    set("MINECRAFT_VERSION", versionedProperty("minecraft_dependency") ?: "")
+    set("FORGE_ID", if (modLoader == ModLoader.NEOFORGE) "neoforge" else "forge")
+    set("MIXIN_COMPAT_LEVEL", mixinCompatLevel)
+    mapOf(
+        "MOD_ID" to "mod_id", "MOD_NAME" to "mod_display_name", "MOD_DESCRIPTION" to "mod_description",
+        "HOMEPAGE" to "homepage_url", "SOURCES" to "sources_url", "ISSUES" to "issue_tracker_url",
+        "LICENSE" to "license", "FABRIC_LOADER_VERSION" to "fabricloader",
+        "MOD_AUTHORS" to "mod_authors", "MOD_CONTRIBUTORS" to "mod_contributors",
+        "FABRIC_API_MODULES" to "fabric_api_modules"
+    ).forEach { (token, property) -> set(token, providers.gradleProperty(property)) }
+    includeClasses("org/embeddedt/embeddium/impl/Celeritas.class")
+    includeResources("META-INF/mods.toml", "META-INF/neoforge.mods.toml", "embeddium.mixins.json",
+        "fabric.mod.json", "quilt.mod.json")
+}
+
 tasks.named<ProcessResources>("processResources") {
-    val inputProps = mutableMapOf(
-            "forgeid" to if (modLoader == ModLoader.NEOFORGE) "neoforge" else "forge",
-            "minecraft" to (versionedProperty("minecraft_dependency") ?: ""),
-            "mod_version" to version,
-            "mod_id" to rootProject.property("mod_id"),
-            "mod_display_name" to rootProject.property("mod_display_name"),
-            "mod_description" to rootProject.property("mod_description"),
-            "homepage_url" to rootProject.property("homepage_url"),
-            "sources_url" to rootProject.property("sources_url"),
-            "issue_tracker_url" to rootProject.property("issue_tracker_url"),
-            "license" to rootProject.property("license"),
-            "fabricloader" to rootProject.property("fabricloader"),
-            "contributors" to rootProject.property("mod_contributors").toString(),
-            "authors" to rootProject.property("mod_authors").toString(),
-            "fabric_api_modules" to rootProject.property("fabric_api_modules")
-    )
-
-    stonecutterExt?.let {
-        val mixinCompatLevel = if (it.eval(minecraftVersion, "<1.17")) {
-            "JAVA_8"
-        } else if (it.eval(minecraftVersion, "<1.18")) {
-            "JAVA_16"
-        } else {
-            "JAVA_17"
-        }
-        inputProps.put("mixinCompatLevel", mixinCompatLevel)
-    }
-
-    inputProps.forEach { (key, value) ->
-        inputs.property(key, value)
-    }
-
-    filesMatching(listOf("fabric.mod.json", "META-INF/mods.toml", "META-INF/neoforge.mods.toml", "quilt.mod.json", "embeddium.mixins.json")) {
-        expand(inputProps)
-    }
-
     if (modLoader == ModLoader.FORGE || modLoader == ModLoader.NEOFORGE) {
         exclude("fabric.mod.json")
     } else if (modLoader == ModLoader.FABRIC) {

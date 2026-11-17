@@ -1,21 +1,21 @@
 modLoader = "javafml"
 loaderVersion = "*"
-license = "$license"
-issueTrackerURL = "$issue_tracker_url"
+license = "@{LICENSE}"
+issueTrackerURL = "@{ISSUES}"
 
 [[mods]]
 logoFile="icon.png"
-modId = "$mod_id"
-version = "$mod_version"
-displayName = "$mod_display_name"
-authors = '${String.join(", ",authors)}'
-credits = '${String.join(", ",contributors)}'
-displayURL = "$homepage_url"
-description = "$mod_description"
+modId = "@{MOD_ID}"
+version = "@{MOD_VERSION}"
+displayName = "@{MOD_NAME}"
+authors = '@{MOD_AUTHORS}'
+credits = '@{MOD_CONTRIBUTORS}'
+displayURL = "@{HOMEPAGE}"
+description = "@{MOD_DESCRIPTION}"
 
 [[mods]]
 modId = "iris"
-version = "1.8.0+mc${minecraft}"
+version = "1.8.0+mc@{MINECRAFT_VERSION}"
 displayName = "Nocturna Shaders"
 description = '''
 Stub, to allow mods detecting Iris to function as expected.
@@ -27,15 +27,15 @@ version = "0.7.1"
 displayName = "Rubidium compatibility stub"
 description = "Compatibility identity supplied by Nocturna."
 
-[[dependencies.${mod_id}]]
-modId = "${forgeid}"
+[[dependencies.@{MOD_ID}]]
+modId = "@{FORGE_ID}"
 mandatory = true
 type="required"
 versionRange = "[47,)"
 ordering = "NONE"
 side = "BOTH"
 
-[[dependencies.${mod_id}]]
+[[dependencies.@{MOD_ID}]]
 modId = "minecraft"
 mandatory = true
 type="required"

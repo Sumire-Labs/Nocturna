@@ -9,12 +9,13 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          fetch-tags: true
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: '25'
-      - run: ./gradlew build -Pbuild.release=true --no-daemon
+      - run: ./gradlew build --no-daemon
       - uses: actions/upload-artifact@v4
         with:
-          name: Embeddium-1.20.1-Forge-release
+          name: Nocturna-1.20.1-Forge-release
           path: build/libs/**/*.jar

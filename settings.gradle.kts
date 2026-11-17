@@ -5,6 +5,9 @@ pluginManagement {
         mavenLocal()
         mavenCentral()
         gradlePluginPortal()
+        maven("https://maven.cleanroommc.com") {
+            content { includeGroupAndSubgroups("com.cleanroommc") }
+        }
         maven("https://maven.neoforged.net/releases") {
             content {
                 includeGroup("net.neoforged")
@@ -67,6 +70,7 @@ pluginManagement {
     }
 
     plugins {
+        id("com.cleanroommc.versioning") version(extra["cleanroom_versioning_version"].toString())
         // TauMC fork of ModDevGradle, which carries the 1.16.5 support.
         id("org.taumc.moddev") version(extra["moddevgradle_version"].toString())
         id("org.taumc.moddev.legacyforge") version(extra["moddevgradle_version"].toString())

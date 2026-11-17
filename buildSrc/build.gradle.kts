@@ -11,7 +11,7 @@ val dependencyVersions = Properties().apply {
 }
 
 dependencies {
-    implementation("org.eclipse.jgit:org.eclipse.jgit:${dependencyVersions.getProperty("build_jgit_version")}")
+    implementation("com.cleanroommc:tokenenvoy:${dependencyVersions.getProperty("tokenenvoy_version")}")
     implementation("com.google.guava:guava:${dependencyVersions.getProperty("build_guava_version")}")
     implementation("org.ow2.asm:asm:${dependencyVersions.getProperty("build_asm_version")}")
     implementation("org.ow2.asm:asm-tree:${dependencyVersions.getProperty("build_asm_version")}")
@@ -24,6 +24,9 @@ dependencies {
 
 repositories {
     mavenCentral()
+    maven("https://maven.cleanroommc.com") {
+        content { includeGroupAndSubgroups("com.cleanroommc") }
+    }
     exclusiveContent {
         forRepository { maven("https://maven.fabricmc.net/") }
         filter {

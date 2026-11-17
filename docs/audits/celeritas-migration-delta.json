@@ -1,16 +1,16 @@
 {
   "revision": "26f000239eb8ddf7ee191f0ddf369147e3c92ef6",
-  "identical": 1544,
+  "identical": 1542,
   "changes": [
     {
       "path": "buildSrc/build.gradle.kts",
       "upstream": "4f1e92f8e7c782ec6fcc75fbbf5ba86e7f06b7e7c9667e85ae463e247c1413e5",
-      "local": "98c6653f04578f3ce94fff21eb2595bb425d7208df6cd81a48e8d005c8f19edb"
+      "local": "e8795f7488f9dd583233408733abdb0748d7a9831f2cc254462d4a17caf238e8"
     },
     {
       "path": "buildSrc/src/main/kotlin/celeritas.platform-conventions.gradle.kts",
       "upstream": "72494d9b617a1b28aef2b9f4bfa1f4d1805bd188754465b011bd38342f3a9702",
-      "local": "30dd27561d304f0e5c6ed43393edf9bc91142420e344b15f18891a54c759e267"
+      "local": "4e05c123b5a803b56f12c0c9a9262b85601ac526bf17014f6ad78e7698bfb7e9"
     },
     {
       "path": "common/build.gradle",
@@ -185,7 +185,7 @@
     {
       "path": "modern/src/main/java/org/embeddedt/embeddium/impl/Celeritas.java",
       "upstream": "c402c5a2b59cd976c27c73d84b3b7031771ed098e469207d236a0555a9279d60",
-      "local": "bc6aeba956fd215e706461cbfd0b43dd5b6fab6917e8bc60cbe09ada73c59c42"
+      "local": "c17309fee97665c100c8f4911b91a4832adf9f024a8484ad05fac0fc7f4bde25"
     },
     {
       "path": "modern/src/main/java/org/embeddedt/embeddium/impl/SodiumPreLaunch.java",
@@ -280,7 +280,7 @@
     {
       "path": "modern/src/main/resources/META-INF/mods.toml",
       "upstream": "21f3feb3ef8f58b491d799419b6ce9bbe1ae015cb47d6a7de5807ed8686b77f7",
-      "local": "388b5c1d09598cbaef4b53e721f07f4fad50f2eda5e09227e4fba4c003df3f01"
+      "local": "5fcf99b8ff9c585e1464ff43164ffe32b722f204b4afea623325e23cab2ecf9b"
     },
     {
       "path": "modern/src/main/resources/assets/embeddium/lang/de_de.json",
@@ -321,6 +321,16 @@
       "path": "modern/src/main/resources/embeddium.accesswidener",
       "upstream": "d3e30c2d1fccb6cf60c332be8bf9a97ba43f4310e003f71d8320611fa9833e04",
       "local": "73dbad45a16bdec485d67f07b5b2c45784af5c1793d7cfb2537bd7bb127d1fc5"
+    },
+    {
+      "path": "modern/src/main/resources/embeddium.mixins.json",
+      "upstream": "f3bb102d426971ef37a636b2ac0707d7c05d5aec379a5bd10dee81c083e51e19",
+      "local": "54252ae9e331374cb44ce56f90a8fb7ae396b65f06176aafc57a953278058305"
+    },
+    {
+      "path": "modern/src/main/resources/fabric.mod.json",
+      "upstream": "6972ddcb67ea559c75e733c2fb24381aeaa654c231c5e4cbcc74855d48979ffd",
+      "local": "db2217b5bece3d6b96321e76a75fcd76bb287adaae39a9370d5e81d20122c4f3"
     },
     {
       "path": "modern/src/main/shaders_java/net/irisshaders/iris/Iris.java",
@@ -559,10 +569,6 @@
     }
   ],
   "additions": [
-    {
-      "path": "buildSrc/src/main/java/org/embeddedt/embeddium/gradle/versioning/ProjectVersioner.java",
-      "local": "c5a078d417a13d4e2d8cbe56f2a2b3d6e29ab89c70cb5478f6a6e05a387654f8"
-    },
     {
       "path": "common/src/main/java/org/embeddedt/embeddium/impl/render/chunk/lists/RenderListPool.java",
       "local": "0c93f3b9ce60a50080914a321529c080c96d6e8a575f194379f484a2d3726d8f"
@@ -2606,6 +2612,10 @@
     {
       "path": "modern/src/test/java/net/irisshaders/iris/texture/pbr/PBRResourceIndexTest.java",
       "local": "2753beb7230b92c71932643fd114494f747cd106290a90b615045d8b465aa3f2"
+    },
+    {
+      "path": "modern/src/test/java/org/embeddedt/embeddium/impl/build/VersionTokenTest.java",
+      "local": "832ca633d2a0c2889966cb461a77b3f7f7e9f27f0ce6a59e80cd1694463e6925"
     },
     {
       "path": "modern/src/test/java/org/embeddedt/embeddium/impl/compat/legacy/LegacyGuiBridgeTest.java",

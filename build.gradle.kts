@@ -1,9 +1,8 @@
-import org.embeddedt.embeddium.gradle.versioning.ProjectVersioner
+plugins {
+    base
+    id("com.cleanroommc.versioning")
+}
 
-plugins { base }
-
-version = ProjectVersioner.computeVersion(projectDir, properties)
-println("Nocturna (Celeritas base): $version")
 
 tasks.assemble { dependsOn(":modern:1.20.1-forge:packageJar") }
 tasks.check { dependsOn(":common:test", ":modern:1.20.1-forge:check") }

@@ -1,19 +1,19 @@
 {
   "schemaVersion": 1,
-  "id": "$mod_id",
-  "name": "$mod_display_name",
-  "version": "$mod_version",
+  "id": "@{MOD_ID}",
+  "name": "@{MOD_NAME}",
+  "version": "@{MOD_VERSION}",
   "environment": "*",
-  "description": "$mod_description",
+  "description": "@{MOD_DESCRIPTION}",
   "icon": "icon.png",
   "contact": {
-    "homepage": "$homepage_url",
-    "sources": "$sources_url",
-    "issues": "$issue_tracker_url"
+    "homepage": "@{HOMEPAGE}",
+    "sources": "@{SOURCES}",
+    "issues": "@{ISSUES}"
   },
-  "authors": ["${String.join('\u0022,\u0022',authors)}"],
+  "authors": ["@{MOD_AUTHORS}"],
   "contributors": [
-    "${String.join('\u0022,\u0022',contributors)}"
+    "@{MOD_CONTRIBUTORS}"
   ],
   "entrypoints": {
     "client": [
@@ -22,11 +22,11 @@
   },
   "depends": {
     "java": ">=21",
-    "fabricloader": ">=$fabricloader",
-    "minecraft": "$minecraft"
+    "fabricloader": ">=@{FABRIC_LOADER_VERSION}",
+    "minecraft": "@{MINECRAFT_VERSION}"
   },
-  "accessWidener": "${mod_id}.accesswidener",
-  "license": "$license",
+  "accessWidener": "@{MOD_ID}.accesswidener",
+  "license": "@{LICENSE}",
   "mixins": [
   ],
   "custom": {}

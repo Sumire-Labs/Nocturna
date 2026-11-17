@@ -76,12 +76,13 @@ public class Celeritas /*? if fabric {*/ /*implements ClientModInitializer *//*?
     //private static final Logger LOGGER = LogManager.getLogger(MODNAME);
     private static SodiumGameOptions CONFIG = loadConfig();
 
+    private static final String BUILD_VERSION = "@{MOD_VERSION}";
     private static String MOD_VERSION;
     static { org.embeddedt.embeddium.impl.compat.legacy.LegacyGuiBridge.install(); }
 
     //? if forgelike {
     public Celeritas(/*? if neoforge {*/ /*IEventBus modEventBus *//*?}*/) {
-        MOD_VERSION = ModList.get().getModContainerById(MODID).get().getModInfo().getVersion().toString();
+        MOD_VERSION = BUILD_VERSION;
         //? if forge && >=1.18 && <1.20.2
         ModLoadingContext.get().registerExtensionPoint(IExtensionPoint.DisplayTest.class, () -> new IExtensionPoint.DisplayTest(() -> NetworkConstants.IGNORESERVERONLY, (a, b) -> true));
 
@@ -162,7 +163,7 @@ public class Celeritas /*? if fabric {*/ /*implements ClientModInitializer *//*?
     //?} else if fabric {
     /*@Override
     public void onInitializeClient() {
-        MOD_VERSION = FabricLoader.getInstance().getModContainer(MODID).orElseThrow().getMetadata().getVersion().toString();
+        MOD_VERSION = BUILD_VERSION;
         FlawlessFrames.onClientInitialization();
 
         if (Boolean.getBoolean("embeddium.auditAndExit")) {
