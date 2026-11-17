@@ -465,7 +465,7 @@
     {
       "path": "modern/src/main/shaders_java/net/irisshaders/iris/pipeline/IrisRenderingPipeline.java",
       "upstream": "89f1a72f1dfd2f394aae84a7873e7f7fbd609a690d1eb7633fd6cf68a737c7db",
-      "local": "e15f840d049acc8fcde52693a47c18f168e8ae02121cfefb5875f0db8c6bb3c0"
+      "local": "13fe944a3dacee2d563ebc9bf30c38beef173cdbbaed4cc4aeb0af889e551e44"
     },
     {
       "path": "modern/src/main/shaders_java/net/irisshaders/iris/pipeline/foss_transform/CompTransformer.java",
