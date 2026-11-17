@@ -1,0 +1,1604 @@
+{
+  "recordedAt": "2026-11-17T06:35:50.383Z",
+  "interpretation": "Synthetic distance-sort timings. Every size/pattern has equal weight; no Minecraft FPS or live workload distribution is measured.",
+  "productionCutoff": 64,
+  "productionChanged": false,
+  "phases": [
+    {
+      "name": "thresholds",
+      "cases": 60,
+      "environment": {
+        "checkedHead": "9f682192d6bbc95e7542ef44993f24ab5754b572",
+        "java": "openjdk version \"17.0.20.1\" 2026-08-18\r\nOpenJDK Runtime Environment Temurin-17.0.20.1+1 (build 17.0.20.1+1)\r\nOpenJDK 64-Bit Server VM Temurin-17.0.20.1+1 (build 17.0.20.1+1, mixed mode, sharing)",
+        "cpu": {
+          "Name": "AMD RYZEN AI MAX+ 395 w/ Radeon 8060S          ",
+          "NumberOfCores": 16,
+          "NumberOfLogicalProcessors": 32
+        },
+        "powerPlan": "電源設定の GUID: 381b4222-f694-41f0-9685-ff5bb260df2e  (バランス)",
+        "parameters": {
+          "forks": 3,
+          "time": "250ms",
+          "measurements": 5,
+          "patterns": "random,nearly_sorted,sorted,ties",
+          "warmups": 4,
+          "sizes": "64,96,128,192,255"
+        },
+        "sources": [
+          {
+            "sha256": "9f71981145f9f51d837663ec8ea4ac8334d7839c2e792a04f0f5d428a98c0f8c",
+            "path": "common/src/main/java/org/embeddedt/embeddium/impl/util/sorting/RadixSort.java"
+          },
+          {
+            "sha256": "21d626b69be2c6ee510cf8f39fdea7445189b88560a0e8bc1c2ac665d310d6bb",
+            "path": "modern/src/main/modern_java/org/embeddedt/embeddium/impl/modern/sorting/VertexSorters.java"
+          },
+          {
+            "sha256": "2a76eda46a7a5ed41bd81124fd1431e1eb9ea52d76376eae68b77622b830f92c",
+            "path": "common/src/main/java/org/embeddedt/embeddium/impl/util/sorting/AbstractSort.java"
+          },
+          {
+            "sha256": "bc5a946d0d39489df8d2b8ef27e966eebe7b864a6709125b8a8a755d944ca253",
+            "path": "common/src/main/java/org/embeddedt/embeddium/impl/util/sorting/InsertionSort.java"
+          },
+          {
+            "sha256": "094d3f5e817b389828143772778e925e1343930b71a0f957698349385580e292",
+            "path": "common/src/main/java/org/embeddedt/embeddium/impl/util/sorting/MergeSort.java"
+          },
+          {
+            "sha256": "db810e9ce19a111061e78e3b3feeb829aae45a8c6851d9bc3df6215ba210edfd",
+            "path": "scripts/fixtures/RadixThresholdBench.java"
+          }
+        ]
+      },
+      "rawResults": "docs/audits/radix-threshold-2026-11-17-thresholds.json.gz",
+      "rawSha256": "24784018cd2492623eb68d58ac1c3cb54b503ed8f4f49e5e16bc11824e5e0757",
+      "compressedSha256": "6f095f25b5381b899eb0479dc81e85d3f228982a0c4c9532dfc91e3a9009c22d"
+    },
+    {
+      "name": "confirm",
+      "cases": 6,
+      "environment": {
+        "checkedHead": "310fca27b96696924dfaf5f0572a8382fc7115ff",
+        "java": "openjdk version \"17.0.20.1\" 2026-08-18\r\nOpenJDK Runtime Environment Temurin-17.0.20.1+1 (build 17.0.20.1+1)\r\nOpenJDK 64-Bit Server VM Temurin-17.0.20.1+1 (build 17.0.20.1+1, mixed mode, sharing)",
+        "cpu": {
+          "Name": "AMD RYZEN AI MAX+ 395 w/ Radeon 8060S          ",
+          "NumberOfCores": 16,
+          "NumberOfLogicalProcessors": 32
+        },
+        "powerPlan": "電源設定の GUID: 381b4222-f694-41f0-9685-ff5bb260df2e  (バランス)",
+        "parameters": {
+          "sizes": "64,96",
+          "measurements": 5,
+          "patterns": "random",
+          "time": "500ms",
+          "warmups": 4,
+          "forks": 2
+        },
+        "sources": [
+          {
+            "path": "common/src/main/java/org/embeddedt/embeddium/impl/util/sorting/RadixSort.java",
+            "sha256": "9f71981145f9f51d837663ec8ea4ac8334d7839c2e792a04f0f5d428a98c0f8c"
+          },
+          {
+            "path": "modern/src/main/modern_java/org/embeddedt/embeddium/impl/modern/sorting/VertexSorters.java",
+            "sha256": "21d626b69be2c6ee510cf8f39fdea7445189b88560a0e8bc1c2ac665d310d6bb"
+          },
+          {
+            "path": "common/src/main/java/org/embeddedt/embeddium/impl/util/sorting/AbstractSort.java",
+            "sha256": "2a76eda46a7a5ed41bd81124fd1431e1eb9ea52d76376eae68b77622b830f92c"
+          },
+          {
+            "path": "common/src/main/java/org/embeddedt/embeddium/impl/util/sorting/InsertionSort.java",
+            "sha256": "bc5a946d0d39489df8d2b8ef27e966eebe7b864a6709125b8a8a755d944ca253"
+          },
+          {
+            "path": "common/src/main/java/org/embeddedt/embeddium/impl/util/sorting/MergeSort.java",
+            "sha256": "094d3f5e817b389828143772778e925e1343930b71a0f957698349385580e292"
+          },
+          {
+            "path": "scripts/fixtures/RadixThresholdBench.java",
+            "sha256": "db810e9ce19a111061e78e3b3feeb829aae45a8c6851d9bc3df6215ba210edfd"
+          }
+        ]
+      },
+      "rawResults": "docs/audits/radix-threshold-2026-11-17-confirm.json.gz",
+      "rawSha256": "ff73b7f76c311e28799949aa3561cc9d794425ac6eaa88d6b8bfbdc620bcef8e",
+      "compressedSha256": "1c44429dfe0af1e988a75b48f03e954f86faaf5e77665026fb5fb0baea7ba61a"
+    },
+    {
+      "name": "controls",
+      "cases": 9,
+      "environment": {
+        "checkedHead": "310fca27b96696924dfaf5f0572a8382fc7115ff",
+        "java": "openjdk version \"17.0.20.1\" 2026-08-18\r\nOpenJDK Runtime Environment Temurin-17.0.20.1+1 (build 17.0.20.1+1)\r\nOpenJDK 64-Bit Server VM Temurin-17.0.20.1+1 (build 17.0.20.1+1, mixed mode, sharing)",
+        "cpu": {
+          "Name": "AMD RYZEN AI MAX+ 395 w/ Radeon 8060S          ",
+          "NumberOfCores": 16,
+          "NumberOfLogicalProcessors": 32
+        },
+        "powerPlan": "電源設定の GUID: 381b4222-f694-41f0-9685-ff5bb260df2e  (バランス)",
+        "parameters": {
+          "sizes": "32,256,1024",
+          "measurements": 3,
+          "patterns": "random",
+          "time": "500ms",
+          "warmups": 2,
+          "forks": 2
+        },
+        "sources": [
+          {
+            "path": "common/src/main/java/org/embeddedt/embeddium/impl/util/sorting/RadixSort.java",
+            "sha256": "9f71981145f9f51d837663ec8ea4ac8334d7839c2e792a04f0f5d428a98c0f8c"
+          },
+          {
+            "path": "modern/src/main/modern_java/org/embeddedt/embeddium/impl/modern/sorting/VertexSorters.java",
+            "sha256": "21d626b69be2c6ee510cf8f39fdea7445189b88560a0e8bc1c2ac665d310d6bb"
+          },
+          {
+            "path": "common/src/main/java/org/embeddedt/embeddium/impl/util/sorting/AbstractSort.java",
+            "sha256": "2a76eda46a7a5ed41bd81124fd1431e1eb9ea52d76376eae68b77622b830f92c"
+          },
+          {
+            "path": "common/src/main/java/org/embeddedt/embeddium/impl/util/sorting/InsertionSort.java",
+            "sha256": "bc5a946d0d39489df8d2b8ef27e966eebe7b864a6709125b8a8a755d944ca253"
+          },
+          {
+            "path": "common/src/main/java/org/embeddedt/embeddium/impl/util/sorting/MergeSort.java",
+            "sha256": "094d3f5e817b389828143772778e925e1343930b71a0f957698349385580e292"
+          },
+          {
+            "path": "scripts/fixtures/RadixThresholdBench.java",
+            "sha256": "db810e9ce19a111061e78e3b3feeb829aae45a8c6851d9bc3df6215ba210edfd"
+          }
+        ]
+      },
+      "rawResults": "docs/audits/radix-threshold-2026-11-17-controls.json.gz",
+      "rawSha256": "1826b2e56d502261c23817578b0a94fc44b2893523622c95312d4f0295d35f6f",
+      "compressedSha256": "80fbc73cfc147aadeac9fca82ed334e0b9a10b6d8f629052e5afd78657fce16b"
+    }
+  ],
+  "summary": [
+    {
+      "threshold": 64,
+      "equalWeightMeanNs": 1468.7758960908664,
+      "geometricMeanRatioTo64": 1,
+      "equalWeightMeanBytes": 1209.633388171246
+    },
+    {
+      "threshold": 128,
+      "equalWeightMeanNs": 1459.6150426191984,
+      "geometricMeanRatioTo64": 0.9051781922508175,
+      "equalWeightMeanBytes": 1344.0332168576856
+    },
+    {
+      "threshold": 256,
+      "equalWeightMeanNs": 2636.4639642774773,
+      "geometricMeanRatioTo64": 1.1479022897738895,
+      "equalWeightMeanBytes": 1814.460178013243
+    }
+  ],
+  "patterns": [
+    {
+      "pattern": "nearly_sorted",
+      "policies": [
+        {
+          "threshold": 64,
+          "meanNs": 1382.82650970418,
+          "medianForkNs": 1347.9146495320883
+        },
+        {
+          "threshold": 128,
+          "meanNs": 1188.0107753384352,
+          "medianForkNs": 1160.664085337986
+        },
+        {
+          "threshold": 256,
+          "meanNs": 1082.2651592626103,
+          "medianForkNs": 1056.3843208879457
+        }
+      ]
+    },
+    {
+      "pattern": "random",
+      "policies": [
+        {
+          "threshold": 64,
+          "meanNs": 1511.4024525678299,
+          "medianForkNs": 1412.9066949973
+        },
+        {
+          "threshold": 128,
+          "meanNs": 1719.965826988971,
+          "medianForkNs": 1659.5075891285883
+        },
+        {
+          "threshold": 256,
+          "meanNs": 5394.399600875464,
+          "medianForkNs": 5277.994019814831
+        }
+      ]
+    },
+    {
+      "pattern": "sorted",
+      "policies": [
+        {
+          "threshold": 64,
+          "meanNs": 1835.7128047876636,
+          "medianForkNs": 1849.328356375118
+        },
+        {
+          "threshold": 128,
+          "meanNs": 1464.8673586772093,
+          "medianForkNs": 1509.6977379535415
+        },
+        {
+          "threshold": 256,
+          "meanNs": 715.5633099673651,
+          "medianForkNs": 682.7132881396386
+        }
+      ]
+    },
+    {
+      "pattern": "ties",
+      "policies": [
+        {
+          "threshold": 64,
+          "meanNs": 1145.1618173037925,
+          "medianForkNs": 1130.378637662469
+        },
+        {
+          "threshold": 128,
+          "meanNs": 1465.6162094721794,
+          "medianForkNs": 1383.743461277873
+        },
+        {
+          "threshold": 256,
+          "meanNs": 3353.6277870044696,
+          "medianForkNs": 3237.402118989748
+        }
+      ]
+    }
+  ],
+  "rows": [
+    {
+      "pattern": "nearly_sorted",
+      "size": 64,
+      "threshold": 64,
+      "meanNs": 785.3976930684378,
+      "errorNs": 116.95217219855456,
+      "confidence": [
+        668.4455208698832,
+        902.3498652669923
+      ],
+      "forkMeansNs": [
+        881.6988122175029,
+        802.9261206837501,
+        671.5681463040605
+      ],
+      "medianForkNs": 802.9261206837501,
+      "allocatedBytes": 544.0179145718635
+    },
+    {
+      "pattern": "nearly_sorted",
+      "size": 64,
+      "threshold": 128,
+      "meanNs": 328.9609770504607,
+      "errorNs": 27.610946818520933,
+      "confidence": [
+        301.3500302319398,
+        356.5719238689816
+      ],
+      "forkMeansNs": [
+        349.27855012956525,
+        303.56313286124407,
+        334.04124816057305
+      ],
+      "medianForkNs": 334.04124816057305,
+      "allocatedBytes": 816.0075364684652
+    },
+    {
+      "pattern": "nearly_sorted",
+      "size": 64,
+      "threshold": 256,
+      "meanNs": 346.6114981375939,
+      "errorNs": 24.24177884287011,
+      "confidence": [
+        322.3697192947238,
+        370.85327698046405
+      ],
+      "forkMeansNs": [
+        335.84625601756505,
+        353.22674918381074,
+        350.76148921140594
+      ],
+      "medianForkNs": 350.76148921140594,
+      "allocatedBytes": 816.0079465768098
+    },
+    {
+      "pattern": "nearly_sorted",
+      "size": 96,
+      "threshold": 64,
+      "meanNs": 982.3130209319272,
+      "errorNs": 90.18868830373306,
+      "confidence": [
+        892.1243326281941,
+        1072.5017092356602
+      ],
+      "forkMeansNs": [
+        1022.7795127348339,
+        954.0816211016552,
+        970.0779289592926
+      ],
+      "medianForkNs": 970.0779289592926,
+      "allocatedBytes": 800.0224626453911
+    },
+    {
+      "pattern": "nearly_sorted",
+      "size": 96,
+      "threshold": 128,
+      "meanNs": 541.0895770026185,
+      "errorNs": 41.989836393344746,
+      "confidence": [
+        499.0997406092738,
+        583.0794133959632
+      ],
+      "forkMeansNs": [
+        544.5867904639065,
+        531.5537196681086,
+        547.1282208758402
+      ],
+      "medianForkNs": 544.5867904639065,
+      "allocatedBytes": 1200.0124721506702
+    },
+    {
+      "pattern": "nearly_sorted",
+      "size": 96,
+      "threshold": 256,
+      "meanNs": 566.8417362072453,
+      "errorNs": 81.55452436034871,
+      "confidence": [
+        485.2872118468966,
+        648.396260567594
+      ],
+      "forkMeansNs": [
+        531.3380059434469,
+        535.5735790218696,
+        633.6136236564192
+      ],
+      "medianForkNs": 535.5735790218696,
+      "allocatedBytes": 1200.0129879001774
+    },
+    {
+      "pattern": "nearly_sorted",
+      "size": 128,
+      "threshold": 64,
+      "meanNs": 1153.3240446304617,
+      "errorNs": 132.05921157191037,
+      "confidence": [
+        1021.2648330585513,
+        1285.383256202372
+      ],
+      "forkMeansNs": [
+        1092.6982809223505,
+        1204.84167551713,
+        1162.4321774519046
+      ],
+      "medianForkNs": 1162.4321774519046,
+      "allocatedBytes": 1056.0261505698431
+    },
+    {
+      "pattern": "nearly_sorted",
+      "size": 128,
+      "threshold": 128,
+      "meanNs": 1145.5726084953515,
+      "errorNs": 119.21021019495159,
+      "confidence": [
+        1026.3623983004,
+        1264.782818690303
+      ],
+      "forkMeansNs": [
+        1095.2602776619497,
+        1187.7567505809056,
+        1153.7007972431988
+      ],
+      "medianForkNs": 1153.7007972431988,
+      "allocatedBytes": 1056.026202905927
+    },
+    {
+      "pattern": "nearly_sorted",
+      "size": 128,
+      "threshold": 256,
+      "meanNs": 827.4741042231921,
+      "errorNs": 108.32630039853055,
+      "confidence": [
+        719.1478038246615,
+        935.8004046217226
+      ],
+      "forkMeansNs": [
+        754.1152553270144,
+        900.3115427627845,
+        827.9955145797769
+      ],
+      "medianForkNs": 827.9955145797769,
+      "allocatedBytes": 1584.0187174118882
+    },
+    {
+      "pattern": "nearly_sorted",
+      "size": 192,
+      "threshold": 64,
+      "meanNs": 1795.8684887295158,
+      "errorNs": 295.1951748843812,
+      "confidence": [
+        1500.6733138451345,
+        2091.063663613897
+      ],
+      "forkMeansNs": [
+        1655.5765666231491,
+        1659.298106964949,
+        2072.7307926004496
+      ],
+      "medianForkNs": 1659.298106964949,
+      "allocatedBytes": 1568.041044141531
+    },
+    {
+      "pattern": "nearly_sorted",
+      "size": 192,
+      "threshold": 128,
+      "meanNs": 1684.3416913933531,
+      "errorNs": 155.50789915240512,
+      "confidence": [
+        1528.833792240948,
+        1839.8495905457582
+      ],
+      "forkMeansNs": [
+        1597.415632097419,
+        1773.168132161641,
+        1682.4413099209983
+      ],
+      "medianForkNs": 1682.4413099209983,
+      "allocatedBytes": 1568.0381110975975
+    },
+    {
+      "pattern": "nearly_sorted",
+      "size": 192,
+      "threshold": 256,
+      "meanNs": 1424.061082954637,
+      "errorNs": 293.22419095706687,
+      "confidence": [
+        1130.83689199757,
+        1717.2852739117038
+      ],
+      "forkMeansNs": [
+        1293.8760069143855,
+        1233.2107880897336,
+        1745.0964538597916
+      ],
+      "medianForkNs": 1293.8760069143855,
+      "allocatedBytes": 2352.0330707602816
+    },
+    {
+      "pattern": "nearly_sorted",
+      "size": 255,
+      "threshold": 64,
+      "meanNs": 2197.2293011605575,
+      "errorNs": 229.05521202528277,
+      "confidence": [
+        1968.1740891352747,
+        2426.2845131858403
+      ],
+      "forkMeansNs": [
+        2344.6354839969345,
+        2102.213505884193,
+        2144.8389136005453
+      ],
+      "medianForkNs": 2144.8389136005453,
+      "allocatedBytes": 2080.0502775321575
+    },
+    {
+      "pattern": "nearly_sorted",
+      "size": 255,
+      "threshold": 128,
+      "meanNs": 2240.0890227503924,
+      "errorNs": 601.966422521708,
+      "confidence": [
+        1638.1226002286844,
+        2842.0554452721003
+      ],
+      "forkMeansNs": [
+        2028.2135812353893,
+        2603.5032061145366,
+        2088.550280901253
+      ],
+      "medianForkNs": 2088.550280901253,
+      "allocatedBytes": 2080.051056730138
+    },
+    {
+      "pattern": "nearly_sorted",
+      "size": 255,
+      "threshold": 256,
+      "meanNs": 2246.337374790383,
+      "errorNs": 410.6264215781703,
+      "confidence": [
+        1835.7109532122126,
+        2656.963796368553
+      ],
+      "forkMeansNs": [
+        2369.2913312908117,
+        2096.005778368046,
+        2273.7150147122916
+      ],
+      "medianForkNs": 2273.7150147122916,
+      "allocatedBytes": 3120.051389055802
+    },
+    {
+      "pattern": "random",
+      "size": 64,
+      "threshold": 64,
+      "meanNs": 790.6888952488839,
+      "errorNs": 111.91675298928519,
+      "confidence": [
+        678.7721422595987,
+        902.6056482381691
+      ],
+      "forkMeansNs": [
+        893.7036047331934,
+        738.0214714397285,
+        740.3416095737296
+      ],
+      "medianForkNs": 740.3416095737296,
+      "allocatedBytes": 544.0179448106599
+    },
+    {
+      "pattern": "random",
+      "size": 64,
+      "threshold": 128,
+      "meanNs": 817.6878496831307,
+      "errorNs": 455.5882153739795,
+      "confidence": [
+        362.0996343091512,
+        1273.2760650571101
+      ],
+      "forkMeansNs": [
+        1101.7257999281328,
+        744.6742768694197,
+        606.6634722518398
+      ],
+      "medianForkNs": 744.6742768694197,
+      "allocatedBytes": 816.0187340778473
+    },
+    {
+      "pattern": "random",
+      "size": 64,
+      "threshold": 256,
+      "meanNs": 963.2601083824228,
+      "errorNs": 350.8491310811781,
+      "confidence": [
+        612.4109773012447,
+        1314.109239463601
+      ],
+      "forkMeansNs": [
+        580.8778699483706,
+        1124.3555036980138,
+        1184.546951500884
+      ],
+      "medianForkNs": 1124.3555036980138,
+      "allocatedBytes": 816.022121168178
+    },
+    {
+      "pattern": "random",
+      "size": 96,
+      "threshold": 64,
+      "meanNs": 936.9263217332128,
+      "errorNs": 69.12472650519973,
+      "confidence": [
+        867.8015952280131,
+        1006.0510482384126
+      ],
+      "forkMeansNs": [
+        958.4983420682875,
+        931.8075860457222,
+        920.4730370856289
+      ],
+      "medianForkNs": 931.8075860457222,
+      "allocatedBytes": 800.0213630142092
+    },
+    {
+      "pattern": "random",
+      "size": 96,
+      "threshold": 128,
+      "meanNs": 2032.4980660179838,
+      "errorNs": 112.89637672034262,
+      "confidence": [
+        1919.601689297641,
+        2145.3944427383262
+      ],
+      "forkMeansNs": [
+        2113.4842917146734,
+        1943.6878673798979,
+        2040.3220389593785
+      ],
+      "medianForkNs": 2040.3220389593785,
+      "allocatedBytes": 1200.0464287263358
+    },
+    {
+      "pattern": "random",
+      "size": 96,
+      "threshold": 256,
+      "meanNs": 1931.415250926687,
+      "errorNs": 179.9041062019835,
+      "confidence": [
+        1751.5111447247034,
+        2111.31935712867
+      ],
+      "forkMeansNs": [
+        1758.1814590964586,
+        1967.6339191439897,
+        2068.4303745396123
+      ],
+      "medianForkNs": 1967.6339191439897,
+      "allocatedBytes": 1200.044058987971
+    },
+    {
+      "pattern": "random",
+      "size": 128,
+      "threshold": 64,
+      "meanNs": 1002.7675419477854,
+      "errorNs": 32.49504728315598,
+      "confidence": [
+        970.2724946646294,
+        1035.2625892309413
+      ],
+      "forkMeansNs": [
+        1023.0066477267508,
+        1001.5743782089945,
+        983.7215999076104
+      ],
+      "medianForkNs": 1001.5743782089945,
+      "allocatedBytes": 1056.022829482438
+    },
+    {
+      "pattern": "random",
+      "size": 128,
+      "threshold": 128,
+      "meanNs": 1007.7055749885081,
+      "errorNs": 52.28792192245785,
+      "confidence": [
+        955.4176530660503,
+        1059.993496910966
+      ],
+      "forkMeansNs": [
+        988.0370915981475,
+        1044.6973515376026,
+        990.3822818297743
+      ],
+      "medianForkNs": 990.3822818297743,
+      "allocatedBytes": 1056.0228682746585
+    },
+    {
+      "pattern": "random",
+      "size": 128,
+      "threshold": 256,
+      "meanNs": 4471.259032067755,
+      "errorNs": 1212.7666558758528,
+      "confidence": [
+        3258.4923761919017,
+        5684.025687943607
+      ],
+      "forkMeansNs": [
+        4061.402743657896,
+        3497.273434571233,
+        5855.100917974136
+      ],
+      "medianForkNs": 4061.402743657896,
+      "allocatedBytes": 1584.101421062133
+    },
+    {
+      "pattern": "random",
+      "size": 192,
+      "threshold": 64,
+      "meanNs": 1892.3390132611728,
+      "errorNs": 508.59725318276617,
+      "confidence": [
+        1383.7417600784065,
+        2400.936266443939
+      ],
+      "forkMeansNs": [
+        2516.6207107506325,
+        1605.3920518735858,
+        1555.004277159301
+      ],
+      "medianForkNs": 1605.3920518735858,
+      "allocatedBytes": 1568.0429755552607
+    },
+    {
+      "pattern": "random",
+      "size": 192,
+      "threshold": 128,
+      "meanNs": 1729.888719918751,
+      "errorNs": 214.77147368149244,
+      "confidence": [
+        1515.1172462372585,
+        1944.6601936002432
+      ],
+      "forkMeansNs": [
+        1522.7072584994953,
+        1775.6117151187646,
+        1891.347186137992
+      ],
+      "medianForkNs": 1775.6117151187646,
+      "allocatedBytes": 1568.0391116662197
+    },
+    {
+      "pattern": "random",
+      "size": 192,
+      "threshold": 256,
+      "meanNs": 7422.499066574117,
+      "errorNs": 1036.576677864411,
+      "confidence": [
+        6385.922388709706,
+        8459.075744438527
+      ],
+      "forkMeansNs": [
+        6492.129156595801,
+        8291.685284132433,
+        7483.682758994119
+      ],
+      "medianForkNs": 7483.682758994119,
+      "allocatedBytes": 2352.16992431097
+    },
+    {
+      "pattern": "random",
+      "size": 255,
+      "threshold": 64,
+      "meanNs": 2934.290490648094,
+      "errorNs": 381.1121530409168,
+      "confidence": [
+        2553.178337607177,
+        3315.402643689011
+      ],
+      "forkMeansNs": [
+        3294.2121079761177,
+        2785.4178492844685,
+        2723.2415146836975
+      ],
+      "medianForkNs": 2785.4178492844685,
+      "allocatedBytes": 2080.0666237107584
+    },
+    {
+      "pattern": "random",
+      "size": 255,
+      "threshold": 128,
+      "meanNs": 3012.0489243364814,
+      "errorNs": 626.6432325930901,
+      "confidence": [
+        2385.4056917433913,
+        3638.6921569295714
+      ],
+      "forkMeansNs": [
+        2746.547632865604,
+        2590.972778823287,
+        3698.6263613205533
+      ],
+      "medianForkNs": 2746.547632865604,
+      "allocatedBytes": 2080.0692729719844
+    },
+    {
+      "pattern": "random",
+      "size": 255,
+      "threshold": 256,
+      "meanNs": 12183.564546426334,
+      "errorNs": 1675.7545360165602,
+      "confidence": [
+        10507.810010409774,
+        13859.319082442895
+      ],
+      "forkMeansNs": [
+        13196.482368511715,
+        11752.895173580138,
+        11601.316097187153
+      ],
+      "medianForkNs": 11752.895173580138,
+      "allocatedBytes": 3120.275909589181
+    },
+    {
+      "pattern": "sorted",
+      "size": 64,
+      "threshold": 64,
+      "meanNs": 926.1709748709532,
+      "errorNs": 194.88449341735327,
+      "confidence": [
+        731.2864814535999,
+        1121.0554682883064
+      ],
+      "forkMeansNs": [
+        728.2413255746718,
+        924.7381278038935,
+        1125.5334712342944
+      ],
+      "medianForkNs": 924.7381278038935,
+      "allocatedBytes": 544.0210813502605
+    },
+    {
+      "pattern": "sorted",
+      "size": 64,
+      "threshold": 128,
+      "meanNs": 300.4657933096354,
+      "errorNs": 39.89696003843499,
+      "confidence": [
+        260.5688332712004,
+        340.3627533480704
+      ],
+      "forkMeansNs": [
+        294.95116658474876,
+        300.9871427209765,
+        305.4590706231809
+      ],
+      "medianForkNs": 300.9871427209765,
+      "allocatedBytes": 816.0069049917313
+    },
+    {
+      "pattern": "sorted",
+      "size": 64,
+      "threshold": 256,
+      "meanNs": 289.4431772160576,
+      "errorNs": 62.65943277395169,
+      "confidence": [
+        226.78374444210593,
+        352.10260999000934
+      ],
+      "forkMeansNs": [
+        338.95309814997916,
+        254.2660259238085,
+        275.11040757438525
+      ],
+      "medianForkNs": 275.11040757438525,
+      "allocatedBytes": 816.0066246761687
+    },
+    {
+      "pattern": "sorted",
+      "size": 96,
+      "threshold": 64,
+      "meanNs": 1269.4416969568476,
+      "errorNs": 166.47647044339587,
+      "confidence": [
+        1102.9652265134519,
+        1435.9181674002434
+      ],
+      "forkMeansNs": [
+        1111.1578399379528,
+        1376.6564147135166,
+        1320.5108362190736
+      ],
+      "medianForkNs": 1320.5108362190736,
+      "allocatedBytes": 800.0288463223037
+    },
+    {
+      "pattern": "sorted",
+      "size": 96,
+      "threshold": 128,
+      "meanNs": 341.1392365935669,
+      "errorNs": 36.27493091960203,
+      "confidence": [
+        304.8643056739649,
+        377.41416751316893
+      ],
+      "forkMeansNs": [
+        380.2691420052735,
+        314.9541510726754,
+        328.19441670275177
+      ],
+      "medianForkNs": 328.19441670275177,
+      "allocatedBytes": 1200.007877061323
+    },
+    {
+      "pattern": "sorted",
+      "size": 96,
+      "threshold": 256,
+      "meanNs": 345.6456585081908,
+      "errorNs": 66.621601968155,
+      "confidence": [
+        279.0240565400358,
+        412.2672604763458
+      ],
+      "forkMeansNs": [
+        293.69185455383104,
+        387.4805098650101,
+        355.7646111057312
+      ],
+      "medianForkNs": 355.7646111057312,
+      "allocatedBytes": 1200.0079140202076
+    },
+    {
+      "pattern": "sorted",
+      "size": 128,
+      "threshold": 64,
+      "meanNs": 1242.6698367754516,
+      "errorNs": 161.06797627624093,
+      "confidence": [
+        1081.6018604992107,
+        1403.7378130516925
+      ],
+      "forkMeansNs": [
+        1339.9752577394224,
+        1310.479879871508,
+        1077.5543727154243
+      ],
+      "medianForkNs": 1310.479879871508,
+      "allocatedBytes": 1056.028239796116
+    },
+    {
+      "pattern": "sorted",
+      "size": 128,
+      "threshold": 128,
+      "meanNs": 1151.2712375963663,
+      "errorNs": 128.40123683917412,
+      "confidence": [
+        1022.8700007571922,
+        1279.6724744355404
+      ],
+      "forkMeansNs": [
+        1138.853185607339,
+        1095.4038714395647,
+        1219.5566557421948
+      ],
+      "medianForkNs": 1138.853185607339,
+      "allocatedBytes": 1056.0263014523628
+    },
+    {
+      "pattern": "sorted",
+      "size": 128,
+      "threshold": 256,
+      "meanNs": 650.9020960806464,
+      "errorNs": 124.44543906681757,
+      "confidence": [
+        526.4566570138288,
+        775.347535147464
+      ],
+      "forkMeansNs": [
+        569.4418132895996,
+        704.05030707461,
+        679.2141678777296
+      ],
+      "medianForkNs": 679.2141678777296,
+      "allocatedBytes": 1584.014936791097
+    },
+    {
+      "pattern": "sorted",
+      "size": 192,
+      "threshold": 64,
+      "meanNs": 2778.3240221726824,
+      "errorNs": 424.5332791029341,
+      "confidence": [
+        2353.7907430697483,
+        3202.8573012756165
+      ],
+      "forkMeansNs": [
+        2599.089452211384,
+        2735.6970849488594,
+        3000.1855293578055
+      ],
+      "medianForkNs": 2735.6970849488594,
+      "allocatedBytes": 1568.0609001007708
+    },
+    {
+      "pattern": "sorted",
+      "size": 192,
+      "threshold": 128,
+      "meanNs": 2120.9439333013856,
+      "errorNs": 238.1978808817258,
+      "confidence": [
+        1882.74605241966,
+        2359.1418141831114
+      ],
+      "forkMeansNs": [
+        1989.451243381755,
+        2238.9578888274505,
+        2134.422667694952
+      ],
+      "medianForkNs": 2134.422667694952,
+      "allocatedBytes": 1568.0481988758852
+    },
+    {
+      "pattern": "sorted",
+      "size": 192,
+      "threshold": 256,
+      "meanNs": 983.2224474537273,
+      "errorNs": 109.50783256516146,
+      "confidence": [
+        873.7146148885658,
+        1092.7302800188888
+      ],
+      "forkMeansNs": [
+        947.0849260666346,
+        985.5170055766843,
+        1017.065410717864
+      ],
+      "medianForkNs": 985.5170055766843,
+      "allocatedBytes": 2352.02254216702
+    },
+    {
+      "pattern": "sorted",
+      "size": 255,
+      "threshold": 64,
+      "meanNs": 2961.957493162384,
+      "errorNs": 643.2587725294248,
+      "confidence": [
+        2318.698720632959,
+        3605.2162656918085
+      ],
+      "forkMeansNs": [
+        3215.7730514209534,
+        2714.8835750339426,
+        2955.2158530322536
+      ],
+      "medianForkNs": 2955.2158530322536,
+      "allocatedBytes": 2080.067811544795
+    },
+    {
+      "pattern": "sorted",
+      "size": 255,
+      "threshold": 128,
+      "meanNs": 3410.516592585092,
+      "errorNs": 1003.315362540728,
+      "confidence": [
+        2407.201230044364,
+        4413.83195512582
+      ],
+      "forkMeansNs": [
+        2715.8797350563846,
+        3869.638765657204,
+        3646.031277041688
+      ],
+      "medianForkNs": 3646.031277041688,
+      "allocatedBytes": 2080.076475282491
+    },
+    {
+      "pattern": "sorted",
+      "size": 255,
+      "threshold": 256,
+      "meanNs": 1308.6031705782032,
+      "errorNs": 495.60407046277425,
+      "confidence": [
+        812.999100115429,
+        1804.2072410409774
+      ],
+      "forkMeansNs": [
+        1760.1823367617012,
+        1117.960248563663,
+        1047.6669264092445
+      ],
+      "medianForkNs": 1117.960248563663,
+      "allocatedBytes": 3120.030207728232
+    },
+    {
+      "pattern": "ties",
+      "size": 64,
+      "threshold": 64,
+      "meanNs": 633.0763603544713,
+      "errorNs": 91.85761345738514,
+      "confidence": [
+        541.2187468970861,
+        724.9339738118564
+      ],
+      "forkMeansNs": [
+        693.8184132935378,
+        609.7146735812217,
+        595.6959941886544
+      ],
+      "medianForkNs": 609.7146735812217,
+      "allocatedBytes": 544.0144094420596
+    },
+    {
+      "pattern": "ties",
+      "size": 64,
+      "threshold": 128,
+      "meanNs": 1021.0804541319065,
+      "errorNs": 440.43603256006827,
+      "confidence": [
+        580.6444215718383,
+        1461.516486691975
+      ],
+      "forkMeansNs": [
+        838.2342740660085,
+        1493.69233493988,
+        731.3147533898308
+      ],
+      "medianForkNs": 838.2342740660085,
+      "allocatedBytes": 816.0233675984932
+    },
+    {
+      "pattern": "ties",
+      "size": 64,
+      "threshold": 256,
+      "meanNs": 757.1992387700565,
+      "errorNs": 308.4287516152148,
+      "confidence": [
+        448.77048715484165,
+        1065.6279903852712
+      ],
+      "forkMeansNs": [
+        1013.0671632508287,
+        762.7474521514563,
+        495.78310090788483
+      ],
+      "medianForkNs": 762.7474521514563,
+      "allocatedBytes": 816.0171138089182
+    },
+    {
+      "pattern": "ties",
+      "size": 96,
+      "threshold": 64,
+      "meanNs": 830.928050936134,
+      "errorNs": 78.62746716806247,
+      "confidence": [
+        752.3005837680715,
+        909.5555181041965
+      ],
+      "forkMeansNs": [
+        784.3784615067427,
+        848.8257608558417,
+        859.5799304458176
+      ],
+      "medianForkNs": 848.8257608558417,
+      "allocatedBytes": 800.0190402802539
+    },
+    {
+      "pattern": "ties",
+      "size": 96,
+      "threshold": 128,
+      "meanNs": 1795.2561380378118,
+      "errorNs": 276.30189379865396,
+      "confidence": [
+        1518.9542442391578,
+        2071.5580318364655
+      ],
+      "forkMeansNs": [
+        1984.0579127364806,
+        1642.2910400591195,
+        1759.4194613178358
+      ],
+      "medianForkNs": 1759.4194613178358,
+      "allocatedBytes": 1200.0409956832798
+    },
+    {
+      "pattern": "ties",
+      "size": 96,
+      "threshold": 256,
+      "meanNs": 1787.6826128128241,
+      "errorNs": 280.522515196633,
+      "confidence": [
+        1507.1600976161913,
+        2068.205128009457
+      ],
+      "forkMeansNs": [
+        1972.749870936713,
+        1752.3943476735553,
+        1637.9036198282035
+      ],
+      "medianForkNs": 1752.3943476735553,
+      "allocatedBytes": 1200.0408727231988
+    },
+    {
+      "pattern": "ties",
+      "size": 128,
+      "threshold": 64,
+      "meanNs": 1059.1629740607184,
+      "errorNs": 103.96387224573705,
+      "confidence": [
+        955.1991018149813,
+        1163.1268463064555
+      ],
+      "forkMeansNs": [
+        1173.2652715292356,
+        1000.6136672529071,
+        1003.6099834000131
+      ],
+      "medianForkNs": 1003.6099834000131,
+      "allocatedBytes": 1056.0244124229628
+    },
+    {
+      "pattern": "ties",
+      "size": 128,
+      "threshold": 128,
+      "meanNs": 1082.9473215379192,
+      "errorNs": 118.50997769351956,
+      "confidence": [
+        964.4373438443996,
+        1201.4572992314388
+      ],
+      "forkMeansNs": [
+        1097.1814128487272,
+        1123.9976158838415,
+        1027.6629358811883
+      ],
+      "medianForkNs": 1097.1814128487272,
+      "allocatedBytes": 1056.0246124604496
+    },
+    {
+      "pattern": "ties",
+      "size": 128,
+      "threshold": 256,
+      "meanNs": 2601.5076351292637,
+      "errorNs": 251.1398156651261,
+      "confidence": [
+        2350.3678194641375,
+        2852.64745079439
+      ],
+      "forkMeansNs": [
+        2519.0335926154726,
+        2450.6355766486195,
+        2834.853736123698
+      ],
+      "medianForkNs": 2519.0335926154726,
+      "allocatedBytes": 1584.0595143101502
+    },
+    {
+      "pattern": "ties",
+      "size": 192,
+      "threshold": 64,
+      "meanNs": 1407.3691137057729,
+      "errorNs": 83.39174292690649,
+      "confidence": [
+        1323.9773707788663,
+        1490.7608566326794
+      ],
+      "forkMeansNs": [
+        1345.5421115750519,
+        1488.4631444341203,
+        1388.102085108147
+      ],
+      "medianForkNs": 1388.102085108147,
+      "allocatedBytes": 1568.032356896142
+    },
+    {
+      "pattern": "ties",
+      "size": 192,
+      "threshold": 128,
+      "meanNs": 1681.881682736553,
+      "errorNs": 403.2423815858906,
+      "confidence": [
+        1278.6393011506625,
+        2085.1240643224437
+      ],
+      "forkMeansNs": [
+        1475.7402267277346,
+        1459.0283107891005,
+        2110.876510692824
+      ],
+      "medianForkNs": 1475.7402267277346,
+      "allocatedBytes": 1568.0382247678506
+    },
+    {
+      "pattern": "ties",
+      "size": 192,
+      "threshold": 256,
+      "meanNs": 5303.765084338675,
+      "errorNs": 1446.68212349963,
+      "confidence": [
+        3857.0829608390445,
+        6750.447207838304
+      ],
+      "forkMeansNs": [
+        4797.0456569037115,
+        4709.497523626575,
+        6404.752072485735
+      ],
+      "medianForkNs": 4797.0456569037115,
+      "allocatedBytes": 2352.119869485475
+    },
+    {
+      "pattern": "ties",
+      "size": 255,
+      "threshold": 64,
+      "meanNs": 1795.272587461866,
+      "errorNs": 69.64255479223064,
+      "confidence": [
+        1725.6300326696353,
+        1864.9151422540965
+      ],
+      "forkMeansNs": [
+        1801.6406853671197,
+        1774.6660493616557,
+        1809.5110276568225
+      ],
+      "medianForkNs": 1801.6406853671197,
+      "allocatedBytes": 2080.041079235144
+    },
+    {
+      "pattern": "ties",
+      "size": 255,
+      "threshold": 128,
+      "meanNs": 1746.9154509167065,
+      "errorNs": 70.18818605975513,
+      "confidence": [
+        1676.7272648569515,
+        1817.1036369764615
+      ],
+      "forkMeansNs": [
+        1710.180044201923,
+        1782.4243771191389,
+        1748.1419314290579
+      ],
+      "medianForkNs": 1748.1419314290579,
+      "allocatedBytes": 2080.039583910007
+    },
+    {
+      "pattern": "ties",
+      "size": 255,
+      "threshold": 256,
+      "meanNs": 6317.984363971528,
+      "errorNs": 145.41923988758643,
+      "confidence": [
+        6172.565124083942,
+        6463.403603859115
+      ],
+      "forkMeansNs": [
+        6355.789545604544,
+        6365.419818457813,
+        6232.743727852232
+      ],
+      "medianForkNs": 6355.789545604544,
+      "allocatedBytes": 3120.1464177310045
+    }
+  ],
+  "confirmation": [
+    {
+      "pattern": "random",
+      "size": 64,
+      "threshold": 64,
+      "meanNs": 740.722986433701,
+      "errorNs": 67.4559694417083,
+      "confidence": [
+        673.2670169919927,
+        808.1789558754092
+      ],
+      "forkMeansNs": [
+        758.5665746761456,
+        722.8793981912564
+      ],
+      "medianForkNs": 740.722986433701,
+      "allocatedBytes": 544.008665668756
+    },
+    {
+      "pattern": "random",
+      "size": 64,
+      "threshold": 128,
+      "meanNs": 562.7675304937532,
+      "errorNs": 124.18305341043477,
+      "confidence": [
+        438.5844770833184,
+        686.950583904188
+      ],
+      "forkMeansNs": [
+        619.2889155232837,
+        506.24614546422254
+      ],
+      "medianForkNs": 562.7675304937532,
+      "allocatedBytes": 816.006602435986
+    },
+    {
+      "pattern": "random",
+      "size": 64,
+      "threshold": 256,
+      "meanNs": 668.346448597192,
+      "errorNs": 186.12946802233063,
+      "confidence": [
+        482.21698057486134,
+        854.4759166195226
+      ],
+      "forkMeansNs": [
+        705.4961870127704,
+        631.1967101816135
+      ],
+      "medianForkNs": 668.346448597192,
+      "allocatedBytes": 816.0078013020202
+    },
+    {
+      "pattern": "random",
+      "size": 96,
+      "threshold": 64,
+      "meanNs": 857.9313657923636,
+      "errorNs": 48.9199452689182,
+      "confidence": [
+        809.0114205234454,
+        906.8513110612819
+      ],
+      "forkMeansNs": [
+        850.4363449106704,
+        865.426386674057
+      ],
+      "medianForkNs": 857.9313657923637,
+      "allocatedBytes": 800.0100385984789
+    },
+    {
+      "pattern": "random",
+      "size": 96,
+      "threshold": 128,
+      "meanNs": 2000.0435153161568,
+      "errorNs": 195.25025067182273,
+      "confidence": [
+        1804.7932646443342,
+        2195.2937659879794
+      ],
+      "forkMeansNs": [
+        2090.078500282137,
+        1910.008530350176
+      ],
+      "medianForkNs": 2000.0435153161566,
+      "allocatedBytes": 1200.023271113135
+    },
+    {
+      "pattern": "random",
+      "size": 96,
+      "threshold": 256,
+      "meanNs": 2002.2264355706943,
+      "errorNs": 182.08579153896235,
+      "confidence": [
+        1820.1406440317319,
+        2184.3122271096568
+      ],
+      "forkMeansNs": [
+        1928.9046513606809,
+        2075.5482197807078
+      ],
+      "medianForkNs": 2002.2264355706943,
+      "allocatedBytes": 1200.0235036551514
+    }
+  ],
+  "controls": [
+    {
+      "pattern": "random",
+      "size": 32,
+      "threshold": 64,
+      "meanNs": 154.95496299785657,
+      "errorNs": 29.312445561888463,
+      "confidence": [
+        125.6425174359681,
+        184.26740855974504
+      ],
+      "forkMeansNs": [
+        157.3828831045296,
+        152.5270428911835
+      ],
+      "medianForkNs": 154.95496299785657,
+      "allocatedBytes": 432.0018093050755
+    },
+    {
+      "pattern": "random",
+      "size": 32,
+      "threshold": 128,
+      "meanNs": 157.9382761973624,
+      "errorNs": 16.982567197871376,
+      "confidence": [
+        140.95570899949104,
+        174.92084339523376
+      ],
+      "forkMeansNs": [
+        160.18837626954374,
+        155.68817612518106
+      ],
+      "medianForkNs": 157.9382761973624,
+      "allocatedBytes": 432.00184958693745
+    },
+    {
+      "pattern": "random",
+      "size": 32,
+      "threshold": 256,
+      "meanNs": 156.52662794090153,
+      "errorNs": 22.549803816272643,
+      "confidence": [
+        133.97682412462888,
+        179.0764317571742
+      ],
+      "forkMeansNs": [
+        155.15053501154333,
+        157.90272087025969
+      ],
+      "medianForkNs": 156.5266279409015,
+      "allocatedBytes": 432.00183632070826
+    },
+    {
+      "pattern": "random",
+      "size": 256,
+      "threshold": 64,
+      "meanNs": 1957.2525548129688,
+      "errorNs": 533.2289400879985,
+      "confidence": [
+        1424.0236147249702,
+        2490.4814949009674
+      ],
+      "forkMeansNs": [
+        2042.2002217799748,
+        1872.3048878459629
+      ],
+      "medianForkNs": 1957.2525548129688,
+      "allocatedBytes": 2080.0228638291665
+    },
+    {
+      "pattern": "random",
+      "size": 256,
+      "threshold": 128,
+      "meanNs": 1953.118792195577,
+      "errorNs": 204.38812696677311,
+      "confidence": [
+        1748.730665228804,
+        2157.50691916235
+      ],
+      "forkMeansNs": [
+        1963.7583587411818,
+        1942.479225649972
+      ],
+      "medianForkNs": 1953.118792195577,
+      "allocatedBytes": 2080.0228740794605
+    },
+    {
+      "pattern": "random",
+      "size": 256,
+      "threshold": 256,
+      "meanNs": 1910.8028337146525,
+      "errorNs": 135.07100147017647,
+      "confidence": [
+        1775.731832244476,
+        2045.873835184829
+      ],
+      "forkMeansNs": [
+        1894.7797672900062,
+        1926.8259001392987
+      ],
+      "medianForkNs": 1910.8028337146525,
+      "allocatedBytes": 2080.022429856494
+    },
+    {
+      "pattern": "random",
+      "size": 1024,
+      "threshold": 64,
+      "meanNs": 6988.699505971468,
+      "errorNs": 778.063589680901,
+      "confidence": [
+        6210.635916290567,
+        7766.763095652369
+      ],
+      "forkMeansNs": [
+        7109.363438487401,
+        6868.035573455534
+      ],
+      "medianForkNs": 6988.699505971468,
+      "allocatedBytes": 8224.082105051782
+    },
+    {
+      "pattern": "random",
+      "size": 1024,
+      "threshold": 128,
+      "meanNs": 7056.747648700603,
+      "errorNs": 971.2675890525794,
+      "confidence": [
+        6085.480059648024,
+        8028.015237753183
+      ],
+      "forkMeansNs": [
+        7205.077573682524,
+        6908.417723718681
+      ],
+      "medianForkNs": 7056.747648700602,
+      "allocatedBytes": 8224.081952028027
+    },
+    {
+      "pattern": "random",
+      "size": 1024,
+      "threshold": 256,
+      "meanNs": 7098.910777726144,
+      "errorNs": 791.8013266907334,
+      "confidence": [
+        6307.1094510354105,
+        7890.712104416878
+      ],
+      "forkMeansNs": [
+        6922.779190573851,
+        7275.042364878437
+      ],
+      "medianForkNs": 7098.910777726144,
+      "allocatedBytes": 8224.084422205344
+    }
+  ]
+}
