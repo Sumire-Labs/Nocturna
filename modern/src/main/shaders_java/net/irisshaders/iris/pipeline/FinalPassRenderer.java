@@ -394,6 +394,11 @@ public class FinalPassRenderer {
 
 		private void destroy() {
 			this.program.destroy();
+			for (ComputeProgram compute : this.computes) {
+				if (compute != null) {
+					compute.delete();
+				}
+			}
 		}
 	}
 }

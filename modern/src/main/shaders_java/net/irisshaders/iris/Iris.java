@@ -1,5 +1,7 @@
 package net.irisshaders.iris;
 
+import net.irisshaders.iris.gl.program.RetainedPrograms;
+import net.irisshaders.iris.gl.program.ShaderPackState;
 import com.google.common.base.Throwables;
 import com.google.common.collect.ImmutableList;
 //? if <26.1
@@ -366,6 +368,9 @@ public class Iris {
 			&& reusable.fingerprint().equals(new PackFingerprint(name, new HashMap<>(changedConfigs), environmentDefines, fileStamps))) {
 			currentPack = reusable.pack();
 			currentPackFingerprint = reusable.fingerprint();
+            Properties retainedOptions = new Properties();
+            retainedOptions.putAll(changedConfigs);
+            RetainedPrograms.useConfiguration(ShaderPackState.describeSettings(name, shaderPackRoot, retainedOptions, environmentDefines, false));
 			fallback = false;
 			currentPackName = name;
             net.irisshaders.iris.cache.ProgramBinaryCache.usePack(name);
@@ -393,7 +398,9 @@ public class Iris {
 			Map<String, String> savedConfigs = new HashMap<>();
 			configsToSave.forEach((k, v) -> savedConfigs.put((String) k, (String) v));
 			currentPackFingerprint = fileStamps != null ? new PackFingerprint(name, savedConfigs, environmentDefines, fileStamps) : null;
+            RetainedPrograms.useConfiguration(ShaderPackState.describeSettings(name, shaderPackRoot, configsToSave, environmentDefines, false));
 		} catch (Exception e) {
+            RetainedPrograms.useConfiguration(null);
 			CeleritasShaders.logger().error("Failed to load the shaderpack \"{}\"!", name);
 			CeleritasShaders.logger().error("", e);
             // TODO: Consider showing the feature flag screen
@@ -779,7 +786,8 @@ public class Iris {
 
 		// We use DeferredWorldRenderingPipeline on 1.16, and NewWorldRendering pipeline on 1.17 when rendering shaders.
 		try {
-			return new IrisRenderingPipeline(programs);
+			try { return new IrisRenderingPipeline(programs); }
+            finally { RetainedPrograms.afterPipelineBuilt(); }
 		} catch (Exception e) {
 			if (irisConfig.areDebugOptionsEnabled()) {
 				Minecraft.getInstance().setScreen(new DebugLoadFailedGridScreen(Minecraft.getInstance().screen, Component.literal(e instanceof ShaderCompileException ? "Failed to compile shaders" : "Exception"), e));

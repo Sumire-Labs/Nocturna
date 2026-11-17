@@ -65,6 +65,7 @@ public final class ShaderCachePackValidation {
                 void main(){gl_FragColor=texture2D(colortex0,texcoord);}
                 """);
         FismValidation.shaderFixture(root);
+        Files.writeString(root.resolve("final.csh"), "#version 430\nlayout(local_size_x=1)in; const ivec3 workGroups=ivec3(1); void main(){}\n");
         var config = Iris.getIrisConfig();
         config.setShaderPackName(NAME); config.setShadersEnabled(true); config.setSaveCompiledShaders(true);
         compilations.set(0);
@@ -87,6 +88,7 @@ public final class ShaderCachePackValidation {
         }
         System.out.println("Cold validation pack compiled " + compilations.get() + " shader stages");
         compilations.set(0);
+        RetainedProgramsValidation.beginWarmPack();
         Iris.reload();
         requirePipeline();
     }

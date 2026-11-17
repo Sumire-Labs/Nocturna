@@ -14,6 +14,7 @@ import net.minecraft.client.Minecraft;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.ARBShaderImageLoadStore;
 import org.lwjgl.opengl.GL20C;
+import org.lwjgl.opengl.GL11C;
 import org.lwjgl.opengl.GL30C;
 import org.taumc.celeritas.shaders.CeleritasShaders;
 
@@ -27,6 +28,8 @@ import java.util.OptionalInt;
 
 public class ProgramUniforms {
 	private static ProgramUniforms active;
+    private final int program;
+    private boolean hasDeferredUploads;
 	private final ImmutableList<Uniform> perTick;
 	private final ImmutableList<Uniform> perFrame;
 	private final ImmutableList<Uniform> dynamic;
@@ -37,6 +40,13 @@ public class ProgramUniforms {
 
 	public ProgramUniforms(ImmutableList<Uniform> once, ImmutableList<Uniform> perTick, ImmutableList<Uniform> perFrame,
 						   ImmutableList<Uniform> dynamic, ImmutableList<ValueUpdateNotifier> notifiersToReset) {
+        this(-1, once, perTick, perFrame, dynamic, notifiersToReset);
+    }
+
+    public ProgramUniforms(int program, ImmutableList<Uniform> once, ImmutableList<Uniform> perTick,
+                           ImmutableList<Uniform> perFrame, ImmutableList<Uniform> dynamic,
+                           ImmutableList<ValueUpdateNotifier> notifiersToReset) {
+        this.program = program;
 		this.once = once;
 		this.perTick = perTick;
 		this.perFrame = perFrame;
@@ -57,6 +67,16 @@ public class ProgramUniforms {
 			active.removeListeners();
 		}
 	}
+
+    public static boolean isActiveProgramBound() {
+        return active != null && (active.program < 0 || GL11C.glGetInteger(GL20C.GL_CURRENT_PROGRAM) == active.program);
+    }
+
+    public static void markActiveDeferred() {
+        if (active != null) active.hasDeferredUploads = true;
+    }
+
+    public static boolean activeHasDeferredUploads() { return active != null && active.hasDeferredUploads; }
 
 	public static Builder builder(String name, int program) {
 		return new Builder(name, program);
@@ -203,11 +223,21 @@ public class ProgramUniforms {
 	}
 
 	public void update() {
-		if (active != null) {
+        if (program >= 0 && GL11C.glGetInteger(GL20C.GL_CURRENT_PROGRAM) != program) {
+            hasDeferredUploads = true;
+            return;
+        }
+        updateBound();
+    }
+
+    /** Native bind paths call this immediately after glUseProgram, avoiding a redundant driver query. */
+    public void updateBound() {
+		if (active != null && active != this) {
 			active.removeListeners();
 		}
 
 		active = this;
+        hasDeferredUploads = false;
 
 		updateStage(dynamic);
 
@@ -352,7 +382,7 @@ public class ProgramUniforms {
 				}
 			}
 
-			return new ProgramUniforms(ImmutableList.copyOf(once.values()), ImmutableList.copyOf(perTick.values()), ImmutableList.copyOf(perFrame.values()),
+			return new ProgramUniforms(program, ImmutableList.copyOf(once.values()), ImmutableList.copyOf(perTick.values()), ImmutableList.copyOf(perFrame.values()),
 				ImmutableList.copyOf(dynamic.values()), ImmutableList.copyOf(notifiersToReset));
 		}
 

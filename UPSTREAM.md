@@ -39,6 +39,10 @@ Intentional departures from the pinned Celeritas snapshot:
 - Angelica's preprocessing/disk/GL-program caches, from LGPL-3.0 revision
   `996fb54cb05e256ea6039f4e2c8457a221a179b7`, adapted to the existing Celeritas parallel linker.
   See `docs/shader-cache-backport-2026-11-16.md`. Compiled-program saving defaults off as upstream does.
+- Angelica's consuming, two-generation linked-program pool from the same LGPL-3.0 revision. Full pack/settings
+  identity, graphics/compute/terrain ownership and initial uniform uploads are preserved. Native attribute bindings
+  are included in the key, and an ownership epoch rejects terrain handles retired after a configuration change.
+  Final-pass compute programs are released with their graphics program so reloads can reuse both.
 - Angelica's PBR resource index from the same LGPL-3.0 revision, adapted to Forge 1.20.1 pack filters,
   resource-manager replacement and pack lifetime. See `docs/pbr-resource-index-backport-2026-11-17.md`.
 - Angelica's instanced rain/snow, weather-column cache and provider batching from the same LGPL-3.0 revision,

@@ -7,6 +7,7 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import net.irisshaders.iris.gl.IrisRenderSystem;
 import net.irisshaders.iris.pipeline.ShaderLoadTimings;
 import net.irisshaders.iris.cache.ProgramBinaryCache;
+import net.irisshaders.iris.gl.program.RetainedPrograms;
 import org.embeddedt.embeddium.impl.gl.shader.ShaderType;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -49,11 +50,26 @@ public class ProgramCreator {
     }
 
     public static Submitted load(String name, ProgramBinaryCache.Key key) {
+        return load(name, key, null);
+    }
+
+    public static Submitted reuse(String name, RetainedPrograms.Ownership owner, ProgramBinaryCache.Key key) {
+        int program = RetainedPrograms.take(owner);
+        if (program == 0) return null;
+        if (key != null && !ProgramBinaryCache.saveRetained(key, program)) {
+            GlStateManager.glDeleteProgram(program);
+            return null;
+        }
+        GLDebug.nameObject(KHRDebug.GL_PROGRAM, program, name);
+        return new Submitted(name, program, List.of(), null, owner, true);
+    }
+
+    public static Submitted load(String name, ProgramBinaryCache.Key key, RetainedPrograms.Ownership owner) {
         if (key == null) return null;
         int program = ProgramBinaryCache.load(key);
         if (program == 0) return null;
         GLDebug.nameObject(KHRDebug.GL_PROGRAM, program, name);
-        return new Submitted(name, program, List.of(), null);
+        return new Submitted(name, program, List.of(), null, owner, true);
     }
 
 	/**
@@ -66,7 +82,13 @@ public class ProgramCreator {
 
     public static Submitted submit(String name, List<GlShader.Deferred> shaders,
                                    Map<String, Integer> attributeLocations, ProgramBinaryCache.Key cacheKey) {
-		RenderSystem.assertOnRenderThread();
+		return submit(name, shaders, attributeLocations, cacheKey, null);
+    }
+
+    public static Submitted submit(String name, List<GlShader.Deferred> shaders,
+                                   Map<String, Integer> attributeLocations, ProgramBinaryCache.Key cacheKey,
+                                   RetainedPrograms.Ownership owner) {
+        RenderSystem.assertOnRenderThread();
 
 		int program = GlStateManager.glCreateProgram();
         if (cacheKey != null) ProgramBinaryCache.markRetrievable(program);
@@ -81,7 +103,7 @@ public class ProgramCreator {
 
 		GLDebug.nameObject(KHRDebug.GL_PROGRAM, program, name);
 
-		return new Submitted(name, program, shaders, cacheKey);
+		return new Submitted(name, program, shaders, cacheKey, owner, false);
 	}
 
 	public static final class Submitted {
@@ -89,14 +111,20 @@ public class ProgramCreator {
 		private final int program;
 		private final List<GlShader.Deferred> shaders;
         private final ProgramBinaryCache.Key cacheKey;
+        private final RetainedPrograms.Ownership owner;
+        private final boolean alreadyLinked;
 		private boolean done;
 
-		private Submitted(String name, int program, List<GlShader.Deferred> shaders, ProgramBinaryCache.Key cacheKey) {
+		private Submitted(String name, int program, List<GlShader.Deferred> shaders, ProgramBinaryCache.Key cacheKey, RetainedPrograms.Ownership owner, boolean alreadyLinked) {
 			this.name = name;
 			this.program = program;
 			this.shaders = shaders;
             this.cacheKey = cacheKey;
+            this.owner = owner;
+            this.alreadyLinked = alreadyLinked;
 		}
+
+        public RetainedPrograms.Ownership ownership() { return owner; }
 
 		public String getName() {
 			return name;
@@ -110,6 +138,7 @@ public class ProgramCreator {
 			RenderSystem.assertOnRenderThread();
 			checkNotDone();
 			done = true;
+            if (alreadyLinked) return program;
 
 			long waitStart = ShaderLoadTimings.now();
 			List<GlShader> compiled;

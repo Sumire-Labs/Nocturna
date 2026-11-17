@@ -13,6 +13,7 @@ import org.lwjgl.opengl.GL46C;
 
 public final class ComputeProgram extends GlObject {
 	private final ProgramUniforms uniforms;
+    private final RetainedPrograms.Ownership owner;
 	private final ProgramSamplers samplers;
 	private final ProgramImages images;
 	private final int[] localSize;
@@ -24,6 +25,11 @@ public final class ComputeProgram extends GlObject {
 	private FilledIndirectPointer indirectPointer;
 
 	ComputeProgram(int program, ProgramUniforms uniforms, ProgramSamplers samplers, ProgramImages images) {
+        this(program, null, uniforms, samplers, images);
+    }
+
+    ComputeProgram(int program, RetainedPrograms.Ownership owner, ProgramUniforms uniforms, ProgramSamplers samplers, ProgramImages images) {
+        this.owner = owner;
 		this.setHandle(program);
 
 		localSize = new int[3];
@@ -66,7 +72,7 @@ public final class ComputeProgram extends GlObject {
 	public void use() {
 		GlStateManager._glUseProgram(handle());
 
-		uniforms.update();
+		uniforms.updateBound();
 		samplers.update();
 		images.update();
 	}
@@ -85,7 +91,7 @@ public final class ComputeProgram extends GlObject {
 	}
 
 	public void destroyInternal() {
-		GlStateManager.glDeleteProgram(handle());
+		RetainedPrograms.release(owner, handle());
 	}
 
 	/**

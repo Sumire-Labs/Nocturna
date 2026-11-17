@@ -1,6 +1,6 @@
 {
   "revision": "26f000239eb8ddf7ee191f0ddf369147e3c92ef6",
-  "identical": 1539,
+  "identical": 1521,
   "changes": [
     {
       "path": "buildSrc/build.gradle.kts",
@@ -25,7 +25,7 @@
     {
       "path": "common/src/lwjgl2/java/org/taumc/celeritas/lwjgl/lwjgl2/LWJGL2Service.java",
       "upstream": "9798f9e6e33b7dc471233476932521ce595dc72d89c1ec1293be2db7bf216919",
-      "local": "a654d23e35a11a0aed0398ca22489dbe6559d049c6d829680ce86e8f47879b31"
+      "local": "d85635a1a830c02b67f8f0a1eaf8071f5a46faca1375e8b2f7cfff6a2ad56c1e"
     },
     {
       "path": "common/src/lwjgl3/java/org/taumc/celeritas/lwjgl/lwjgl3/LWJGL3DebugSupport.java",
@@ -35,7 +35,12 @@
     {
       "path": "common/src/lwjgl3/java/org/taumc/celeritas/lwjgl/lwjgl3/LWJGL3Service.java",
       "upstream": "609eab92b206699dd43717ec06eabcd981e86f20b3ccac20efcecc0f2b14a1c2",
-      "local": "e0f338e1c41679f5fb1b3ef640e1ea1fa9dd5293e4e0307c62d98158eb731f6a"
+      "local": "9e541caef1235694908ebcb4dca4683a665eeeeae71fc3c8139b842ea746139b"
+    },
+    {
+      "path": "common/src/lwjglCommon/java/org/taumc/celeritas/lwjgl/LWJGLService.java",
+      "upstream": "14a0faf0f92e93de3bb9561444708558cd0a863badf76229890f95c300829b8f",
+      "local": "05b68dd9ebaa21de7306dd610e4d5bb80f1a101ed200729873a5a11c59aea5b1"
     },
     {
       "path": "common/src/main/java/org/embeddedt/embeddium/impl/gl/arena/GlBufferArena.java",
@@ -50,7 +55,7 @@
     {
       "path": "common/src/main/java/org/embeddedt/embeddium/impl/gl/shader/GlProgram.java",
       "upstream": "896fda17df92789a33a111ea1d1dfd78357e0093e1fb41e3e7fc5091f86ec743",
-      "local": "3419c9abd954235e9d7e0372094f037f9884f1a8bfcc5d4f863f10d4a5aaee7f"
+      "local": "9f08e5e18d108f130ab7bdb874b50a255ba8cc2cb6be89d41d1dfb72fc63c6f8"
     },
     {
       "path": "common/src/main/java/org/embeddedt/embeddium/impl/gl/shader/uniform/GlUniformMatrix3f.java",
@@ -335,12 +340,12 @@
     {
       "path": "modern/src/main/shaders_java/net/irisshaders/iris/Iris.java",
       "upstream": "d74f868fd29b5aec24d5171b44776721716edb76ee1222ee683b4a685b253ed5",
-      "local": "e6e27059f86c6517aaaaf8207b1bcaf2141bdd7b482b705f6acb2a2a9e0938a2"
+      "local": "9442aaa5cd6d97220044a9604253d374d58b1e3e23792abcbaaeb378b024972f"
     },
     {
       "path": "modern/src/main/shaders_java/net/irisshaders/iris/compat/sodium/impl/shader_overrides/IrisChunkProgramOverrides.java",
       "upstream": "89b9e4d785f9a5da0944ab1ca491f8d54d7673018f27b83bc232c913198daef4",
-      "local": "7217b64010657bd43ad0b968ca46d077eea7dfee6c3957cd89319ed4276d31f6"
+      "local": "93115f3b00d5adc8db69ab5ffcece0fba182b81cfe1109b82b076004455cd69c"
     },
     {
       "path": "modern/src/main/shaders_java/net/irisshaders/iris/compat/sodium/impl/shader_overrides/IrisShaderFogComponent.java",
@@ -353,14 +358,99 @@
       "local": "94c2ddae753e2225a2e4ebeb6b7d71533d4e96eacf6aa200777bbf0c538ff327"
     },
     {
+      "path": "modern/src/main/shaders_java/net/irisshaders/iris/gl/program/ComputeProgram.java",
+      "upstream": "11b368253d40f80404c9cba777d68211cad1ef7cacc82d52c7bc082d89377aae",
+      "local": "2cf0cb09b156cfef6ac90fcbd1d4fe2e490278ed069d6e0423d27d13d2221c42"
+    },
+    {
+      "path": "modern/src/main/shaders_java/net/irisshaders/iris/gl/program/Program.java",
+      "upstream": "5a73d619f45b7141bc1f906301f0f29064dab0c3147fa38772d43aaed97920bb",
+      "local": "e1d8d091db2c881977daca2c0b2c827fcd1a3bee1f2dca1c8e2965b239c16810"
+    },
+    {
       "path": "modern/src/main/shaders_java/net/irisshaders/iris/gl/program/ProgramBuilder.java",
       "upstream": "63748e069b6050aa431f702981ec9d40d0d5e9e86796e183037a2f4671489fb3",
-      "local": "f9135f412c078fca9f4256570df29342724545b3193c5618f4d2e81ef747c680"
+      "local": "01ccaaf15010aef859d9582cf153cea68cff65afb9b40f6b8964854260cfed83"
+    },
+    {
+      "path": "modern/src/main/shaders_java/net/irisshaders/iris/gl/program/ProgramUniforms.java",
+      "upstream": "68e08ff12dd07ac6986466cd2c9b436fff0e758f58e0170d8cf14f11e4c7cfb4",
+      "local": "ae4881ea5aca4c5eae68920650e200944cf03c27a32be7ed5b1364cc3f32ebed"
     },
     {
       "path": "modern/src/main/shaders_java/net/irisshaders/iris/gl/shader/ProgramCreator.java",
       "upstream": "a6f6a247a2f8c46356f16da8cd0301cbbb6f0715594d008eada7a1a3d6c71e2b",
-      "local": "09954d9dfd23deb6ec01d3cdc756190c2171eb626895b7c79e02bc69318f39fa"
+      "local": "903f632f8e53f11e334f8a6f30a4077f40508cc76672c79f607fd873a5809997"
+    },
+    {
+      "path": "modern/src/main/shaders_java/net/irisshaders/iris/gl/uniform/FloatUniform.java",
+      "upstream": "bd66bf6f70dca1e89aaa393a0a1feba0905ddc8ffe0b74ef1eb80feb7cec90d9",
+      "local": "57ddd9f912d9a9aaee66bf354a6f8fd2286b04302d39d7900e940ef6cc8894be"
+    },
+    {
+      "path": "modern/src/main/shaders_java/net/irisshaders/iris/gl/uniform/IntUniform.java",
+      "upstream": "7a669af2b82a027c8728cadb071203d6070239d6e5937bd4b619ad5860b25cd5",
+      "local": "521231d07d1b9dafc2cd683e162ccab1158e643e30c815cdf04d14901248f7e0"
+    },
+    {
+      "path": "modern/src/main/shaders_java/net/irisshaders/iris/gl/uniform/MatrixFromFloatArrayUniform.java",
+      "upstream": "57772e73208950ebf9695635b6c0c02419848d136e1b2eed79d4f2e01091bb12",
+      "local": "d576bed7a715e221f5610bbcb622981717d8bc3ce17e24c9780c70d47fd72626"
+    },
+    {
+      "path": "modern/src/main/shaders_java/net/irisshaders/iris/gl/uniform/MatrixUniform.java",
+      "upstream": "063c02176dbd9785b8550cd75f297fa817c806e7200558af681649de7db64385",
+      "local": "59c6c11b3477587b7aea22ef5dbf8d3ee4a7d27dfc866d09d7801b3e817a8f07"
+    },
+    {
+      "path": "modern/src/main/shaders_java/net/irisshaders/iris/gl/uniform/Uniform.java",
+      "upstream": "1836b88368662f2b781f9aab5681add286c397ba38f9a6f232101df16f2bae94",
+      "local": "f516caf5f34af16d67bda7e0d892d9f39f98b536aa717fac6828743552e8cb9f"
+    },
+    {
+      "path": "modern/src/main/shaders_java/net/irisshaders/iris/gl/uniform/Vector2IntegerJomlUniform.java",
+      "upstream": "d97c9885bdfeb79e3d21a947da37b7141c73ecec2e2618a39edb635dcbb6ed07",
+      "local": "5de28cf0f3f5d84ef5ea6973a67d3e1d6ae086c1ed00ad05bb66aa6836a63b25"
+    },
+    {
+      "path": "modern/src/main/shaders_java/net/irisshaders/iris/gl/uniform/Vector2Uniform.java",
+      "upstream": "22327de38539436c52c5a86ddb88de91304d923bc9f29f0af6be0f42cbd97a91",
+      "local": "ab7277848df1ca60e51dee8040acc27b316d68de84ccfbb8e2efaeb35876d40e"
+    },
+    {
+      "path": "modern/src/main/shaders_java/net/irisshaders/iris/gl/uniform/Vector3IntegerUniform.java",
+      "upstream": "d9ef0aab1d107fd45c577575ba0437fa1f20bfcb64c6d5e48ebd703c7ee4c716",
+      "local": "b8084e18bfc6f4aab35bae2eb88db2070f00aa755805c28a56c23dc7baeff2ae"
+    },
+    {
+      "path": "modern/src/main/shaders_java/net/irisshaders/iris/gl/uniform/Vector3Uniform.java",
+      "upstream": "8aa8e98d7ff86b7c3ad6f5baec6f049b30fd871c83a802f41d8e8b76dce21217",
+      "local": "875414ac7b4e40fe7c3ea146ec6e10a704d82a0d87e95b95e788698770c49fb4"
+    },
+    {
+      "path": "modern/src/main/shaders_java/net/irisshaders/iris/gl/uniform/Vector4ArrayUniform.java",
+      "upstream": "422023df4df686f00fd8603781ff0a9f09d3c164ed5f3a3f48dd7d6c82f99e35",
+      "local": "a1931bbd0f416044ff9e42ca565c229216cb05b6462f49bdc4bb59d95a3daa15"
+    },
+    {
+      "path": "modern/src/main/shaders_java/net/irisshaders/iris/gl/uniform/Vector4IntegerJomlUniform.java",
+      "upstream": "e02e1ff37645eeccf6e5d73c615c37e847e3fb2946cfd530f3183f5477066d94",
+      "local": "c314a4b84280de5e901087af1f2f09c2b1ca904d5a01c6aee8fb923fc825d309"
+    },
+    {
+      "path": "modern/src/main/shaders_java/net/irisshaders/iris/gl/uniform/Vector4Uniform.java",
+      "upstream": "bf4a6a3fa53b921a17761692df62ddda14b8d916d878fd501f29b2a3a71b9b45",
+      "local": "32fbdec53b60c85022636f26f7f7437225388db939d6d5adb757d45b01881947"
+    },
+    {
+      "path": "modern/src/main/shaders_java/net/irisshaders/iris/gl/uniform/Vector4UnsignedIntegerUniform.java",
+      "upstream": "8c112c654e5d2314226d1d7713400e1c2b467f182ec4bba9a08535b09a4048c7",
+      "local": "216d8c0296c1634d929ba8c70c738f5e6956c4529ce35f7a03a81d588de6894c"
+    },
+    {
+      "path": "modern/src/main/shaders_java/net/irisshaders/iris/pipeline/FinalPassRenderer.java",
+      "upstream": "25b291ea6491ade0deb89efb7865ecb85b3662e0a81c77993cc62ee802dbe63c",
+      "local": "238ca7ad2d8afcff8e6eefe4dc462cf99197423f33da6246f38a2712f5c867ef"
     },
     {
       "path": "modern/src/main/shaders_java/net/irisshaders/iris/pipeline/IrisRenderingPipeline.java",
@@ -2513,6 +2603,14 @@
       "local": "812c556db87cd6347dc050c8abab372c3a78619111982547071de396827c7bc7"
     },
     {
+      "path": "modern/src/main/shaders_java/net/irisshaders/iris/gl/program/RetainedPrograms.java",
+      "local": "1159763366512f350b29cda237bc039f204c32b45b23eb7526c1e98292a44823"
+    },
+    {
+      "path": "modern/src/main/shaders_java/net/irisshaders/iris/gl/program/ShaderPackState.java",
+      "local": "c0291b8a0f442f0a93c53e1fb37fa8d20c318c634a0031d5f15dbda1fb2eada9"
+    },
+    {
       "path": "modern/src/main/shaders_java/net/irisshaders/iris/pipeline/foss_transform/TextureTransformer.java",
       "local": "634f3102f6318c30005b4ba27a6f7ca34c1b9eb3e22a558bceab55ab80f35871"
     },
@@ -2619,6 +2717,14 @@
     {
       "path": "modern/src/test/java/net/irisshaders/iris/cache/ShaderDiskCacheTest.java",
       "local": "42893596aa279a159b75249bdf794d9eab2e6e461e0d0c7d73e31bd9145675cc"
+    },
+    {
+      "path": "modern/src/test/java/net/irisshaders/iris/gl/program/RetainedProgramsTest.java",
+      "local": "7340b60ede48679755fe4f80cd99a5d079864a7c11abb565e42ffc82cdabc1d8"
+    },
+    {
+      "path": "modern/src/test/java/net/irisshaders/iris/gl/program/ShaderPackStateTest.java",
+      "local": "d199fb06af3f5ea98033f2a64e977b2328ea08a19e1e9a0f7b511a636b353e33"
     },
     {
       "path": "modern/src/test/java/net/irisshaders/iris/pathways/HorizonRendererTest.java",
@@ -2738,11 +2844,15 @@
     },
     {
       "path": "modern/src/validation/java/org/embeddedt/embeddium/validation/MigrationValidation.java",
-      "local": "76632427676063f73cb1e7f1b500690f8c980e7a6ea2bf520386b164540f36a6"
+      "local": "ddb6620a3d1999d6c3de40f9067a2a5b5b6d275573291172039b8283f2d2360f"
     },
     {
       "path": "modern/src/validation/java/org/embeddedt/embeddium/validation/PBRResourceIndexValidation.java",
       "local": "e661af210be9196baaaa2cbf7b11beb7e6627b8f487808aa0681067991081eaa"
+    },
+    {
+      "path": "modern/src/validation/java/org/embeddedt/embeddium/validation/RetainedProgramsValidation.java",
+      "local": "633006aab6303e87cd8ccfd4713080d1d7b75d3daea9f62c1cb43ec904d7fe9d"
     },
     {
       "path": "modern/src/validation/java/org/embeddedt/embeddium/validation/RsoAddonWidgetValidation.java",
@@ -2770,7 +2880,7 @@
     },
     {
       "path": "modern/src/validation/java/org/embeddedt/embeddium/validation/ShaderCachePackValidation.java",
-      "local": "e32851bc469b9f470a2d13d61c8debb720f5f20e0598ed4090f5520fc7d6a062"
+      "local": "ec5241df71a1e27d50c775ba6745c0f5b12fd5211f52958a683d252559e3b7c1"
     },
     {
       "path": "modern/src/validation/java/org/embeddedt/embeddium/validation/ShaderCacheValidation.java",
@@ -2783,6 +2893,18 @@
     {
       "path": "modern/src/validation/java/org/embeddedt/embeddium/validation/mixin/HorizonDrawCounterMixin.java",
       "local": "154d0a8bfff51400ef646888980f74a27ad73307f2e3696a6c17d96d2b01dd3a"
+    },
+    {
+      "path": "modern/src/validation/java/org/embeddedt/embeddium/validation/mixin/RetainedBinaryCounterMixin.java",
+      "local": "ce71ae31299890ad0aa92f637e26b87b55ec9652b62f348f90e19f6329ff0b90"
+    },
+    {
+      "path": "modern/src/validation/java/org/embeddedt/embeddium/validation/mixin/RetainedLinkCounterMixin.java",
+      "local": "653ae7a0673853cb1398dd4cab803bfe109bdb1042c40709363d4ffeac31f0fb"
+    },
+    {
+      "path": "modern/src/validation/java/org/embeddedt/embeddium/validation/mixin/RetainedTerrainLinkCounterMixin.java",
+      "local": "d04c9b0e8394ca9b267c377117c9a0719098b1d2a8625899c5a8159d53f42338"
     },
     {
       "path": "modern/src/validation/java/org/embeddedt/embeddium/validation/mixin/RsoVisualPointerMixin.java",
@@ -2818,7 +2940,7 @@
     },
     {
       "path": "modern/src/validation/resources/embeddium-validation.mixins.json",
-      "local": "adef4c7836bbc655396fd88c5d41549ab4f87bb715d2af52f77e0f3d45d7730f"
+      "local": "e6fcd0f1f3f81cf3b615eda023913ce616fc8c850dd4016ee034bc22a10564df"
     },
     {
       "path": "modern/src/validation/resources/pack.mcmeta",

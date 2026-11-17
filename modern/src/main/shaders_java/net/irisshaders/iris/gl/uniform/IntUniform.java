@@ -7,6 +7,7 @@ import net.irisshaders.iris.gl.state.ValueUpdateNotifier;
 import java.util.function.IntSupplier;
 
 public class IntUniform extends Uniform {
+    private final Runnable updateListener = uploadWhileBound(this::updateValue);
 	private final IntSupplier value;
 	private int cachedValue;
 
@@ -26,14 +27,15 @@ public class IntUniform extends Uniform {
 		updateValue();
 
 		if (notifier != null) {
-			notifier.setListener(this::updateValue);
+			notifier.setListener(updateListener);
 		}
 	}
 
 	private void updateValue() {
 		int newValue = value.getAsInt();
 
-		if (cachedValue != newValue) {
+		if (dirty || cachedValue != newValue) {
+            dirty = false;
 			cachedValue = newValue;
 			GlStateManager._glUniform1i(location, newValue);
 		}

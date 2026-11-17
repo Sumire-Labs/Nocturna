@@ -16,6 +16,7 @@ import org.embeddedt.embeddium.impl.render.chunk.vertex.format.VertexFetchMode;
 import net.irisshaders.iris.Iris;
 import net.irisshaders.iris.cache.ProgramBinaryCache;
 import net.irisshaders.iris.gl.shader.ProgramCreator;
+import net.irisshaders.iris.gl.program.RetainedPrograms;
 import net.irisshaders.iris.gl.blending.BlendModeOverride;
 import net.irisshaders.iris.gl.blending.BufferBlendOverride;
 import net.irisshaders.iris.pipeline.ShaderLoadTimings;
@@ -35,11 +36,11 @@ public class IrisChunkProgramOverrides {
 	private boolean shadersCreated = false;
 	private int versionCounterForSodiumShaderReload = -1;
 
-    private record SubmittedProgram(GlProgram.Deferred program, int restored, ProgramBinaryCache.Key cacheKey,
+    private record SubmittedProgram(GlProgram.Deferred program, int restored, ProgramBinaryCache.Key cacheKey, RetainedPrograms.Ownership owner,
                                     Function<ShaderBindingContext, IrisChunkShaderInterface> factory) {
         GlProgram<IrisChunkShaderInterface> finish() {
-            if (program == null) return GlProgram.fromLinkedProgram(restored, factory);
-            var linked = program.finish(factory);
+            if (program == null) return GlProgram.fromLinkedProgram(restored, factory, id -> RetainedPrograms.release(owner, id));
+            var linked = program.finish(factory, id -> RetainedPrograms.release(owner, id));
             if (cacheKey != null) ProgramBinaryCache.save(cacheKey, linked.handle());
             return linked;
         }
@@ -99,8 +100,12 @@ public class IrisChunkProgramOverrides {
             }
         }
 
-        var key = ProgramCreator.cacheKey(sources, attributes);
-        var cached = ProgramCreator.load("sodium:chunk_shader_for_" + pass.getName(), key);
+        var owner = RetainedPrograms.ownership(sources, attributes);
+        String name = "sodium:chunk_shader_for_" + pass.getName();
+        var cached = ProgramCreator.reuse(name, owner, ProgramBinaryCache.isFullCompileRunning()
+            ? ProgramCreator.cacheKey(sources, attributes) : null);
+        var key = cached == null ? ProgramCreator.cacheKey(sources, attributes) : null;
+        if (cached == null) cached = ProgramCreator.load(name, key, owner);
         int restored = cached == null ? 0 : cached.finish();
         GlProgram.Deferred deferred = null;
         if (restored == 0) {
@@ -115,7 +120,7 @@ public class IrisChunkProgramOverrides {
         }
 		boolean hasTessellation = sources.containsKey(ShaderType.TESS_CTRL) || sources.containsKey(ShaderType.TESS_EVALUATE);
 
-		return new SubmittedProgram(deferred, restored, key, (shader) -> {
+		return new SubmittedProgram(deferred, restored, key, owner, (shader) -> {
 			int handle = ((GlObject) shader).handle();
 			ShaderBindingContext contextExt = shader;
 			GLDebug.nameObject(GL43C.GL_PROGRAM, handle, "sodium-terrain-" + pass.toString().toLowerCase(Locale.ROOT));

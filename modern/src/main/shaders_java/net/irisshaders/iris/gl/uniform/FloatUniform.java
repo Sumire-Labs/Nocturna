@@ -4,6 +4,7 @@ import net.irisshaders.iris.gl.IrisRenderSystem;
 import net.irisshaders.iris.gl.state.ValueUpdateNotifier;
 
 public class FloatUniform extends Uniform {
+    private final Runnable updateListener = uploadWhileBound(this::updateValue);
 	private final FloatSupplier value;
 	private float cachedValue;
 
@@ -23,14 +24,15 @@ public class FloatUniform extends Uniform {
 		updateValue();
 
 		if (notifier != null) {
-			notifier.setListener(this::updateValue);
+			notifier.setListener(updateListener);
 		}
 	}
 
 	private void updateValue() {
 		float newValue = value.getAsFloat();
 
-		if (cachedValue != newValue) {
+		if (dirty || cachedValue != newValue) {
+            dirty = false;
 			cachedValue = newValue;
 			IrisRenderSystem.uniform1f(location, newValue);
 		}

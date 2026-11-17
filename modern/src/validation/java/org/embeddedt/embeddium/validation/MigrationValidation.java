@@ -103,6 +103,7 @@ public class MigrationValidation {
                 if(net.minecraftforge.fml.ModList.get().isLoaded("codechickenlib")) AddonValidation.install();
                 vertices();MatrixUniformValidation.verify();ShaderCacheValidation.verify();PBRResourceIndexValidation.verify();
                 HorizonValidation.verify();
+                RetainedProgramsValidation.verify();
                 FismValidation.verify();
                 org.embeddedt.embeddium.validation.weather.WeatherGeometryValidation.verify();gui(mc);
                 ShaderCachePackValidation.prepare();stage=1;
@@ -137,6 +138,10 @@ public class MigrationValidation {
                     ShaderCachePackValidation.reloadWarm();stage=2;settled=0;
                 } else if(stage==2) {
                     ShaderCachePackValidation.verifyWarm();
+                    RetainedProgramsValidation.verifyWarmPack("reload");
+                    RetainedProgramsValidation.offOn();stage=5;settled=0;
+                } else if(stage==5) {
+                    RetainedProgramsValidation.verifyWarmPack("OFF/ON");
                     Celeritas.options().performance.useCompactVertexFormat=true;
                     Celeritas.options().performance.asyncOcclusionMode=
                         org.embeddedt.embeddium.impl.render.chunk.occlusion.AsyncOcclusionMode.EVERYTHING;
@@ -144,6 +149,7 @@ public class MigrationValidation {
                 } else {
                     if(net.minecraftforge.fml.ModList.get().isLoaded("codechickenlib")) AddonValidation.verify();
                     HorizonValidation.verifyInWorld();
+                    RetainedProgramsValidation.finish();
                     FismValidation.finish();
                     require(System.getProperty("java.specification.version").equals("17"),"wrong Java runtime");
                     var report="PASS Java17; matrix uniform GPU readback; legacy vertex bytes; styled GUI/control/events; vanilla+compact/async terrain; old block/mesh callbacks. blocks="+blocks+" meshes="+meshes;

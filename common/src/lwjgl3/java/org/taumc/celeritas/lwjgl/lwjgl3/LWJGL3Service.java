@@ -368,6 +368,11 @@ public record LWJGL3Service(
     }
 
     @Override
+    public void glDetachShader(int program, int shader) {
+        GL20C.glDetachShader(program, shader);
+    }
+
+    @Override
     public void glLinkProgram(int program) {
         GL20C.glLinkProgram(program);
     }

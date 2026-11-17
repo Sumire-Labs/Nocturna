@@ -7,10 +7,16 @@ import org.lwjgl.opengl.GL43C;
 
 public final class Program extends GlObject {
 	private final ProgramUniforms uniforms;
+    private final RetainedPrograms.Ownership owner;
 	private final ProgramSamplers samplers;
 	private final ProgramImages images;
 
 	Program(int program, ProgramUniforms uniforms, ProgramSamplers samplers, ProgramImages images) {
+        this(program, null, uniforms, samplers, images);
+    }
+
+    Program(int program, RetainedPrograms.Ownership owner, ProgramUniforms uniforms, ProgramSamplers samplers, ProgramImages images) {
+        this.owner = owner;
 		this.setHandle(program);
 
 		this.uniforms = uniforms;
@@ -35,13 +41,13 @@ public final class Program extends GlObject {
 	public void bind() {
 		GlStateManager._glUseProgram(handle());
 
-		uniforms.update();
+		uniforms.updateBound();
 		samplers.update();
 		images.update();
 	}
 
 	public void destroyInternal() {
-		GlStateManager.glDeleteProgram(handle());
+		RetainedPrograms.release(owner, handle());
 	}
 
 	/**

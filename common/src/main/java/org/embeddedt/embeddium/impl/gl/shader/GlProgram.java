@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
 import java.util.function.IntFunction;
+import java.util.function.IntConsumer;
 
 /**
  * An OpenGL shader program.
@@ -27,8 +28,14 @@ public class GlProgram<T> extends GlObject implements ShaderBindingContext {
     private static final Logger LOGGER = LogManager.getLogger(GlProgram.class);
 
     private final T shaderInterface;
+    private final IntConsumer deleteAction;
 
     protected GlProgram(int program, Function<ShaderBindingContext, T> interfaceFactory) {
+        this(program, interfaceFactory, LWJGL::glDeleteProgram);
+    }
+
+    protected GlProgram(int program, Function<ShaderBindingContext, T> interfaceFactory, IntConsumer deleteAction) {
+        this.deleteAction = deleteAction;
         this.setHandle(program);
         this.shaderInterface = interfaceFactory.apply(this);
     }
@@ -39,7 +46,13 @@ public class GlProgram<T> extends GlObject implements ShaderBindingContext {
 
     /** Takes ownership of an already linked (and validated) program, e.g. one restored by the shader cache. */
     public static <T> GlProgram<T> fromLinkedProgram(int program, Function<ShaderBindingContext, T> factory) {
-        return new GlProgram<>(program, factory);
+        return fromLinkedProgram(program, factory, LWJGL::glDeleteProgram);
+    }
+
+    public static <T> GlProgram<T> fromLinkedProgram(int program, Function<ShaderBindingContext, T> factory,
+                                                   IntConsumer deleteAction) {
+        try { return new GlProgram<>(program, factory, deleteAction); }
+        catch (RuntimeException | Error e) { LWJGL.glDeleteProgram(program); throw e; }
     }
 
     public static Builder builder(String identifier) {
@@ -56,7 +69,7 @@ public class GlProgram<T> extends GlObject implements ShaderBindingContext {
 
     @Override
     protected void destroyInternal() {
-        LWJGL.glDeleteProgram(this.handle());
+        this.deleteAction.accept(this.handle());
     }
 
     @Override
@@ -167,6 +180,7 @@ public class GlProgram<T> extends GlObject implements ShaderBindingContext {
         private final String name;
         private final int program;
         private final List<GlShader.Deferred> shaders;
+        private boolean done;
 
         private Deferred(String name, int program, List<GlShader.Deferred> shaders) {
             this.name = name;
@@ -179,8 +193,17 @@ public class GlProgram<T> extends GlObject implements ShaderBindingContext {
          * failure, the shaders and program are deleted before the exception is rethrown.
          */
         public <U> GlProgram<U> finish(Function<ShaderBindingContext, U> factory) {
+            return finish(factory, LWJGL::glDeleteProgram);
+        }
+
+        public <U> GlProgram<U> finish(Function<ShaderBindingContext, U> factory, IntConsumer deleteAction) {
+            checkNotDone();
+            this.done = true;
             try {
-                GlShader.Deferred.awaitAll(this.shaders).forEach(GlShader::delete);
+                for (GlShader shader : GlShader.Deferred.awaitAll(this.shaders)) {
+                    LWJGL.glDetachShader(this.program, shader.handle());
+                    shader.delete();
+                }
             } catch (GlShader.CompileException e) {
                 LWJGL.glDeleteProgram(this.program);
                 throw e;
@@ -197,15 +220,20 @@ public class GlProgram<T> extends GlObject implements ShaderBindingContext {
                 throw new RuntimeException("Shader program linking failed, see log for details");
             }
 
-            return new GlProgram<>(this.program, factory);
+            return fromLinkedProgram(this.program, factory, deleteAction);
         }
 
         /**
          * Deletes a program that is no longer needed, without waiting for it to finish linking.
          */
         public void delete() {
+            checkNotDone();
+            this.done = true;
             this.shaders.forEach(GlShader.Deferred::delete);
             LWJGL.glDeleteProgram(this.program);
+        }
+        private void checkNotDone() {
+            if (this.done) throw new IllegalStateException("Program " + this.name + " was already finished or deleted");
         }
     }
 }

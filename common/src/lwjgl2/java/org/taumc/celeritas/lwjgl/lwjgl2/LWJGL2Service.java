@@ -437,6 +437,11 @@ public record LWJGL2Service(
     }
 
     @Override
+    public void glDetachShader(int program, int shader) {
+        GL20.glDetachShader(program, shader);
+    }
+
+    @Override
     public void glLinkProgram(int program) {
         GL20.glLinkProgram(program);
     }

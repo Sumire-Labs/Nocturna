@@ -7,6 +7,7 @@ import org.joml.Vector3i;
 import java.util.function.Supplier;
 
 public class Vector3IntegerUniform extends Uniform {
+    private final Runnable updateListener = uploadWhileBound(this::updateValue);
 	private final Vector3i cachedValue;
 	private final Supplier<Vector3i> value;
 
@@ -29,14 +30,15 @@ public class Vector3IntegerUniform extends Uniform {
 		updateValue();
 
 		if (notifier != null) {
-			notifier.setListener(this::updateValue);
+			notifier.setListener(updateListener);
 		}
 	}
 
 	private void updateValue() {
 		Vector3i newValue = value.get();
 
-		if (!newValue.equals(cachedValue)) {
+		if (dirty || !newValue.equals(cachedValue)) {
+            dirty = false;
 			cachedValue.set(newValue.x(), newValue.y(), newValue.z());
 			IrisRenderSystem.uniform3i(location, cachedValue.x(), cachedValue.y(), cachedValue.z());
 		}

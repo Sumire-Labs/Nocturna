@@ -5,6 +5,9 @@
   "compatibilityLevel": "JAVA_17",
   "client": [
     "ShaderCompileCounterMixin",
+    "RetainedLinkCounterMixin",
+    "RetainedTerrainLinkCounterMixin",
+    "RetainedBinaryCounterMixin",
     "WeatherEffectsOverrideMixin",
     "WeatherBiomeOverrideMixin",
     "HorizonDrawCounterMixin",

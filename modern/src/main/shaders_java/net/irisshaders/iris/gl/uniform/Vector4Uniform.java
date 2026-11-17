@@ -7,6 +7,7 @@ import org.joml.Vector4f;
 import java.util.function.Supplier;
 
 public class Vector4Uniform extends Uniform {
+    private final Runnable updateListener = uploadWhileBound(this::updateValue);
 	private final Vector4f cachedValue;
 	private final Supplier<Vector4f> value;
 
@@ -26,14 +27,15 @@ public class Vector4Uniform extends Uniform {
 		updateValue();
 
 		if (notifier != null) {
-			notifier.setListener(this::updateValue);
+			notifier.setListener(updateListener);
 		}
 	}
 
 	private void updateValue() {
 		Vector4f newValue = value.get();
 
-		if (!newValue.equals(cachedValue)) {
+		if (dirty || !newValue.equals(cachedValue)) {
+            dirty = false;
 			cachedValue.set(newValue.x(), newValue.y(), newValue.z(), newValue.w());
 			IrisRenderSystem.uniform4f(location, cachedValue.x(), cachedValue.y(), cachedValue.z(), cachedValue.w());
 		}

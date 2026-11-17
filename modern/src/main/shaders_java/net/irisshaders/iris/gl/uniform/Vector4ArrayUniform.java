@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.function.Supplier;
 
 public class Vector4ArrayUniform extends Uniform {
+    private final Runnable updateListener = uploadWhileBound(this::updateValue);
 	private final Supplier<float[]> value;
 	private final float[] cachedValue;
 
@@ -26,14 +27,15 @@ public class Vector4ArrayUniform extends Uniform {
 		updateValue();
 
 		if (notifier != null) {
-			notifier.setListener(this::updateValue);
+			notifier.setListener(updateListener);
 		}
 	}
 
 	private void updateValue() {
 		float[] newValue = value.get();
 
-		if (!Arrays.equals(newValue, cachedValue)) {
+		if (dirty || !Arrays.equals(newValue, cachedValue)) {
+            dirty = false;
 			System.arraycopy(newValue, 0, cachedValue, 0, 4);
 			IrisRenderSystem.uniform4f(location, cachedValue[0], cachedValue[1], cachedValue[2], cachedValue[3]);
 		}

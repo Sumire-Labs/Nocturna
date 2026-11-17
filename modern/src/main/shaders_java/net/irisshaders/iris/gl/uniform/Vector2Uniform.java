@@ -7,6 +7,7 @@ import org.joml.Vector2f;
 import java.util.function.Supplier;
 
 public class Vector2Uniform extends Uniform {
+    private final Runnable updateListener = uploadWhileBound(this::updateValue);
 	private final Supplier<Vector2f> value;
 	private final Vector2f cachedValue;
 
@@ -30,14 +31,15 @@ public class Vector2Uniform extends Uniform {
 		updateValue();
 
 		if (notifier != null) {
-			notifier.setListener(this::updateValue);
+			notifier.setListener(updateListener);
 		}
 	}
 
 	private void updateValue() {
 		Vector2f newValue = value.get();
 
-		if (!newValue.equals(cachedValue)) {
+		if (dirty || !newValue.equals(cachedValue)) {
+            dirty = false;
 			cachedValue.set(newValue);
 			IrisRenderSystem.uniform2f(this.location, cachedValue.x, cachedValue.y);
 		}

@@ -10,6 +10,7 @@ import java.nio.FloatBuffer;
 import java.util.function.Supplier;
 
 public class MatrixUniform extends Uniform {
+    private final Runnable updateListener = uploadWhileBound(this::updateValue);
 	private final FloatBuffer buffer = BufferUtils.createFloatBuffer(16);
 	private final Supplier<Matrix4f> value;
 	private Matrix4f cachedValue;
@@ -33,14 +34,15 @@ public class MatrixUniform extends Uniform {
 		updateValue();
 
 		if (notifier != null) {
-			notifier.setListener(this::updateValue);
+			notifier.setListener(updateListener);
 		}
 	}
 
 	public void updateValue() {
 		Matrix4f newValue = value.get();
 
-		if (!newValue.equals(cachedValue)) {
+		if (dirty || !newValue.equals(cachedValue)) {
+            dirty = false;
 			cachedValue = new Matrix4f(newValue);
 
 			cachedValue.get(buffer);

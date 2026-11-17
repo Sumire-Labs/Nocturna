@@ -24,7 +24,8 @@ public class MatrixFromFloatArrayUniform extends Uniform {
 	public void update() {
 		float[] newValue = value.get();
 
-		if (!Arrays.equals(newValue, cachedValue)) {
+		if (dirty || !Arrays.equals(newValue, cachedValue)) {
+            dirty = false;
 			cachedValue = Arrays.copyOf(newValue, 16);
 
 			buffer.put(cachedValue);

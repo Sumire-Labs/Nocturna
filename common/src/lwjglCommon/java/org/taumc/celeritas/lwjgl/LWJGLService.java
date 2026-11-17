@@ -68,6 +68,7 @@ public interface LWJGLService {
 
     int glCreateProgram();
     void glAttachShader(int program, int shader);
+    void glDetachShader(int program, int shader);
     void glLinkProgram(int program);
     String glGetProgramInfoLog(int program, int maxLength);
     int glGetProgrami(int program, int pname);

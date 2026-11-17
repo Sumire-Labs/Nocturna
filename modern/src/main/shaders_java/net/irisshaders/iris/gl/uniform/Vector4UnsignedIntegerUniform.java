@@ -14,6 +14,7 @@ import java.util.function.Supplier;
  * signed variant to load a {@code uvec4}.
  */
 public class Vector4UnsignedIntegerUniform extends Uniform {
+    private final Runnable updateListener = uploadWhileBound(this::updateValue);
 	private final Supplier<Vector4i> value;
 	private final Vector4i cachedValue;
 
@@ -33,14 +34,15 @@ public class Vector4UnsignedIntegerUniform extends Uniform {
 		updateValue();
 
 		if (notifier != null) {
-			notifier.setListener(this::updateValue);
+			notifier.setListener(updateListener);
 		}
 	}
 
 	private void updateValue() {
 		Vector4i newValue = value.get();
 
-		if (!newValue.equals(cachedValue)) {
+		if (dirty || !newValue.equals(cachedValue)) {
+            dirty = false;
 			cachedValue.set(newValue);
 			IrisRenderSystem.uniform4ui(this.location, cachedValue.x, cachedValue.y, cachedValue.z, cachedValue.w);
 		}
