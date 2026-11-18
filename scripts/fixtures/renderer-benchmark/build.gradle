@@ -1,0 +1,25 @@
+plugins { id 'java'; id 'org.taumc.moddev.legacyforge' version '2.0.147-tau.2' }
+repositories { maven {url=uri(providers.gradleProperty('benchRepository').get())}; mavenCentral(); maven {url='https://maven.minecraftforge.net/'} }
+java {toolchain.languageVersion=JavaLanguageVersion.of(17)}
+legacyForge {
+ version='1.20.1-47.3.0'
+ mods { bench {sourceSet(sourceSets.main)} }
+ runs { benchmark {
+  client(); loadedMods=[mods.bench]
+  gameDirectory=layout.projectDirectory.dir(providers.gradleProperty('benchRunDir').get())
+  programArgument('--mixin.config');programArgument('renderer-benchmark.mixins.json')
+  if(project.hasProperty('bench.animationStart')) { programArgument('--mixin.config');programArgument('renderer-animation-clock.mixins.json') }
+  if(project.hasProperty('bench.queryProbe')) { programArgument('--mixin.config');programArgument('renderer-query-probe.mixins.json') }
+  for(def key : ['label','result','prepare','shader','seconds','warmup','world','worldMeta','shaderOnly','artifact','artifactSha256','sourceCommit','queryProbe','animationStart']) if(project.hasProperty('bench.'+key)) systemProperty('bench.'+key,project.property('bench.'+key).toString())
+ } }
+}
+dependencies {
+ modRuntimeOnly(providers.gradleProperty('rendererCoordinate').get())
+ compileOnly('org.spongepowered:mixin:0.8.5')
+ if(project.hasProperty('withOculus')) modRuntimeOnly('benchmark.renderer:oculus:1.8.0')
+}
+tasks.withType(JavaExec).configureEach {
+ javaLauncher=javaToolchains.launcherFor { languageVersion=JavaLanguageVersion.of(Integer.parseInt(project.findProperty('benchJava')?:'21')) }
+ minHeapSize='6G';maxHeapSize='6G'
+ jvmArgs('-XX:+UseG1GC','-XX:+AlwaysPreTouch','-Xlog:gc,safepoint:file=gc.log:uptime,level,tags')
+}

@@ -1,0 +1,13 @@
+gradle.beforeProject { p -> if(p.path==':modern:1.20.1-forge') p.afterEvaluate {
+ def shadowType=p.tasks.named('shadowRemapJar').get().class.superclass
+ p.tasks.register('benchNamedJar',shadowType) {
+  dependsOn(p.tasks.named('jar'))
+  archiveFileName.set('benchmark-named.jar')
+  destinationDirectory.set(p.layout.buildDirectory.dir('benchmark'))
+  configurations=[p.configurations.getByName('shadow')]
+  from(p.zipTree(p.tasks.named('jar').get().archiveFile))
+  manifest.from(p.tasks.named('jar').get().manifest)
+  mergeServiceFiles()
+  duplicatesStrategy=DuplicatesStrategy.EXCLUDE
+ }
+}}

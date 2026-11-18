@@ -1,0 +1,2494 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-11-19",
+  "hardware": {
+    "cpu": "Ryzen AI MAX+ 395",
+    "gpu": "Radeon 8060S",
+    "driver": "32.0.32015.7029"
+  },
+  "scope": "One-machine Forge 1.20.1 development runtime; renderer snapshots unchanged",
+  "outcome": "No reproducible performance loss from linked-program reuse; no rendering repair applied",
+  "sessions": {
+    "saved-ab": {
+      "runs": [
+        {
+          "label": "retention-after-r1-j21",
+          "resultFile": "retention-after-r1-j21.json",
+          "java": "21.0.12.1",
+          "commit": "310fca27b96696924dfaf5f0572a8382fc7115ff",
+          "artifactSha256": "412C5D86E48D605F500132D5644BF5BFC822E07B91DF0920456D0EEA70CD419E",
+          "warmupSeconds": 45.0,
+          "measureSeconds": 45.0,
+          "history": [
+            "shader"
+          ],
+          "probe": false,
+          "animationStart": null,
+          "fps": 466.788692303256,
+          "p99Ms": 3.3879,
+          "maxMs": 28.0251,
+          "over50": 0,
+          "over100": 0,
+          "notificationQueriesPerFrame": 0.0,
+          "updateQueriesPerFrame": 0.0,
+          "rawSha256": "337b4618fd6e4545fd1c96c5ff78c7a5037a14a89a5afbf4e676f961179bf3b4",
+          "fiveSecondBins": [
+            {
+              "startSeconds": 0,
+              "fps": 467.66663314189003
+            },
+            {
+              "startSeconds": 5,
+              "fps": 468.9590317389873
+            },
+            {
+              "startSeconds": 10,
+              "fps": 468.17469047623285
+            },
+            {
+              "startSeconds": 15,
+              "fps": 467.4939662872237
+            },
+            {
+              "startSeconds": 20,
+              "fps": 467.0830753957899
+            },
+            {
+              "startSeconds": 25,
+              "fps": 468.0260347228935
+            },
+            {
+              "startSeconds": 30,
+              "fps": 467.0705930494335
+            },
+            {
+              "startSeconds": 35,
+              "fps": 467.9183646295167
+            },
+            {
+              "startSeconds": 40,
+              "fps": 458.6979488803331
+            },
+            {
+              "startSeconds": 45,
+              "fps": 490.36434070514395
+            }
+          ],
+          "shaderClockStart": null,
+          "shaderClockEnd": null
+        },
+        {
+          "label": "retention-after-r2-j21",
+          "resultFile": "retention-after-r2-j21.json",
+          "java": "21.0.12.1",
+          "commit": "310fca27b96696924dfaf5f0572a8382fc7115ff",
+          "artifactSha256": "412C5D86E48D605F500132D5644BF5BFC822E07B91DF0920456D0EEA70CD419E",
+          "warmupSeconds": 45.0,
+          "measureSeconds": 45.0,
+          "history": [
+            "shader"
+          ],
+          "probe": false,
+          "animationStart": null,
+          "fps": 471.827009912176,
+          "p99Ms": 3.2826,
+          "maxMs": 12.1099,
+          "over50": 0,
+          "over100": 0,
+          "notificationQueriesPerFrame": 0.0,
+          "updateQueriesPerFrame": 0.0,
+          "rawSha256": "8a58bff700df3016bbc31cc7ea89195072f0ce97e42804d9a2ee5e407d027b69",
+          "fiveSecondBins": [
+            {
+              "startSeconds": 0,
+              "fps": 473.83622951810895
+            },
+            {
+              "startSeconds": 5,
+              "fps": 471.98218512345767
+            },
+            {
+              "startSeconds": 10,
+              "fps": 475.63847317450995
+            },
+            {
+              "startSeconds": 15,
+              "fps": 471.2634226314177
+            },
+            {
+              "startSeconds": 20,
+              "fps": 472.31317939136426
+            },
+            {
+              "startSeconds": 25,
+              "fps": 466.6634382277927
+            },
+            {
+              "startSeconds": 30,
+              "fps": 470.7761598952629
+            },
+            {
+              "startSeconds": 35,
+              "fps": 472.1433522405982
+            },
+            {
+              "startSeconds": 40,
+              "fps": 471.81288992815286
+            },
+            {
+              "startSeconds": 45,
+              "fps": 501.4793641241663
+            }
+          ],
+          "shaderClockStart": null,
+          "shaderClockEnd": null
+        },
+        {
+          "label": "retention-after-r3-j21",
+          "resultFile": "retention-after-r3-j21.json",
+          "java": "21.0.12.1",
+          "commit": "310fca27b96696924dfaf5f0572a8382fc7115ff",
+          "artifactSha256": "412C5D86E48D605F500132D5644BF5BFC822E07B91DF0920456D0EEA70CD419E",
+          "warmupSeconds": 45.0,
+          "measureSeconds": 45.0,
+          "history": [
+            "shader"
+          ],
+          "probe": false,
+          "animationStart": null,
+          "fps": 423.3238057255458,
+          "p99Ms": 5.6348,
+          "maxMs": 15.4725,
+          "over50": 0,
+          "over100": 0,
+          "notificationQueriesPerFrame": 0.0,
+          "updateQueriesPerFrame": 0.0,
+          "rawSha256": "c4d5cad3540ba89de2d31813880eac7e848539886ef1d5b1a4bb85730960ebf1",
+          "fiveSecondBins": [
+            {
+              "startSeconds": 0,
+              "fps": 474.331608047969
+            },
+            {
+              "startSeconds": 5,
+              "fps": 475.3977085830446
+            },
+            {
+              "startSeconds": 10,
+              "fps": 470.19322921749927
+            },
+            {
+              "startSeconds": 15,
+              "fps": 470.12545690755275
+            },
+            {
+              "startSeconds": 20,
+              "fps": 419.6172294834426
+            },
+            {
+              "startSeconds": 25,
+              "fps": 393.8782872483735
+            },
+            {
+              "startSeconds": 30,
+              "fps": 371.62201488816197
+            },
+            {
+              "startSeconds": 35,
+              "fps": 366.95649363811424
+            },
+            {
+              "startSeconds": 40,
+              "fps": 367.763017750935
+            },
+            {
+              "startSeconds": 45,
+              "fps": 523.3136218535768
+            }
+          ],
+          "shaderClockStart": null,
+          "shaderClockEnd": null
+        },
+        {
+          "label": "retention-before-r1-j21",
+          "resultFile": "retention-before-r1-j21.json",
+          "java": "21.0.12.1",
+          "commit": "9f682192d6bbc95e7542ef44993f24ab5754b572",
+          "artifactSha256": "D99281182F871DE378D79813D2E044706588769B1E93000A3B9B007004AFC409",
+          "warmupSeconds": 45.0,
+          "measureSeconds": 45.0,
+          "history": [
+            "shader"
+          ],
+          "probe": false,
+          "animationStart": null,
+          "fps": 458.79238608546825,
+          "p99Ms": 3.9294,
+          "maxMs": 16.5196,
+          "over50": 0,
+          "over100": 0,
+          "notificationQueriesPerFrame": 0.0,
+          "updateQueriesPerFrame": 0.0,
+          "rawSha256": "9e8e195c59172c8f4b4514ccac66f080c6218efd8874b3122966a5581faee74b",
+          "fiveSecondBins": [
+            {
+              "startSeconds": 0,
+              "fps": 453.7738135215313
+            },
+            {
+              "startSeconds": 5,
+              "fps": 457.9926904366606
+            },
+            {
+              "startSeconds": 10,
+              "fps": 446.0382843596226
+            },
+            {
+              "startSeconds": 15,
+              "fps": 461.7939719399737
+            },
+            {
+              "startSeconds": 20,
+              "fps": 453.43825857316693
+            },
+            {
+              "startSeconds": 25,
+              "fps": 456.9875333800894
+            },
+            {
+              "startSeconds": 30,
+              "fps": 469.05870738781664
+            },
+            {
+              "startSeconds": 35,
+              "fps": 463.2109225135529
+            },
+            {
+              "startSeconds": 40,
+              "fps": 466.8353674474378
+            },
+            {
+              "startSeconds": 45,
+              "fps": 482.5789016504198
+            }
+          ],
+          "shaderClockStart": null,
+          "shaderClockEnd": null
+        },
+        {
+          "label": "retention-before-r2-j21",
+          "resultFile": "retention-before-r2-j21.json",
+          "java": "21.0.12.1",
+          "commit": "9f682192d6bbc95e7542ef44993f24ab5754b572",
+          "artifactSha256": "D99281182F871DE378D79813D2E044706588769B1E93000A3B9B007004AFC409",
+          "warmupSeconds": 45.0,
+          "measureSeconds": 45.0,
+          "history": [
+            "shader"
+          ],
+          "probe": false,
+          "animationStart": null,
+          "fps": 470.1550383850133,
+          "p99Ms": 3.3251,
+          "maxMs": 23.7018,
+          "over50": 0,
+          "over100": 0,
+          "notificationQueriesPerFrame": 0.0,
+          "updateQueriesPerFrame": 0.0,
+          "rawSha256": "7609b8fb1544651ffd7da0bd8bab2fc2865de13e5921e9014e635b4378705a6f",
+          "fiveSecondBins": [
+            {
+              "startSeconds": 0,
+              "fps": 472.4052153535775
+            },
+            {
+              "startSeconds": 5,
+              "fps": 471.89183958982096
+            },
+            {
+              "startSeconds": 10,
+              "fps": 466.15674997673716
+            },
+            {
+              "startSeconds": 15,
+              "fps": 472.81335229709055
+            },
+            {
+              "startSeconds": 20,
+              "fps": 471.78500757204944
+            },
+            {
+              "startSeconds": 25,
+              "fps": 469.55921408666444
+            },
+            {
+              "startSeconds": 30,
+              "fps": 469.22713071269783
+            },
+            {
+              "startSeconds": 35,
+              "fps": 468.3998313760607
+            },
+            {
+              "startSeconds": 40,
+              "fps": 469.02267255599133
+            },
+            {
+              "startSeconds": 45,
+              "fps": 1457.0887367040652
+            }
+          ],
+          "shaderClockStart": null,
+          "shaderClockEnd": null
+        },
+        {
+          "label": "retention-before-r3-j21",
+          "resultFile": "retention-before-r3-j21.json",
+          "java": "21.0.12.1",
+          "commit": "9f682192d6bbc95e7542ef44993f24ab5754b572",
+          "artifactSha256": "D99281182F871DE378D79813D2E044706588769B1E93000A3B9B007004AFC409",
+          "warmupSeconds": 45.0,
+          "measureSeconds": 45.0,
+          "history": [
+            "shader"
+          ],
+          "probe": false,
+          "animationStart": null,
+          "fps": 443.6794266856491,
+          "p99Ms": 4.7841,
+          "maxMs": 7.7549,
+          "over50": 0,
+          "over100": 0,
+          "notificationQueriesPerFrame": 0.0,
+          "updateQueriesPerFrame": 0.0,
+          "rawSha256": "45c66ec55e90fbea73f6774c28c9539125d0870a05698b2bfa543e04e8be238d",
+          "fiveSecondBins": [
+            {
+              "startSeconds": 0,
+              "fps": 471.42446692983367
+            },
+            {
+              "startSeconds": 5,
+              "fps": 470.8206313600662
+            },
+            {
+              "startSeconds": 10,
+              "fps": 471.5698877677672
+            },
+            {
+              "startSeconds": 15,
+              "fps": 471.15333697350616
+            },
+            {
+              "startSeconds": 20,
+              "fps": 470.36712133821845
+            },
+            {
+              "startSeconds": 25,
+              "fps": 444.3318128400016
+            },
+            {
+              "startSeconds": 30,
+              "fps": 412.5844950746751
+            },
+            {
+              "startSeconds": 35,
+              "fps": 401.2602532396265
+            },
+            {
+              "startSeconds": 40,
+              "fps": 379.71027545819857
+            },
+            {
+              "startSeconds": 45,
+              "fps": 274.52918245209463
+            }
+          ],
+          "shaderClockStart": null,
+          "shaderClockEnd": null
+        },
+        {
+          "label": "retention-celeritas-r1-j21",
+          "resultFile": "retention-celeritas-r1-j21.json",
+          "java": "21.0.12.1",
+          "commit": "26f000239eb8ddf7ee191f0ddf369147e3c92ef6",
+          "artifactSha256": "EBBFACC5732F6D72509F50E0113C453D139CA4224ECEC66978B1E05B93F28B67",
+          "warmupSeconds": 45.0,
+          "measureSeconds": 45.0,
+          "history": [
+            "shader"
+          ],
+          "probe": false,
+          "animationStart": null,
+          "fps": 473.2181430818289,
+          "p99Ms": 3.2479,
+          "maxMs": 11.2151,
+          "over50": 0,
+          "over100": 0,
+          "notificationQueriesPerFrame": 0.0,
+          "updateQueriesPerFrame": 0.0,
+          "rawSha256": "9bc6838e5168612e23204b38fb292b5ffe8942460f11c002b127ed05d090c281",
+          "fiveSecondBins": [
+            {
+              "startSeconds": 0,
+              "fps": 475.8028643332433
+            },
+            {
+              "startSeconds": 5,
+              "fps": 473.55237968473494
+            },
+            {
+              "startSeconds": 10,
+              "fps": 476.57269238472634
+            },
+            {
+              "startSeconds": 15,
+              "fps": 474.76778225829594
+            },
+            {
+              "startSeconds": 20,
+              "fps": 473.95493636465045
+            },
+            {
+              "startSeconds": 25,
+              "fps": 475.7657924395236
+            },
+            {
+              "startSeconds": 30,
+              "fps": 473.2842161934295
+            },
+            {
+              "startSeconds": 35,
+              "fps": 464.43219443971856
+            },
+            {
+              "startSeconds": 40,
+              "fps": 470.81755207834146
+            },
+            {
+              "startSeconds": 45,
+              "fps": 502.7904872039821
+            }
+          ],
+          "shaderClockStart": null,
+          "shaderClockEnd": null
+        },
+        {
+          "label": "retention-celeritas-r2-j21",
+          "resultFile": "retention-celeritas-r2-j21.json",
+          "java": "21.0.12.1",
+          "commit": "26f000239eb8ddf7ee191f0ddf369147e3c92ef6",
+          "artifactSha256": "EBBFACC5732F6D72509F50E0113C453D139CA4224ECEC66978B1E05B93F28B67",
+          "warmupSeconds": 45.0,
+          "measureSeconds": 45.0,
+          "history": [
+            "shader"
+          ],
+          "probe": false,
+          "animationStart": null,
+          "fps": 470.6260795689839,
+          "p99Ms": 3.2312,
+          "maxMs": 21.8948,
+          "over50": 0,
+          "over100": 0,
+          "notificationQueriesPerFrame": 0.0,
+          "updateQueriesPerFrame": 0.0,
+          "rawSha256": "a3ffb5d16ab7e9e5cefa726b150ebd09afe6dd62a06b1c4d2490709588449305",
+          "fiveSecondBins": [
+            {
+              "startSeconds": 0,
+              "fps": 471.85159225309695
+            },
+            {
+              "startSeconds": 5,
+              "fps": 473.6366121101161
+            },
+            {
+              "startSeconds": 10,
+              "fps": 472.97839434694623
+            },
+            {
+              "startSeconds": 15,
+              "fps": 472.74852714036496
+            },
+            {
+              "startSeconds": 20,
+              "fps": 459.66951122348723
+            },
+            {
+              "startSeconds": 25,
+              "fps": 471.06474313829693
+            },
+            {
+              "startSeconds": 30,
+              "fps": 471.0532951617548
+            },
+            {
+              "startSeconds": 35,
+              "fps": 470.4525495497847
+            },
+            {
+              "startSeconds": 40,
+              "fps": 472.1629446521037
+            },
+            {
+              "startSeconds": 45,
+              "fps": 507.9752108097125
+            }
+          ],
+          "shaderClockStart": null,
+          "shaderClockEnd": null
+        },
+        {
+          "label": "retention-celeritas-r3-j21",
+          "resultFile": "retention-celeritas-r3-j21.json",
+          "java": "21.0.12.1",
+          "commit": "26f000239eb8ddf7ee191f0ddf369147e3c92ef6",
+          "artifactSha256": "EBBFACC5732F6D72509F50E0113C453D139CA4224ECEC66978B1E05B93F28B67",
+          "warmupSeconds": 45.0,
+          "measureSeconds": 45.0,
+          "history": [
+            "shader"
+          ],
+          "probe": false,
+          "animationStart": null,
+          "fps": 467.90673774280236,
+          "p99Ms": 3.219,
+          "maxMs": 51.8918,
+          "over50": 1,
+          "over100": 0,
+          "notificationQueriesPerFrame": 0.0,
+          "updateQueriesPerFrame": 0.0,
+          "rawSha256": "bc1a801abacef47f03597d08083aa664ab9d78c082a9ab00a110b8db70709217",
+          "fiveSecondBins": [
+            {
+              "startSeconds": 0,
+              "fps": 468.6390563789586
+            },
+            {
+              "startSeconds": 5,
+              "fps": 461.05926455786624
+            },
+            {
+              "startSeconds": 10,
+              "fps": 469.673748171938
+            },
+            {
+              "startSeconds": 15,
+              "fps": 471.2518101557784
+            },
+            {
+              "startSeconds": 20,
+              "fps": 468.81778694683675
+            },
+            {
+              "startSeconds": 25,
+              "fps": 465.37279430644486
+            },
+            {
+              "startSeconds": 30,
+              "fps": 468.7503938763713
+            },
+            {
+              "startSeconds": 35,
+              "fps": 468.86711363864623
+            },
+            {
+              "startSeconds": 40,
+              "fps": 468.73267123910324
+            },
+            {
+              "startSeconds": 45,
+              "fps": 456.22519275514395
+            }
+          ],
+          "shaderClockStart": null,
+          "shaderClockEnd": null
+        }
+      ],
+      "summary": [
+        {
+          "commit": "310fca27b96696924dfaf5f0572a8382fc7115ff",
+          "java": "21.0.12.1",
+          "warmupSeconds": 45.0,
+          "measureSeconds": 45.0,
+          "history": [
+            "shader"
+          ],
+          "animationStart": null,
+          "repeats": 3,
+          "fpsMedian": 466.788692303256,
+          "fpsMin": 423.3238057255458,
+          "fpsMax": 471.827009912176,
+          "p99MedianMs": 3.3879,
+          "maxMs": 28.0251,
+          "over50": 0,
+          "over100": 0
+        },
+        {
+          "commit": "9f682192d6bbc95e7542ef44993f24ab5754b572",
+          "java": "21.0.12.1",
+          "warmupSeconds": 45.0,
+          "measureSeconds": 45.0,
+          "history": [
+            "shader"
+          ],
+          "animationStart": null,
+          "repeats": 3,
+          "fpsMedian": 458.79238608546825,
+          "fpsMin": 443.6794266856491,
+          "fpsMax": 470.1550383850133,
+          "p99MedianMs": 3.9294,
+          "maxMs": 23.7018,
+          "over50": 0,
+          "over100": 0
+        },
+        {
+          "commit": "26f000239eb8ddf7ee191f0ddf369147e3c92ef6",
+          "java": "21.0.12.1",
+          "warmupSeconds": 45.0,
+          "measureSeconds": 45.0,
+          "history": [
+            "shader"
+          ],
+          "animationStart": null,
+          "repeats": 3,
+          "fpsMedian": 470.6260795689839,
+          "fpsMin": 467.90673774280236,
+          "fpsMax": 473.2181430818289,
+          "p99MedianMs": 3.2312,
+          "maxMs": 51.8918,
+          "over50": 1,
+          "over100": 0
+        }
+      ]
+    },
+    "query-probe": {
+      "runs": [
+        {
+          "label": "retention-after-query-probe-j21",
+          "resultFile": "retention-after-query-probe-j21.json",
+          "java": "21.0.12.1",
+          "commit": "310fca27b96696924dfaf5f0572a8382fc7115ff",
+          "artifactSha256": "412C5D86E48D605F500132D5644BF5BFC822E07B91DF0920456D0EEA70CD419E",
+          "warmupSeconds": 45.0,
+          "measureSeconds": 30.0,
+          "history": [
+            "shader"
+          ],
+          "probe": true,
+          "animationStart": null,
+          "fps": 424.84370528054194,
+          "p99Ms": 5.3885,
+          "maxMs": 31.6508,
+          "over50": 0,
+          "over100": 0,
+          "notificationQueriesPerFrame": 0.0,
+          "updateQueriesPerFrame": 6.0,
+          "rawSha256": "070e4253ae6bafe3785be6a7b1792c8117d760f6606b4452a19b5b9c7c9b8b26",
+          "fiveSecondBins": [
+            {
+              "startSeconds": 0,
+              "fps": 470.6966999300336
+            },
+            {
+              "startSeconds": 5,
+              "fps": 472.47897958622764
+            },
+            {
+              "startSeconds": 10,
+              "fps": 446.19635903771024
+            },
+            {
+              "startSeconds": 15,
+              "fps": 401.3910730625351
+            },
+            {
+              "startSeconds": 20,
+              "fps": 386.72091557276536
+            },
+            {
+              "startSeconds": 25,
+              "fps": 371.6229737322361
+            },
+            {
+              "startSeconds": 30,
+              "fps": 381.82512409316536
+            }
+          ],
+          "shaderClockStart": null,
+          "shaderClockEnd": null
+        }
+      ],
+      "summary": []
+    },
+    "history-replay": {
+      "runs": [
+        {
+          "label": "retention-resume-full-after-j21",
+          "resultFile": "retention-resume-full-after-j21.json",
+          "java": "21.0.12.1",
+          "commit": "310fca27b96696924dfaf5f0572a8382fc7115ff",
+          "artifactSha256": "412C5D86E48D605F500132D5644BF5BFC822E07B91DF0920456D0EEA70CD419E",
+          "warmupSeconds": 15.0,
+          "measureSeconds": 30.0,
+          "history": [
+            "terrain",
+            "items",
+            "precipitation",
+            "travel",
+            "shader"
+          ],
+          "probe": false,
+          "animationStart": null,
+          "fps": 399.1303970640456,
+          "p99Ms": 3.2746,
+          "maxMs": 5.287501,
+          "over50": 0,
+          "over100": 0,
+          "notificationQueriesPerFrame": 0.0,
+          "updateQueriesPerFrame": 0.0,
+          "rawSha256": "3b1484a85ba8e75d89d4b737e6670f1f9503d6b89bb8cd0aa50902c5791301c0",
+          "fiveSecondBins": [
+            {
+              "startSeconds": 0,
+              "fps": 400.2732500047509
+            },
+            {
+              "startSeconds": 5,
+              "fps": 396.9715450796487
+            },
+            {
+              "startSeconds": 10,
+              "fps": 396.80061900896567
+            },
+            {
+              "startSeconds": 15,
+              "fps": 400.91162983421106
+            },
+            {
+              "startSeconds": 20,
+              "fps": 401.09375034575214
+            },
+            {
+              "startSeconds": 25,
+              "fps": 398.7292361200112
+            },
+            {
+              "startSeconds": 30,
+              "fps": 404.30160738190045
+            }
+          ],
+          "shaderClockStart": {
+            "frameTimeCounter": 12.693619,
+            "frameCounter": 5743
+          },
+          "shaderClockEnd": {
+            "frameTimeCounter": 37.323814,
+            "frameCounter": 17717
+          }
+        },
+        {
+          "label": "retention-resume-full-before-j21",
+          "resultFile": "retention-resume-full-before-j21.json",
+          "java": "21.0.12.1",
+          "commit": "9f682192d6bbc95e7542ef44993f24ab5754b572",
+          "artifactSha256": "D99281182F871DE378D79813D2E044706588769B1E93000A3B9B007004AFC409",
+          "warmupSeconds": 15.0,
+          "measureSeconds": 30.0,
+          "history": [
+            "terrain",
+            "items",
+            "precipitation",
+            "travel",
+            "shader"
+          ],
+          "probe": false,
+          "animationStart": null,
+          "fps": 349.7856832603246,
+          "p99Ms": 3.581801,
+          "maxMs": 5.0245,
+          "over50": 0,
+          "over100": 0,
+          "notificationQueriesPerFrame": 0.0,
+          "updateQueriesPerFrame": 0.0,
+          "rawSha256": "5c963395e802d05d72fa209cac9acd62b71f5277b252a3c7e8ed009375df3485",
+          "fiveSecondBins": [
+            {
+              "startSeconds": 0,
+              "fps": 350.9446382530207
+            },
+            {
+              "startSeconds": 5,
+              "fps": 349.6770395658071
+            },
+            {
+              "startSeconds": 10,
+              "fps": 350.253820072043
+            },
+            {
+              "startSeconds": 15,
+              "fps": 348.3636517365778
+            },
+            {
+              "startSeconds": 20,
+              "fps": 349.6118588342517
+            },
+            {
+              "startSeconds": 25,
+              "fps": 349.86487187457
+            },
+            {
+              "startSeconds": 30,
+              "fps": 347.98343598844696
+            }
+          ],
+          "shaderClockStart": {
+            "frameTimeCounter": 11.879707,
+            "frameCounter": 5099
+          },
+          "shaderClockEnd": {
+            "frameTimeCounter": 34.84654,
+            "frameCounter": 15593
+          }
+        },
+        {
+          "label": "retention-resume-full-celeritas-j21",
+          "resultFile": "retention-resume-full-celeritas-j21.json",
+          "java": "21.0.12.1",
+          "commit": "26f000239eb8ddf7ee191f0ddf369147e3c92ef6",
+          "artifactSha256": "EBBFACC5732F6D72509F50E0113C453D139CA4224ECEC66978B1E05B93F28B67",
+          "warmupSeconds": 15.0,
+          "measureSeconds": 30.0,
+          "history": [
+            "terrain",
+            "items",
+            "precipitation",
+            "travel",
+            "shader"
+          ],
+          "probe": false,
+          "animationStart": null,
+          "fps": 418.3720262517514,
+          "p99Ms": 3.2274,
+          "maxMs": 4.5804,
+          "over50": 0,
+          "over100": 0,
+          "notificationQueriesPerFrame": 0.0,
+          "updateQueriesPerFrame": 0.0,
+          "rawSha256": "88572832bf9a61967f648b9d4b63544a4a295be51d708f5ac19683d3354456be",
+          "fiveSecondBins": [
+            {
+              "startSeconds": 0,
+              "fps": 418.88371809989945
+            },
+            {
+              "startSeconds": 5,
+              "fps": 420.08643706930866
+            },
+            {
+              "startSeconds": 10,
+              "fps": 420.0439283939572
+            },
+            {
+              "startSeconds": 15,
+              "fps": 412.47571404206957
+            },
+            {
+              "startSeconds": 20,
+              "fps": 421.32656278010745
+            },
+            {
+              "startSeconds": 25,
+              "fps": 417.40233745308973
+            },
+            {
+              "startSeconds": 30,
+              "fps": 444.34570095534326
+            }
+          ],
+          "shaderClockStart": {
+            "frameTimeCounter": 12.817572,
+            "frameCounter": 6106
+          },
+          "shaderClockEnd": {
+            "frameTimeCounter": 38.064648,
+            "frameCounter": 18658
+          }
+        }
+      ],
+      "summary": [
+        {
+          "commit": "310fca27b96696924dfaf5f0572a8382fc7115ff",
+          "java": "21.0.12.1",
+          "warmupSeconds": 15.0,
+          "measureSeconds": 30.0,
+          "history": [
+            "terrain",
+            "items",
+            "precipitation",
+            "travel",
+            "shader"
+          ],
+          "animationStart": null,
+          "repeats": 1,
+          "fpsMedian": 399.1303970640456,
+          "fpsMin": 399.1303970640456,
+          "fpsMax": 399.1303970640456,
+          "p99MedianMs": 3.2746,
+          "maxMs": 5.287501,
+          "over50": 0,
+          "over100": 0
+        },
+        {
+          "commit": "9f682192d6bbc95e7542ef44993f24ab5754b572",
+          "java": "21.0.12.1",
+          "warmupSeconds": 15.0,
+          "measureSeconds": 30.0,
+          "history": [
+            "terrain",
+            "items",
+            "precipitation",
+            "travel",
+            "shader"
+          ],
+          "animationStart": null,
+          "repeats": 1,
+          "fpsMedian": 349.7856832603246,
+          "fpsMin": 349.7856832603246,
+          "fpsMax": 349.7856832603246,
+          "p99MedianMs": 3.581801,
+          "maxMs": 5.0245,
+          "over50": 0,
+          "over100": 0
+        },
+        {
+          "commit": "26f000239eb8ddf7ee191f0ddf369147e3c92ef6",
+          "java": "21.0.12.1",
+          "warmupSeconds": 15.0,
+          "measureSeconds": 30.0,
+          "history": [
+            "terrain",
+            "items",
+            "precipitation",
+            "travel",
+            "shader"
+          ],
+          "animationStart": null,
+          "repeats": 1,
+          "fpsMedian": 418.3720262517514,
+          "fpsMin": 418.3720262517514,
+          "fpsMax": 418.3720262517514,
+          "p99MedianMs": 3.2274,
+          "maxMs": 4.5804,
+          "over50": 0,
+          "over100": 0
+        }
+      ]
+    },
+    "java17": {
+      "runs": [
+        {
+          "label": "retention-resume-after-j17",
+          "resultFile": "retention-resume-after-j17.json",
+          "java": "17.0.20.1",
+          "commit": "310fca27b96696924dfaf5f0572a8382fc7115ff",
+          "artifactSha256": "412C5D86E48D605F500132D5644BF5BFC822E07B91DF0920456D0EEA70CD419E",
+          "warmupSeconds": 45.0,
+          "measureSeconds": 45.0,
+          "history": [
+            "shader"
+          ],
+          "probe": false,
+          "animationStart": null,
+          "fps": 449.43394068386704,
+          "p99Ms": 3.3342,
+          "maxMs": 22.1639,
+          "over50": 0,
+          "over100": 0,
+          "notificationQueriesPerFrame": 0.0,
+          "updateQueriesPerFrame": 0.0,
+          "rawSha256": "6fbd520d05418c9181eccd6eec3b8c948a0a4047b2014bcdb0be1880a96f3a35",
+          "fiveSecondBins": [
+            {
+              "startSeconds": 0,
+              "fps": 451.58788774689356
+            },
+            {
+              "startSeconds": 5,
+              "fps": 451.13497331471945
+            },
+            {
+              "startSeconds": 10,
+              "fps": 447.71006409186725
+            },
+            {
+              "startSeconds": 15,
+              "fps": 447.253688243286
+            },
+            {
+              "startSeconds": 20,
+              "fps": 447.89200597586756
+            },
+            {
+              "startSeconds": 25,
+              "fps": 453.92437628969503
+            },
+            {
+              "startSeconds": 30,
+              "fps": 453.1009429812253
+            },
+            {
+              "startSeconds": 35,
+              "fps": 451.0937372786065
+            },
+            {
+              "startSeconds": 40,
+              "fps": 441.1942732983326
+            },
+            {
+              "startSeconds": 45,
+              "fps": 480.26149277758753
+            }
+          ],
+          "shaderClockStart": {
+            "frameTimeCounter": 38.783867,
+            "frameCounter": 19805
+          },
+          "shaderClockEnd": {
+            "frameTimeCounter": 77.42566,
+            "frameCounter": 40030
+          }
+        },
+        {
+          "label": "retention-resume-before-j17",
+          "resultFile": "retention-resume-before-j17.json",
+          "java": "17.0.20.1",
+          "commit": "9f682192d6bbc95e7542ef44993f24ab5754b572",
+          "artifactSha256": "D99281182F871DE378D79813D2E044706588769B1E93000A3B9B007004AFC409",
+          "warmupSeconds": 45.0,
+          "measureSeconds": 45.0,
+          "history": [
+            "shader"
+          ],
+          "probe": false,
+          "animationStart": null,
+          "fps": 391.6683088951915,
+          "p99Ms": 3.326901,
+          "maxMs": 4.816,
+          "over50": 0,
+          "over100": 0,
+          "notificationQueriesPerFrame": 0.0,
+          "updateQueriesPerFrame": 0.0,
+          "rawSha256": "343880c7ecdd0606ce3732526b800a282076018e136b15aca70065ec4f8c9a83",
+          "fiveSecondBins": [
+            {
+              "startSeconds": 0,
+              "fps": 391.65903868349113
+            },
+            {
+              "startSeconds": 5,
+              "fps": 394.66309873622595
+            },
+            {
+              "startSeconds": 10,
+              "fps": 391.8470921835386
+            },
+            {
+              "startSeconds": 15,
+              "fps": 391.5901711650218
+            },
+            {
+              "startSeconds": 20,
+              "fps": 392.3266191506887
+            },
+            {
+              "startSeconds": 25,
+              "fps": 391.57742172417886
+            },
+            {
+              "startSeconds": 30,
+              "fps": 390.05512251190237
+            },
+            {
+              "startSeconds": 35,
+              "fps": 392.50736833957336
+            },
+            {
+              "startSeconds": 40,
+              "fps": 388.8181032931257
+            },
+            {
+              "startSeconds": 45,
+              "fps": 341.4251084024719
+            }
+          ],
+          "shaderClockStart": {
+            "frameTimeCounter": 37.13393,
+            "frameCounter": 17122
+          },
+          "shaderClockEnd": {
+            "frameTimeCounter": 73.704445,
+            "frameCounter": 34748
+          }
+        }
+      ],
+      "summary": [
+        {
+          "commit": "310fca27b96696924dfaf5f0572a8382fc7115ff",
+          "java": "17.0.20.1",
+          "warmupSeconds": 45.0,
+          "measureSeconds": 45.0,
+          "history": [
+            "shader"
+          ],
+          "animationStart": null,
+          "repeats": 1,
+          "fpsMedian": 449.43394068386704,
+          "fpsMin": 449.43394068386704,
+          "fpsMax": 449.43394068386704,
+          "p99MedianMs": 3.3342,
+          "maxMs": 22.1639,
+          "over50": 0,
+          "over100": 0
+        },
+        {
+          "commit": "9f682192d6bbc95e7542ef44993f24ab5754b572",
+          "java": "17.0.20.1",
+          "warmupSeconds": 45.0,
+          "measureSeconds": 45.0,
+          "history": [
+            "shader"
+          ],
+          "animationStart": null,
+          "repeats": 1,
+          "fpsMedian": 391.6683088951915,
+          "fpsMin": 391.6683088951915,
+          "fpsMax": 391.6683088951915,
+          "p99MedianMs": 3.326901,
+          "maxMs": 4.816,
+          "over50": 0,
+          "over100": 0
+        }
+      ]
+    },
+    "controlled-history": {
+      "runs": [
+        {
+          "label": "after-r1-j21",
+          "resultFile": "after-r1-j21.json",
+          "java": "21.0.12.1",
+          "commit": "26f000239eb8ddf7ee191f0ddf369147e3c92ef6",
+          "artifactSha256": "ebbfacc5732f6d72509f50e0113c453d139ca4224ecec66978b1e05b93f28b67",
+          "warmupSeconds": 15.0,
+          "measureSeconds": 30.0,
+          "history": [
+            "terrain",
+            "items",
+            "precipitation",
+            "travel",
+            "shader"
+          ],
+          "probe": false,
+          "animationStart": "0",
+          "fps": 417.15474716502433,
+          "p99Ms": 3.2261,
+          "maxMs": 19.605901,
+          "over50": 0,
+          "over100": 0,
+          "notificationQueriesPerFrame": 0.0,
+          "updateQueriesPerFrame": 0.0,
+          "rawSha256": "268925458e37a4b8f84aca94fe0b88a2f2cdd8b28a8327488d58aacc1fed34b6",
+          "fiveSecondBins": [
+            {
+              "startSeconds": 0,
+              "fps": 417.4772415557372
+            },
+            {
+              "startSeconds": 5,
+              "fps": 418.3661583034318
+            },
+            {
+              "startSeconds": 10,
+              "fps": 410.734931372172
+            },
+            {
+              "startSeconds": 15,
+              "fps": 417.96265085751935
+            },
+            {
+              "startSeconds": 20,
+              "fps": 419.4172380484838
+            },
+            {
+              "startSeconds": 25,
+              "fps": 418.9671864899541
+            },
+            {
+              "startSeconds": 30,
+              "fps": 426.78521052674256
+            }
+          ],
+          "shaderClockStart": {
+            "frameTimeCounter": 15.147038,
+            "frameCounter": 6155
+          },
+          "shaderClockEnd": {
+            "frameTimeCounter": 45.14904,
+            "frameCounter": 18670
+          }
+        },
+        {
+          "label": "before-r1-j21",
+          "resultFile": "before-r1-j21.json",
+          "java": "21.0.12.1",
+          "commit": "310fca27b96696924dfaf5f0572a8382fc7115ff",
+          "artifactSha256": "412c5d86e48d605f500132d5644bf5bfc822e07b91df0920456d0eea70cd419e",
+          "warmupSeconds": 15.0,
+          "measureSeconds": 30.0,
+          "history": [
+            "terrain",
+            "items",
+            "precipitation",
+            "travel",
+            "shader"
+          ],
+          "probe": false,
+          "animationStart": "0",
+          "fps": 366.9768327525483,
+          "p99Ms": 3.427,
+          "maxMs": 5.605699,
+          "over50": 0,
+          "over100": 0,
+          "notificationQueriesPerFrame": 0.0,
+          "updateQueriesPerFrame": 0.0,
+          "rawSha256": "af4348bf7346c6428d492d07b02efb49a4265f151ee277660311bab95c6819fb",
+          "fiveSecondBins": [
+            {
+              "startSeconds": 0,
+              "fps": 367.2254781036708
+            },
+            {
+              "startSeconds": 5,
+              "fps": 369.2433934836022
+            },
+            {
+              "startSeconds": 10,
+              "fps": 368.6494801332235
+            },
+            {
+              "startSeconds": 15,
+              "fps": 367.19440395728367
+            },
+            {
+              "startSeconds": 20,
+              "fps": 363.02295757183686
+            },
+            {
+              "startSeconds": 25,
+              "fps": 366.51879409598007
+            },
+            {
+              "startSeconds": 30,
+              "fps": 379.982520804043
+            }
+          ],
+          "shaderClockStart": {
+            "frameTimeCounter": 15.239821,
+            "frameCounter": 5200
+          },
+          "shaderClockEnd": {
+            "frameTimeCounter": 45.242188,
+            "frameCounter": 16210
+          }
+        }
+      ],
+      "summary": [
+        {
+          "commit": "26f000239eb8ddf7ee191f0ddf369147e3c92ef6",
+          "java": "21.0.12.1",
+          "warmupSeconds": 15.0,
+          "measureSeconds": 30.0,
+          "history": [
+            "terrain",
+            "items",
+            "precipitation",
+            "travel",
+            "shader"
+          ],
+          "animationStart": "0",
+          "repeats": 1,
+          "fpsMedian": 417.15474716502433,
+          "fpsMin": 417.15474716502433,
+          "fpsMax": 417.15474716502433,
+          "p99MedianMs": 3.2261,
+          "maxMs": 19.605901,
+          "over50": 0,
+          "over100": 0
+        },
+        {
+          "commit": "310fca27b96696924dfaf5f0572a8382fc7115ff",
+          "java": "21.0.12.1",
+          "warmupSeconds": 15.0,
+          "measureSeconds": 30.0,
+          "history": [
+            "terrain",
+            "items",
+            "precipitation",
+            "travel",
+            "shader"
+          ],
+          "animationStart": "0",
+          "repeats": 1,
+          "fpsMedian": 366.9768327525483,
+          "fpsMin": 366.9768327525483,
+          "fpsMax": 366.9768327525483,
+          "p99MedianMs": 3.427,
+          "maxMs": 5.605699,
+          "over50": 0,
+          "over100": 0
+        }
+      ]
+    },
+    "fresh-short": {
+      "runs": [
+        {
+          "label": "after-r1-j21",
+          "resultFile": "after-r1-j21.json",
+          "java": "21.0.12.1",
+          "commit": "26f000239eb8ddf7ee191f0ddf369147e3c92ef6",
+          "artifactSha256": "ebbfacc5732f6d72509f50e0113c453d139ca4224ecec66978b1e05b93f28b67",
+          "warmupSeconds": 15.0,
+          "measureSeconds": 30.0,
+          "history": [
+            "shader"
+          ],
+          "probe": false,
+          "animationStart": null,
+          "fps": 474.52172020510085,
+          "p99Ms": 3.4607,
+          "maxMs": 6.4831,
+          "over50": 0,
+          "over100": 0,
+          "notificationQueriesPerFrame": 0.0,
+          "updateQueriesPerFrame": 0.0,
+          "rawSha256": "3fb7f782b966d4b4d96659ce9b6eddd252367c7bb92b14dd37775ccd576335c0",
+          "fiveSecondBins": [
+            {
+              "startSeconds": 0,
+              "fps": 476.034122125874
+            },
+            {
+              "startSeconds": 5,
+              "fps": 471.46754244013
+            },
+            {
+              "startSeconds": 10,
+              "fps": 474.36978264484554
+            },
+            {
+              "startSeconds": 15,
+              "fps": 471.51427629430555
+            },
+            {
+              "startSeconds": 20,
+              "fps": 475.7641558333467
+            },
+            {
+              "startSeconds": 25,
+              "fps": 478.0527196539234
+            },
+            {
+              "startSeconds": 30,
+              "fps": 347.5963710938858
+            }
+          ],
+          "shaderClockStart": {
+            "frameTimeCounter": 11.438966,
+            "frameCounter": 6800
+          },
+          "shaderClockEnd": {
+            "frameTimeCounter": 34.27397,
+            "frameCounter": 21036
+          }
+        },
+        {
+          "label": "before-r1-j21",
+          "resultFile": "before-r1-j21.json",
+          "java": "21.0.12.1",
+          "commit": "310fca27b96696924dfaf5f0572a8382fc7115ff",
+          "artifactSha256": "412c5d86e48d605f500132d5644bf5bfc822e07b91df0920456d0eea70cd419e",
+          "warmupSeconds": 15.0,
+          "measureSeconds": 30.0,
+          "history": [
+            "shader"
+          ],
+          "probe": false,
+          "animationStart": null,
+          "fps": 365.1615970064949,
+          "p99Ms": 3.5111,
+          "maxMs": 4.6459,
+          "over50": 0,
+          "over100": 0,
+          "notificationQueriesPerFrame": 0.0,
+          "updateQueriesPerFrame": 0.0,
+          "rawSha256": "a0b96fa94a6a2cca7bd2aa82f9f60feac49688a54603e6d4fd2e12bfeb9dd850",
+          "fiveSecondBins": [
+            {
+              "startSeconds": 0,
+              "fps": 371.0882893257964
+            },
+            {
+              "startSeconds": 5,
+              "fps": 362.2501209267314
+            },
+            {
+              "startSeconds": 10,
+              "fps": 364.3271345730854
+            },
+            {
+              "startSeconds": 15,
+              "fps": 365.9404542424738
+            },
+            {
+              "startSeconds": 20,
+              "fps": 363.6554720056997
+            },
+            {
+              "startSeconds": 25,
+              "fps": 363.7116303008296
+            },
+            {
+              "startSeconds": 30,
+              "fps": 359.50532067874605
+            }
+          ],
+          "shaderClockStart": {
+            "frameTimeCounter": 12.11669,
+            "frameCounter": 5168
+          },
+          "shaderClockEnd": {
+            "frameTimeCounter": 35.430527,
+            "frameCounter": 16123
+          }
+        }
+      ],
+      "summary": [
+        {
+          "commit": "26f000239eb8ddf7ee191f0ddf369147e3c92ef6",
+          "java": "21.0.12.1",
+          "warmupSeconds": 15.0,
+          "measureSeconds": 30.0,
+          "history": [
+            "shader"
+          ],
+          "animationStart": null,
+          "repeats": 1,
+          "fpsMedian": 474.52172020510085,
+          "fpsMin": 474.52172020510085,
+          "fpsMax": 474.52172020510085,
+          "p99MedianMs": 3.4607,
+          "maxMs": 6.4831,
+          "over50": 0,
+          "over100": 0
+        },
+        {
+          "commit": "310fca27b96696924dfaf5f0572a8382fc7115ff",
+          "java": "21.0.12.1",
+          "warmupSeconds": 15.0,
+          "measureSeconds": 30.0,
+          "history": [
+            "shader"
+          ],
+          "animationStart": null,
+          "repeats": 1,
+          "fpsMedian": 365.1615970064949,
+          "fpsMin": 365.1615970064949,
+          "fpsMax": 365.1615970064949,
+          "p99MedianMs": 3.5111,
+          "maxMs": 4.6459,
+          "over50": 0,
+          "over100": 0
+        }
+      ]
+    },
+    "fresh-conditioned": {
+      "runs": [
+        {
+          "label": "after-r1-j21",
+          "resultFile": "after-r1-j21.json",
+          "java": "21.0.12.1",
+          "commit": "26f000239eb8ddf7ee191f0ddf369147e3c92ef6",
+          "artifactSha256": "ebbfacc5732f6d72509f50e0113c453d139ca4224ecec66978b1e05b93f28b67",
+          "warmupSeconds": 45.0,
+          "measureSeconds": 30.0,
+          "history": [
+            "shader"
+          ],
+          "probe": false,
+          "animationStart": "3570",
+          "fps": 468.3466932413555,
+          "p99Ms": 3.451501,
+          "maxMs": 18.3566,
+          "over50": 0,
+          "over100": 0,
+          "notificationQueriesPerFrame": 0.0,
+          "updateQueriesPerFrame": 0.0,
+          "rawSha256": "47d03dffa3cb38c5e1bb9957de9765251fdde9cf1e26ee7037c09c8167358b33",
+          "fiveSecondBins": [
+            {
+              "startSeconds": 0,
+              "fps": 473.55648200391335
+            },
+            {
+              "startSeconds": 5,
+              "fps": 466.27879548990035
+            },
+            {
+              "startSeconds": 10,
+              "fps": 468.25426139746156
+            },
+            {
+              "startSeconds": 15,
+              "fps": 469.1854740177244
+            },
+            {
+              "startSeconds": 20,
+              "fps": 468.66961609104027
+            },
+            {
+              "startSeconds": 25,
+              "fps": 464.1514683224722
+            },
+            {
+              "startSeconds": 30,
+              "fps": 439.29010718678614
+            }
+          ],
+          "shaderClockStart": {
+            "frameTimeCounter": 15.147949,
+            "frameCounter": 20781
+          },
+          "shaderClockEnd": {
+            "frameTimeCounter": 45.153076,
+            "frameCounter": 34832
+          }
+        },
+        {
+          "label": "before-r1-j21",
+          "resultFile": "before-r1-j21.json",
+          "java": "21.0.12.1",
+          "commit": "310fca27b96696924dfaf5f0572a8382fc7115ff",
+          "artifactSha256": "412c5d86e48d605f500132d5644bf5bfc822e07b91df0920456d0eea70cd419e",
+          "warmupSeconds": 45.0,
+          "measureSeconds": 30.0,
+          "history": [
+            "shader"
+          ],
+          "probe": false,
+          "animationStart": "3570",
+          "fps": 456.33096343931885,
+          "p99Ms": 3.345199,
+          "maxMs": 5.9033,
+          "over50": 0,
+          "over100": 0,
+          "notificationQueriesPerFrame": 0.0,
+          "updateQueriesPerFrame": 0.0,
+          "rawSha256": "04882358807b67e57c8ac7133873a2dc78fd9ba2816490902e0054636f13d23d",
+          "fiveSecondBins": [
+            {
+              "startSeconds": 0,
+              "fps": 460.1080977044531
+            },
+            {
+              "startSeconds": 5,
+              "fps": 456.3737220923567
+            },
+            {
+              "startSeconds": 10,
+              "fps": 455.77103110210896
+            },
+            {
+              "startSeconds": 15,
+              "fps": 455.30555813165836
+            },
+            {
+              "startSeconds": 20,
+              "fps": 455.4173695273903
+            },
+            {
+              "startSeconds": 25,
+              "fps": 455.0094277953439
+            },
+            {
+              "startSeconds": 30,
+              "fps": 459.07358949639627
+            }
+          ],
+          "shaderClockStart": {
+            "frameTimeCounter": 15.128418,
+            "frameCounter": 20024
+          },
+          "shaderClockEnd": {
+            "frameTimeCounter": 45.134277,
+            "frameCounter": 33714
+          }
+        }
+      ],
+      "summary": [
+        {
+          "commit": "26f000239eb8ddf7ee191f0ddf369147e3c92ef6",
+          "java": "21.0.12.1",
+          "warmupSeconds": 45.0,
+          "measureSeconds": 30.0,
+          "history": [
+            "shader"
+          ],
+          "animationStart": "3570",
+          "repeats": 1,
+          "fpsMedian": 468.3466932413555,
+          "fpsMin": 468.3466932413555,
+          "fpsMax": 468.3466932413555,
+          "p99MedianMs": 3.451501,
+          "maxMs": 18.3566,
+          "over50": 0,
+          "over100": 0
+        },
+        {
+          "commit": "310fca27b96696924dfaf5f0572a8382fc7115ff",
+          "java": "21.0.12.1",
+          "warmupSeconds": 45.0,
+          "measureSeconds": 30.0,
+          "history": [
+            "shader"
+          ],
+          "animationStart": "3570",
+          "repeats": 1,
+          "fpsMedian": 456.33096343931885,
+          "fpsMin": 456.33096343931885,
+          "fpsMax": 456.33096343931885,
+          "p99MedianMs": 3.345199,
+          "maxMs": 5.9033,
+          "over50": 0,
+          "over100": 0
+        }
+      ]
+    }
+  },
+  "rawFiles": [
+    {
+      "file": "saved-ab/retention-after-r1-j21.json",
+      "sha256": "24df9a5d5c9edaa11ee84a1b7eccbab9a360107b713dfdf59acce6e7e0d8b454"
+    },
+    {
+      "file": "saved-ab/retention-after-r1-j21-shader.csv",
+      "sha256": "337b4618fd6e4545fd1c96c5ff78c7a5037a14a89a5afbf4e676f961179bf3b4"
+    },
+    {
+      "file": "saved-ab/retention-after-r2-j21.json",
+      "sha256": "5886c7126e36748d5b11ee4b3c02035bcd070cd8a3dd00fffd95ec37de91a1fd"
+    },
+    {
+      "file": "saved-ab/retention-after-r2-j21-shader.csv",
+      "sha256": "8a58bff700df3016bbc31cc7ea89195072f0ce97e42804d9a2ee5e407d027b69"
+    },
+    {
+      "file": "saved-ab/retention-after-r3-j21.json",
+      "sha256": "fe57fce3e5cf41d1597cda53b618267745fd7fe48c31abdba54ab608606fd1e4"
+    },
+    {
+      "file": "saved-ab/retention-after-r3-j21-shader.csv",
+      "sha256": "c4d5cad3540ba89de2d31813880eac7e848539886ef1d5b1a4bb85730960ebf1"
+    },
+    {
+      "file": "saved-ab/retention-before-r1-j21.json",
+      "sha256": "5589e6d4b48ae0ad2708bb20744786a1919b7a3c40ca3ede72609bf9aa1f5718"
+    },
+    {
+      "file": "saved-ab/retention-before-r1-j21-shader.csv",
+      "sha256": "9e8e195c59172c8f4b4514ccac66f080c6218efd8874b3122966a5581faee74b"
+    },
+    {
+      "file": "saved-ab/retention-before-r2-j21.json",
+      "sha256": "77d2781d2432ee9390616eec87d593e4367431d55686b8bafc7353a6692c2e26"
+    },
+    {
+      "file": "saved-ab/retention-before-r2-j21-shader.csv",
+      "sha256": "7609b8fb1544651ffd7da0bd8bab2fc2865de13e5921e9014e635b4378705a6f"
+    },
+    {
+      "file": "saved-ab/retention-before-r3-j21.json",
+      "sha256": "bb04a1a8102202819be6bfb82e9cdf989269b375b589f3ff18e40a99e88f6deb"
+    },
+    {
+      "file": "saved-ab/retention-before-r3-j21-shader.csv",
+      "sha256": "45c66ec55e90fbea73f6774c28c9539125d0870a05698b2bfa543e04e8be238d"
+    },
+    {
+      "file": "saved-ab/retention-celeritas-r1-j21.json",
+      "sha256": "27af6145e1cc40f4f73673153e0d0faa3187d7373440fa6a37babd818ce60223"
+    },
+    {
+      "file": "saved-ab/retention-celeritas-r1-j21-shader.csv",
+      "sha256": "9bc6838e5168612e23204b38fb292b5ffe8942460f11c002b127ed05d090c281"
+    },
+    {
+      "file": "saved-ab/retention-celeritas-r2-j21.json",
+      "sha256": "bff7924586fc765041f99e2762370d79c23b1502d12410f108dd74e8d50b2af0"
+    },
+    {
+      "file": "saved-ab/retention-celeritas-r2-j21-shader.csv",
+      "sha256": "a3ffb5d16ab7e9e5cefa726b150ebd09afe6dd62a06b1c4d2490709588449305"
+    },
+    {
+      "file": "saved-ab/retention-celeritas-r3-j21.json",
+      "sha256": "c3553dff1cbedf23a146a6f1e270d5c31b375dd213193d363774f14a1911c586"
+    },
+    {
+      "file": "saved-ab/retention-celeritas-r3-j21-shader.csv",
+      "sha256": "bc1a801abacef47f03597d08083aa664ab9d78c082a9ab00a110b8db70709217"
+    },
+    {
+      "file": "query-probe/retention-after-query-probe-j21.json",
+      "sha256": "3ab42ae00f02117966e03a6a491274230ce93a0a44d3746231a2de82f6226201"
+    },
+    {
+      "file": "query-probe/retention-after-query-probe-j21-shader.csv",
+      "sha256": "070e4253ae6bafe3785be6a7b1792c8117d760f6606b4452a19b5b9c7c9b8b26"
+    },
+    {
+      "file": "history-replay/retention-resume-full-after-j21.json",
+      "sha256": "5fab79df2c0c2f3600fb6c66ed6b903949419adfee21de50c3ce643dc0c57d00"
+    },
+    {
+      "file": "history-replay/retention-resume-full-after-j21-shader.csv",
+      "sha256": "3b1484a85ba8e75d89d4b737e6670f1f9503d6b89bb8cd0aa50902c5791301c0"
+    },
+    {
+      "file": "history-replay/retention-resume-full-before-j21.json",
+      "sha256": "90bca7e5f549c52af40fb21cf1a4c7d88f51d8cc823414e0a3da58d192074cf5"
+    },
+    {
+      "file": "history-replay/retention-resume-full-before-j21-shader.csv",
+      "sha256": "5c963395e802d05d72fa209cac9acd62b71f5277b252a3c7e8ed009375df3485"
+    },
+    {
+      "file": "history-replay/retention-resume-full-celeritas-j21.json",
+      "sha256": "58032c8506a4ecbdf897833f2a5c02fcbcbe411beff4cf94358b78cfe344230d"
+    },
+    {
+      "file": "history-replay/retention-resume-full-celeritas-j21-shader.csv",
+      "sha256": "88572832bf9a61967f648b9d4b63544a4a295be51d708f5ac19683d3354456be"
+    },
+    {
+      "file": "java17/retention-resume-after-j17.json",
+      "sha256": "a6a9e11887c0af71921f465330c16871e7199ecc58d5e07cbbedf0f79b21bb19"
+    },
+    {
+      "file": "java17/retention-resume-after-j17-shader.csv",
+      "sha256": "6fbd520d05418c9181eccd6eec3b8c948a0a4047b2014bcdb0be1880a96f3a35"
+    },
+    {
+      "file": "java17/retention-resume-before-j17.json",
+      "sha256": "ed1cd73b6a02728d945ad7244d47153c7956875d24db1d630f9bcad4ac9010e4"
+    },
+    {
+      "file": "java17/retention-resume-before-j17-shader.csv",
+      "sha256": "343880c7ecdd0606ce3732526b800a282076018e136b15aca70065ec4f8c9a83"
+    },
+    {
+      "file": "controlled-history/after-r1-j21.json",
+      "sha256": "95a44c614b14d776bbaba39aca289bd6c78c317ce7ced5f5dd3cb16bcb2101c5"
+    },
+    {
+      "file": "controlled-history/after-r1-j21-shader.csv",
+      "sha256": "268925458e37a4b8f84aca94fe0b88a2f2cdd8b28a8327488d58aacc1fed34b6"
+    },
+    {
+      "file": "controlled-history/before-r1-j21.json",
+      "sha256": "e97414bcc52ec6e7567e73ef1aa3cce777641306d1d6550095bff0314983590d"
+    },
+    {
+      "file": "controlled-history/before-r1-j21-shader.csv",
+      "sha256": "af4348bf7346c6428d492d07b02efb49a4265f151ee277660311bab95c6819fb"
+    },
+    {
+      "file": "fresh-short/after-r1-j21.json",
+      "sha256": "8aabb28ae960151129e1e88a1ba8aaf958ba5453aad54eccc05eeff7cab04c21"
+    },
+    {
+      "file": "fresh-short/after-r1-j21-shader.csv",
+      "sha256": "3fb7f782b966d4b4d96659ce9b6eddd252367c7bb92b14dd37775ccd576335c0"
+    },
+    {
+      "file": "fresh-short/before-r1-j21.json",
+      "sha256": "3890936d2fc82307ac93b719dbd3ff7e7c7aa538813f2f2a019643d98d39cffc"
+    },
+    {
+      "file": "fresh-short/before-r1-j21-shader.csv",
+      "sha256": "a0b96fa94a6a2cca7bd2aa82f9f60feac49688a54603e6d4fd2e12bfeb9dd850"
+    },
+    {
+      "file": "fresh-conditioned/after-r1-j21.json",
+      "sha256": "311483f3488d69009ce17931bfc129ea54351601cb41b4aa50d484c283c45cf7"
+    },
+    {
+      "file": "fresh-conditioned/after-r1-j21-shader.csv",
+      "sha256": "47d03dffa3cb38c5e1bb9957de9765251fdde9cf1e26ee7037c09c8167358b33"
+    },
+    {
+      "file": "fresh-conditioned/before-r1-j21.json",
+      "sha256": "979c861bdab2d85e0577e2666841c88f72340b5c94084333776091877ebe54c9"
+    },
+    {
+      "file": "fresh-conditioned/before-r1-j21-shader.csv",
+      "sha256": "04882358807b67e57c8ac7133873a2dc78fd9ba2816490902e0054636f13d23d"
+    }
+  ],
+  "shaderRegressions": [
+    {
+      "pack": "BSL_v10.1.8.zip",
+      "label": "retention",
+      "java": "17.0.20.1",
+      "gpu": "AMD Radeon(TM) 8060S Graphics",
+      "glVersion": "4.6.0 Core Profile Context 26.10.1.261008",
+      "glContextFlags": 1,
+      "sceneOffset": 0,
+      "cacheEnabled": true,
+      "activePack": "BSL_v10.1.8.zip",
+      "coldTitleStageCompiles": 156,
+      "dryRainStrength": 0.0,
+      "dryBiome": "minecraft:plains",
+      "dryWeatherColumns": 0,
+      "dryWeatherDraws": 0,
+      "dryGlError": 0,
+      "coldTotalStageCompiles": 170,
+      "rain-instancedRainStrength": 0.98999935,
+      "rain-instancedBiome": "minecraft:plains",
+      "rain-instancedWeatherColumns": 441,
+      "rain-instancedWeatherDraws": 1,
+      "rain-instancedGlError": 0,
+      "rain-originalRainStrength": 1.0,
+      "rain-originalBiome": "minecraft:plains",
+      "rain-originalWeatherColumns": 0,
+      "rain-originalWeatherDraws": 0,
+      "rain-originalGlError": 0,
+      "snowRainStrength": 1.0,
+      "snowBiome": "minecraft:snowy_plains",
+      "snowWeatherColumns": 441,
+      "snowWeatherDraws": 1,
+      "snowGlError": 0,
+      "warm-reloadRainStrength": 1.0,
+      "warm-reloadBiome": "minecraft:snowy_plains",
+      "warm-reloadWeatherColumns": 441,
+      "warm-reloadWeatherDraws": 1,
+      "warm-reloadGlError": 0,
+      "warmStageCompiles": 0,
+      "source-reloadRainStrength": 1.0,
+      "source-reloadBiome": "minecraft:snowy_plains",
+      "source-reloadWeatherColumns": 441,
+      "source-reloadWeatherDraws": 1,
+      "source-reloadGlError": 0,
+      "sourceReloadStageCompiles": 0,
+      "success": true,
+      "finishedAt": "2026-11-18T16:15:51.975586300Z",
+      "screenshots": [
+        {
+          "scene": "dry",
+          "sha256": "e0a6a0202c0f0e0ce479345f99cab13d85f4eb349a9394a9755699e594c5b920"
+        },
+        {
+          "scene": "rain-instanced",
+          "sha256": "8c5766d0ea1d3575b930c7af70336f7910299e1f97659df0f93f37234f7a6892"
+        },
+        {
+          "scene": "rain-original",
+          "sha256": "828d7359030228a6a709569bc47a269256710b8b1c29f3ec383890a0c0c67867"
+        },
+        {
+          "scene": "snow",
+          "sha256": "8ce51d90ef5236b105f4a290571bdaa5e200f3563e9986ff28789de0f881dc47"
+        },
+        {
+          "scene": "warm-reload",
+          "sha256": "078ed753826d3e668fd7ad8380d08c71ca38edf46fc7e6c11db8b2239b318a57"
+        },
+        {
+          "scene": "source-reload",
+          "sha256": "ef4ad1a435498b227de90ca92ae748ad012119d5ff8c20c1fd4ce40b366934ee"
+        }
+      ]
+    },
+    {
+      "pack": "ComplementaryReimagined_r5.9.3.zip",
+      "label": "retention",
+      "java": "17.0.20.1",
+      "gpu": "AMD Radeon(TM) 8060S Graphics",
+      "glVersion": "4.6.0 Core Profile Context 26.10.1.261008",
+      "glContextFlags": 1,
+      "sceneOffset": 0,
+      "cacheEnabled": true,
+      "activePack": "ComplementaryReimagined_r5.9.3.zip",
+      "coldTitleStageCompiles": 154,
+      "dryRainStrength": 0.0,
+      "dryBiome": "minecraft:plains",
+      "dryWeatherColumns": 0,
+      "dryWeatherDraws": 0,
+      "dryGlError": 0,
+      "coldTotalStageCompiles": 168,
+      "rain-instancedRainStrength": 0.98999935,
+      "rain-instancedBiome": "minecraft:plains",
+      "rain-instancedWeatherColumns": 441,
+      "rain-instancedWeatherDraws": 1,
+      "rain-instancedGlError": 0,
+      "rain-originalRainStrength": 1.0,
+      "rain-originalBiome": "minecraft:plains",
+      "rain-originalWeatherColumns": 0,
+      "rain-originalWeatherDraws": 0,
+      "rain-originalGlError": 0,
+      "snowRainStrength": 1.0,
+      "snowBiome": "minecraft:snowy_plains",
+      "snowWeatherColumns": 441,
+      "snowWeatherDraws": 1,
+      "snowGlError": 0,
+      "warm-reloadRainStrength": 1.0,
+      "warm-reloadBiome": "minecraft:snowy_plains",
+      "warm-reloadWeatherColumns": 441,
+      "warm-reloadWeatherDraws": 1,
+      "warm-reloadGlError": 0,
+      "warmStageCompiles": 0,
+      "source-reloadRainStrength": 1.0,
+      "source-reloadBiome": "minecraft:snowy_plains",
+      "source-reloadWeatherColumns": 441,
+      "source-reloadWeatherDraws": 1,
+      "source-reloadGlError": 0,
+      "sourceReloadStageCompiles": 0,
+      "success": true,
+      "finishedAt": "2026-11-18T16:13:06.405629Z",
+      "screenshots": [
+        {
+          "scene": "dry",
+          "sha256": "9705cf7dbe955f9a3a2349841c177c7f62bb733eeb53a66dbdb6023dc35a3380"
+        },
+        {
+          "scene": "rain-instanced",
+          "sha256": "c25ead62e518eca1faaf4b145fbca64c9edf19ab6e5017974e3658bc978a7675"
+        },
+        {
+          "scene": "rain-original",
+          "sha256": "3bb4702a538c81ffb44ca8bb0396eb4810d98f62c17085e666fd20ee799c2d26"
+        },
+        {
+          "scene": "snow",
+          "sha256": "ea8243edd11f718be275d1c3a6ac6545828f53174ab703ce46b14896cd9d82e5"
+        },
+        {
+          "scene": "warm-reload",
+          "sha256": "ecc8a6576dc2066c1b93fcc3e5ca87388f21c49b9b9946bad0be1c8499acff19"
+        },
+        {
+          "scene": "source-reload",
+          "sha256": "b4e882b96c06f170a3020786447d99d7391b760994acd02e0f1b1c75f4551c99"
+        }
+      ]
+    },
+    {
+      "pack": "ComplementaryUnbound_r5.9.3.zip",
+      "label": "retention",
+      "java": "17.0.20.1",
+      "gpu": "AMD Radeon(TM) 8060S Graphics",
+      "glVersion": "4.6.0 Core Profile Context 26.10.1.261008",
+      "glContextFlags": 1,
+      "sceneOffset": 0,
+      "cacheEnabled": true,
+      "activePack": "ComplementaryUnbound_r5.9.3.zip",
+      "coldTitleStageCompiles": 154,
+      "dryRainStrength": 0.0,
+      "dryBiome": "minecraft:plains",
+      "dryWeatherColumns": 0,
+      "dryWeatherDraws": 0,
+      "dryGlError": 0,
+      "coldTotalStageCompiles": 168,
+      "rain-instancedRainStrength": 0.97999936,
+      "rain-instancedBiome": "minecraft:plains",
+      "rain-instancedWeatherColumns": 441,
+      "rain-instancedWeatherDraws": 1,
+      "rain-instancedGlError": 0,
+      "rain-originalRainStrength": 1.0,
+      "rain-originalBiome": "minecraft:plains",
+      "rain-originalWeatherColumns": 0,
+      "rain-originalWeatherDraws": 0,
+      "rain-originalGlError": 0,
+      "snowRainStrength": 1.0,
+      "snowBiome": "minecraft:snowy_plains",
+      "snowWeatherColumns": 441,
+      "snowWeatherDraws": 1,
+      "snowGlError": 0,
+      "warm-reloadRainStrength": 1.0,
+      "warm-reloadBiome": "minecraft:snowy_plains",
+      "warm-reloadWeatherColumns": 441,
+      "warm-reloadWeatherDraws": 1,
+      "warm-reloadGlError": 0,
+      "warmStageCompiles": 0,
+      "source-reloadRainStrength": 1.0,
+      "source-reloadBiome": "minecraft:snowy_plains",
+      "source-reloadWeatherColumns": 441,
+      "source-reloadWeatherDraws": 1,
+      "source-reloadGlError": 0,
+      "sourceReloadStageCompiles": 0,
+      "success": true,
+      "finishedAt": "2026-11-18T16:14:31.395457700Z",
+      "screenshots": [
+        {
+          "scene": "dry",
+          "sha256": "8155c3011587ddfa8a88a315a7d3a66541fc018d3485bc3a851507e8f0f41265"
+        },
+        {
+          "scene": "rain-instanced",
+          "sha256": "18860550401e841cf4f5b26b9ae4179404f6a41f44102c1016ec97b9193ecca0"
+        },
+        {
+          "scene": "rain-original",
+          "sha256": "ed0a50e69328d57d84c4bf5b45d10aec5bcb324c9423f3c974d4a2d2fadd3df9"
+        },
+        {
+          "scene": "snow",
+          "sha256": "df3ca37c1c0a74a13867a43fd9e6f4764eef2b15e278c871adf050b0b8dd1abf"
+        },
+        {
+          "scene": "warm-reload",
+          "sha256": "c27f068949e84b3805308d125713e68486f0736d75844cabec6ebb617aab7ea0"
+        },
+        {
+          "scene": "source-reload",
+          "sha256": "05c10304636cb80d2c1be120f7d7b125719d80f5ee50dfcbee22c1a35029e5ba"
+        }
+      ]
+    },
+    {
+      "pack": "MakeUp-UltraFast-9.6.zip",
+      "label": "retention",
+      "java": "17.0.20.1",
+      "gpu": "AMD Radeon(TM) 8060S Graphics",
+      "glVersion": "4.6.0 Core Profile Context 26.10.1.261008",
+      "glContextFlags": 1,
+      "sceneOffset": 0,
+      "cacheEnabled": true,
+      "activePack": "MakeUp-UltraFast-9.6.zip",
+      "coldTitleStageCompiles": 116,
+      "dryRainStrength": 0.0,
+      "dryBiome": "minecraft:plains",
+      "dryWeatherColumns": 0,
+      "dryWeatherDraws": 0,
+      "dryGlError": 0,
+      "coldTotalStageCompiles": 230,
+      "rain-instancedRainStrength": 0.99999934,
+      "rain-instancedBiome": "minecraft:plains",
+      "rain-instancedWeatherColumns": 441,
+      "rain-instancedWeatherDraws": 1,
+      "rain-instancedGlError": 0,
+      "rain-originalRainStrength": 1.0,
+      "rain-originalBiome": "minecraft:plains",
+      "rain-originalWeatherColumns": 0,
+      "rain-originalWeatherDraws": 0,
+      "rain-originalGlError": 0,
+      "snowRainStrength": 1.0,
+      "snowBiome": "minecraft:snowy_plains",
+      "snowWeatherColumns": 441,
+      "snowWeatherDraws": 1,
+      "snowGlError": 0,
+      "warm-reloadRainStrength": 1.0,
+      "warm-reloadBiome": "minecraft:snowy_plains",
+      "warm-reloadWeatherColumns": 441,
+      "warm-reloadWeatherDraws": 1,
+      "warm-reloadGlError": 0,
+      "warmStageCompiles": 0,
+      "source-reloadRainStrength": 1.0,
+      "source-reloadBiome": "minecraft:snowy_plains",
+      "source-reloadWeatherColumns": 441,
+      "source-reloadWeatherDraws": 1,
+      "source-reloadGlError": 0,
+      "sourceReloadStageCompiles": 0,
+      "success": true,
+      "finishedAt": "2026-11-18T16:20:01.711857900Z",
+      "screenshots": [
+        {
+          "scene": "dry",
+          "sha256": "9ca7553c13a8d18c080a293670b1171fc891b9a23d8dd8972f7c92cb5ff982a0"
+        },
+        {
+          "scene": "rain-instanced",
+          "sha256": "5ae22e4e7e1b8cf2be05288cb80fbed2a2c5298604180b7d50d1b5f8bbfe5c6e"
+        },
+        {
+          "scene": "rain-original",
+          "sha256": "ab0798b9768a02b573df7c2d288ca16b84ab61098ae4defacc58203b6245858d"
+        },
+        {
+          "scene": "snow",
+          "sha256": "2284f0028e9ed640009fd7c4d886db1a513af0aa3ce4d6ef49895a8493580c08"
+        },
+        {
+          "scene": "warm-reload",
+          "sha256": "16bb5b8a7174a30d09806fcee028e71208e91224ca12886a71dccc8c67c4660f"
+        },
+        {
+          "scene": "source-reload",
+          "sha256": "5cf254cf82a18de3eda8d68d663f0c78dae34b801503bd6d8ea7a709323a4708"
+        }
+      ]
+    },
+    {
+      "pack": "Mellow v3.5.zip",
+      "label": "retention",
+      "java": "17.0.20.1",
+      "gpu": "AMD Radeon(TM) 8060S Graphics",
+      "glVersion": "4.6.0 Core Profile Context 26.10.1.261008",
+      "glContextFlags": 1,
+      "sceneOffset": 0,
+      "cacheEnabled": true,
+      "activePack": "Mellow v3.5.zip",
+      "coldTitleStageCompiles": 122,
+      "dryRainStrength": 0.0,
+      "dryBiome": "minecraft:plains",
+      "dryWeatherColumns": 0,
+      "dryWeatherDraws": 0,
+      "dryGlError": 0,
+      "coldTotalStageCompiles": 224,
+      "rain-instancedRainStrength": 0.98999935,
+      "rain-instancedBiome": "minecraft:plains",
+      "rain-instancedWeatherColumns": 441,
+      "rain-instancedWeatherDraws": 1,
+      "rain-instancedGlError": 0,
+      "rain-originalRainStrength": 1.0,
+      "rain-originalBiome": "minecraft:plains",
+      "rain-originalWeatherColumns": 0,
+      "rain-originalWeatherDraws": 0,
+      "rain-originalGlError": 0,
+      "snowRainStrength": 1.0,
+      "snowBiome": "minecraft:snowy_plains",
+      "snowWeatherColumns": 441,
+      "snowWeatherDraws": 1,
+      "snowGlError": 0,
+      "warm-reloadRainStrength": 1.0,
+      "warm-reloadBiome": "minecraft:snowy_plains",
+      "warm-reloadWeatherColumns": 441,
+      "warm-reloadWeatherDraws": 1,
+      "warm-reloadGlError": 0,
+      "warmStageCompiles": 0,
+      "source-reloadRainStrength": 1.0,
+      "source-reloadBiome": "minecraft:snowy_plains",
+      "source-reloadWeatherColumns": 441,
+      "source-reloadWeatherDraws": 1,
+      "source-reloadGlError": 0,
+      "sourceReloadStageCompiles": 0,
+      "success": true,
+      "finishedAt": "2026-11-18T16:22:50.907750300Z",
+      "screenshots": [
+        {
+          "scene": "dry",
+          "sha256": "43f7279ddc588f4a9f5930e2e3aa7e2f6b0bd75038460e76ffd40bd8b3b53e58"
+        },
+        {
+          "scene": "rain-instanced",
+          "sha256": "a2b0cbf7ac867a581d27cef037ac5c4b3a8982d85886667f3b6f731df862041b"
+        },
+        {
+          "scene": "rain-original",
+          "sha256": "cfe601af352747771c1fd9f14ba7ddcd6d48c2abf59a7fbb2d0acbb2f18f0b7a"
+        },
+        {
+          "scene": "snow",
+          "sha256": "acdc0f5b62dc7d2ea45ad4bf42d0d319085a2821101a23bde5c601d6eb331db9"
+        },
+        {
+          "scene": "warm-reload",
+          "sha256": "06a24125c03f46c6033c2583ff7c21b653c23e1ef142bbd60973ef6508a3d1c7"
+        },
+        {
+          "scene": "source-reload",
+          "sha256": "19d3e270939f852591902ff4d6c4d87b48559a4d36dedf5eb3c74ee9301849af"
+        }
+      ]
+    },
+    {
+      "pack": "photon_v1.4.zip",
+      "label": "retention",
+      "java": "17.0.20.1",
+      "gpu": "AMD Radeon(TM) 8060S Graphics",
+      "glVersion": "4.6.0 Core Profile Context 26.10.1.261008",
+      "glContextFlags": 1,
+      "sceneOffset": 0,
+      "cacheEnabled": true,
+      "activePack": "photon_v1.4.zip",
+      "coldTitleStageCompiles": 193,
+      "dryRainStrength": 0.0,
+      "dryBiome": "minecraft:plains",
+      "dryWeatherColumns": 0,
+      "dryWeatherDraws": 0,
+      "dryGlError": 0,
+      "coldTotalStageCompiles": 207,
+      "rain-instancedRainStrength": 0.98999935,
+      "rain-instancedBiome": "minecraft:plains",
+      "rain-instancedWeatherColumns": 441,
+      "rain-instancedWeatherDraws": 1,
+      "rain-instancedGlError": 0,
+      "rain-originalRainStrength": 1.0,
+      "rain-originalBiome": "minecraft:plains",
+      "rain-originalWeatherColumns": 0,
+      "rain-originalWeatherDraws": 0,
+      "rain-originalGlError": 0,
+      "snowRainStrength": 1.0,
+      "snowBiome": "minecraft:snowy_plains",
+      "snowWeatherColumns": 441,
+      "snowWeatherDraws": 1,
+      "snowGlError": 0,
+      "warm-reloadRainStrength": 1.0,
+      "warm-reloadBiome": "minecraft:snowy_plains",
+      "warm-reloadWeatherColumns": 441,
+      "warm-reloadWeatherDraws": 1,
+      "warm-reloadGlError": 0,
+      "warmStageCompiles": 0,
+      "source-reloadRainStrength": 1.0,
+      "source-reloadBiome": "minecraft:snowy_plains",
+      "source-reloadWeatherColumns": 441,
+      "source-reloadWeatherDraws": 1,
+      "source-reloadGlError": 0,
+      "sourceReloadStageCompiles": 0,
+      "success": true,
+      "finishedAt": "2026-11-18T16:17:18.678218100Z",
+      "screenshots": [
+        {
+          "scene": "dry",
+          "sha256": "dc6a52ddae186ba3359fe6f36e835c67d0df75c1a6be50c7438f28bbf51274cc"
+        },
+        {
+          "scene": "rain-instanced",
+          "sha256": "5032d3af09fa696b045a1afe853f75b1889fc04a4ee1d296c45538a1f14278a6"
+        },
+        {
+          "scene": "rain-original",
+          "sha256": "036d06838bdb57a933a771aaf98920f4fc474cb6fa2ec0a8045a0892815c0fa3"
+        },
+        {
+          "scene": "snow",
+          "sha256": "78786268cec7f7deb1ebf2b12143dd5c1d50d48e7cede45c569afde2cd201b00"
+        },
+        {
+          "scene": "warm-reload",
+          "sha256": "689ada81c103386ce1beb27d8a6769264817b089aedb5fbf37421eb706d3d6c4"
+        },
+        {
+          "scene": "source-reload",
+          "sha256": "2e7dcdad008ccf36b8c4e165fc088e44a04928d799117f19f5ab51bf3eec8fa8"
+        }
+      ]
+    },
+    {
+      "pack": "rethinking-voxels_r0.1-beta9.zip",
+      "label": "retention",
+      "java": "17.0.20.1",
+      "gpu": "AMD Radeon(TM) 8060S Graphics",
+      "glVersion": "4.6.0 Core Profile Context 26.10.1.261008",
+      "glContextFlags": 1,
+      "sceneOffset": 0,
+      "cacheEnabled": true,
+      "activePack": "rethinking-voxels_r0.1-beta9.zip",
+      "coldTitleStageCompiles": 190,
+      "dryRainStrength": 0.0,
+      "dryBiome": "minecraft:plains",
+      "dryWeatherColumns": 0,
+      "dryWeatherDraws": 0,
+      "dryGlError": 0,
+      "coldTotalStageCompiles": 207,
+      "rain-instancedRainStrength": 0.98999935,
+      "rain-instancedBiome": "minecraft:plains",
+      "rain-instancedWeatherColumns": 441,
+      "rain-instancedWeatherDraws": 1,
+      "rain-instancedGlError": 0,
+      "rain-originalRainStrength": 1.0,
+      "rain-originalBiome": "minecraft:plains",
+      "rain-originalWeatherColumns": 0,
+      "rain-originalWeatherDraws": 0,
+      "rain-originalGlError": 0,
+      "snowRainStrength": 1.0,
+      "snowBiome": "minecraft:snowy_plains",
+      "snowWeatherColumns": 441,
+      "snowWeatherDraws": 1,
+      "snowGlError": 0,
+      "warm-reloadRainStrength": 1.0,
+      "warm-reloadBiome": "minecraft:snowy_plains",
+      "warm-reloadWeatherColumns": 441,
+      "warm-reloadWeatherDraws": 1,
+      "warm-reloadGlError": 0,
+      "warmStageCompiles": 0,
+      "source-reloadRainStrength": 1.0,
+      "source-reloadBiome": "minecraft:snowy_plains",
+      "source-reloadWeatherColumns": 441,
+      "source-reloadWeatherDraws": 1,
+      "source-reloadGlError": 0,
+      "sourceReloadStageCompiles": 0,
+      "success": true,
+      "finishedAt": "2026-11-18T16:21:28.197201400Z",
+      "screenshots": [
+        {
+          "scene": "dry",
+          "sha256": "9cc913ff0f18f71d79a55e168e74e4b847869cddfba9c4e482cd5be7127c4a65"
+        },
+        {
+          "scene": "rain-instanced",
+          "sha256": "b5bf8559743eb5328127d7c010af4a8b2519a0cf3d1725e5b2602c8e355e0de2"
+        },
+        {
+          "scene": "rain-original",
+          "sha256": "f5ba355bdf233afa665f7d2784c64247f1a57b5ffd14737c4a58acf3fb3186cd"
+        },
+        {
+          "scene": "snow",
+          "sha256": "341a79c938688f69d7d4df30e6107e5c9ef60c6d5da231f67e3f14f4265b6116"
+        },
+        {
+          "scene": "warm-reload",
+          "sha256": "e20dc12771a2c60c61d7f5d995edc89c97f0a15b265a349c4eae8170c19db5d5"
+        },
+        {
+          "scene": "source-reload",
+          "sha256": "50bc7a6762026d3772eda10eb7a8cba00c16ddf239fd6e9841e248422bc75eea"
+        }
+      ]
+    },
+    {
+      "pack": "Solas Shader V3.9.zip",
+      "label": "retention",
+      "java": "17.0.20.1",
+      "gpu": "AMD Radeon(TM) 8060S Graphics",
+      "glVersion": "4.6.0 Core Profile Context 26.10.1.261008",
+      "glContextFlags": 1,
+      "sceneOffset": 0,
+      "cacheEnabled": true,
+      "activePack": "Solas Shader V3.9.zip",
+      "coldTitleStageCompiles": 157,
+      "dryRainStrength": 0.0,
+      "dryBiome": "minecraft:plains",
+      "dryWeatherColumns": 0,
+      "dryWeatherDraws": 0,
+      "dryGlError": 0,
+      "coldTotalStageCompiles": 171,
+      "rain-instancedRainStrength": 0.98999935,
+      "rain-instancedBiome": "minecraft:plains",
+      "rain-instancedWeatherColumns": 441,
+      "rain-instancedWeatherDraws": 1,
+      "rain-instancedGlError": 0,
+      "rain-originalRainStrength": 1.0,
+      "rain-originalBiome": "minecraft:plains",
+      "rain-originalWeatherColumns": 0,
+      "rain-originalWeatherDraws": 0,
+      "rain-originalGlError": 0,
+      "snowRainStrength": 1.0,
+      "snowBiome": "minecraft:snowy_plains",
+      "snowWeatherColumns": 441,
+      "snowWeatherDraws": 1,
+      "snowGlError": 0,
+      "warm-reloadRainStrength": 1.0,
+      "warm-reloadBiome": "minecraft:snowy_plains",
+      "warm-reloadWeatherColumns": 441,
+      "warm-reloadWeatherDraws": 1,
+      "warm-reloadGlError": 0,
+      "warmStageCompiles": 0,
+      "source-reloadRainStrength": 1.0,
+      "source-reloadBiome": "minecraft:snowy_plains",
+      "source-reloadWeatherColumns": 441,
+      "source-reloadWeatherDraws": 1,
+      "source-reloadGlError": 0,
+      "sourceReloadStageCompiles": 0,
+      "success": true,
+      "finishedAt": "2026-11-18T16:18:40.703585200Z",
+      "screenshots": [
+        {
+          "scene": "dry",
+          "sha256": "228a8b806a2f07994a20673be8c1c116b88a034b2b9eafccc09aad6969742e5e"
+        },
+        {
+          "scene": "rain-instanced",
+          "sha256": "f47b560dc432808c61849ae1b2a49f1638128ad7ef578546d7189f859713fc04"
+        },
+        {
+          "scene": "rain-original",
+          "sha256": "b0096f967c7d834889d56443e1cabf16e2682b863162ec8b3fc6c3a0478bc479"
+        },
+        {
+          "scene": "snow",
+          "sha256": "6141843585e93cd19786317044d9ae0d64effa8cd237764f858eb0796d0c5bc3"
+        },
+        {
+          "scene": "warm-reload",
+          "sha256": "f83e4b95d0fdc8e0af615306a7fc3b9bf728b54902e5ec47244caa22403c69bd"
+        },
+        {
+          "scene": "source-reload",
+          "sha256": "ecc61dbffb5984e532a9dfe12ea07f73ba67abde461bd37b1bc9a63f9e6d4321"
+        }
+      ]
+    }
+  ],
+  "validation": {
+    "unitTests": 187,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "java": 17,
+    "reload": {
+      "hits": 61,
+      "terrainHits": 6,
+      "computeHits": 1,
+      "links": 0,
+      "binaryLoads": 0
+    },
+    "offOn": {
+      "hits": 61,
+      "terrainHits": 6,
+      "computeHits": 1,
+      "links": 0,
+      "binaryLoads": 0
+    }
+  },
+  "elevatedPhoton": {
+    "pack": "photon_v1.4.zip",
+    "label": "retention",
+    "java": "17.0.20.1",
+    "gpu": "AMD Radeon(TM) 8060S Graphics",
+    "glVersion": "4.6.0 Core Profile Context 26.10.1.261008",
+    "glContextFlags": 1,
+    "sceneOffset": 124,
+    "cacheEnabled": true,
+    "activePack": "photon_v1.4.zip",
+    "coldTitleStageCompiles": 193,
+    "dryRainStrength": 0.0,
+    "dryBiome": "minecraft:plains",
+    "dryWeatherColumns": 0,
+    "dryWeatherDraws": 0,
+    "dryGlError": 0,
+    "coldTotalStageCompiles": 207,
+    "rain-instancedRainStrength": 0.98999935,
+    "rain-instancedBiome": "minecraft:plains",
+    "rain-instancedWeatherColumns": 441,
+    "rain-instancedWeatherDraws": 1,
+    "rain-instancedGlError": 0,
+    "rain-originalRainStrength": 1.0,
+    "rain-originalBiome": "minecraft:plains",
+    "rain-originalWeatherColumns": 0,
+    "rain-originalWeatherDraws": 0,
+    "rain-originalGlError": 0,
+    "snowRainStrength": 1.0,
+    "snowBiome": "minecraft:snowy_plains",
+    "snowWeatherColumns": 441,
+    "snowWeatherDraws": 1,
+    "snowGlError": 0,
+    "success": true,
+    "finishedAt": "2026-11-18T16:35:26.151508500Z"
+  },
+  "rawArchive": {
+    "file": "program-reuse-performance-2026-11-19-raw.tar.gz",
+    "sha256": "c49dbb59b0f2696a796e4fc34dd54b715a88c939dab72307bc0f02aabc8d3272"
+  }
+}
