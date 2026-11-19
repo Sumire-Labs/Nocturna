@@ -21,17 +21,17 @@ public interface UniformHolder {
 
 	UniformHolder uniform2f(UniformUpdateFrequency updateFrequency, String name, Supplier<Vector2f> value);
 
-	UniformHolder uniform2i(UniformUpdateFrequency updateFrequency, String name, Supplier<Vector2i> value);
+	UniformHolder uniform2i(UniformUpdateFrequency updateFrequency, String name, Supplier<? extends Vector2ic> value);
 
 	UniformHolder uniform3f(UniformUpdateFrequency updateFrequency, String name, Supplier<Vector3f> value);
 
 	UniformHolder uniform3i(UniformUpdateFrequency updateFrequency, String name, Supplier<Vector3i> value);
 
-	UniformHolder uniformTruncated3f(UniformUpdateFrequency updateFrequency, String name, Supplier<Vector4f> value);
+	UniformHolder uniformTruncated3f(UniformUpdateFrequency updateFrequency, String name, Supplier<? extends Vector4fc> value);
 
 	UniformHolder uniform3d(UniformUpdateFrequency updateFrequency, String name, Supplier<Vector3d> value);
 
-	UniformHolder uniform4f(UniformUpdateFrequency updateFrequency, String name, Supplier<Vector4f> value);
+	UniformHolder uniform4f(UniformUpdateFrequency updateFrequency, String name, Supplier<? extends Vector4fc> value);
 
 	UniformHolder uniform4fArray(UniformUpdateFrequency updateFrequency, String name, Supplier<float[]> value);
 

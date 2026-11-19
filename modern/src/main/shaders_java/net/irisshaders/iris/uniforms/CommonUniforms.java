@@ -47,8 +47,11 @@ import static net.irisshaders.iris.gl.uniform.UniformUpdateFrequency.PER_TICK;
 public final class CommonUniforms {
 	private static final Minecraft client = Minecraft.getInstance();
 	private static final Vector2i ZERO_VECTOR_2i = new Vector2i();
-	private static final Vector4i ZERO_VECTOR_4i = new Vector4i(0, 0, 0, 0);
 	private static final Vector3d ZERO_VECTOR_3d = new Vector3d();
+
+	// Shared only by render-thread suppliers; consumers copy components into their own caches.
+	private static final Vector2i scratch2i = new Vector2i();
+	private static final Vector4i scratch4i = new Vector4i();
 
 	static {
 		GbufferPrograms.init();
@@ -80,10 +83,10 @@ public final class CommonUniforms {
 			AbstractTexture texture = TextureTracker.INSTANCE.getTexture(glId);
 			if (texture instanceof TextureAtlas atlas) {
 				TextureAtlasAccessor atlasAccessor = (TextureAtlasAccessor) atlas;
-				return new Vector2i(atlasAccessor.callGetWidth(), atlasAccessor.callGetHeight());
+				return scratch2i.set(atlasAccessor.callGetWidth(), atlasAccessor.callGetHeight());
 			}
 
-			return ZERO_VECTOR_2i;
+			return scratch2i.set(0, 0);
 			//?} else
 			//return CapturedRenderingState.INSTANCE.getCurrentAtlasSize();
 		}, listener -> {
@@ -93,16 +96,16 @@ public final class CommonUniforms {
 			int glId = GlStateManagerAccessor.getTEXTURES()[0].binding;
 
 			TextureInfo info = TextureInfoCache.INSTANCE.getInfo(glId);
-			return new Vector2i(info.getWidth(), info.getHeight());
+			return scratch2i.set(info.getWidth(), info.getHeight());
 		}, ValueUpdateNotifier.NONE);
 
 		uniforms.uniform4i("blendFunc", () -> {
 			GlStateManager.BlendState blend = GlStateManagerAccessor.getBLEND();
 
 			if (((BooleanStateAccessor) blend.mode).isEnabled()) {
-				return new Vector4i(blend.srcRgb, blend.dstRgb, blend.srcAlpha, blend.dstAlpha);
+				return scratch4i.set(blend.srcRgb, blend.dstRgb, blend.srcAlpha, blend.dstAlpha);
 			} else {
-				return ZERO_VECTOR_4i;
+				return scratch4i.set(0, 0, 0, 0);
 			}
 		}, ValueUpdateNotifier.NONE);
 

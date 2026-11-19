@@ -36,6 +36,9 @@ Intentional departures from the pinned Celeritas snapshot:
   bundled. No newer Sodium implementation is included; see `docs/sodium-provenance-audit-2026-11-17.md`.
 - Angelica's matrix uniform buffer reuse and two-generation render-list pool, from LGPL-3.0 commit
   `d876a203da9b46ee5b5048171b8e5e4deb9bb967`. See `docs/angelica-reuse-backports-2026-11-16.md`.
+- Angelica's uniform supplier vector reuse and read-only JOML inputs from LGPL-3.0 commit
+  `ffb4ca9472270f1ee38b99703e9219a913675dfa`. Custom inputs keep owned copy adapters; native unsigned
+  uploads and initial/deferred updates are retained. Producer bounds also accept existing mutable suppliers.
 - Angelica's preprocessing/disk/GL-program caches, from LGPL-3.0 revision
   `996fb54cb05e256ea6039f4e2c8457a221a179b7`, adapted to the existing Celeritas parallel linker.
   See `docs/shader-cache-backport-2026-11-16.md`. Compiled-program saving defaults off as upstream does.

@@ -4,14 +4,23 @@ import kroppeb.stareval.function.FunctionReturn;
 import net.irisshaders.iris.gl.uniform.UniformUpdateFrequency;
 import net.irisshaders.iris.parsing.VectorType;
 import org.joml.Vector2i;
+import org.joml.Vector2ic;
 import org.lwjgl.opengl.GL21;
 
 import java.util.function.Supplier;
 
 public class Int2VectorCachedUniform extends VectorCachedUniform<Vector2i> {
 
-	public Int2VectorCachedUniform(String name, UniformUpdateFrequency updateFrequency, Supplier<Vector2i> supplier) {
-		super(name, updateFrequency, new Vector2i(), supplier);
+	public Int2VectorCachedUniform(String name, UniformUpdateFrequency updateFrequency, Supplier<? extends Vector2ic> supplier) {
+		super(name, updateFrequency, new Vector2i(), adapt(supplier));
+	}
+
+	private static Supplier<Vector2i> adapt(Supplier<? extends Vector2ic> supplier) {
+		final Vector2i scratch = new Vector2i();
+		return () -> {
+			final Vector2ic v = supplier.get();
+			return scratch.set(v.x(), v.y());
+		};
 	}
 
 	@Override

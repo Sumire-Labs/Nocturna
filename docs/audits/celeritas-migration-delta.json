@@ -1,6 +1,6 @@
 {
   "revision": "26f000239eb8ddf7ee191f0ddf369147e3c92ef6",
-  "identical": 1518,
+  "identical": 1506,
   "changes": [
     {
       "path": "buildSrc/build.gradle.kts",
@@ -155,7 +155,7 @@
     {
       "path": "modern/build.mdg.gradle.kts",
       "upstream": "fc793feb77018a5496e0e45940650592266ea42d23bdb56aae9dd625ba47eee7",
-      "local": "c1ac4b9ceed3f0e76e9ddc6f10321493a980693996180ba49632f22c373ce270"
+      "local": "38abaee5abec0dfa10ccfe4c869930f01834bbdd27eb8780b09e8e66af718d4c"
     },
     {
       "path": "modern/src/main/flywheel_java/net/irisshaders/iris/compat/flywheel/Colorwheel.java",
@@ -350,7 +350,7 @@
     {
       "path": "modern/src/main/shaders_java/net/irisshaders/iris/compat/sodium/impl/options/IrisSodiumOptions.java",
       "upstream": "f759f3dd1fd32c7b664be8b58b9ac0e7025dbefc31f43ccd72ba989ca51b6d8c",
-      "local": "c73d7fbb0486873340227f85740896bcb2cb4dbb4a752b260f3d56cb1c1abe30"
+      "local": "1398b1084452abce974f71503c3df0e4b43e70af2afdaa87f402d2fb3a37d83c"
     },
     {
       "path": "modern/src/main/shaders_java/net/irisshaders/iris/compat/sodium/impl/shader_overrides/IrisChunkProgramOverrides.java",
@@ -393,6 +393,16 @@
       "local": "903f632f8e53f11e334f8a6f30a4077f40508cc76672c79f607fd873a5809997"
     },
     {
+      "path": "modern/src/main/shaders_java/net/irisshaders/iris/gl/uniform/DynamicLocationalUniformHolder.java",
+      "upstream": "95ec3b4ca1d98718d2eabebf141f1d48ad7300a56a9fb48d5b816640040679e9",
+      "local": "72109cd905e909ed68d4ed35120b870ff3b5af6f546ba71204219d97d9d86a46"
+    },
+    {
+      "path": "modern/src/main/shaders_java/net/irisshaders/iris/gl/uniform/DynamicUniformHolder.java",
+      "upstream": "168babfbfaf6e99132a1ab69b42b457dbc6a37088737c67cdf9605d5f244c88c",
+      "local": "305298057cd1d524d2b6623845164d4ec1da63c76c456797db61f4c637519b81"
+    },
+    {
       "path": "modern/src/main/shaders_java/net/irisshaders/iris/gl/uniform/FloatUniform.java",
       "upstream": "bd66bf6f70dca1e89aaa393a0a1feba0905ddc8ffe0b74ef1eb80feb7cec90d9",
       "local": "57ddd9f912d9a9aaee66bf354a6f8fd2286b04302d39d7900e940ef6cc8894be"
@@ -401,6 +411,11 @@
       "path": "modern/src/main/shaders_java/net/irisshaders/iris/gl/uniform/IntUniform.java",
       "upstream": "7a669af2b82a027c8728cadb071203d6070239d6e5937bd4b619ad5860b25cd5",
       "local": "521231d07d1b9dafc2cd683e162ccab1158e643e30c815cdf04d14901248f7e0"
+    },
+    {
+      "path": "modern/src/main/shaders_java/net/irisshaders/iris/gl/uniform/LocationalUniformHolder.java",
+      "upstream": "044045e44fda1a6340708fba44474a547c1b13b4168986df67bacda18fdea1a4",
+      "local": "cfb55f146a53f0755b18c39909435f14aa0935e4f0efe111327de23820b52b64"
     },
     {
       "path": "modern/src/main/shaders_java/net/irisshaders/iris/gl/uniform/MatrixFromFloatArrayUniform.java",
@@ -418,9 +433,14 @@
       "local": "f516caf5f34af16d67bda7e0d892d9f39f98b536aa717fac6828743552e8cb9f"
     },
     {
+      "path": "modern/src/main/shaders_java/net/irisshaders/iris/gl/uniform/UniformHolder.java",
+      "upstream": "54c2c706b148e9955d3fdcd2c5d340e4ca182eaa990cd717fe3e38bd9181305d",
+      "local": "ebbe3ce376eb02c047f753a243d0df6a8c1754f1c6500c7c82abcaeb5a8e085c"
+    },
+    {
       "path": "modern/src/main/shaders_java/net/irisshaders/iris/gl/uniform/Vector2IntegerJomlUniform.java",
       "upstream": "d97c9885bdfeb79e3d21a947da37b7141c73ecec2e2618a39edb635dcbb6ed07",
-      "local": "5de28cf0f3f5d84ef5ea6973a67d3e1d6ae086c1ed00ad05bb66aa6836a63b25"
+      "local": "4368b5e51f859a4e2bd7974867a424eeac2df4ad0020723fcecb8f10919a7a0d"
     },
     {
       "path": "modern/src/main/shaders_java/net/irisshaders/iris/gl/uniform/Vector2Uniform.java",
@@ -435,7 +455,7 @@
     {
       "path": "modern/src/main/shaders_java/net/irisshaders/iris/gl/uniform/Vector3Uniform.java",
       "upstream": "8aa8e98d7ff86b7c3ad6f5baec6f049b30fd871c83a802f41d8e8b76dce21217",
-      "local": "875414ac7b4e40fe7c3ea146ec6e10a704d82a0d87e95b95e788698770c49fb4"
+      "local": "ee7bab298521f97a634bce3c7fd078a275233d9b833ee2f517b624e603cba702"
     },
     {
       "path": "modern/src/main/shaders_java/net/irisshaders/iris/gl/uniform/Vector4ArrayUniform.java",
@@ -445,17 +465,27 @@
     {
       "path": "modern/src/main/shaders_java/net/irisshaders/iris/gl/uniform/Vector4IntegerJomlUniform.java",
       "upstream": "e02e1ff37645eeccf6e5d73c615c37e847e3fb2946cfd530f3183f5477066d94",
-      "local": "c314a4b84280de5e901087af1f2f09c2b1ca904d5a01c6aee8fb923fc825d309"
+      "local": "ab0314bc3f4ee88a216d8ef75ac4e9f224035714c70263ab28b113a0c1732cac"
     },
     {
       "path": "modern/src/main/shaders_java/net/irisshaders/iris/gl/uniform/Vector4Uniform.java",
       "upstream": "bf4a6a3fa53b921a17761692df62ddda14b8d916d878fd501f29b2a3a71b9b45",
-      "local": "32fbdec53b60c85022636f26f7f7437225388db939d6d5adb757d45b01881947"
+      "local": "7e3f08c16913cc7bd19c1b170ba2999ba4192c7859bb9963a223d17671c167b3"
     },
     {
       "path": "modern/src/main/shaders_java/net/irisshaders/iris/gl/uniform/Vector4UnsignedIntegerUniform.java",
       "upstream": "8c112c654e5d2314226d1d7713400e1c2b467f182ec4bba9a08535b09a4048c7",
-      "local": "216d8c0296c1634d929ba8c70c738f5e6956c4529ce35f7a03a81d588de6894c"
+      "local": "cd9a1c25b9d3946288858fd10a7d0df6d32a4bccfb37e9814f2bf37c4a3dccd9"
+    },
+    {
+      "path": "modern/src/main/shaders_java/net/irisshaders/iris/pathways/scaling/RenderScale.java",
+      "upstream": "e2764981686cb342d34015ffc327253ca1912a6f5a5628b16e3e8088724b3e0b",
+      "local": "084d33de8805ba43740f898f9fff7cea2b95c466c6c33531ef99fa6f21810dc6"
+    },
+    {
+      "path": "modern/src/main/shaders_java/net/irisshaders/iris/pathways/scaling/UpscaleMode.java",
+      "upstream": "027dd68ffe06e9cd2056db2c74cbc818077ec2be5eb146184705a31a20a527ed",
+      "local": "c485a44c5bd3a87ca7dc5de176260f9c4de9fafc8c1f28cc1882b84b99c88827"
     },
     {
       "path": "modern/src/main/shaders_java/net/irisshaders/iris/pipeline/FinalPassRenderer.java",
@@ -465,7 +495,7 @@
     {
       "path": "modern/src/main/shaders_java/net/irisshaders/iris/pipeline/IrisRenderingPipeline.java",
       "upstream": "89f1a72f1dfd2f394aae84a7873e7f7fbd609a690d1eb7633fd6cf68a737c7db",
-      "local": "13fe944a3dacee2d563ebc9bf30c38beef173cdbbaed4cc4aeb0af889e551e44"
+      "local": "abb251fcbfdb7e9d2f3e99e6c85ecb2e72b7a49767be757863686c217f16e97f"
     },
     {
       "path": "modern/src/main/shaders_java/net/irisshaders/iris/pipeline/foss_transform/CompTransformer.java",
@@ -513,9 +543,39 @@
       "local": "4d9cc41390efebd3449054a9758e9572d0e6855e6a3b83bf10b6978c54d9eb39"
     },
     {
+      "path": "modern/src/main/shaders_java/net/irisshaders/iris/shaderpack/properties/ShaderProperties.java",
+      "upstream": "e982a175bfedcc6b7a9d6fd759b1be484c55a0f24dcb77bfbb89d2507fe2bdcf",
+      "local": "f3d387207b8fec8ce959062490b19b38814b19678242496352321c113e5e5b84"
+    },
+    {
+      "path": "modern/src/main/shaders_java/net/irisshaders/iris/uniforms/CommonUniforms.java",
+      "upstream": "d63ab3884706c338f8aa0b6be851a0ee490832e84134ec9946fada8ad4fdca70",
+      "local": "d7e6910a5b6cf9274babc7a5a0612100691f00eeebca9756b857aed135634d9e"
+    },
+    {
       "path": "modern/src/main/shaders_java/net/irisshaders/iris/uniforms/VanillaEnvironment.java",
       "upstream": "5f0b672888b1f67ddf06a2f6e72ff34f172127047783cfdfaa5a626a614e0532",
       "local": "e503ae353dfad1a397f9f9d0c4cd461602530069dccf5422205195b5397a405c"
+    },
+    {
+      "path": "modern/src/main/shaders_java/net/irisshaders/iris/uniforms/custom/CustomUniformFixedInputUniformsHolder.java",
+      "upstream": "a8b502ab1be3810b6f435aed0020a9a1198a46e69bda67e3a72be04cac599fbe",
+      "local": "c1273c677704719493d7ad7e9f005f78c8973d501decc8b557afb1e74a4ad325"
+    },
+    {
+      "path": "modern/src/main/shaders_java/net/irisshaders/iris/uniforms/custom/cached/Float4VectorCachedUniform.java",
+      "upstream": "5a09313f59a8c3c105f38122274d83e577831f8a7d5941adec0241d7b56b7d57",
+      "local": "4d1b8754a7dfabcb99a554ee7491f722250e4080e7b3f696b642598d9bd3edcd"
+    },
+    {
+      "path": "modern/src/main/shaders_java/net/irisshaders/iris/uniforms/custom/cached/Int2VectorCachedUniform.java",
+      "upstream": "2b8c3ce8e707946272edec00f2f4c0433cef0f8b0e69e499596d0d58d1279a32",
+      "local": "1d5dd5f950b384837835e62c396f6afd524ce99dec53565a7e27f00bede74a68"
+    },
+    {
+      "path": "modern/src/main/shaders_java/net/irisshaders/iris/uniforms/transforms/SmoothedVec2f.java",
+      "upstream": "6316f3bab31e2e8c6527bbacac8b3cfff56032720f8eea6c29ff530af2b21596",
+      "local": "e782f279704bc38f813d45bc5ae91061439d8dbb92fd983734646027181b9152"
     },
     {
       "path": "modern/src/main/shaders_modern_java/net/irisshaders/iris/gui/screen/ShaderPackScreen.java",
@@ -575,7 +635,7 @@
     {
       "path": "modern/src/main/shaders_resources/assets/iris/lang/en_us.json",
       "upstream": "12d238687a9f400285e1687862507f5ac8b42ccab43dee56b9610ae6fe3d5d73",
-      "local": "feac0e2c9770fd7b3c5e2adb64c2380bc7a286418e77c79c483892108014a500"
+      "local": "cb70833cb0b5f478b2abfceb53d15648a242e5b77b6e1b114038a20499e380cc"
     },
     {
       "path": "modern/src/main/shaders_resources/assets/iris/lang/es_ar.json",
@@ -620,7 +680,7 @@
     {
       "path": "modern/src/main/shaders_resources/assets/iris/lang/ja_jp.json",
       "upstream": "0f65d5d2a55e46adc2deb8f1cba62305da36285c480f8fa50e26481243754226",
-      "local": "70d4f3072e96654974c55535dbf80cb48169c6d48fdde3185f080070c3fdf182"
+      "local": "a2039860f1f2b817c1280a41025d3d717da71b6589afd6e187c29f09a383a810"
     },
     {
       "path": "modern/src/main/shaders_resources/assets/iris/lang/ko_kr.json",
@@ -1963,7 +2023,7 @@
     },
     {
       "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/config/ReeseSodiumOptionsConfig.java",
-      "local": "951c21f95d2b95811e1d1e03a9946e4b941c98c681f28f6c9a444adaf2169b14"
+      "local": "d1bda3287b250efc942ab3b799c0c5b85df5d2f94a5b87ea578fb65fe9eda04f"
     },
     {
       "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/config/ReeseSodiumOptionsConfigEntryPoint.java",
@@ -2039,7 +2099,7 @@
     },
     {
       "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/frame/option/OptionTooltipController.java",
-      "local": "cd1e63c2e5bd09dd749ceb586e59510c1c2f573f30165ea4b87a650b7eaee64a"
+      "local": "c7126fe3a5bfc64fa4c52c463d539186acaa59ddf90a42292acdd8c5797f9928"
     },
     {
       "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/frame/option/PageFrame.java",
@@ -2251,7 +2311,7 @@
     },
     {
       "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/compat/GuiGraphicsExtractor.java",
-      "local": "b7c4d1a723a453c40e48e09a7d8763a48f1c54a164e48057fc8eab0b3be97497"
+      "local": "fbc6f2ed0474cde9a68bc1ec146252638b3a76deed49f96633e86aae4bd87723"
     },
     {
       "path": "modern/src/main/rso_java/org/embeddedt/embeddium/impl/gui/rso/compat/InputState.java",
@@ -2626,6 +2686,26 @@
       "local": "c0291b8a0f442f0a93c53e1fb37fa8d20c318c634a0031d5f15dbda1fb2eada9"
     },
     {
+      "path": "modern/src/main/shaders_java/net/irisshaders/iris/pathways/scaling/temporal/FsrNative.java",
+      "local": "3a28e9e0e78063b2cfbdb97ab51f929ba2784025ba1e558ac508137237aeca4b"
+    },
+    {
+      "path": "modern/src/main/shaders_java/net/irisshaders/iris/pathways/scaling/temporal/TemporalCamera.java",
+      "local": "813ccb43276c91e3418484e9bb938c0c49c52085672f5fe2ebf43a89bc92bcc1"
+    },
+    {
+      "path": "modern/src/main/shaders_java/net/irisshaders/iris/pathways/scaling/temporal/TemporalFsrUpscaler.java",
+      "local": "0a75b3d018a3e913d622cc0dbd625d9018cbbbb6217b6481cc9cfe5a2595420c"
+    },
+    {
+      "path": "modern/src/main/shaders_java/net/irisshaders/iris/pathways/scaling/temporal/TemporalPackConfig.java",
+      "local": "b7c55925e699ee04cc9fdd02f0c4397d5c72c2c346743426da51d3a9218b47bb"
+    },
+    {
+      "path": "modern/src/main/shaders_java/net/irisshaders/iris/pathways/scaling/temporal/TemporalUpscaling.java",
+      "local": "b520b453da787d8934958a14f95e504ae736a3d64d6a7a85aac6747ca5928ec2"
+    },
+    {
       "path": "modern/src/main/shaders_java/net/irisshaders/iris/pipeline/foss_transform/TextureTransformer.java",
       "local": "634f3102f6318c30005b4ba27a6f7ca34c1b9eb3e22a558bceab55ab80f35871"
     },
@@ -2662,8 +2742,16 @@
       "local": "90e6a6f5ad1e051a6ae2f133e9796e035bfb04c837d630895caae13755dfd57d"
     },
     {
+      "path": "modern/src/main/shaders_resources/licenses/fidelityfx-api.txt",
+      "local": "785e3fef5eab34774a89c107721c078a6c7bcee89534d9dede84258f0b47eb46"
+    },
+    {
+      "path": "modern/src/main/shaders_resources/native/windows-x64/nocturna_fsr.dll",
+      "local": "be5b7a87807e8c276a1d8798ba49354fb979057adb748606e36ab7c00df0622b"
+    },
+    {
       "path": "modern/src/shaderProbe/java/org/embeddedt/embeddium/shaderprobe/ShaderPackSmoke.java",
-      "local": "de9d1b2ca2b379622d662d3ae3225e272c5063f9c1d013fc701800bb382027c2"
+      "local": "30465c5b87c641477277ef08be5a5e095387d8409696eb0d123cad856bb72a9f"
     },
     {
       "path": "modern/src/shaderProbe/java/org/embeddedt/embeddium/shaderprobe/mixin/CompileCounterMixin.java",
@@ -2750,6 +2838,18 @@
       "local": "c4ad03f7971822e028a5198156b52cd722bc6e268bf447bdad547c588322498e"
     },
     {
+      "path": "modern/src/test/java/net/irisshaders/iris/pathways/scaling/FsrRuntimeTest.java",
+      "local": "b11b01d40dc9be1b8250e9bc83554a09f06452ba8fef1e74c5ccb465f97d193b"
+    },
+    {
+      "path": "modern/src/test/java/net/irisshaders/iris/pathways/scaling/TemporalCameraTest.java",
+      "local": "42629dcc8032fd385950420784c197d9ee86d6223a15136bc6582478a3e0fc13"
+    },
+    {
+      "path": "modern/src/test/java/net/irisshaders/iris/pathways/scaling/TemporalPackConfigTest.java",
+      "local": "d49c9c7767a03e401970cce9008b682903cded24a154aef6fde632f805154631"
+    },
+    {
       "path": "modern/src/test/java/net/irisshaders/iris/pipeline/foss_transform/CompatibilityVaryingTest.java",
       "local": "5eaf2c14e7d8d064e3af26bb5e00eeefd216f489ba8c6ce92efde253b1db6c2a"
     },
@@ -2764,6 +2864,10 @@
     {
       "path": "modern/src/test/java/net/irisshaders/iris/texture/pbr/PBRResourceIndexTest.java",
       "local": "2753beb7230b92c71932643fd114494f747cd106290a90b615045d8b465aa3f2"
+    },
+    {
+      "path": "modern/src/test/java/net/irisshaders/iris/uniforms/custom/cached/UniformSupplierReuseTest.java",
+      "local": "a1523da78dbd7db72621d32fafa31294e3122a3cd96576cc68a07f3b2197631e"
     },
     {
       "path": "modern/src/test/java/org/embeddedt/embeddium/impl/build/VersionTokenTest.java",
@@ -2859,7 +2963,7 @@
     },
     {
       "path": "modern/src/validation/java/org/embeddedt/embeddium/validation/MigrationValidation.java",
-      "local": "ddb6620a3d1999d6c3de40f9067a2a5b5b6d275573291172039b8283f2d2360f"
+      "local": "05cac7c4bd85830441ac79a6f595f4ffeaf26fc5cb1b83bb0fda128c59a91f8a"
     },
     {
       "path": "modern/src/validation/java/org/embeddedt/embeddium/validation/PBRResourceIndexValidation.java",
@@ -2872,6 +2976,10 @@
     {
       "path": "modern/src/validation/java/org/embeddedt/embeddium/validation/RsoAddonWidgetValidation.java",
       "local": "711d4c05859b75585ed5de62e577ef4206db64d5d786a5d867136f48a449c301"
+    },
+    {
+      "path": "modern/src/validation/java/org/embeddedt/embeddium/validation/RsoOverlayValidation.java",
+      "local": "479ec39c29b2bd22b33a4bcb10778d839f94c159ba076c12b8b8733f849e3ecd"
     },
     {
       "path": "modern/src/validation/java/org/embeddedt/embeddium/validation/RsoParityValidation.java",
@@ -2887,7 +2995,7 @@
     },
     {
       "path": "modern/src/validation/java/org/embeddedt/embeddium/validation/RsoValidation.java",
-      "local": "021ecaf64537891f261437050279d40f60334d925c0e6a0680e4c08fe19e8f17"
+      "local": "1abbbb4b13f25d3724fb48f94cd201bdb2eaed449b323c6bafcf4294b5b0aef9"
     },
     {
       "path": "modern/src/validation/java/org/embeddedt/embeddium/validation/RsoVisualValidation.java",
@@ -2900,6 +3008,10 @@
     {
       "path": "modern/src/validation/java/org/embeddedt/embeddium/validation/ShaderCacheValidation.java",
       "local": "27a403ff483af5cdb461e728ac5fb548976ae587ac5892e454c8a0bc7e2923cc"
+    },
+    {
+      "path": "modern/src/validation/java/org/embeddedt/embeddium/validation/UniformSupplierValidation.java",
+      "local": "1f4fe75b815219e563170002a2260b6e47611b964f85f04abc06e17b170581e1"
     },
     {
       "path": "modern/src/validation/java/org/embeddedt/embeddium/validation/mixin/FismShadowPassMixin.java",

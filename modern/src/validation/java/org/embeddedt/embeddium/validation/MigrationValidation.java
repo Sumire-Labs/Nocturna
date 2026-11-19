@@ -104,6 +104,7 @@ public class MigrationValidation {
                 vertices();MatrixUniformValidation.verify();ShaderCacheValidation.verify();PBRResourceIndexValidation.verify();
                 HorizonValidation.verify();
                 RetainedProgramsValidation.verify();
+                UniformSupplierValidation.verify();
                 FismValidation.verify();
                 org.embeddedt.embeddium.validation.weather.WeatherGeometryValidation.verify();gui(mc);
                 ShaderCachePackValidation.prepare();stage=1;

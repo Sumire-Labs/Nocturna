@@ -3,6 +3,7 @@ package net.irisshaders.iris.gl.uniform;
 import net.irisshaders.iris.gl.IrisRenderSystem;
 import net.irisshaders.iris.gl.state.ValueUpdateNotifier;
 import org.joml.Vector4i;
+import org.joml.Vector4ic;
 
 import java.util.function.Supplier;
 
@@ -15,14 +16,14 @@ import java.util.function.Supplier;
  */
 public class Vector4UnsignedIntegerUniform extends Uniform {
     private final Runnable updateListener = uploadWhileBound(this::updateValue);
-	private final Supplier<Vector4i> value;
+	private final Supplier<? extends Vector4ic> value;
 	private final Vector4i cachedValue;
 
-	Vector4UnsignedIntegerUniform(int location, Supplier<Vector4i> value) {
+	Vector4UnsignedIntegerUniform(int location, Supplier<? extends Vector4ic> value) {
 		this(location, value, null);
 	}
 
-	Vector4UnsignedIntegerUniform(int location, Supplier<Vector4i> value, ValueUpdateNotifier notifier) {
+	Vector4UnsignedIntegerUniform(int location, Supplier<? extends Vector4ic> value, ValueUpdateNotifier notifier) {
 		super(location, notifier);
 
 		this.cachedValue = new Vector4i();
@@ -39,11 +40,11 @@ public class Vector4UnsignedIntegerUniform extends Uniform {
 	}
 
 	private void updateValue() {
-		Vector4i newValue = value.get();
+		Vector4ic newValue = value.get();
 
 		if (dirty || !newValue.equals(cachedValue)) {
             dirty = false;
-			cachedValue.set(newValue);
+			cachedValue.set(newValue.x(), newValue.y(), newValue.z(), newValue.w());
 			IrisRenderSystem.uniform4ui(this.location, cachedValue.x, cachedValue.y, cachedValue.z, cachedValue.w);
 		}
 	}

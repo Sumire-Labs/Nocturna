@@ -3,12 +3,12 @@ package net.irisshaders.iris.gl.uniform;
 import net.irisshaders.iris.parsing.UniformType;
 import org.joml.Matrix4f;
 import org.joml.Vector2f;
-import org.joml.Vector2i;
+import org.joml.Vector2ic;
 import org.joml.Vector3d;
 import org.joml.Vector3f;
 import org.joml.Vector3i;
-import org.joml.Vector4f;
-import org.joml.Vector4i;
+import org.joml.Vector4fc;
+import org.joml.Vector4ic;
 
 import java.util.OptionalInt;
 import java.util.function.BooleanSupplier;
@@ -64,7 +64,7 @@ public interface LocationalUniformHolder extends UniformHolder {
 	}
 
 	@Override
-	default LocationalUniformHolder uniform2i(UniformUpdateFrequency updateFrequency, String name, Supplier<Vector2i> value) {
+	default LocationalUniformHolder uniform2i(UniformUpdateFrequency updateFrequency, String name, Supplier<? extends Vector2ic> value) {
 		location(name, UniformType.VEC2I).ifPresent(id -> addUniform(updateFrequency, new Vector2IntegerJomlUniform(id, value)));
 
 		return this;
@@ -85,7 +85,7 @@ public interface LocationalUniformHolder extends UniformHolder {
 	}
 
 	@Override
-	default LocationalUniformHolder uniformTruncated3f(UniformUpdateFrequency updateFrequency, String name, Supplier<Vector4f> value) {
+	default LocationalUniformHolder uniformTruncated3f(UniformUpdateFrequency updateFrequency, String name, Supplier<? extends Vector4fc> value) {
 		location(name, UniformType.VEC3).ifPresent(id -> addUniform(updateFrequency, Vector3Uniform.truncated(id, value)));
 
 		return this;
@@ -99,7 +99,7 @@ public interface LocationalUniformHolder extends UniformHolder {
 	}
 
 	@Override
-	default LocationalUniformHolder uniform4f(UniformUpdateFrequency updateFrequency, String name, Supplier<Vector4f> value) {
+	default LocationalUniformHolder uniform4f(UniformUpdateFrequency updateFrequency, String name, Supplier<? extends Vector4fc> value) {
 		location(name, UniformType.VEC4).ifPresent(id -> addUniform(updateFrequency, new Vector4Uniform(id, value)));
 
 		return this;
@@ -110,7 +110,7 @@ public interface LocationalUniformHolder extends UniformHolder {
 	 * confused with a {@code uniform4i} for genuine {@code ivec4} uniforms, which this codebase
 	 * does not currently need at this (frequency-based, non-dynamic) call site.
 	 */
-	default LocationalUniformHolder uniform4ui(UniformUpdateFrequency updateFrequency, String name, Supplier<Vector4i> value) {
+	default LocationalUniformHolder uniform4ui(UniformUpdateFrequency updateFrequency, String name, Supplier<? extends Vector4ic> value) {
 		location(name, UniformType.VEC4UI).ifPresent(id -> addUniform(updateFrequency, new Vector4UnsignedIntegerUniform(id, value)));
 
 		return this;
