@@ -115,9 +115,11 @@ public class IrisSodiumOptions {
 	public static OptionImpl<IrisConfig, UpscaleMode> createUpscaleModeButton() {
 		return OptionImpl.createBuilder(UpscaleMode.class, irisOpts)
 			.setName(TextComponent.translatable("options.iris.upscaleMode"))
-			.setTooltip(TextComponent.translatable("options.iris.upscaleMode.sodium_tooltip"))
+			.setTooltip(TextComponent.literal(net.minecraft.client.resources.language.I18n.get("options.iris.upscaleMode.sodium_tooltip")
+				+ "\n" + net.irisshaders.iris.pathways.scaling.temporal.TemporalUpscaling.status()))
 			.setControl(option -> new CyclingControl<>(option, UpscaleMode.class,
-				new TextComponent[]{TextComponent.literal("Bilinear"), TextComponent.literal("FSR 1.0")}))
+				new TextComponent[]{TextComponent.literal("Bilinear"), TextComponent.literal("FSR 1.0"),
+					TextComponent.literal("FSR 2"), TextComponent.literal("FSR 3"), TextComponent.literal("FSR 4.1")}))
 			.setBinding((options, value) -> {
 					IrisVideoSettings.upscaleMode = value;
 					RenderScale.onSettingsChanged();
@@ -141,7 +143,7 @@ public class IrisSodiumOptions {
 				options -> IrisVideoSettings.upscaleSharpness)
 			.setImpact(OptionImpact.LOW)
 			.setEnabledPredicate(() -> IrisVideoSettings.renderScale.isScaled()
-				&& IrisVideoSettings.upscaleMode == UpscaleMode.FSR)
+				&& IrisVideoSettings.upscaleMode != UpscaleMode.BILINEAR)
 			.build();
 	}
 

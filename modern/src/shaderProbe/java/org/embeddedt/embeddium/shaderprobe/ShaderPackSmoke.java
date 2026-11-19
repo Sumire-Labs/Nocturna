@@ -44,6 +44,10 @@ public class ShaderPackSmoke {
             if(stage==0&&(mc.screen instanceof TitleScreen||mc.screen instanceof AccessibilityOnboardingScreen)) {
                 stage=1;
                 var pack=Path.of(System.getProperty("nocturna.probe.pack"));
+                String mode=System.getProperty("nocturna.probe.upscaleMode", "FSR");
+                String scale=System.getProperty("nocturna.probe.renderScale", "NATIVE");
+                configureUpscaling(mode,scale);
+                result.put("upscaleMode",mode);result.put("renderScale",scale);
                 result.put("pack",pack.getFileName().toString());result.put("label",System.getProperty("nocturna.probe.label"));
                 result.put("java",System.getProperty("java.version"));
                 result.put("gpu",org.lwjgl.opengl.GL11C.glGetString(org.lwjgl.opengl.GL11C.GL_RENDERER));
@@ -71,9 +75,9 @@ public class ShaderPackSmoke {
                     var raised=flat.withBiomeAndLayers(layers,flat.structureOverrides(),flat.getBiome());
                     return dimensions.replaceOverworldGenerator(registries,new net.minecraft.world.level.levelgen.FlatLevelSource(raised));
                 });
-            } else if(stage>0&&stage<7&&mc.level!=null&&mc.player!=null&&mc.screen==null) {
+            } else if(stage>0&&stage!=7&&stage<=13&&mc.level!=null&&mc.player!=null&&mc.screen==null) {
                 if(!scene){scene=true;buildScene(mc);}
-                if(++settled<100)return;settled=0;requirePipeline();
+                if(++settled<100)return;settled=0;if(stage!=12)requirePipeline();
                 if(stage==1) {
                     capture(mc,"dry");result.put("coldTotalStageCompiles",compiles.get());setRain(mc,true);stage=2;
                 } else if(stage==2) {
@@ -92,9 +96,28 @@ public class ShaderPackSmoke {
                     try{Iris.getIrisConfig().getClass().getMethod("setSaveCompiledShaders",boolean.class).invoke(Iris.getIrisConfig(),false);}
                     catch(NoSuchMethodException ignored){}
                     compiles.set(0);Iris.reload();requirePipeline();stage=6;
-                } else {
+                } else if(stage==6) {
                     capture(mc,"source-reload");result.put("sourceReloadStageCompiles",compiles.get());
-                    result.put("success",true);finish(mc);stage=7;
+                    if(Boolean.getBoolean("nocturna.probe.temporalLifecycle")) {
+                        configureUpscaling(System.getProperty("nocturna.probe.upscaleMode"),"NATIVE");stage=8;
+                    } else {result.put("success",true);finish(mc);stage=7;}
+                } else if(stage==8) {
+                    capture(mc,"native-scale");
+                    configureUpscaling(System.getProperty("nocturna.probe.upscaleMode"),"QUALITY");stage=9;
+                } else if(stage==9) {
+                    capture(mc,"restore-scaled");
+                    configureUpscaling("FSR","QUALITY");stage=10;
+                } else if(stage==10) {
+                    capture(mc,"spatial-filter");
+                    configureUpscaling(System.getProperty("nocturna.probe.upscaleMode"),"QUALITY");stage=11;
+                } else if(stage==11) {
+                    capture(mc,"restore-temporal");
+                    Iris.getIrisConfig().setShadersEnabled(false);Iris.getIrisConfig().save();Iris.reloadAfterToggle();stage=12;
+                } else if(stage==12) {
+                    capture(mc,"shaders-off");
+                    Iris.getIrisConfig().setShadersEnabled(true);Iris.getIrisConfig().save();Iris.reloadAfterToggle();stage=13;
+                } else if(stage==13) {
+                    capture(mc,"shaders-on");result.put("success",true);finish(mc);stage=7;
                 }
             }
         } catch(Throwable e) {
@@ -128,6 +151,19 @@ public class ShaderPackSmoke {
     }
 
     private void capture(Minecraft mc,String name) throws Exception {
+        boolean temporal=false;
+        String temporalStatus="Temporal FSR is not present in this renderer";
+        try {
+            var api=Class.forName("net.irisshaders.iris.pathways.scaling.temporal.TemporalUpscaling");
+            temporal=(boolean)api.getMethod("isReady").invoke(null);
+            temporalStatus=(String)api.getMethod("status").invoke(null);
+        } catch(ClassNotFoundException ignored) { }
+        result.put(name+"TemporalActive",temporal);
+        result.put(name+"TemporalStatus",temporalStatus);
+        String expected=System.getProperty("nocturna.probe.expectTemporal", "");
+        boolean expectedActive=expected.equals("active")&&!Set.of("native-scale","spatial-filter","shaders-off").contains(name);
+        if(!expected.isEmpty() && temporal!=expectedActive)throw new AssertionError("Unexpected temporal state: "+result.get(name+"TemporalStatus"));
+        verifyTemporalUniforms(name,temporal);
         result.put(name+"RainStrength",mc.level.getRainLevel(1));
         result.put(name+"Biome",mc.level.getBiome(mc.player.blockPosition()).unwrapKey().orElseThrow().location().toString());
         try {
@@ -142,6 +178,55 @@ public class ShaderPackSmoke {
         int error=org.lwjgl.opengl.GL11C.glGetError();result.put(name+"GlError",error);
         if(error!=0)throw new AssertionError("OpenGL error "+error+" in "+name);
         System.out.println("SHADER PROBE "+result.get("pack")+" "+name+" compiles="+compiles.get());
+    }
+
+    /** Read the real linked program values, not only the CPU enabled flag. */
+    private void verifyTemporalUniforms(String name,boolean enabled) throws Exception {
+        // This fixture consumes both uniforms in composite; the general pack API does not require that placement.
+        if(!Objects.equals(result.get("pack"),"temporal-fsr-pack.zip"))return;
+        if(!(Iris.getPipelineManager().getPipelineNullable() instanceof IrisRenderingPipeline pipeline))return;
+        if(pipeline.getClass().getMethod("getTemporalPackConfig").invoke(pipeline)==null)return;
+        var rendererField=IrisRenderingPipeline.class.getDeclaredField("compositeRenderer");rendererField.setAccessible(true);
+        Object renderer=rendererField.get(pipeline);
+        var passesField=renderer.getClass().getDeclaredField("passes");passesField.setAccessible(true);
+        var programField=Class.forName("net.irisshaders.iris.pipeline.CompositeRenderer$Pass").getDeclaredField("program");
+        programField.setAccessible(true);
+        boolean checked=false;
+        for(Object pass:(Iterable<?>)passesField.get(renderer)) {
+            var program=programField.get(pass);
+            if(program==null)continue;
+            int programId=(int)program.getClass().getMethod("getProgramId").invoke(program);
+            int location=org.lwjgl.opengl.GL20C.glGetUniformLocation(programId,"nocturnaTemporalEnabled");
+            if(location<0)continue;
+            int actual=org.lwjgl.opengl.GL20C.glGetUniformi(programId,location);
+            if((actual!=0)!=enabled)throw new AssertionError("Real shader temporal uniform differs from backend state");
+            result.put(name+"TemporalUniform",actual);
+            try(var stack=org.lwjgl.system.MemoryStack.stackPush()) {
+                int jitterLocation=org.lwjgl.opengl.GL20C.glGetUniformLocation(programId,"nocturnaTemporalJitter");
+                var offset=stack.mallocFloat(2);
+                org.lwjgl.opengl.GL20C.glGetUniformfv(programId,jitterLocation,offset);
+                if(enabled && offset.get(0)==0 && offset.get(1)==0)throw new AssertionError("Shader received no jitter");
+                if(!enabled && (offset.get(0)!=0 || offset.get(1)!=0))throw new AssertionError("Fallback shader received temporal jitter");
+                result.put(name+"TemporalJitter",List.of(offset.get(0),offset.get(1)));
+            }
+            checked=true;
+        }
+        if(!checked)throw new AssertionError("Temporal fixture had no live temporal uniforms");
+    }
+
+    /** Keep the existing probe usable against Celeritas/Oculus revisions without Nocturna's new API. */
+    @SuppressWarnings({"rawtypes","unchecked"})
+    private static void configureUpscaling(String mode,String scale) throws Exception {
+        try {
+            var settings=Class.forName("net.irisshaders.iris.gui.option.IrisVideoSettings");
+            var modeField=settings.getField("upscaleMode");
+            var scaleField=settings.getField("renderScale");
+            modeField.set(null,Enum.valueOf((Class)modeField.getType(),mode));
+            scaleField.set(null,Enum.valueOf((Class)scaleField.getType(),scale));
+            Class.forName("net.irisshaders.iris.pathways.scaling.RenderScale").getMethod("onSettingsChanged").invoke(null);
+        } catch(ClassNotFoundException|NoSuchFieldException ignored) {
+            if(!"FSR".equals(mode)||!"NATIVE".equals(scale))throw new UnsupportedOperationException("Renderer has no requested upscaling API");
+        }
     }
 
     private static void setRain(Minecraft mc,boolean rain) {

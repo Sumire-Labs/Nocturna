@@ -6,6 +6,7 @@ import net.irisshaders.iris.api.v0.IrisApi;
 import net.irisshaders.iris.gl.IrisRenderSystem;
 import net.irisshaders.iris.gui.option.IrisVideoSettings;
 import net.irisshaders.iris.targets.VanillaTargets;
+import net.irisshaders.iris.pathways.scaling.temporal.TemporalUpscaling;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.Mth;
 import org.lwjgl.opengl.GL30C;
@@ -86,6 +87,7 @@ public final class RenderScale {
 		//?}
 
 		active = true;
+		TemporalUpscaling.begin(worldTarget, main);
 		VanillaTargets.bind(worldTarget, true);
 	}
 
@@ -105,7 +107,12 @@ public final class RenderScale {
 
 		RenderTarget main = Minecraft.getInstance().getMainRenderTarget();
 
-		if (IrisVideoSettings.upscaleMode == UpscaleMode.FSR && !fsrUnavailable) {
+		if (TemporalUpscaling.resolve(worldTarget, main)) {
+			VanillaTargets.bind(main, true);
+			return;
+		}
+
+		if (IrisVideoSettings.upscaleMode != UpscaleMode.BILINEAR && !fsrUnavailable) {
 			if (fsr == null) {
 				fsr = FsrUpscaler.createOrNull(main.width, main.height);
 				fsrUnavailable = fsr == null;
@@ -132,6 +139,7 @@ public final class RenderScale {
 	}
 
 	private static void releaseTargets() {
+		TemporalUpscaling.close();
 		if (worldTarget != null) {
 			worldTarget.destroyBuffers();
 			worldTarget = null;
@@ -146,6 +154,7 @@ public final class RenderScale {
 	}
 
 	public static void onSettingsChanged() {
+		TemporalUpscaling.close();
 		if (fsr != null) {
 			fsr.destroy();
 			fsr = null;

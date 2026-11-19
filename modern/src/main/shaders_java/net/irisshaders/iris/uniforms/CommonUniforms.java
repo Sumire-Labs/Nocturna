@@ -115,6 +115,7 @@ public final class CommonUniforms {
 	}
 
 	public static void addNonDynamicUniforms(UniformHolder uniforms, IdMap idMap, PackDirectives directives, FrameUpdateNotifier updateNotifier) {
+		net.irisshaders.iris.pathways.scaling.temporal.TemporalUpscaling.addUniforms(uniforms);
 		CameraUniforms.addCameraUniforms(uniforms, updateNotifier);
 		ViewportUniforms.addViewportUniforms(uniforms);
 		WorldTimeUniforms.addWorldTimeUniforms(uniforms);

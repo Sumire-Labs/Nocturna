@@ -65,5 +65,9 @@
   "options.iris.saveCompiledShaders.off": "コンパイル結果の保存: OFF",
   "options.iris.saveCompiledShaders.tooltip": "次回の読み込みでコンパイル結果を再利用します。シェーダーやドライバーが変わると再コンパイルします。",
   "options.iris.saveCompiledShaders.clear": "保存したコンパイル結果を削除",
-  "options.iris.saveCompiledShaders.unsupported": "このグラフィックスドライバーはコンパイル結果の保存に対応していません。通常どおりコンパイルします。"
+  "options.iris.saveCompiledShaders.unsupported": "このグラフィックスドライバーはコンパイル結果の保存に対応していません。通常どおりコンパイルします。",
+  "options.iris.upscaleMode": "アップスケーリング方式",
+  "options.iris.upscaleMode.sodium_tooltip": "描画画像をウィンドウ解像度へ拡大します。FSR 1.0は既存シェーダーで使用できます。FSR 2・3・4.1には対応シェーダーとWindows x64向けの追加AMDランタイムが必要です。利用できない場合はFSR 1.0を使います。描画倍率100%では無効です。",
+  "options.iris.upscaleSharpness": "アップスケーリングの鮮明度",
+  "options.iris.upscaleSharpness.sodium_tooltip": "FSRで拡大した後の鮮明化の強さです。高くすると細部が強調されますが、シェーダーのノイズも目立ちやすくなります。"
 }

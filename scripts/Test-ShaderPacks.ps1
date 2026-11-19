@@ -8,7 +8,10 @@ param(
     [switch]$DisableCache,
     [switch]$Quick,
     [switch]$Elevated,
-    [switch]$DumpShaders
+    [switch]$DumpShaders,
+    [string]$UpscaleMode = 'FSR',
+    [string]$RenderScale = 'NATIVE',
+    [ValidateSet('', 'active', 'fallback')][string]$ExpectTemporal = ''
 )
 $ErrorActionPreference = 'Stop'
 $PSNativeCommandUseErrorActionPreference = $false
@@ -38,6 +41,9 @@ foreach ($pack in $manifest) {
         "-PshaderProbeQuick=$($Quick.IsPresent.ToString().ToLowerInvariant())",
         "-PshaderProbeElevated=$($Elevated.IsPresent.ToString().ToLowerInvariant())",
         "-PshaderProbeDebug=$($DumpShaders.IsPresent.ToString().ToLowerInvariant())",
+        "-PshaderProbeUpscaleMode=$UpscaleMode",
+        "-PshaderProbeRenderScale=$RenderScale",
+        "-PshaderProbeExpectTemporal=$ExpectTemporal",
         ':modern:1.20.1-forge:runShaderProbeClient', '--no-daemon'
     )
     if ($GradleUserHome) { $arguments += @('--gradle-user-home', $GradleUserHome) }

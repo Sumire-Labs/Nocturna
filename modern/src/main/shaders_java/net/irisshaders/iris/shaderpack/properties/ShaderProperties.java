@@ -56,6 +56,11 @@ import java.util.function.Consumer;
  * values in here & the values parsed from shader source code.
  */
 public class ShaderProperties {
+	private net.irisshaders.iris.pathways.scaling.temporal.TemporalPackConfig temporalPackConfig;
+
+	public net.irisshaders.iris.pathways.scaling.temporal.TemporalPackConfig getTemporalPackConfig() {
+		return temporalPackConfig;
+	}
 	private final Map<String, List<String>> profiles = new LinkedHashMap<>();
 	private final Map<String, List<String>> subScreenOptions = new HashMap<>();
 	private final Map<String, Integer> subScreenColumnCount = new HashMap<>();
@@ -143,6 +148,7 @@ public class ShaderProperties {
 			CeleritasShaders.logger().error("Error loading shaders.properties!", e);
 		}
 
+		temporalPackConfig = net.irisshaders.iris.pathways.scaling.temporal.TemporalPackConfig.parse(preprocessed);
 		preprocessed.forEach((keyObject, valueObject) -> {
 			String key = (String) keyObject;
 			String value = (String) valueObject;

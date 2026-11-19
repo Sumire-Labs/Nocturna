@@ -14,6 +14,8 @@ import org.embeddedt.embeddium.gradle.stonecutter.ModDependencyCollector
 import org.gradle.kotlin.dsl.named
 import java.util.zip.ZipFile
 import java.io.DataInputStream
+import java.security.MessageDigest
+import java.util.HexFormat
 
 plugins {
     // Apply the plugin. This is the TauMC fork of ModDevGradle, see maven.taumc.org.
@@ -466,6 +468,11 @@ val verifyJava17Jar = tasks.register("verifyJava17Jar") {
             }
             check(zip.getEntry("COPYING") != null && zip.getEntry("COPYING.LESSER") != null)
             check(zip.getEntry("UPSTREAM.md") != null)
+            check(zip.getEntry("native/windows-x64/nocturna_fsr.dll") != null) { "Missing optional FSR bridge" }
+            check(zip.getEntry("licenses/fidelityfx-api.txt") != null)
+            check(zip.entries().asSequence().none { it.name.contains("amd_fidelityfx", ignoreCase = true) }) {
+                "AMD's proprietary effect runtime must remain an external optional dependency"
+            }
             check(zip.getEntry("LICENSE-RSO.txt") != null && zip.getEntry("LICENSE-ICU.txt") != null)
             check(zip.getEntry("LICENSE-SDL.txt") != null && zip.getEntry("licenses/sdl/hidapi/LICENSE-bsd.txt") != null)
             listOf("windows/x64/org/lwjgl/sdl/SDL3.dll", "windows/arm64/org/lwjgl/sdl/SDL3.dll",
@@ -482,7 +489,42 @@ val verifyJava17Jar = tasks.register("verifyJava17Jar") {
         logger.lifecycle("Verified {} product classes for Java 17", classes)
     }
 }
-tasks.check { dependsOn(verifyJava17Jar) }
+val verifyFsrBridge = tasks.register("verifyFsrBridge") {
+    group = "verification"
+    val manifestFile = rootProject.file("native/fsr/source-manifest.json")
+    inputs.file(manifestFile)
+    inputs.file(rootProject.file("native/fsr/nocturna_fsr.cpp"))
+    inputs.file(rootProject.file("native/fsr/CMakeLists.txt"))
+    inputs.dir(rootProject.file("native/fsr/vendor"))
+    inputs.file(rootProject.file("modern/src/main/shaders_resources/native/windows-x64/nocturna_fsr.dll"))
+    doLast {
+        val manifest = groovy.json.JsonSlurper().parse(manifestFile) as Map<*, *>
+        val hashes = manifest["sha256"] as Map<*, *>
+        for ((name, expected) in hashes) {
+            val path = name as String
+            val file = rootProject.file(path)
+            val content = if (path.endsWith(".dll")) file.readBytes()
+                else file.readText(Charsets.UTF_8).replace("\r\n", "\n").toByteArray(Charsets.UTF_8)
+            val actual = HexFormat.of().formatHex(MessageDigest.getInstance("SHA-256").digest(content))
+            check(actual == expected) { "Stale FSR bridge source/binary: $path. Rebuild with scripts/Build-FsrBridge.ps1 -UpdateManifest" }
+        }
+        logger.lifecycle("Verified {} FSR bridge source/binary hashes", hashes.size)
+    }
+}
+tasks.named("processResources") { dependsOn(verifyFsrBridge) }
+tasks.check { dependsOn(verifyJava17Jar, verifyFsrBridge) }
+
+// Keep the corresponding source for the bundled LGPL JNI bridge with the source distribution.
+tasks.named<Jar>("sourcesJar") {
+    from(rootProject.file("native/fsr")) {
+        include("*.cpp", "CMakeLists.txt", "README.md", "source-manifest.json", "vendor/**")
+        into("native/fsr")
+    }
+    from(rootProject.file("scripts")) {
+        include("Build-FsrBridge.ps1", "verify-fsr-native.mjs")
+        into("scripts")
+    }
+}
 
 tasks.named("assemble") {
     dependsOn(packageJar)

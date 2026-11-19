@@ -1,0 +1,2 @@
+# Preserve the original whitespace of the unmodified AMD MIT API headers.
+native/fsr/vendor/** -whitespace

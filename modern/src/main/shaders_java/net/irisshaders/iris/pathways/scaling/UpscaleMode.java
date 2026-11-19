@@ -6,5 +6,12 @@ package net.irisshaders.iris.pathways.scaling;
  */
 public enum UpscaleMode {
 	BILINEAR,
-	FSR
+	FSR,
+	FSR2,
+	FSR3,
+	FSR4_1;
+
+	public int temporalFamily() {
+		return switch (this) { case FSR2 -> 2; case FSR3 -> 3; case FSR4_1 -> 4; default -> 0; };
+	}
 }

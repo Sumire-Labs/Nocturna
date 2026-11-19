@@ -1,0 +1,16 @@
+{
+  "sdkRevision": "7539ae8b6568ad29ed78a753404351daf3b5cca7",
+  "bridgeLicense": "LGPL-3.0-or-later",
+  "sdkHeadersLicense": "MIT",
+  "runtimeBundled": false,
+  "textLineEndings": "LF",
+  "sha256": {
+    "native/fsr/nocturna_fsr.cpp": "d80a10267bc8dd0e113489ff99a1d6dbed922944e38ebebe39fe1d4aa957354e",
+    "native/fsr/CMakeLists.txt": "d97059720582081763ac0409cbf819dbef6563a7efd7520021d696b90f6b0ac7",
+    "native/fsr/vendor/api/include/ffx_api.h": "4d9dcf243ef5efbf03340a02f16b51a22053243a22e8a9a0b3ce91c26982b4bf",
+    "native/fsr/vendor/api/include/ffx_api_types.h": "53f07c113a9ba493f297656e4481b6539aed0afc9f3cc8da682aa477d270c46c",
+    "native/fsr/vendor/api/include/dx12/ffx_api_dx12.h": "c9afbc3c4c673723e9e5369a666f0ff54560543b5a93537f8ff453bf1c3bf530",
+    "native/fsr/vendor/upscalers/include/ffx_upscale.h": "13091e7fe5fd9c82b1fb7c044b9f08f664d9653f599d2ea500738709236fca4d",
+    "modern/src/main/shaders_resources/native/windows-x64/nocturna_fsr.dll": "b4415a70ca79f761dc670715bb01298cdd39cd83692e66bd3706649c47530cfc"
+  }
+}

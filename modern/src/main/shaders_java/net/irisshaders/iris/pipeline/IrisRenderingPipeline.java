@@ -118,6 +118,26 @@ import java.util.function.IntFunction;
 import java.util.function.Supplier;
 
 public class IrisRenderingPipeline implements WorldRenderingPipeline, ShaderRenderingPipeline, RenderTargetStateListener {
+	private ImmutableSet<Integer> temporalFinalFlips;
+
+	public net.irisshaders.iris.pathways.scaling.temporal.TemporalPackConfig getTemporalPackConfig() {
+		return pack.getShaderProperties().getTemporalPackConfig();
+	}
+
+	public int getTemporalMotionTexture(int width, int height) {
+		var config = getTemporalPackConfig();
+		if (config == null) throw new IllegalStateException("No temporal shader-pack contract");
+		if (config.motionBuffer() >= renderTargets.getRenderTargetCount()) throw new IllegalStateException("Motion target is unavailable");
+		var target = renderTargets.get(config.motionBuffer());
+		if (target == null || target.getWidth() != width || target.getHeight() != height
+				|| (target.getInternalFormat() != net.irisshaders.iris.gl.texture.InternalTextureFormat.RG16F
+				&& target.getInternalFormat() != net.irisshaders.iris.gl.texture.InternalTextureFormat.RG32F
+				&& target.getInternalFormat() != net.irisshaders.iris.gl.texture.InternalTextureFormat.RGBA16F
+				&& target.getInternalFormat() != net.irisshaders.iris.gl.texture.InternalTextureFormat.RGBA32F)) {
+			throw new IllegalStateException("Temporal motion buffer must be a full render-resolution float RG/RGBA texture");
+		}
+		return temporalFinalFlips.contains(config.motionBuffer()) ? target.getAltTexture() : target.getMainTexture();
+	}
 	private final RenderTargets renderTargets;
 	private final ShaderMap shaderMap;
 	private final CustomUniforms customUniforms;
@@ -343,6 +363,7 @@ public class IrisRenderingPipeline implements WorldRenderingPipeline, ShaderRend
 			customTextureManager.getNoiseTexture(), updateNotifier, centerDepthSampler, flipper, shadowTargetsSupplier, TextureStage.COMPOSITE_AND_FINAL,
 			customTextureManager.getCustomTextureIdMap().getOrDefault(TextureStage.COMPOSITE_AND_FINAL, Object2ObjectMaps.emptyMap()), customTextureManager.getIrisCustomTextures(), customImages,
 			programSet.getPackDirectives().getExplicitFlips("composite_pre"), customUniforms, pendingPrograms);
+		this.temporalFinalFlips = flipper.snapshot();
 		this.finalPassRenderer = new FinalPassRenderer(this, programSet, renderTargets, customTextureManager.getNoiseTexture(), shaderStorageBufferHolder, updateNotifier, flipper.snapshot(),
 			centerDepthSampler, shadowTargetsSupplier,
 			customTextureManager.getCustomTextureIdMap().getOrDefault(TextureStage.COMPOSITE_AND_FINAL, Object2ObjectMaps.emptyMap()), customTextureManager.getIrisCustomTextures(), customImages,
@@ -1318,6 +1339,7 @@ public class IrisRenderingPipeline implements WorldRenderingPipeline, ShaderRend
 
 	@Override
 	public void destroy() {
+		net.irisshaders.iris.pathways.scaling.temporal.TemporalUpscaling.release(this);
 		destroyed = true;
         org.embeddedt.embeddium.impl.render.weather.WeatherRenderer.releaseShaderPack();
         if (instancedWeather != null) instancedWeather.destroy();

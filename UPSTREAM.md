@@ -61,3 +61,15 @@ Compatibility with arbitrary mixins into removed private Embeddium renderer clas
 Mesh appenders should use `Context.vertexConsumerProvider()`; the former raw buffer implementation has changed.
 
 See `docs/celeritas-migration-2026-11-16.md` for verification results and compatibility boundaries.
+
+## Optional temporal FSR
+
+Nocturna's independent LGPL-3.0-or-later OpenGL/D3D12 JNI bridge supports explicit shader-pack
+integration with AMD FSR 2.3.4, 3.1.6 and 4.1.2 on Windows x64 / Java 17. Four unmodified AMD
+MIT public API headers are pinned to SDK commit `7539ae8b6568ad29ed78a753404351daf3b5cca7`;
+see `licenses/fidelityfx-api.txt` and `native/fsr/source-manifest.json`.
+Super Resolution's architecture was reviewed, but no GPL Mod implementation was copied.
+AMD's proprietary signed effect DLL is an external optional runtime, not part of this LGPL source
+or the mod jar. Sources jars include the native bridge's corresponding source and build files.
+Existing packs remain on the original spatial FSR 1 path unless they explicitly implement the
+documented temporal input contract. See `docs/temporal-fsr-2026-11-19.md`.
