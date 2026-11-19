@@ -19,6 +19,22 @@ public final class GuiGraphicsExtractor {
         return graphics;
     }
 
+    /** Keep an overlay above text queued by the 1.20.1 managed GUI renderer. */
+    public void overlay(Runnable draw) {
+        graphics.flush();
+        graphics.pose().pushPose();
+        graphics.pose().translate(0, 0, 400);
+        try {
+            draw.run();
+        } finally {
+            try {
+                graphics.flush();
+            } finally {
+                graphics.pose().popPose();
+            }
+        }
+    }
+
     public void fill(int x, int y, int x2, int y2, int color) {
         graphics.fill(x, y, x2, y2, color);
     }

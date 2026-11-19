@@ -102,6 +102,8 @@ public final class RsoValidation {
                 verifyBindings(mc);
                 verifyInput(mc);
                 verifyGroupCollapse();
+                verifyModGroupCollapse(mc);
+                RsoOverlayValidation.verify(mc);
                 RsoRowValidation.verify(screen);
                 RsoParityValidation.verify(mc, screen);
                 RsoSdlValidation.verify(mc, screen);
@@ -245,8 +247,10 @@ public final class RsoValidation {
         require(options().size() >= 60, "Incomplete Nocturna/RSO registry");
         for (Option option : options()) {
             require(option instanceof OptionExtended, "Option ID metadata mixin missing");
-            if (option instanceof StatefulOption<?> value)
-                require(value.getDefaultValue() != null, "Missing built-in default: " + option.id);
+            if (option instanceof StatefulOption<?> value && value.getDefaultValue() == null) {
+                require(option.id.getPath().startsWith("anonymous/"), "Missing built-in default: " + option.id);
+                require(option.state == null, "Legacy option without defaults entered the reset transaction");
+            }
         }
         var brightness = (IntegerOption) option("minecraft:brightness");
         int applied = brightness.getAppliedValue();
@@ -372,5 +376,54 @@ public final class RsoValidation {
                 collapsed.keyPressed(new KeyEvent(GLFW.GLFW_KEY_SPACE, 0, 0)),
                 "Collapsed group did not accept keyboard activation");
         require(!state.collapsedOptionGroups().contains(key), "Group did not expand");
+    }
+
+    private static void verifyModGroupCollapse(Minecraft mc) {
+        require(new ReeseSodiumOptionsConfig.ConfigData().getTabHeaderCollapseMode()
+                        == ReeseSodiumOptionsConfig.TabHeaderCollapseMode.MANUAL,
+                "New Nocturna configurations must allow manual mod-header collapse");
+        var config = ReeseSodiumOptionsConfig.config();
+        var previousMode = config.getTabHeaderCollapseMode();
+        config.setTabHeaderCollapseMode(ReeseSodiumOptionsConfig.TabHeaderCollapseMode.MANUAL);
+        try {
+            screen.resize(mc, screen.width, screen.height);
+            var state =
+                    (me.flashyreese.mods.reeses_sodium_options.client.gui.state
+                                    .OptionsScreenUiState)
+                            NocturnaOptionsSource.field(screen, "uiState");
+            var header =
+                    descendants(screen.rso$getTabFrame()).stream()
+                            .filter(
+                                    w ->
+                                            w
+                                                    instanceof
+                                                    me.flashyreese.mods.reeses_sodium_options.client
+                                                            .gui.widget.TabHeaderWidget)
+                            .map(
+                                    w ->
+                                            (me.flashyreese.mods.reeses_sodium_options.client.gui
+                                                            .widget.TabHeaderWidget)
+                                                    w)
+                            .findFirst()
+                            .orElseThrow();
+            var mod = (ModOptions) NocturnaOptionsSource.field(header, "modOptions");
+            var collapsed = state.manuallyCollapsedTabGroups();
+            require(!collapsed.contains(mod.configId()), "Mod header fixture started collapsed");
+            require(
+                    header.mouseClicked(
+                            new MouseButtonEvent(header.getCenterX(), header.getCenterY(), 0, 0),
+                            false),
+                    "Mod header did not accept click");
+            require(collapsed.contains(mod.configId()), "Mod pages did not collapse");
+            header.setFocused(true);
+            require(
+                    header.keyPressed(new KeyEvent(GLFW.GLFW_KEY_SPACE, 0, 0)),
+                    "Mod header did not accept Space");
+            require(!collapsed.contains(mod.configId()), "Mod pages did not expand");
+            System.out.println("PASS manual mod-header mouse collapse and keyboard expansion");
+        } finally {
+            config.setTabHeaderCollapseMode(previousMode);
+            screen.resize(mc, screen.width, screen.height);
+        }
     }
 }

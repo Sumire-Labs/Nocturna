@@ -137,19 +137,21 @@ final class OptionTooltipController {
             boxY -= boxHeight + dim.height();
         }
 
-        if (boxY < 0) {
-            boxY = dim.getLimitY();
-        }
-
-        guiGraphics.fill(boxX, boxY, boxX + boxWidth, boxY + boxHeight, 0xE0000000);
+        // A long description may fit neither above nor below the hovered row.
+        // Keep the complete box in the visible page whenever its height permits.
+        int minY = this.viewportBounds.y();
+        int maxY = Math.max(minY, boxYCutoff - boxHeight);
+        int tooltipY = Math.max(minY, Math.min(maxY, boxY));
         int borderColor = ReeseSodiumOptionsConfig.config().isColorThemes() && ReeseSodiumOptionsConfig.config().isThemedTooltipBorders()
                 ? GuiThemes.fromSodium(this.modOptions.theme()).theme
                 : DEFAULT_TOOLTIP_BORDER_COLOR;
-        BaseWidget.border(guiGraphics, boxX, boxY, boxX + boxWidth, boxY + boxHeight, borderColor);
-
-        for (int i = 0; i < tooltip.size(); i++) {
-            guiGraphics.text(Minecraft.getInstance().font, tooltip.get(i), boxX + TEXT_PADDING, boxY + TEXT_PADDING + (i * LINE_HEIGHT), 0xFFFFFFFF, true);
-        }
+        guiGraphics.overlay(() -> {
+            guiGraphics.fill(boxX, tooltipY, boxX + boxWidth, tooltipY + boxHeight, 0xE0000000);
+            BaseWidget.border(guiGraphics, boxX, tooltipY, boxX + boxWidth, tooltipY + boxHeight, borderColor);
+            for (int i = 0; i < tooltip.size(); i++) {
+                guiGraphics.text(Minecraft.getInstance().font, tooltip.get(i), boxX + TEXT_PADDING, tooltipY + TEXT_PADDING + (i * LINE_HEIGHT), 0xFFFFFFFF, true);
+            }
+        });
     }
 
     private List<FormattedCharSequence> buildTooltip(Option option, int boxWidth) {

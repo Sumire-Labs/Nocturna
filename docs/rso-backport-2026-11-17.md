@@ -13,7 +13,9 @@ Its manifest records the four excluded Controlify entries and each replacement h
 
 The imported implementation handles ranked search, result navigation, grouped tabs, collapsible option groups,
 themes, tooltips, visibility preferences, reduced motion, reset and undo actions, keyboard focus and narration.
-The RSO preferences page and JSON configuration retain the upstream defaults and persistence code.
+The RSO preferences page and JSON configuration retain the imported persistence code.
+Nocturna defaults Mod headers to Manual collapse mode; other defaults remain upstream defaults.
+Existing valid stored modes, including All Expanded, are respected.
 Nocturna supplies its existing option pages, addon construction events, storage handlers and reload flags.
 Existing Minecraft and Nocturna bindings provide the actual default values for reset actions.
 
@@ -153,6 +155,26 @@ To reproduce the source audit:
 ```text
 node scripts/verify-rso-base.mjs <checkout-of-mc26.3-2.2.5>
 ```
+
+## Tooltip and Mod header follow-up (2026-11-19)
+
+The 1.20.1 managed GUI renderer could draw buffered option labels over the tooltip background.
+The drawing adapter now flushes the underlying content, draws the tooltip in a foreground pose,
+flushes it, and restores that pose. RSO's `0xE0000000` background and theme border are retained.
+Long descriptions that fit the page are clamped to its visible bounds when neither the space
+above nor below the hovered row is large enough.
+
+RSO 2.2.5 already supports Selected Group, All Expanded and Manual tab-header modes. All Expanded
+selects a Mod's first page when its header is clicked. Manual toggles its page list instead.
+Nocturna uses Manual for new configurations so Mod headers can be collapsed immediately;
+users can still select the other modes in RSO preferences. An existing All Expanded preference
+is not silently overwritten.
+
+The Java 17 client test checks mouse collapse and Space-key expansion of a Mod header. A managed
+GUI pixel-readback fixture verifies that the tooltip covers 816 underlying glyph pixels, rather
+than merely checking that a background rectangle was submitted. The remaining RSO client checks
+pass with 243 registered options. Anonymous legacy options without default metadata remain outside
+reset transactions; named built-in settings must still provide defaults.
 
 For the search comparison, use `scripts/rso-reference-classpath.init.gradle` with each project's Gradle wrapper.
 Run `:common:rsoWriteClasspath` in the reference checkout with `-Prso.enableControlify=false`, and

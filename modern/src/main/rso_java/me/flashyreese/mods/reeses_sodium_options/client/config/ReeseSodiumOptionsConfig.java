@@ -33,7 +33,8 @@ public final class ReeseSodiumOptionsConfig {
     static final int DEFAULT_SEARCH_RESULT_LIMIT = 15;
     static final int MIN_SEARCH_RESULT_LIMIT = 1;
     static final int MAX_SEARCH_RESULT_LIMIT = 50;
-    static final TabHeaderCollapseMode DEFAULT_TAB_HEADER_COLLAPSE_MODE = TabHeaderCollapseMode.ALL_EXPANDED;
+    // Nocturna exposes header click-to-collapse without requiring a preference change first.
+    static final TabHeaderCollapseMode DEFAULT_TAB_HEADER_COLLAPSE_MODE = TabHeaderCollapseMode.MANUAL;
     static final DisabledOptionVisibility DEFAULT_DISABLED_OPTION_VISIBILITY = DisabledOptionVisibility.SHOWN;
     static final FocusBorderMode DEFAULT_FOCUS_BORDER_MODE = FocusBorderMode.KEYBOARD;
 

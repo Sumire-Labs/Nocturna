@@ -19,7 +19,7 @@
       "targets": [
         {
           "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/config/ReeseSodiumOptionsConfig.java",
-          "sha256": "951c21f95d2b95811e1d1e03a9946e4b941c98c681f28f6c9a444adaf2169b14"
+          "sha256": "d1bda3287b250efc942ab3b799c0c5b85df5d2f94a5b87ea578fb65fe9eda04f"
         }
       ]
     },
@@ -214,7 +214,7 @@
       "targets": [
         {
           "path": "modern/src/main/rso_java/me/flashyreese/mods/reeses_sodium_options/client/gui/frame/option/OptionTooltipController.java",
-          "sha256": "cd1e63c2e5bd09dd749ceb586e59510c1c2f573f30165ea4b87a650b7eaee64a"
+          "sha256": "c7126fe3a5bfc64fa4c52c463d539186acaa59ddf90a42292acdd8c5797f9928"
         }
       ]
     },
