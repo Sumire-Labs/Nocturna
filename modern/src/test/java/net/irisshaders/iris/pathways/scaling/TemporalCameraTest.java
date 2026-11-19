@@ -19,4 +19,11 @@ class TemporalCameraTest {
         assertThrows(IllegalArgumentException.class,()->TemporalCamera.fromProjection(new Matrix4f().ortho(-1,1,-1,1,0.05f,256)));
         assertThrows(IllegalArgumentException.class,()->TemporalCamera.fromProjection(new Matrix4f().perspective(1.2f,1,0.05f,Float.POSITIVE_INFINITY)));
     }
+    @Test void rejectsNonFinitePerspectiveMarkersAndFloatOverflow() {
+        var projection=new Matrix4f().perspective(1.2f,1,0.05f,256);
+        assertThrows(IllegalArgumentException.class,()->TemporalCamera.fromProjection(new Matrix4f(projection).m23(Float.NaN)));
+        assertThrows(IllegalArgumentException.class,()->TemporalCamera.fromProjection(new Matrix4f(projection).m33(Float.NaN)));
+        assertThrows(IllegalArgumentException.class,()->TemporalCamera.fromProjection(new Matrix4f(projection).m32(-Float.MAX_VALUE).m22(Math.nextDown(-1f))));
+        assertThrows(IllegalArgumentException.class,()->TemporalCamera.fromProjection(new Matrix4f(projection).m32(-Float.MIN_VALUE).m22(-2)));
+    }
 }

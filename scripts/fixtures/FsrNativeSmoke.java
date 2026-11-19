@@ -20,6 +20,11 @@ public final class FsrNativeSmoke {
         try {
             FsrNative.load();
             String runtime = FsrNative.runtime().toString();
+            expectInvalid(()->FsrNative.acquire(0));
+            expectInvalid(()->FsrNative.provider(-1));
+            expectInvalid(()->FsrNative.jitter(Long.MAX_VALUE,0));
+            expectInvalid(()->FsrNative.close(Long.MAX_VALUE));
+            FsrNative.close(0);
             int width = args.length > 0 ? Integer.parseInt(args[0]) : 640;
             int height = args.length > 1 ? Integer.parseInt(args[1]) : 360;
             int firstFamily = args.length > 2 ? Integer.parseInt(args[2]) : 2;
@@ -28,6 +33,16 @@ public final class FsrNativeSmoke {
                 long context = FsrNative.create(runtime, width, height, width * 2, height * 2, family);
                 try (MemoryStack stack = MemoryStack.stackPush()) {
                     System.out.println("Provider=" + FsrNative.provider(context));
+                    expectInvalid(()->FsrNative.execute(context,0,0,16,Float.NaN,256,1.2f,0,true));
+                    var threadFailure=new java.util.concurrent.atomic.AtomicReference<Throwable>();
+                    var wrongThread=new Thread(()->{
+                        expectInvalid(()->FsrNative.acquire(context));
+                        expectInvalid(()->FsrNative.jitter(context,0));
+                        expectInvalid(()->FsrNative.close(context));
+                    },"fsr-wrong-context-validation");
+                    wrongThread.setUncaughtExceptionHandler((thread,failure)->threadFailure.set(failure));
+                    wrongThread.start();wrongThread.join();
+                    if(threadFailure.get()!=null)throw new AssertionError("Wrong-context call was not rejected",threadFailure.get());
                     FloatBuffer color = stack.floats(0.25f, 0.5f, 0.75f, 1);
                     FloatBuffer depth = stack.floats(0.5f);
                     FloatBuffer motion = stack.floats(0, 0);
@@ -53,7 +68,16 @@ public final class FsrNativeSmoke {
                         System.out.println("PASS FSR " + family + ": 12 real SDK dispatches; ring reuse; finite constant-color pixels");
                     } finally { org.lwjgl.system.MemoryUtil.memFree(pixels); }
                 } finally { FsrNative.close(context); }
+                expectInvalid(()->FsrNative.acquire(context));
+                expectInvalid(()->FsrNative.jitter(context,0));
+                expectInvalid(()->FsrNative.provider(context));
+                expectInvalid(()->FsrNative.close(context));
+                System.out.println("PASS invalid/closed native handles and invalid dispatch rejection");
             }
         } finally { GLFW.glfwDestroyWindow(window); GLFW.glfwTerminate(); }
+    }
+    private static void expectInvalid(Runnable operation) {
+        try {operation.run();throw new AssertionError("Invalid native call was accepted");}
+        catch(IllegalStateException expected) { }
     }
 }

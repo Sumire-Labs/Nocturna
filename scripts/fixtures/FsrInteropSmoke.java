@@ -39,6 +39,7 @@ public final class FsrInteropSmoke {
         for(int name:new int[]{GL20C.GL_CURRENT_PROGRAM,GL13C.GL_ACTIVE_TEXTURE,GL30C.GL_READ_FRAMEBUFFER_BINDING,
                 GL30C.GL_DRAW_FRAMEBUFFER_BINDING,GL21C.GL_PIXEL_PACK_BUFFER_BINDING,GL21C.GL_PIXEL_UNPACK_BUFFER_BINDING,
                 GL11C.GL_PACK_ALIGNMENT,GL11C.GL_PACK_ROW_LENGTH,GL11C.GL_PACK_SKIP_PIXELS,GL11C.GL_PACK_SKIP_ROWS})result.add(GL11C.glGetInteger(name));
+        result.add(GL11C.glGetInteger(GL11C.GL_UNPACK_SWAP_BYTES));
         for(int i=0;i<3;i++) {
             GL13C.glActiveTexture(GL13C.GL_TEXTURE0+i);
             result.add(GL11C.glGetInteger(GL11C.GL_TEXTURE_BINDING_2D));
@@ -72,6 +73,7 @@ public final class FsrInteropSmoke {
         int pbo=GL45C.glCreateBuffers(); GL45C.glNamedBufferStorage(pbo,64,0);
         GL15C.glBindBuffer(GL21C.GL_PIXEL_PACK_BUFFER,pbo);
         GL11C.glPixelStorei(GL11C.GL_PACK_ROW_LENGTH,9);GL11C.glPixelStorei(GL11C.GL_PACK_SKIP_PIXELS,1);
+        GL11C.glPixelStorei(GL11C.GL_UNPACK_SWAP_BYTES,1);
         for(int i=0;i<3;i++) {
             GL13C.glActiveTexture(GL13C.GL_TEXTURE0+i);
             GL11C.glBindTexture(GL13C.GL_TEXTURE_CUBE_MAP,cube);
@@ -106,9 +108,14 @@ public final class FsrInteropSmoke {
                 require(GL11C.glGetError()==0,"OpenGL error after temporal resolve");
             }
             System.out.println("PASS FSR "+fsr.provider()+" "+width+"x"+height+": gradient, sRGB round trip, orientation, state preservation, history reset, ring reuse");
+            fsr.close();
+            try {fsr.jitter(0);throw new AssertionError("Closed wrapper allowed jitter");}
+            catch(IllegalStateException expected) { }
+            fsr.close(); // The Java owner remains idempotent.
         } finally {
             MemoryUtil.memFree(pixels);
             GL15C.glBindBuffer(GL21C.GL_PIXEL_PACK_BUFFER,0);GL11C.glPixelStorei(GL11C.GL_PACK_ROW_LENGTH,0);GL11C.glPixelStorei(GL11C.GL_PACK_SKIP_PIXELS,0);
+            GL11C.glPixelStorei(GL11C.GL_UNPACK_SWAP_BYTES,0);
             for(int i=0;i<3;i++){GL33C.glBindSampler(i,0);GL42C.glBindImageTexture(i,0,0,false,0,GL15C.GL_READ_ONLY,GL11C.GL_RGBA8);}
             GL11C.glDisable(GL11C.GL_SCISSOR_TEST);GL11C.glDisable(GL30C.GL_FRAMEBUFFER_SRGB);
             GL11C.glDeleteTextures(new int[]{color,depth,motion,output,sentinel,cube});GL30C.glDeleteFramebuffers(framebuffer);

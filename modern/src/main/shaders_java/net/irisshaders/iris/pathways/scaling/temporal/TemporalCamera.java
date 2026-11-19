@@ -6,7 +6,8 @@ import org.joml.Matrix4fc;
 /** Camera parameters for the actual finite OpenGL perspective depth buffer, not the pack's nominal far uniform. */
 public record TemporalCamera(float near, float far, float verticalFov) {
     public static TemporalCamera fromProjection(Matrix4fc projection) {
-        if (projection == null || Math.abs(projection.m23() + 1) > 0.00001f || Math.abs(projection.m33()) > 0.00001f)
+        if (projection == null || !Float.isFinite(projection.m23()) || !Float.isFinite(projection.m33())
+                || Math.abs(projection.m23() + 1) > 0.00001f || Math.abs(projection.m33()) > 0.00001f)
             throw new IllegalArgumentException("Temporal FSR requires a finite perspective projection");
         double near = projection.m32() / ((double) projection.m22() - 1);
         double far = projection.m32() / ((double) projection.m22() + 1);
@@ -14,6 +15,9 @@ public record TemporalCamera(float near, float far, float verticalFov) {
         if (!Double.isFinite(near) || !Double.isFinite(far) || !Double.isFinite(fov)
                 || !(near > 0 && far > near && fov > 0 && fov < Math.PI))
             throw new IllegalArgumentException("Temporal FSR requires ordinary finite OpenGL depth");
+        if (!Float.isFinite((float) near) || !Float.isFinite((float) far)
+                || !((float) near > 0 && (float) far > (float) near))
+            throw new IllegalArgumentException("Temporal FSR depth planes exceed its float input range");
         return new TemporalCamera((float) near, (float) far, (float) fov);
     }
 }

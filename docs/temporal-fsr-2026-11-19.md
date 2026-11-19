@@ -170,3 +170,37 @@ packs, run `scripts/Test-ShaderPacks.ps1` with `-UpscaleMode FSR4_1 -RenderScale
 -ExpectTemporal fallback`. The existing default probe remains usable against renderers without
 Nocturna's optional temporal API. Runtime installation while the game is open requires a shader
 reload or changing the upscaling filter before retrying a previously unavailable backend.
+
+## Follow-up implementation review
+
+The table above records the original integration at `f8c8a04b`. The follow-up review and current
+bridge hashes are recorded in `docs/audits/temporal-fsr-review-2026-11-19.json` and
+`native/fsr/source-manifest.json`.
+
+The review corrected four issues:
+
+* An already installed DLL caused the installer to return before repairing its missing license.
+  Both files now have pinned hashes, both are validated before publishing a new DLL, and retries
+  repair missing or modified license files. Offline-complete installs make no network requests.
+* A closed wrapper's `jitter` call could pass a null pointer into JNI. Native contexts now use
+  checked opaque IDs, and stale/foreign IDs and wrong-context calls are rejected. Java owners
+  remain idempotently closeable; JNI string copying no longer pins a Java string across native allocation.
+* A fence's device-removed sentinel `UINT64_MAX` was treated as a completed submission.
+  The shared wait implementation now rejects it. A CPU-only protocol test exercises this and
+  event/timeout/post-wait failures; it does not remove the real GPU device.
+* Non-finite perspective markers, and depth planes that overflow or underflow on conversion to
+  the SDK's float fields, could pass the camera helper. They are rejected before SDK dispatch.
+
+The suspected pixel-unpack byte-swap interaction did not reproduce and is not a rendering fix.
+The enlarged real-driver fixture preserves it as a regression check. A separate moving XY scene
+compares the production GL conversion with independently CPU-prepared inputs to the same official
+SDK providers; all three providers match at the sampled pixels (zero difference out of 255).
+This tests transport and orientation; it is not an independent implementation of AMD's ML algorithm.
+
+Windows CI now compiles the bridge and runs the fence protocol test. The existing Linux snapshot
+build continues checking Java 17 bytecode, product packaging and all source/binary manifest hashes.
+The native source/header additions are included in the sources jar. AMD's binary remains external.
+The repeat review passed 200 unit tests, the eight installer cases, the native fence protocol test,
+all three real-driver moving-scene comparisons, and 82 error-free captures across 13 client runs.
+The regenerated bridge was also rebuilt byte-identically from the sources jar. This integration
+includes the separately added `ae3b044e` uniform-supplier optimization, which was preserved.

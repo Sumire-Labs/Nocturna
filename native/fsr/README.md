@@ -34,3 +34,11 @@ the tested 8060S driver/4.1.2 runtime returns black for a 64x64 input, despite a
 That configuration falls back to FSR 1, rather than presenting black. Ordinary resolutions are tested separately.
 
 See `docs/temporal-fsr-2026-11-19.md` for the shader-pack contract, verification and limitations.
+
+The native API uses opaque, non-reused IDs rather than exposing C++ pointers. Invalid, stale
+and wrong-context operations are rejected before touching GPU resources (`close(0)` is a no-op); Java owners
+also reject use after close. The small fence protocol unit test covers device removal
+(`UINT64_MAX`), event setup failure, timeout and device loss after a wait without faulting the GPU.
+`Build-FsrBridge.ps1` runs it, and the `native-fsr` Windows CI builds/runs it independently.
+The registry container is process-lived to avoid GPU cleanup under the DLL loader lock;
+explicit context close still destroys the context and releases its owned resources.

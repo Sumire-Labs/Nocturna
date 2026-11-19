@@ -69,7 +69,10 @@ public final class TemporalFsrUpscaler implements AutoCloseable {
     }
 
     public String provider() { return provider; }
-    public float[] jitter(long frame) { return FsrNative.jitter(context, frame); }
+    public float[] jitter(long frame) {
+        if (context == 0) throw new IllegalStateException("Closed temporal FSR context");
+        return FsrNative.jitter(context, frame);
+    }
 
     /** One readback at context creation, never per frame. Rejects a provider that accepts a GPU/size but emits black. */
     private void validateTransport() {

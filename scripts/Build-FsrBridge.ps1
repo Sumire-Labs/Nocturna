@@ -16,10 +16,13 @@ $nativeBuild = Join-Path $nativeSource 'build'
 $previousJavaHome = $env:JAVA_HOME
 try {
     $env:JAVA_HOME = $JavaHome
-    & $CMake -S $nativeSource -B $nativeBuild -A x64
+    & $CMake -S $nativeSource -B $nativeBuild -A x64 -DBUILD_TESTING=ON
     if ($LASTEXITCODE -ne 0) { throw 'FSR bridge CMake configuration failed' }
     & $CMake --build $nativeBuild --config Release
     if ($LASTEXITCODE -ne 0) { throw 'FSR bridge build failed' }
+    $ctest = Join-Path (Split-Path (Get-Command $CMake).Source -Parent) 'ctest.exe'
+    & $ctest --test-dir $nativeBuild -C Release --output-on-failure
+    if ($LASTEXITCODE -ne 0) { throw 'FSR fence protocol tests failed' }
 } finally { $env:JAVA_HOME = $previousJavaHome }
 $destination = Join-Path $repository 'modern/src/main/shaders_resources/native/windows-x64/nocturna_fsr.dll'
 New-Item -ItemType Directory -Force -Path (Split-Path $destination -Parent) | Out-Null

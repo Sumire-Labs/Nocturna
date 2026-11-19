@@ -23,10 +23,10 @@ New-Item -ItemType Directory -Force -Path $classes | Out-Null
 $javaSources = foreach ($file in @('FsrNative.java','TemporalFsrUpscaler.java')) {
     Join-Path $repository "modern/src/main/shaders_java/net/irisshaders/iris/pathways/scaling/temporal/$file"
 }
-$fixtures = @('FsrNativeSmoke.java','FsrInteropSmoke.java') | ForEach-Object { Join-Path $PSScriptRoot "fixtures/$_" }
+$fixtures = @('FsrNativeSmoke.java','FsrInteropSmoke.java','FsrMotionReference.java') | ForEach-Object { Join-Path $PSScriptRoot "fixtures/$_" }
 & (Join-Path $JavaHome 'bin/javac.exe') --release 17 -cp $classpath -d $classes @javaSources @fixtures
 if ($LASTEXITCODE -ne 0) { throw 'Java 17 FSR fixture compilation failed' }
-foreach ($fixture in @('FsrNativeSmoke','FsrInteropSmoke')) {
+foreach ($fixture in @('FsrNativeSmoke','FsrInteropSmoke','FsrMotionReference')) {
     & (Join-Path $JavaHome 'bin/java.exe') "-Dnocturna.fsr.bridge=$([IO.Path]::GetFullPath($Bridge))" "-Dnocturna.fsr.runtime=$([IO.Path]::GetFullPath($Runtime))" -cp "$classes;$classpath" $fixture 2>&1 |
         Tee-Object -FilePath (Join-Path $ResultDirectory "$fixture.log")
     if ($LASTEXITCODE -ne 0) { throw "$fixture failed" }

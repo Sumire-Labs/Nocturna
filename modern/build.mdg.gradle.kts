@@ -495,6 +495,8 @@ val verifyFsrBridge = tasks.register("verifyFsrBridge") {
     inputs.file(manifestFile)
     inputs.file(rootProject.file("native/fsr/nocturna_fsr.cpp"))
     inputs.file(rootProject.file("native/fsr/CMakeLists.txt"))
+    inputs.file(rootProject.file("native/fsr/fence_wait.h"))
+    inputs.file(rootProject.file("native/fsr/fence_wait_test.cpp"))
     inputs.dir(rootProject.file("native/fsr/vendor"))
     inputs.file(rootProject.file("modern/src/main/shaders_resources/native/windows-x64/nocturna_fsr.dll"))
     doLast {
@@ -517,7 +519,7 @@ tasks.check { dependsOn(verifyJava17Jar, verifyFsrBridge) }
 // Keep the corresponding source for the bundled LGPL JNI bridge with the source distribution.
 tasks.named<Jar>("sourcesJar") {
     from(rootProject.file("native/fsr")) {
-        include("*.cpp", "CMakeLists.txt", "README.md", "source-manifest.json", "vendor/**")
+        include("*.cpp", "*.h", "CMakeLists.txt", "README.md", "source-manifest.json", "vendor/**")
         into("native/fsr")
     }
     from(rootProject.file("scripts")) {

@@ -1,0 +1,30 @@
+name: native-fsr
+on:
+  push:
+    paths:
+      - 'native/fsr/**'
+      - 'modern/src/main/shaders_java/net/irisshaders/iris/pathways/scaling/temporal/**'
+      - 'scripts/*Fsr*'
+      - '.github/workflows/native-fsr.yml'
+  pull_request:
+    paths:
+      - 'native/fsr/**'
+      - 'modern/src/main/shaders_java/net/irisshaders/iris/pathways/scaling/temporal/**'
+      - 'scripts/*Fsr*'
+      - '.github/workflows/native-fsr.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build-and-test:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - run: cmake -S native/fsr -B build/fsr -A x64 -DBUILD_TESTING=ON
+      - run: cmake --build build/fsr --config Release
+      - run: ctest --test-dir build/fsr -C Release --output-on-failure
+      # GPU/AMD runtime tests run on real hardware separately. Do not distribute AMD's effect DLL.

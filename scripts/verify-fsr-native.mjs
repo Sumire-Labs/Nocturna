@@ -5,6 +5,7 @@ import {fileURLToPath} from 'node:url';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const manifestPath = path.join(root, 'native/fsr/source-manifest.json');
 const names = ['native/fsr/nocturna_fsr.cpp', 'native/fsr/CMakeLists.txt',
+  'native/fsr/fence_wait.h', 'native/fsr/fence_wait_test.cpp',
   'native/fsr/vendor/api/include/ffx_api.h', 'native/fsr/vendor/api/include/ffx_api_types.h',
   'native/fsr/vendor/api/include/dx12/ffx_api_dx12.h', 'native/fsr/vendor/upscalers/include/ffx_upscale.h',
   'modern/src/main/shaders_resources/native/windows-x64/nocturna_fsr.dll'];

@@ -19,11 +19,16 @@
 #include <string>
 #include <vector>
 #include <cstdio>
+#include <limits>
+#include <mutex>
+#include <unordered_map>
+#include <cmath>
+#include "fence_wait.h"
 
 using Microsoft::WRL::ComPtr;
 namespace {
 void check(HRESULT code, const char* operation) {
-    if (FAILED(code)) throw std::runtime_error(std::string(operation) + " HRESULT=" + std::to_string(static_cast<unsigned>(code)));
+    nocturna::requireSuccess(code, operation);
 }
 void ffxCheck(ffxReturnCode_t code, const char* operation) {
     if (code != FFX_API_RETURN_OK) throw std::runtime_error(std::string(operation) + " FFX=" + std::to_string(code));
@@ -103,11 +108,7 @@ struct Context {
         if (wglGetCurrentContext() != owner) throw std::runtime_error("FSR used outside its owning GL context");
     }
     void waitCpu(std::uint64_t value) {
-        if (!value || fence->GetCompletedValue() >= value) return;
-        check(fence->SetEventOnCompletion(value, event.value), "SetEventOnCompletion");
-        if (WaitForSingleObject(event.value, 30000) != WAIT_OBJECT_0)
-            throw std::runtime_error("Timed out waiting for FSR GPU work");
-        check(device->GetDeviceRemovedReason(), "FSR device removed");
+        nocturna::waitForFence(*fence.Get(), *device.Get(), event.value, value);
     }
     void texture(Slot& s, unsigned i, int w, int h, DXGI_FORMAT format, GLenum glFormat) {
         D3D12_HEAP_PROPERTIES heap{};
@@ -224,6 +225,11 @@ struct Context {
     }
     void execute(float jitterX, float jitterY, float delta, float nearPlane, float farPlane, float fov, float sharpness, bool reset) {
         requireOwner();
+        if (!std::isfinite(jitterX) || !std::isfinite(jitterY) || !std::isfinite(delta)
+            || !std::isfinite(nearPlane) || !std::isfinite(farPlane) || !std::isfinite(fov)
+            || !std::isfinite(sharpness) || delta <= 0 || nearPlane <= 0 || farPlane <= nearPlane
+            || fov <= 0 || fov >= 3.14159265358979323846f || sharpness < 0 || sharpness > 1)
+            throw std::runtime_error("Invalid FSR dispatch parameters");
         auto& s = slots[slot];
         check(s.allocator->Reset(), "Reset FSR allocator");
         check(s.list->Reset(s.allocator.Get(), nullptr), "Reset FSR list");
@@ -295,6 +301,23 @@ struct Context {
         if (library) FreeLibrary(library);
     }
 };
+// Opaque IDs reject stale/foreign Java handles before dereferencing native memory.
+// Keep only the registry container alive at process exit: GPU cleanup must not run under DllMain's loader lock.
+struct Registry {
+    std::mutex mutex;
+    std::unordered_map<jlong, std::unique_ptr<Context>> contexts;
+    jlong nextId = 1;
+};
+Registry& registry() {
+    static auto* state = new Registry();
+    return *state;
+}
+Context& checkedContext(Registry& state, jlong id) {
+    auto found = state.contexts.find(id);
+    if (found == state.contexts.end()) throw std::runtime_error("Invalid or closed FSR context");
+    found->second->requireOwner();
+    return *found->second;
+}
 void fail(JNIEnv* env, const std::exception& error) {
     env->ThrowNew(env->FindClass("java/lang/IllegalStateException"), error.what());
 }
@@ -302,18 +325,26 @@ void fail(JNIEnv* env, const std::exception& error) {
 #define JNI_METHOD(name) Java_net_irisshaders_iris_pathways_scaling_temporal_FsrNative_##name
 extern "C" JNIEXPORT jlong JNICALL JNI_METHOD(create)(JNIEnv* env, jclass, jstring path, jint w, jint h, jint ow, jint oh, jint family) {
     try {
-        const jchar* chars = env->GetStringChars(path, nullptr);
-        if (!chars) return 0;
-        std::wstring dll(reinterpret_cast<const wchar_t*>(chars), env->GetStringLength(path));
-        env->ReleaseStringChars(path, chars);
+        if (!path) throw std::runtime_error("FSR runtime path is null");
+        const auto length = env->GetStringLength(path);
+        std::wstring dll(static_cast<size_t>(length), L'\0');
+        env->GetStringRegion(path, 0, length, reinterpret_cast<jchar*>(dll.data()));
+        if (env->ExceptionCheck()) return 0;
         auto context = std::make_unique<Context>(w, h, ow, oh);
         context->initialize(dll.c_str(), family);
-        return reinterpret_cast<jlong>(context.release());
+        auto& state = registry();
+        std::scoped_lock lock(state.mutex);
+        if (state.nextId == std::numeric_limits<jlong>::max()) throw std::runtime_error("FSR context IDs exhausted");
+        auto id = state.nextId++;
+        state.contexts.emplace(id, std::move(context));
+        return id;
     } catch (const std::exception& error) { fail(env, error); return 0; }
 }
 extern "C" JNIEXPORT jintArray JNICALL JNI_METHOD(acquire)(JNIEnv* env, jclass, jlong pointer) {
     try {
-        auto& c = *reinterpret_cast<Context*>(pointer);
+        auto& state = registry();
+        std::scoped_lock lock(state.mutex);
+        auto& c = checkedContext(state, pointer);
         c.acquire();
         auto result = env->NewIntArray(4);
         if (result) env->SetIntArrayRegion(result, 0, 4, reinterpret_cast<const jint*>(c.slots[c.slot].textures.data()));
@@ -321,11 +352,17 @@ extern "C" JNIEXPORT jintArray JNICALL JNI_METHOD(acquire)(JNIEnv* env, jclass, 
     } catch (const std::exception& error) { fail(env, error); return nullptr; }
 }
 extern "C" JNIEXPORT jstring JNICALL JNI_METHOD(provider)(JNIEnv* env, jclass, jlong pointer) {
-    return env->NewStringUTF(reinterpret_cast<Context*>(pointer)->provider.c_str());
+    try {
+        auto& state = registry();
+        std::scoped_lock lock(state.mutex);
+        return env->NewStringUTF(checkedContext(state, pointer).provider.c_str());
+    } catch (const std::exception& error) { fail(env, error); return nullptr; }
 }
 extern "C" JNIEXPORT jfloatArray JNICALL JNI_METHOD(jitter)(JNIEnv* env, jclass, jlong pointer, jlong frame) {
     try {
-        auto& c = *reinterpret_cast<Context*>(pointer);
+        auto& state = registry();
+        std::scoped_lock lock(state.mutex);
+        auto& c = checkedContext(state, pointer);
         int32_t phases = 0;
         ffxQueryDescUpscaleGetJitterPhaseCount count{{FFX_API_QUERY_DESC_TYPE_UPSCALE_GETJITTERPHASECOUNT, nullptr},
             static_cast<unsigned>(c.width), static_cast<unsigned>(c.outputWidth), &phases};
@@ -342,9 +379,19 @@ extern "C" JNIEXPORT jfloatArray JNICALL JNI_METHOD(jitter)(JNIEnv* env, jclass,
     } catch (const std::exception& error) { fail(env, error); return nullptr; }
 }
 extern "C" JNIEXPORT void JNICALL JNI_METHOD(execute)(JNIEnv* env, jclass, jlong pointer, jfloat x, jfloat y, jfloat delta, jfloat nearPlane, jfloat farPlane, jfloat fov, jfloat sharpness, jboolean reset) {
-    try { reinterpret_cast<Context*>(pointer)->execute(x, y, delta, nearPlane, farPlane, fov, sharpness, reset); }
+    try {
+        auto& state = registry();
+        std::scoped_lock lock(state.mutex);
+        checkedContext(state, pointer).execute(x, y, delta, nearPlane, farPlane, fov, sharpness, reset);
+    }
     catch (const std::exception& error) { fail(env, error); }
 }
-extern "C" JNIEXPORT void JNICALL JNI_METHOD(close)(JNIEnv*, jclass, jlong pointer) {
-    delete reinterpret_cast<Context*>(pointer);
+extern "C" JNIEXPORT void JNICALL JNI_METHOD(close)(JNIEnv* env, jclass, jlong pointer) {
+    if (!pointer) return;
+    try {
+        auto& state = registry();
+        std::scoped_lock lock(state.mutex);
+        checkedContext(state, pointer);
+        state.contexts.erase(pointer);
+    } catch (const std::exception& error) { fail(env, error); }
 }
